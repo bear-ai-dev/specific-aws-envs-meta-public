@@ -1,0 +1,46 @@
+{
+    "task": {
+        "path": "/tmp/managed-runner/tasks/meteringco-measurement-failure-dlq"
+    },
+    "trial_name": "meteringco-measurement-failure-dlq__6Yn3d85",
+    "trials_dir": "/tmp/managed-runner/trials/run-fd4ba034bc71",
+    "agent": {
+        "import_path": "managed_agents.harbor_agents:BedrockMiniSweAgent",
+        "model_name": "bedrock/us.anthropic.claude-opus-5",
+        "n_concurrent": 8,
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "/usr/local/lib/python3.12/site-packages/managed_agents/mini-swe-bedrock.yaml",
+            "reasoning_effort": "high"
+        }
+    },
+    "environment": {
+        "import_path": "managed_sandbox.fargate:FargateEnvironment",
+        "override_cpus": 4,
+        "override_memory_mb": 8192,
+        "override_storage_mb": 102400,
+        "kwargs": {
+            "cluster": "managed-runner",
+            "aws_region": "us-east-1",
+            "execution_role_arn": "arn:aws:iam::000000000000:role/managed-execution-role",
+            "task_role_arn": "arn:aws:iam::000000000000:role/managed-sandbox-role",
+            "subnets": [
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted"
+            ],
+            "security_groups": [
+                "sg-redacted"
+            ],
+            "init_container_image_uri": "000000000000.dkr.ecr.us-east-1.amazonaws.com/managed/runtime-init@sha256:db6cb314ff6afa9384a0a371ecd4fbd981125e13bc7358260eb87e0229f5b168",
+            "use_spot": false,
+            "cpu_units": 4096,
+            "storage_gib": 100
+        }
+    },
+    "job_id": "d63f9759-627c-4caa-8841-4aebdd56348d"
+}

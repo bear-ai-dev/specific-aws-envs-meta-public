@@ -1,0 +1,4 @@
+cardinal-july: cus_falconry should carry no line for ['cardinal-support-tickets']
+cardinal-july: cus_larkspur should carry no line for ['cardinal-sandbox-hours']
+cardinal-july: cus_meridian should carry no line for ['cardinal-support-tickets']
+reward=0.0

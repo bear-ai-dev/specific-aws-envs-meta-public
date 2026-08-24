@@ -1,0 +1,6 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - cardinal-july: the run failed (Cannot read properties of undefined (reading 'findUsageForCustomer'))

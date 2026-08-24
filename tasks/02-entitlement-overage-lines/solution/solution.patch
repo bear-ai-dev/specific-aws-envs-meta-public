@@ -1,0 +1,218 @@
+diff --git a/src/billing/entities/billing.entity.ts b/src/billing/entities/billing.entity.ts
+index c107b7d..741ed83 100644
+--- a/src/billing/entities/billing.entity.ts
++++ b/src/billing/entities/billing.entity.ts
+@@ -1,5 +1,12 @@
++import { Logger } from '@nestjs/common';
++import { AuditService } from '../../audit/audit.service.js';
++import { AuditScope } from '../../audit/entities/audit.interface.js';
++import { AggregatedUsageResponse } from '../../customer/dto/read-customer.dto.js';
++import { overageAllowedEnum, ReadDimensionResponseData } from '../../dimensions/dto/create-dimension.dto.js';
+ import { InfluxService } from '../../influx/influx.service.js';
+ import { ValidBillingCycles } from '../../offering/dto/createOffering.dto.js';
++import { Offering } from '../../offering/entities/offeringPackage.entity.js';
++import { FreeDimensionOnInvoice } from '../../setting/dto/FreeDimensionOnInvoice.js';
+ import { DatetimeUtils } from '../../utils/datetime.js';
+ 
+ export enum billingScheduleConsumers {
+@@ -7,6 +14,7 @@ export enum billingScheduleConsumers {
+ }
+ 
+ export class Billing {
++    private static readonly logger = new Logger(Billing.name);
+     public static _measurement = 'billingReport';
+     public invoiceId: string;
+     public businessID: string;
+@@ -79,4 +87,76 @@ export class Billing {
+             billingId: dbModel.billingId,
+         });
+     }
++
++    public static usageToTotal(
++        aggregatedUsageResponse: AggregatedUsageResponse,
++        dimension: ReadDimensionResponseData,
++    ): string {
++        try {
++            const { usage, dimensionId } = aggregatedUsageResponse;
++            if (dimensionId !== dimension?.dimensionId) {
++                throw new Error(
++                    `dimensionId for usage data: ${dimensionId} does not match dimensionId on dimension document ${dimension?.dimensionId}`,
++                );
++            }
++            const { usageEntitlement, overageAllowed } = dimension;
++            const totalUsage = usage.reduce((acc, { value }) => {
++                acc += parseFloat(value);
++                return acc;
++            }, 0);
++
++            if (!usageEntitlement) {
++                const usage = totalUsage;
++                return usage.toFixed(2).toString();
++            }
++
++            if (usageEntitlement === 'inf') {
++                return '0.00';
++            } else {
++                const usageEntitlementValue = parseFloat(usageEntitlement ? usageEntitlement.toString() : '0');
++                const usage = totalUsage - usageEntitlementValue;
++                if (usage > 0) {
++                    // A plan permits an overrun only by saying so. Anything else,
++                    // including no term at all, leaves the overrun uncharged.
++                    if (overageAllowed === overageAllowedEnum.true) {
++                        return usage.toFixed(2).toString();
++                    } else {
++                        return '0.00';
++                    }
++                } else {
++                    return '0.00';
++                }
++            }
++        } catch (e) {
++            Billing.logger.error('error in usageToTotal', e);
++            AuditService.publishEvent({ message: 'error in usageToTotal', data: [e], topic: AuditScope.ERROR });
++        }
++    }
++
++    public static determineIfLineItemShown({
++        totalUsage,
++        unitCost,
++        freeDimensionOnInvoice,
++    }: {
++        totalUsage: number;
++        dimension: ReadDimensionResponseData;
++        Offering: Offering;
++        unitCost: number;
++        freeDimensionOnInvoice: FreeDimensionOnInvoice;
++    }): boolean {
++        try {
++            // `totalUsage` here is what the dimension bills for, once its
++            // allowance and overage terms have been applied. A dimension the
++            // customer owes something on earns its line. A dimension priced at
++            // nothing can never owe anything, so whether it is shown at all is
++            // the one thing the business's invoice settings decide.
++            if (unitCost === 0) {
++                return freeDimensionOnInvoice !== FreeDimensionOnInvoice.hide;
++            }
++            return totalUsage > 0;
++        } catch (e) {
++            AuditService.publishEvent({ message: 'error in line item', data: [e], topic: AuditScope.ERROR });
++            throw e;
++        }
++    }
+ }
+diff --git a/src/offering/entities/offeringPackage.entity.ts b/src/offering/entities/offeringPackage.entity.ts
+index 147ab70..5b03c6f 100644
+--- a/src/offering/entities/offeringPackage.entity.ts
++++ b/src/offering/entities/offeringPackage.entity.ts
+@@ -349,18 +349,6 @@ export abstract class Offering {
+         }
+     }
+ 
+-    /**
+-     * What a dimension's readings add up to over the invoiced period, carried to
+-     * the two decimal places an invoice is denominated in.
+-     */
+-    static billableTotal(usage: AggregatedUsageResponse['usage']): string {
+-        const total = (usage ?? []).reduce((acc, { value }) => {
+-            acc += parseFloat(value);
+-            return acc;
+-        }, 0);
+-        return total.toFixed(2).toString();
+-    }
+-
+     static async getLineItemsForUsage({
+         startDate,
+         endDate,
+@@ -441,13 +429,37 @@ export abstract class Offering {
+             const dimension = nonTieredDimensionsMap[nonTieredDimensionId];
+             let total;
+             if (dimension?.aggregationMethod === aggregationMethod.last) {
+-                total = Offering.billableTotal(
+-                    usageElement && usageElement?.usage?.length
+-                        ? [usageElement?.usage[usageElement?.usage?.length - 1]]
+-                        : [],
+-                );
++                if (usageElement && usageElement?.usage?.length) {
++                    total = Billing.usageToTotal(
++                        {
++                            usage: [
++                                usageElement?.usage[usageElement?.usage?.length ? usageElement?.usage?.length - 1 : 0],
++                            ],
++                            dimensionId: usageElement.dimensionId,
++                        },
++                        dimension,
++                    );
++                } else {
++                    total = Billing.usageToTotal(
++                        {
++                            usage: [],
++                            dimensionId: dimension?.dimensionId,
++                        },
++                        dimension,
++                    );
++                }
+             } else {
+-                total = Offering.billableTotal(usageElement ? usageElement.usage : []);
++                if (usageElement) {
++                    total = Billing.usageToTotal(usageElement, dimension);
++                } else {
++                    total = Billing.usageToTotal(
++                        {
++                            usage: [],
++                            dimensionId: dimension?.dimensionId,
++                        },
++                        dimension,
++                    );
++                }
+             }
+ 
+             if (acc[nonTieredDimensionId]) {
+@@ -494,23 +506,32 @@ export abstract class Offering {
+                 }) as number;
+                 unitCost = Math.round(100 * unitCost * (billingMSSeconds / billingMSSecondsInBillingCycle)) / 100;
+             }
+-            const {
+-                usageIncrement,
+-                consumptionUnit: { unit, type },
+-            } = nonTieredDimensionsMap[dimensionId];
+-            // Handle currency conversion
+-
+-            const { displayName, total: displayTotal } = InvoiceLineItem.prepareLineItem({
+-                total: dimensionTotals[dimensionId],
+-                dimensionType: type,
+-                dimensionId,
+-                dimensionName: nonTieredDimensionsMap[dimensionId].dimensionName,
+-                offeringName: offeringInstance.offeringName,
+-                usageIncrement: parseInt(usageIncrement),
+-                dimensionUnit: unit,
+-                negative,
++            const shouldDisplayLineItem = Billing.determineIfLineItemShown({
++                Offering: offeringInstance,
++                dimension: nonTieredDimensionsMap[dimensionId],
++                totalUsage: dimensionTotals[dimensionId] as number,
++                unitCost,
++                freeDimensionOnInvoice: offeringInstance.settings?.freeDimensionOnInvoice,
+             });
+-            lineItems.addLineItem(new InvoiceLineItem(displayName, displayTotal, unitCost));
++            if (shouldDisplayLineItem) {
++                const {
++                    usageIncrement,
++                    consumptionUnit: { unit, type },
++                } = nonTieredDimensionsMap[dimensionId];
++                // Handle currency conversion
++
++                const { displayName, total: displayTotal } = InvoiceLineItem.prepareLineItem({
++                    total: dimensionTotals[dimensionId],
++                    dimensionType: type,
++                    dimensionId,
++                    dimensionName: nonTieredDimensionsMap[dimensionId].dimensionName,
++                    offeringName: offeringInstance.offeringName,
++                    usageIncrement: parseInt(usageIncrement),
++                    dimensionUnit: unit,
++                    negative,
++                });
++                lineItems.addLineItem(new InvoiceLineItem(displayName, displayTotal, unitCost));
++            }
+         });
+         if (Object.keys(tieredDimensionMap).length) {
+             Object.keys(tieredDimensionMap).forEach((tieredDimensionId) => {

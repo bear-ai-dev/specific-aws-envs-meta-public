@@ -1,0 +1,42 @@
+name: Integration Test Scheduled
+on:
+    schedule:
+        - cron: '0 0 1 * *'
+
+jobs:
+    test_schedule:
+        runs-on: [self-hosted]
+        steps:
+            - name: Every time
+              run: echo "This step will always run"
+            - uses: actions/checkout@v3
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: '18'
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Test Integration
+              env:
+                  TEST_1_ACCOUNT_ID: ${{ secrets.TEST_1_ACCOUNT_ID }}
+                  TEST_1_AWS_ACCESS_KEY_ID: ${{ secrets.TEST_1_AWS_ACCESS_KEY_ID }}
+                  TEST_1_AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_1_AWS_SECRET_ACCESS_KEY }}
+                  TEST_2_ACCOUNT_ID: ${{ secrets.TEST_2_ACCOUNT_ID }}
+                  TEST_2_AWS_ACCESS_KEY_ID: ${{ secrets.TEST_2_AWS_ACCESS_KEY_ID }}
+                  TEST_2_AWS_SECRET_ACCESS_KEY: ${{ secrets.TEST_2_AWS_SECRET_ACCESS_KEY }}
+                  STRIPE_ACCOUNT_ID: ${{ secrets.STRIPE_ACCOUNT_ID }}
+                  STRIPE_CLIENT_ACCOUNT_ID: ${{ secrets.STRIPE_CLIENT_ACCOUNT_ID }}
+                  STRIPE_CLIENT_ACCOUNT_ID_NO_PAYOUT: ${{ secrets.STRIPE_CLIENT_ACCOUNT_ID_NO_PAYOUT }}
+                  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+                  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+                  ADMIN_CLIENT_ID: ${{ secrets.ADMIN_CLIENT_ID }}
+                  ADMIN_CLIENT_SECRET: ${{ secrets.ADMIN_CLIENT_SECRET }}
+                  TEST_CLIENT_ID: ${{ secrets.TEST_CLIENT_ID }}
+                  TEST_CLIENT_SECRET: ${{ secrets.TEST_CLIENT_SECRET }}
+                  KAFKA_USERNAME: ${{ secrets.KAFKA_USERNAME }}
+                  KAFKA_PASSWORD: ${{ secrets.KAFKA_PASSWORD }} 
+                  KAFKA_BOOTSTRAP_SERVER_ENDPOINT: ${{ secrets.KAFKA_BOOTSTRAP_SERVER_ENDPOINT }}
+                  KAFKA_TOPIC: ${{ secrets.KAFKA_TOPIC }}
+                  KAFKA_DLQ_TOPIC: ${{ secrets.KAFKA_DLQ_TOPIC }}
+              run: npm run test:ci:integration

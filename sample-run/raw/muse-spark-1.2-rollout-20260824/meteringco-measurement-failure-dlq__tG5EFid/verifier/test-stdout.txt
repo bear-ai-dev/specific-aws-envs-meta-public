@@ -1,0 +1,15 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+=== Phase main ===
+driver diagnostic exit: 0
+meteringco-usage-record-dlq-bucket-qa7: 7 object(s)
+=== Phase degraded ===
+driver diagnostic exit: 0
+meteringco-usage-record-dlq-bucket-qa7: 0 object(s)
+=== Assemble the observations ===
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - truncated-payload/truncated-payload-redelivered: the record at biz-arclight/2026/05/04/usage-004412.json-8af205.json keeps a stack trace
+  - truncated-payload/truncated-payload-redelivered: the record at biz-arclight/2026/05/04/usage-004412.json-d64640.json keeps a stack trace
+  - no-source-file: the record at meteringco-unknown/2143b6fc-66a3-494e-b84f-75caea991e4b-195ab4.json keeps a stack trace
+  - blank-source-file: the record at meteringco-unknown/8a64db8c-daee-4176-a976-bd8520d762f3-f77c87.json keeps a stack trace

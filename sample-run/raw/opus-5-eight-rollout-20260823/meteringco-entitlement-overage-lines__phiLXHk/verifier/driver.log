@@ -1,0 +1,45 @@
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Cardinal Scale, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-storage-gigabytes on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-support-tickets on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-audit-exports on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Cardinal Scale, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-api-requests on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-included-seats on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-storage-gigabytes on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-support-tickets on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-audit-exports on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Cardinal Scale, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-included-seats on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-storage-gigabytes on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-support-tickets on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:35 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-audit-exports on Cardinal Scale: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Cardinal Metered, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-data-scans on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-archive-restores on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-sandbox-hours on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-replay-jobs on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Cardinal Metered, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-events-ingested on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-webhook-calls on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-data-scans on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-archive-restores on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-sandbox-hours on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension cardinal-replay-jobs on Cardinal Metered: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[InvoiceLineGathererService] [39m[32mAssembled invoice lines for 5 customers[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Solstice Team, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-priority-builds on Solstice Team: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Solstice Team, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-messages-sent on Solstice Team: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-active-users on Solstice Team: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:36 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-priority-builds on Solstice Team: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Solstice Team, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-priority-builds on Solstice Team: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Solstice Flex, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-export-jobs on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-stream-hours on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mGetting currency for customer undefined, offering Solstice Flex, customer currency undefined[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-queries-run on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-index-updates on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-export-jobs on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[Offering] [39m[32mSkipping line for dimension solstice-stream-hours on Solstice Flex: nothing owed[39m
+[32m[Nest] 2524  - [39m08/23/2026, 5:43:37 AM [32m    LOG[39m [38;5;3m[InvoiceLineGathererService] [39m[32mAssembled invoice lines for 5 customers[39m

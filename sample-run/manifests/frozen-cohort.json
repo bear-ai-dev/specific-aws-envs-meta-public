@@ -1,0 +1,42 @@
+{
+  "agent": "mini-swe-agent",
+  "attempts_per_task_model": 8,
+  "cohort": "meta-muse-opus-eight-rollout-reproduction-20260824",
+  "cohort_config_sha256": "7db6875a3038c440631e761c18fae850ce8dedbd98c2f3b17e8c3c08e1a63320",
+  "controls_config_sha256": "0f7a168a4638afdd61843124c23855fc08a684b991fb759fd9943f02267e6946",
+  "evidence_roots": [
+    "sample-run/raw/muse-spark-1.2-rollout-20260824",
+    "sample-run/raw/opus-5-eight-rollout-20260823"
+  ],
+  "harbor_version": "0.18.0",
+  "mini_swe_agent_version": "2.4.5",
+  "models": {
+    "muse-spark-1.2": "openrouter/meta/muse-spark-1.2",
+    "opus-5": "bedrock/us.anthropic.claude-opus-5"
+  },
+  "public_task_sha256": {
+    "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
+    "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
+    "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8"
+  },
+  "publication_controls_validation": "sample-run/manifests/public-controls-validation.json",
+  "publication_controls_validation_sha256": "de893dc1a0e847720736c2a7e3b286c29d091fefde513ccded5996cebb6317f6",
+  "publication_transformation": "sample-run/manifests/public-transformation.json",
+  "publication_transformation_sha256": "8185e8aae0cdd3894e81f15e064280efa08ca452162f9b23f84bcfe853cfb14e",
+  "reasoning_effort": "high",
+  "recorded_environment": "managed AWS sandbox",
+  "recorded_runtime_task_sha256": {
+    "02-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "04-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801"
+  },
+  "redaction_manifest_sha256": "c5ae0f1b2fcfc722b8d1987297bf3d52d3017c8ec4ed1744170141cb3c19ee52",
+  "reproduction_environment": "daytona",
+  "runtime_file_sha256": {
+    "harness/harbor_agents.py": "c74d69fbca8c21c4a18671b2410d7066448267c7c025d3a572fe20c05878fad7",
+    "harness/mini-swe-bedrock.yaml": "a8ebaf00aa24ccd8d8f0dcb074cc11b9349dcc163c6a2a67783402ab74b5c19c",
+    "harness/mini-swe-openrouter.yaml": "e1d63d9ae485d58037c82e3290d3e149048757301927f7d07754bd31ffb677f7"
+  },
+  "schema_version": 1,
+  "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, reward, and deliverable"
+}

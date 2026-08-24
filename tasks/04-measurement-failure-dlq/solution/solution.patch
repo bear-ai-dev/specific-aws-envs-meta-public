@@ -1,0 +1,76 @@
+--- a/src/measurement-config/entities/standardMeasurement.entity.ts
++++ b/src/measurement-config/entities/standardMeasurement.entity.ts
+@@ -1,4 +1,5 @@
+ import { Tag } from '@aws-sdk/client-ec2';
++import { PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+ import { Logger } from '@nestjs/common';
+ import { randomUUID } from 'crypto';
+ import EventEmitter from 'events';
+@@ -13,6 +14,7 @@
+ 
+ const eventEmitter = new EventEmitter();
+ export enum DlqType {
++    s3 = 's3',
+     kafka = 'kafka',
+ }
+ export class StandardMeasurementEntity implements MeasurementFormat {
+@@ -75,6 +77,33 @@
+     }
+ 
+     static async publishFailureToDLQ(failedDocument, metadata: MeasurementFailureMetadata, dlqType: DlqType) {
++        if (dlqType === DlqType.s3) {
++            const s3 = new S3Client({ region: 'us-east-1' });
++            const params = {
++                Bucket: process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME,
++                Key: `${metadata.orginalProcessedName}-${(Math.random() + 1).toString(36).substring(7)}.json`,
++                Body: JSON.stringify({ failedDocument: failedDocument, metadata }),
++            };
++            try {
++                await s3.send(new PutObjectCommand(params));
++            } catch (e) {
++                StandardMeasurementEntity.logger.error('error occurred writing to dlq', e);
++                AuditService.publishEvent({
++                    topic: AuditScope.ERROR,
++                    message: 'Failed to write to DLQ',
++                    data: [
++                        {
++                            errorCode: e?.Code,
++                            errorMessage: e?.message,
++                            errorName: e?.name,
++                            failedDocument,
++                            metadata,
++                            dlqType,
++                        },
++                    ],
++                });
++            }
++        }
+         if (dlqType === DlqType.kafka) {
+             StandardMeasurementEntity.logger.log(
+                 "write to kafka dlq isn't implemented yet",
+--- a/src/usage/usage.controller.ts
++++ b/src/usage/usage.controller.ts
+@@ -176,8 +176,22 @@
+             }
+         } catch (e) {
+             UsageController.logger.error('Error parsing datastore usage message', e);
++            e.stack = undefined;
++            await StandardMeasurementEntity.publishFailureToDLQ(
++                { originalFileContent: createUsageDto?.message, s3Key: createUsageDto?.s3Key },
++                {
++                    timestamp: new Date().toISOString(),
++                    errorInfo: serializeError(e),
++                    results: 'failed to load data',
++
++                    orginalProcessedName: createUsageDto?.s3Key
++                        ? createUsageDto?.s3Key
++                        : `meteringco-unknown/${randomUUID()}`,
++                },
++                DlqType.s3,
++            );
+             throw new BadRequestException(
+-                'Invalid message format, please check the documentation for the correct format',
++                'Invalid message format, please check the documentation for the correct format, and check DLQ for message',
+             );
+         }
+     }

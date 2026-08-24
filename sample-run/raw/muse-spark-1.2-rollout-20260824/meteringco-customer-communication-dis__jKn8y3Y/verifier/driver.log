@@ -1,0 +1,2 @@
+[33m[Nest] 5808  - [39m08/24/2026, 10:11:41 AM [33m   WARN[39m [38;5;3m[CustomerCommunicationEntity] [39m[33mSES rejected recipient: Recipient address on the account-level suppression list: hardbounce@meridian-labs.example[39m
+[33m[Nest] 5808  - [39m08/24/2026, 10:11:43 AM [33m   WARN[39m [38;5;3m[CustomerCommunicationEntity] [39m[33mSES rejected recipient: Recipient address on the account-level suppression list: quarantine@sable-foods.example[39m

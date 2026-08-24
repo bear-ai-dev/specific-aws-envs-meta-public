@@ -1,0 +1,17 @@
+.DS_Store
+.env
+.venv/
+__pycache__/
+*.pyc
+jobs/
+.run-secrets.env
+
+# Builder and calibration scratch are not public task inputs.
+.reference/
+.calib-archive/
+tasks/*/.local/
+
+# New Harbor runs are local by default. The two recorded evidence directories
+# already tracked by this repository remain tracked.
+sample-run/raw/*-reproduction-*/
+sample-run/logs/

@@ -1,0 +1,109 @@
+{
+  "dlqBucket": "meteringco-usage-record-dlq-bucket-qa7",
+  "ingestionBucket": "meteringco-usage-record-dump-bucket-qa7",
+  "phases": [
+    {
+      "label": "main",
+      "scenario": "holdout.json",
+      "cases": [
+        {
+          "label": "loads-arclight",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-arclight/2026/05/04/usage-004411.json",
+            "message": "{\"timestamp\": \"2026-05-04T11:00:00Z\", \"customerId\": \"cus_meridian\", \"dimensionId\": \"dim-requests\", \"recordValue\": \"9120\"}"
+          }
+        },
+        {
+          "label": "loads-westmoor",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-westmoor/2026/05/04/usage-000097.json",
+            "message": "{\"timestamp\": \"2026-05-04T11:00:00Z\", \"customerId\": \"cus_tessellate\", \"dimensionId\": \"dim-seats\", \"recordValue\": \"40\", \"metadata\": {\"region\": \"eu-west-1\"}}"
+          }
+        },
+        {
+          "label": "truncated-payload",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-arclight/2026/05/04/usage-004412.json",
+            "message": "{\"timestamp\":\"2026-05-04T11:20:00Z\",\"customerId\":\"cus_meridian\",\"dimensi"
+          }
+        },
+        {
+          "label": "truncated-payload-redelivered",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-arclight/2026/05/04/usage-004412.json",
+            "message": "{\"timestamp\":\"2026-05-04T11:20:00Z\",\"customerId\":\"cus_meridian\",\"dimensi"
+          }
+        },
+        {
+          "label": "timestamp-not-rfc3339",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-arclight/2026/05/04/usage-004413.json",
+            "message": "{\"timestamp\": \"04/05/2026 11:15\", \"customerId\": \"cus_meridian\", \"dimensionId\": \"dim-requests\", \"recordValue\": \"12\"}"
+          }
+        },
+        {
+          "label": "customer-absent",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-westmoor/2026/05/05/usage-000098.json",
+            "message": "{\"timestamp\": \"2026-05-05T09:00:00Z\", \"dimensionId\": \"dim-seats\", \"recordValue\": \"41\"}"
+          }
+        },
+        {
+          "label": "value-not-a-number-string",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-westmoor/2026/05/05/usage-000099.json",
+            "message": "{\"timestamp\": \"2026-05-05T10:00:00Z\", \"customerId\": \"cus_tessellate\", \"dimensionId\": \"dim-seats\", \"recordValue\": \"several\"}"
+          }
+        },
+        {
+          "label": "no-source-file",
+          "endpoint": "db",
+          "body": {
+            "message": "{\"timestamp\": \"2026-05-05T12:00:00Z\", \"customerId\": \"cus_meridian\", \"dimensionId\": \"dim-requests\", \"recordValue\": \"77\"}"
+          }
+        },
+        {
+          "label": "blank-source-file",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "",
+            "message": "<usage><record value='3'/></usage>"
+          }
+        },
+        {
+          "label": "kafka-intake-failure",
+          "endpoint": "datastore",
+          "body": {
+            "event": {
+              "original": "this is not json"
+            }
+          },
+          "headers": {
+            "businessid": "biz-arclight"
+          }
+        }
+      ]
+    },
+    {
+      "label": "degraded",
+      "scenario": "holdout-degraded.json",
+      "cases": [
+        {
+          "label": "dead-letter-store-refuses",
+          "endpoint": "db",
+          "body": {
+            "s3Key": "biz-arclight/2026/05/06/usage-004500.json",
+            "message": "{\"timestamp\":\"2026-05-06T07:00:00Z\",\"customerId\":"
+          }
+        }
+      ]
+    }
+  ]
+}

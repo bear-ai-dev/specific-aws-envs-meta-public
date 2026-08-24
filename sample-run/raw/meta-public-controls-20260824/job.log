@@ -1,0 +1,24 @@
+Skipping image OS validation for hb__13cc04904da58ea60e4320c71c837fac: docker inspect returned 1
+Skipping image OS validation for hb__13cc04904da58ea60e4320c71c837fac: docker inspect returned 1
+Running healthcheck: test -f /tmp/task-infra/.ready
+Healthcheck passed
+Collecting main service artifacts
+Skipping image OS validation for hb__31cc5e37a22d030401d8387dc6baba68: docker inspect returned 1
+Skipping image OS validation for hb__883e5f42ecec8d6e8d23238fbb6b0e8f: docker inspect returned 1
+Running healthcheck: test -f /tmp/task-infra/.ready
+Skipping image OS validation for hb__31cc5e37a22d030401d8387dc6baba68: docker inspect returned 1
+Skipping image OS validation for hb__883e5f42ecec8d6e8d23238fbb6b0e8f: docker inspect returned 1
+Healthcheck passed
+Running healthcheck: test -f /tmp/task-infra/.ready
+Running healthcheck: test -f /tmp/task-infra/.ready
+Collecting main service artifacts
+Healthcheck passed
+Healthcheck passed
+Running healthcheck: test -f /tmp/task-infra/.ready
+Running healthcheck: test -f /tmp/task-infra/.ready
+Healthcheck passed
+Healthcheck passed
+Collecting main service artifacts
+Collecting main service artifacts
+Collecting main service artifacts
+Collecting main service artifacts

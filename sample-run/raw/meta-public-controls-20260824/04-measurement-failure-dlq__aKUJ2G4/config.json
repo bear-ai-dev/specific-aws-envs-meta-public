@@ -1,0 +1,18 @@
+{
+    "task": {
+        "path": "tasks/04-measurement-failure-dlq"
+    },
+    "trial_name": "04-measurement-failure-dlq__aKUJ2G4",
+    "trials_dir": "sample-run/raw/meta-public-controls-20260824",
+    "environment": {
+        "type": "docker",
+        "override_storage_mb": 10240,
+        "kwargs": {
+            "connection_pool_maxsize": 12,
+            "labels": {
+                "cohort": "meta-public-controls-20260824"
+            }
+        }
+    },
+    "job_id": "651e7af2-3669-4dc5-bd97-9208ac9b9f0e"
+}

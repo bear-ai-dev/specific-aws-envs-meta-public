@@ -1,0 +1,89 @@
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unterminated string in JSON at position 72 (line 1 column 73)[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/biz-arclight/2026/05/04/usage-004412.json-rijkvp.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unterminated string in JSON at position 72 (line 1 column 73)[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/biz-arclight/2026/05/04/usage-004412.json-f5yzl9.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-arclight",
+      "timestamp": "04/05/2026 11:15",
+      "customerId": "cus_meridian",
+      "dimensionId": "dim-requests",
+      "recordValue": "12"
+    },
+    "value": "04/05/2026 11:15",
+    "property": "timestamp",
+    "children": [],
+    "constraints": {
+      "isRFC3339": "timestamp must be RFC 3339 date"
+    }
+  }
+]
+
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/biz-arclight/2026/05/04/usage-004413.json-vtc5sh.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-westmoor",
+      "timestamp": "2026-05-05T09:00:00Z",
+      "dimensionId": "dim-seats",
+      "recordValue": "41"
+    },
+    "property": "customerId",
+    "children": [],
+    "constraints": {
+      "isNotEmpty": "customerId should not be empty",
+      "isString": "customerId must be a string"
+    }
+  }
+]
+
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/biz-westmoor/2026/05/05/usage-000098.json-omyufm.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-westmoor",
+      "timestamp": "2026-05-05T10:00:00Z",
+      "customerId": "cus_tessellate",
+      "dimensionId": "dim-seats",
+      "recordValue": "several"
+    },
+    "value": "several",
+    "property": "recordValue",
+    "children": [],
+    "constraints": {
+      "isNumberString": "recordValue must be a number string"
+    }
+  }
+]
+
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/biz-westmoor/2026/05/05/usage-000099.json-pq2knu.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mBadRequestException: Invalid message format, please check the documentation for the correct format[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/meteringco-unknown/04379d68-b533-4672-9233-4008d2636e2d-2c7vnx.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mBadRequestException: Invalid message format, please check the documentation for the correct format[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement to dlq s3://meteringco-usage-record-dlq-bucket-qa7/meteringco-unknown/86bcc54f-ea6e-4ce5-a106-39afa2cb4349-jph9ln.json[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected token 'h', "this is not json" is not valid JSON[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mwrite to kafka dlq isn't implemented yet[39m
+[32m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32m{"failedDocument":{"originalFileContent":{"original":"this is not json"}},"metadata":{"timestamp":"2026-08-23T06:24:44.077Z","errorInfo":{"name":"SyntaxError","message":"Unexpected token 'h', \"this is not json\" is not valid JSON"},"results":"failed to load data","orginalProcessedName":"biz-arclight - rand-0b945ad4-c09b-4b8c-9551-f7203df79cd6}","businessID":"biz-arclight"},"dlqType":"kafka"}[39m
+[31m[Nest] 2261  - [39m08/23/2026, 6:24:44 AM [31m  ERROR[39m [38;5;3m[StandardMeasurementEntity] [39m[31mFailed to write to kafka dlq, missing businessID or measurementId[39m

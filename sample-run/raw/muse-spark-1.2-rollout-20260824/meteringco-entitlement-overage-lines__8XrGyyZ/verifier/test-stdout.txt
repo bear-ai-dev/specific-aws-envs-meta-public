@@ -1,0 +1,8 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - cardinal-july: cus_falconry should carry no line for ['cardinal-support-tickets']
+  - cardinal-july: cus_larkspur should carry no line for ['cardinal-sandbox-hours']
+  - cardinal-july: cus_meridian should carry no line for ['cardinal-support-tickets']

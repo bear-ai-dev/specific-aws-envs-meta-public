@@ -1,0 +1,8 @@
+{
+  "published": 12,
+  "notes": [
+    "unhandled rejection: Cannot read properties of undefined (reading 'toEmail')"
+  ],
+  "wiring": "the submission wired the channel itself",
+  "outboxLines": 9
+}

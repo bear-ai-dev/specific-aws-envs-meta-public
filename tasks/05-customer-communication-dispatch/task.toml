@@ -1,0 +1,61 @@
+schema_version = "1.4"
+
+[task]
+name = "meteringco/customer-communication-dispatch"
+version = "1.0.0"
+description = "Restore the delivery path for transactional customer communications: subscribe a processor to the mail channel, draft one message per published communication for the single customer it names, frame the sender the way the mail provider recorded the service framing it, and let a refused recipient stay refused instead of falling through to another address."
+keywords = ["aws", "ses", "email", "event-driven", "typescript", "nestjs", "wire-format", "transactional-mail"]
+
+[[task.authors]]
+name = "meteringco-rl-envs"
+
+[metadata]
+difficulty = "hard"
+category = "aws-infrastructure"
+source = "meteringco-codebases"
+codebase = "meteringco-backend/top-up-billing-lifecycle"
+task_kind = "feature-removal"
+tags = [
+    "real-codebase",
+    "customer-communication-bus",
+    "ses-send-email",
+    "encoded-word-header",
+    "charset-framing",
+    "configuration-set",
+    "single-recipient-per-communication",
+    "suppression-list",
+    "wire-level-grading",
+]
+
+[agent]
+user = "agent"
+timeout_sec = 14400
+
+[verifier]
+user = "root"
+timeout_sec = 1800
+
+[environment]
+workdir = "/app"
+build_timeout_sec = 2400
+cpus = 2
+memory_mb = 6144
+storage_mb = 20480
+network_mode = "public"
+
+[environment.env]
+TZ = "Etc/UTC"
+AWS_ENDPOINT_URL = "http://127.0.0.1:4566"
+AWS_ACCESS_KEY_ID = "LOCALMETERINGKEY02"
+AWS_SECRET_ACCESS_KEY = "metering-secret"
+# The SDK in this tree reads AWS_REGION only. A client built without an
+# explicit region has no other source for it inside the container.
+AWS_REGION = "us-east-1"
+AWS_DEFAULT_REGION = "us-east-1"
+
+[environment.healthcheck]
+command = "test -f /tmp/task-infra/.ready"
+interval_sec = 5
+timeout_sec = 5
+start_period_sec = 30
+retries = 12

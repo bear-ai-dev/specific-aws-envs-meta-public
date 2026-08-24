@@ -1,0 +1,344 @@
+{
+  "runs": {
+    "cardinal-july": {
+      "ok": true,
+      "results": [
+        {
+          "customerId": "cus_meridian",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": [
+            {
+              "name": "Cardinal API Requests - Cardinal Scale",
+              "quantity": 1840,
+              "unitCost": 0.004
+            },
+            {
+              "name": "Cardinal Included Seats - Cardinal Scale",
+              "quantity": 31,
+              "unitCost": 12
+            },
+            {
+              "name": "Cardinal Storage Gigabytes - Cardinal Scale",
+              "quantity": 920,
+              "unitCost": 0.15
+            },
+            {
+              "name": "Cardinal Support Tickets - Cardinal Scale",
+              "quantity": 14,
+              "unitCost": 0
+            },
+            {
+              "name": "Cardinal Audit Exports - Cardinal Scale",
+              "quantity": 52,
+              "unitCost": 3.5
+            }
+          ]
+        },
+        {
+          "customerId": "cus_falconry",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": [
+            {
+              "name": "Cardinal API Requests - Cardinal Scale",
+              "quantity": 0,
+              "unitCost": 0.004
+            },
+            {
+              "name": "Cardinal Included Seats - Cardinal Scale",
+              "quantity": 18,
+              "unitCost": 12
+            },
+            {
+              "name": "Cardinal Storage Gigabytes - Cardinal Scale",
+              "quantity": 0,
+              "unitCost": 0.15
+            },
+            {
+              "name": "Cardinal Support Tickets - Cardinal Scale",
+              "quantity": 6,
+              "unitCost": 0
+            },
+            {
+              "name": "Cardinal Audit Exports - Cardinal Scale",
+              "quantity": 12,
+              "unitCost": 3.5
+            }
+          ]
+        },
+        {
+          "customerId": "cus_marlowe",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": [
+            {
+              "name": "Cardinal API Requests - Cardinal Scale",
+              "quantity": 705,
+              "unitCost": 0.004
+            },
+            {
+              "name": "Cardinal Included Seats - Cardinal Scale",
+              "quantity": 25,
+              "unitCost": 12
+            },
+            {
+              "name": "Cardinal Storage Gigabytes - Cardinal Scale",
+              "quantity": 140,
+              "unitCost": 0.15
+            },
+            {
+              "name": "Cardinal Support Tickets - Cardinal Scale",
+              "quantity": 0,
+              "unitCost": 0
+            },
+            {
+              "name": "Cardinal Audit Exports - Cardinal Scale",
+              "quantity": 41,
+              "unitCost": 3.5
+            }
+          ]
+        },
+        {
+          "customerId": "cus_larkspur",
+          "offeringId": "off-cardinal-metered",
+          "offeringName": "Cardinal Metered",
+          "lineItems": [
+            {
+              "name": "Cardinal Events Ingested - Cardinal Metered",
+              "quantity": 24500,
+              "unitCost": 0.002
+            },
+            {
+              "name": "Cardinal Webhook Calls - Cardinal Metered",
+              "quantity": 640,
+              "unitCost": 0.01
+            },
+            {
+              "name": "Cardinal Data Scans - Cardinal Metered",
+              "quantity": 310,
+              "unitCost": 0.9
+            },
+            {
+              "name": "Cardinal Archive Restores - Cardinal Metered",
+              "quantity": 13,
+              "unitCost": 5
+            },
+            {
+              "name": "Cardinal Sandbox Hours - Cardinal Metered",
+              "quantity": 180,
+              "unitCost": 0
+            },
+            {
+              "name": "Cardinal Replay Jobs - Cardinal Metered",
+              "quantity": 88,
+              "unitCost": 0.4
+            }
+          ]
+        },
+        {
+          "customerId": "cus_pinnacle",
+          "offeringId": "off-cardinal-metered",
+          "offeringName": "Cardinal Metered",
+          "lineItems": [
+            {
+              "name": "Cardinal Events Ingested - Cardinal Metered",
+              "quantity": 0,
+              "unitCost": 0.002
+            },
+            {
+              "name": "Cardinal Webhook Calls - Cardinal Metered",
+              "quantity": 380,
+              "unitCost": 0.01
+            },
+            {
+              "name": "Cardinal Data Scans - Cardinal Metered",
+              "quantity": 0,
+              "unitCost": 0.9
+            },
+            {
+              "name": "Cardinal Archive Restores - Cardinal Metered",
+              "quantity": 4,
+              "unitCost": 5
+            },
+            {
+              "name": "Cardinal Sandbox Hours - Cardinal Metered",
+              "quantity": 90,
+              "unitCost": 0
+            },
+            {
+              "name": "Cardinal Replay Jobs - Cardinal Metered",
+              "quantity": 20,
+              "unitCost": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    "solstice-july": {
+      "ok": true,
+      "results": [
+        {
+          "customerId": "cus_orchard",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 3120,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 63,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 440,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 48,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Priority Builds - Solstice Team",
+              "quantity": 27,
+              "unitCost": 2.25
+            }
+          ]
+        },
+        {
+          "customerId": "cus_juniper",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 0,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 50,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 0,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 12,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Priority Builds - Solstice Team",
+              "quantity": 9,
+              "unitCost": 2.25
+            }
+          ]
+        },
+        {
+          "customerId": "cus_dunmore",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 95,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 51,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 1,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 30,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Priority Builds - Solstice Team",
+              "quantity": 21,
+              "unitCost": 2.25
+            }
+          ]
+        },
+        {
+          "customerId": "cus_vesper",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": [
+            {
+              "name": "Solstice Queries Run - Solstice Flex",
+              "quantity": 880,
+              "unitCost": 0.03
+            },
+            {
+              "name": "Solstice Index Updates - Solstice Flex",
+              "quantity": 260,
+              "unitCost": 0.05
+            },
+            {
+              "name": "Solstice Model Invocations - Solstice Flex",
+              "quantity": 75,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Export Jobs - Solstice Flex",
+              "quantity": 22,
+              "unitCost": 1.75
+            },
+            {
+              "name": "Solstice Stream Hours - Solstice Flex",
+              "quantity": 175,
+              "unitCost": 0.2
+            }
+          ]
+        },
+        {
+          "customerId": "cus_cobalt",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": [
+            {
+              "name": "Solstice Queries Run - Solstice Flex",
+              "quantity": 0,
+              "unitCost": 0.03
+            },
+            {
+              "name": "Solstice Index Updates - Solstice Flex",
+              "quantity": 140,
+              "unitCost": 0.05
+            },
+            {
+              "name": "Solstice Model Invocations - Solstice Flex",
+              "quantity": 0,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Export Jobs - Solstice Flex",
+              "quantity": 8,
+              "unitCost": 1.75
+            },
+            {
+              "name": "Solstice Stream Hours - Solstice Flex",
+              "quantity": 40,
+              "unitCost": 0.2
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

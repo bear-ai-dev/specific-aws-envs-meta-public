@@ -1,0 +1,38 @@
+Local AWS sandbox
+=================
+
+This box has no route to AWS. Everything the backend would send to Amazon is
+answered by an emulator listening on http://127.0.0.1:4566, which speaks the
+same wire protocols the AWS SDK uses. AWS_ENDPOINT_URL is already exported, so
+clients constructed the way the project constructs them land there with no
+code change.
+
+Credentials already in the environment belong to a bootstrap identity in the
+billing account, which is where the businesses keep their catalogues:
+
+    billing account    800000000001
+    billing bucket     meteringco-billing-sandbox
+    catalogues         catalogues/biz-ridge-2026-07.json
+                       catalogues/biz-vale-2026-07.json
+    region             us-east-1
+
+Two businesses are set up here so both invoice settings are visible: biz-ridge
+and biz-vale. Aggregated usage for a business is published to the metric store
+under the namespace and metric name its own catalogue names, and each series is
+keyed by business, customer and dimension.
+
+The account the emulator is currently serving is described by
+/opt/billing-sandbox/public.json. It is a small, quiet estate: three enrolments
+across three plans, whole numbers throughout. Real businesses run many more
+plans, many more customers and far more dimensions per plan, so treat what you
+see here as the easy case rather than the shape of the world.
+
+To point the emulator at a different account document, restart it yourself:
+
+    pkill -f mockaws
+    PYTHONPATH=/opt/mockaws python3 -m mockaws \
+        --scenario /path/to/your.json --host 127.0.0.1 --port 4566 --seed 7 &
+
+TypeScript in this project can be run directly with tsx, for example
+
+    tsx -e "import('./src/microservices/invoiceLineGatherer/invoiceLineGatherer.service.js').then(console.log)"

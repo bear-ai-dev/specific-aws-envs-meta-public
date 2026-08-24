@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: logstash-configmap
+    namespace: kube-system
+data:
+    logstash.yml: |
+        http.host: 0.0.0.0
+        path.config: /usr/share/logstash/pipeline
+    logstash.conf: |
+        input {
+
+        }
+        filter {
+
+          
+          
+        }
+        output {
+          
+        }
+    jaas.conf: |
+        {
+            KafkaClient {
+                org.apache.kafka.common.security.plain.PlainLoginModule required
+                username="meteringco"
+                password="meteringco";
+            };
+        }

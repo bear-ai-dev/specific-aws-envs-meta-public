@@ -1,0 +1,8 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - should not have been sent: to=backup-ap@sable-foods.example subject='Overdue notice for Sable Foods' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - should not have been sent: to=cfo@meridian-labs.example subject='Contract renewal for Meridian Labs' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - should not have been sent: to=procurement@meridian-labs.example subject='Contract renewal for Meridian Labs' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'

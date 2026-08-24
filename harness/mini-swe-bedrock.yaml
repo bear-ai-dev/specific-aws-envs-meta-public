@@ -1,0 +1,6 @@
+model:
+  model_kwargs:
+    drop_params: true
+    reasoning_effort: high
+    aws_profile_name: bedrock-provider
+    aws_region_name: us-east-1

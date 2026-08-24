@@ -1,0 +1,243 @@
+#!/usr/bin/env python3
+"""Build the machine-readable trial index and pass-rate matrix."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from collections import defaultdict
+from math import comb
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent.parent
+TASKS = (
+    "02-entitlement-overage-lines",
+    "04-measurement-failure-dlq",
+    "05-customer-communication-dispatch",
+)
+TASK_ALIASES = {
+    "meteringco-entitlement-overage-lines": TASKS[0],
+    "meteringco-measurement-failure-dlq": TASKS[1],
+    "meteringco-customer-communication-dis": TASKS[2],
+    **{task: task for task in TASKS},
+}
+MODEL_ALIASES = {
+    "openrouter/meta/muse-spark-1.2": (
+        "openrouter/meta/muse-spark-1.2",
+        "Muse Spark 1.2",
+    ),
+    "bedrock/us.anthropic.claude-opus-5": (
+        "bedrock/us.anthropic.claude-opus-5",
+        "Opus 5",
+    ),
+    "bedrock/converse/us.anthropic.claude-opus-5": (
+        "bedrock/us.anthropic.claude-opus-5",
+        "Opus 5",
+    ),
+}
+MODEL_ORDER = (
+    "openrouter/meta/muse-spark-1.2",
+    "bedrock/us.anthropic.claude-opus-5",
+)
+EXPECTED_SOLVES = {
+    (TASKS[0], MODEL_ORDER[0]): 0,
+    (TASKS[0], MODEL_ORDER[1]): 8,
+    (TASKS[1], MODEL_ORDER[0]): 2,
+    (TASKS[1], MODEL_ORDER[1]): 8,
+    (TASKS[2], MODEL_ORDER[0]): 5,
+    (TASKS[2], MODEL_ORDER[1]): 8,
+}
+DEFAULT_ROOTS = (
+    ROOT / "sample-run" / "raw" / "muse-spark-1.2-rollout-20260824",
+    ROOT / "sample-run" / "raw" / "opus-5-eight-rollout-20260823",
+)
+
+
+def display_path(path: Path) -> str:
+    return path.resolve().relative_to(ROOT).as_posix()
+
+
+def first_existing(*paths: Path) -> Path | None:
+    return next((path for path in paths if path.is_file()), None)
+
+
+def task_name(result: dict, trial_dir: Path) -> str | None:
+    configured = Path(
+        str((((result.get("config") or {}).get("task") or {}).get("path") or ""))
+    ).name
+    if configured in TASK_ALIASES:
+        return TASK_ALIASES[configured]
+    prefix = trial_dir.name.rsplit("__", 1)[0]
+    return TASK_ALIASES.get(prefix)
+
+
+def load_trials(raw_roots: tuple[Path, ...]) -> list[dict]:
+    trials = []
+    seen = set()
+    for raw_root in raw_roots:
+        for result_path in sorted(raw_root.rglob("result.json")):
+            trial_dir = result_path.parent
+            if trial_dir.resolve() in seen:
+                continue
+            seen.add(trial_dir.resolve())
+            try:
+                result = json.loads(result_path.read_text())
+            except (OSError, json.JSONDecodeError):
+                continue
+
+            task = task_name(result, trial_dir)
+            agent = (result.get("config") or {}).get("agent") or {}
+            raw_model = agent.get("model_name")
+            if task not in TASKS or raw_model not in MODEL_ALIASES:
+                continue
+            model, model_label = MODEL_ALIASES[raw_model]
+            reward = ((result.get("verifier_result") or {}).get("rewards") or {}).get(
+                "reward"
+            )
+            native = trial_dir / "agent" / "mini-swe-agent.trajectory.json"
+            normalized = trial_dir / "agent" / "trajectory.json"
+            verifier = first_existing(
+                trial_dir / "verifier" / "reward.json",
+                trial_dir / "verifier" / "output.json",
+            )
+            report = trial_dir / "verifier" / "report.txt"
+            deliverable = trial_dir / "verifier" / "deliverable"
+            agent_started = bool((result.get("agent_execution") or {}).get("started_at"))
+            valid = (
+                result.get("exception_info") is None
+                and agent_started
+                and isinstance(reward, (int, float))
+                and native.is_file()
+                and normalized.is_file()
+                and verifier is not None
+                and report.is_file()
+                and deliverable.is_dir()
+            )
+            trial = {
+                "task": task,
+                "task_label": f"Task {int(task.split('-', 1)[0])}",
+                "model": model,
+                "model_label": model_label,
+                "trial": trial_dir.name,
+                "run_id": Path(str((result.get("config") or {}).get("trials_dir") or "")).name,
+                "reward": float(reward) if isinstance(reward, (int, float)) else None,
+                "passed": bool(valid and float(reward) >= 1.0),
+                "valid": valid,
+                "trial_dir": display_path(trial_dir),
+                "result": display_path(result_path),
+                "trajectory": display_path(native) if native.is_file() else None,
+                "normalized_trajectory": (
+                    display_path(normalized) if normalized.is_file() else None
+                ),
+                "verifier": display_path(verifier) if verifier else None,
+                "verifier_report": display_path(report) if report.is_file() else None,
+                "deliverable": display_path(deliverable) if deliverable.is_dir() else None,
+                "exception_info": result.get("exception_info"),
+                "input_tokens": (result.get("agent_result") or {}).get("n_input_tokens"),
+                "cache_tokens": (result.get("agent_result") or {}).get("n_cache_tokens"),
+                "output_tokens": (result.get("agent_result") or {}).get("n_output_tokens"),
+                "reported_cost_usd": (result.get("agent_result") or {}).get("cost_usd"),
+            }
+            trials.append(trial)
+
+    model_rank = {model: rank for rank, model in enumerate(MODEL_ORDER)}
+    task_rank = {task: rank for rank, task in enumerate(TASKS)}
+    return sorted(
+        trials,
+        key=lambda item: (
+            task_rank[item["task"]],
+            model_rank[item["model"]],
+            item["trial"],
+        ),
+    )
+
+
+def pass_at_k(n: int, c: int, k: int) -> float:
+    if c == 0:
+        return 0.0
+    if n - c < k:
+        return 1.0
+    return 1.0 - comb(n - c, k) / comb(n, k)
+
+
+def render_matrix(trials: list[dict]) -> str:
+    cells = defaultdict(list)
+    for trial in trials:
+        if trial["valid"]:
+            cells[(trial["task"], trial["model"])].append(trial)
+    lines = [
+        "| Task | Model | Solves `c/n` | pass@1 | pass@3 | pass@8 |",
+        "| --- | --- | ---: | ---: | ---: | ---: |",
+    ]
+    for task in TASKS:
+        for model in MODEL_ORDER:
+            cell = cells[(task, model)]
+            n = len(cell)
+            c = sum(item["passed"] for item in cell)
+            label = MODEL_ALIASES[model][1]
+            task_number = int(task.split("-", 1)[0])
+            values = [pass_at_k(n, c, k) for k in (1, 3, 8)]
+            lines.append(
+                f"| [Task {task_number}](../../tasks/{task}/instruction.md) | "
+                f"{label} | {c}/{n} | "
+                + " | ".join(f"{value:.4f}" for value in values)
+                + " |"
+            )
+    return "\n".join(lines) + "\n"
+
+
+def validate_cells(trials: list[dict]) -> None:
+    for key, expected_solves in EXPECTED_SOLVES.items():
+        cell = [
+            trial
+            for trial in trials
+            if trial["valid"] and (trial["task"], trial["model"]) == key
+        ]
+        if len(cell) != 8 or sum(item["passed"] for item in cell) != expected_solves:
+            raise SystemExit(
+                f"unexpected cell {key}: n={len(cell)} "
+                f"solves={sum(item['passed'] for item in cell)}"
+            )
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("raw_dirs", type=Path, nargs="*")
+    args = parser.parse_args()
+    roots = tuple(path.resolve() for path in args.raw_dirs) or DEFAULT_ROOTS
+    trials = load_trials(roots)
+    validate_cells(trials)
+
+    index_dir = ROOT / "sample-run" / "indexes"
+    index_dir.mkdir(parents=True, exist_ok=True)
+    (index_dir / "trials.json").write_text(json.dumps(trials, indent=2) + "\n")
+    (index_dir / "pass-rate-matrix.md").write_text(render_matrix(trials))
+    by_model = {}
+    for model in MODEL_ORDER:
+        label = MODEL_ALIASES[model][1]
+        cell = [trial for trial in trials if trial["valid"] and trial["model"] == model]
+        by_model[label] = {"scored": len(cell), "solved": sum(t["passed"] for t in cell)}
+    controls = None
+    control_manifest = ROOT / "sample-run" / "manifests" / "public-controls-validation.json"
+    if control_manifest.is_file():
+        controls = json.loads(control_manifest.read_text())["summary"]
+    summary = {
+        "cohort_directories": [display_path(path) for path in roots],
+        "scored_valid_trials": sum(trial["valid"] for trial in trials),
+        "trials_excluded_no_attempt": sum(not trial["valid"] for trial in trials),
+        "denominator_policy": (
+            "numeric verifier reward, agent process started, no Harbor exception, "
+            "native and normalized trajectories, verifier report, reward, and deliverable"
+        ),
+        "by_model": by_model,
+        "public_controls": controls,
+    }
+    (index_dir / "execution-summary.json").write_text(
+        json.dumps(summary, indent=2) + "\n"
+    )
+    print(f"indexed={len(trials)} valid={sum(t['valid'] for t in trials)}")
+
+
+if __name__ == "__main__":
+    main()

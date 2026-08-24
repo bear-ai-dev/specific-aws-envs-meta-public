@@ -1,0 +1,14 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - never sent: to=billing@harrow-optics.example subject='Receipt for INV-90316' source='=?UTF-8?B??= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=text configurationSet='defaultConfigurationSet'
+  - never sent: to=ap@kestrel-marine.example subject='Payment received for INV-90309' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=text configurationSet='defaultConfigurationSet'
+  - never sent: to=statements@kestrel-marine.example subject='Statement 2026-02 for Kestrel Marine' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <invoices@bravado-freight.example>' replyTo=['Bravado Support <support@meteringco.example>'] body=text configurationSet='defaultConfigurationSet'
+  - never sent: to=ap@windlass-rail.example subject='New invoice from Bravado Freight #INV-90317' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - never sent: to=comptabilite@sable-foods.example subject='Facture — Bravado Frêt #INV-90312' source='=?UTF-8?B?QnJhdmFkbyBGcsOqdCBTb2Npw6l0w6kgQW5vbnltZQ==?= <no-reply@meteringco.example>' replyTo=['Bravado Frêt Société Anonyme <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - never sent: to=accounts@meridian-labs.example subject='New invoice from Bravado Freight #INV-90311' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - never sent: to=kreditoren@nordwind-guss.example subject='Zahlungsbestätigung' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Kundenbetreuung Groß & Söhne <hilfe@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - never sent: to=legal@meridian-labs.example subject='Contract renewal for Meridian Labs' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0?= <no-reply@meteringco.example>' replyTo=['Bravado Freight <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'
+  - never sent: to=keiri@aoi-denki.example subject='請求書 #INV-90315 — Bravado Freight' source='=?UTF-8?B?QnJhdmFkbyBGcmVpZ2h0IOagquW8j+S8muekvg==?= <no-reply@meteringco.example>' replyTo=['Bravado Freight 株式会社 <support@meteringco.example>'] body=html configurationSet='defaultConfigurationSet'

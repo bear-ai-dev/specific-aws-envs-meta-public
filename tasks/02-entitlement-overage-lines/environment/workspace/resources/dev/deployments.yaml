@@ -1,0 +1,96 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: agent-transformer-ingress
+    labels:
+        app: agent-transformer-ingress
+    annotations:
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/target-type: ip
+        alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:us-east-1:123456789012:certificate/911847bf-c917-4b66-a0dc-b0c22b6b3f95'
+        service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+spec:
+    ingressClassName: alb
+    rules:
+        - http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: meteringco-agent-transformer-service
+                            port:
+                                number: 80
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: meteringco-agent-transformer-service
+                            port:
+                                number: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: meteringco-agent-transformer-service
+    annotations:
+        alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:us-east-1:123456789012:certificate/911847bf-c917-4b66-a0dc-b0c22b6b3f95'
+        service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
+        alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS":443}, {"HTTP":80}]'
+spec:
+    selector:
+        app: meteringco-agent-transformer
+    ports:
+        - port: 80
+          name: http
+          targetPort: 3000
+        - port: 443
+          name: https
+          targetPort: 3000
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: meteringco-agent-transformer
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            name: meteringco-agent-transformer
+            app: meteringco-agent-transformer
+    template:
+        metadata:
+            labels:
+                prometheus.io/scrape: 'true'
+                name: meteringco-agent-transformer
+                app: meteringco-agent-transformer
+        spec:
+            containers:
+                - name: retrieval
+                  resources:
+                      requests:
+                          memory: '500M'
+                          cpu: '500m'
+                      limits:
+                          memory: '1500M'
+                          cpu: '1500m'
+                  image: 123456789012.dkr.ecr.us-east-1.amazonaws.com/meteringco-agent-transformer:${TAG}
+                  ports:
+                      - containerPort: 3000
+                  readinessProbe:
+                      tcpSocket:
+                          port: 3000
+                      initialDelaySeconds: 5
+                      periodSeconds: 5
+                  livenessProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                  startupProbe:
+                      httpGet:
+                          path: /health
+                          port: 3000
+                      failureThreshold: 10
+                      periodSeconds: 5

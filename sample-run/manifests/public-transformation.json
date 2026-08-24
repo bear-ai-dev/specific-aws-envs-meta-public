@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "transformation": "deterministic_identifier_only_publication_normalization",
+  "scope": [
+    "three task definitions and workspaces",
+    "captured trajectories, deliverables, and verifier artifacts",
+    "manifests, indexes, and documentation"
+  ],
+  "normalized_identifier_classes": [
+    "organization names and code symbols",
+    "organization domains and repository references",
+    "organization email addresses and author names",
+    "source ticket references",
+    "example cloud account and endpoint identifiers",
+    "task-local emulator credentials",
+    "execution organization, network, sandbox, and image identifiers",
+    "provider credentials, opaque signatures, and encrypted reasoning payloads"
+  ],
+  "preserved": [
+    "task requirements and verifier logic",
+    "non-identifier numeric fixtures and held-out case structure",
+    "model-generated visible reasoning and control flow",
+    "verifier outputs and binary rewards",
+    "recorded trial identifiers and trial membership"
+  ],
+  "public_evidence_layout": {
+    "muse-spark-1.2": "sample-run/raw/muse-spark-1.2-rollout-20260824",
+    "opus-5": "sample-run/raw/opus-5-eight-rollout-20260823",
+    "trial_index": "sample-run/indexes/trials.json"
+  },
+  "recorded_runtime_task_sha256": {
+    "02-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "04-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801"
+  },
+  "recorded_harbor_task_checksum": {
+    "02-entitlement-overage-lines": "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
+    "04-measurement-failure-dlq": "19361ed95829b44118d905302f14abe8c8194bb17238b22c55ee524ef97a4dd5",
+    "05-customer-communication-dispatch": "ced28d55fa0d97f12302b61cb5a9106a1c304372b78cc594fcfc43d3b47a92ae"
+  },
+  "public_task_sha256": {
+    "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
+    "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
+    "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8"
+  },
+  "recorded_runtime_controls": {
+    "oracle_required": 1.0,
+    "nop_required": 0.0,
+    "tasks_passing": 3
+  },
+  "public_controls_reproduction_job": "meta-public-controls-20260824"
+}

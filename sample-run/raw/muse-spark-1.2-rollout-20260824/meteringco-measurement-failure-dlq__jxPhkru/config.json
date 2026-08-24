@@ -1,0 +1,47 @@
+{
+    "task": {
+        "path": "/tmp/managed-runner/tasks/meteringco-measurement-failure-dlq"
+    },
+    "trial_name": "meteringco-measurement-failure-dlq__jxPhkru",
+    "trials_dir": "/tmp/managed-runner/trials/run-0544115d00c1",
+    "agent": {
+        "import_path": "managed_agents.harbor_agents:OpenRouterMiniSweAgent",
+        "model_name": "openrouter/meta/muse-spark-1.2",
+        "n_concurrent": 3,
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "/usr/local/lib/python3.12/site-packages/managed_agents/mini-swe-openrouter.yaml",
+            "reasoning_effort": "high",
+            "model_registry_file": "/usr/local/lib/python3.12/site-packages/managed_agents/litellm-openrouter-muse-spark-1.2.json"
+        }
+    },
+    "environment": {
+        "import_path": "managed_sandbox.fargate:FargateEnvironment",
+        "override_cpus": 4,
+        "override_memory_mb": 8192,
+        "override_storage_mb": 102400,
+        "kwargs": {
+            "cluster": "managed-runner",
+            "aws_region": "us-east-1",
+            "execution_role_arn": "arn:aws:iam::000000000000:role/managed-execution-role",
+            "task_role_arn": "arn:aws:iam::000000000000:role/managed-sandbox-role",
+            "subnets": [
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted",
+                "subnet-redacted"
+            ],
+            "security_groups": [
+                "sg-redacted"
+            ],
+            "init_container_image_uri": "000000000000.dkr.ecr.us-east-1.amazonaws.com/managed/runtime-init@sha256:db6cb314ff6afa9384a0a371ecd4fbd981125e13bc7358260eb87e0229f5b168",
+            "use_spot": false,
+            "cpu_units": 4096,
+            "storage_gib": 100
+        }
+    },
+    "job_id": "e0512cc8-ed9e-4d50-b305-901d44e01f30"
+}

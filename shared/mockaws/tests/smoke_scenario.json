@@ -1,0 +1,172 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "111111111111",
+    "access_key_id": "LOCALMETERINGKEY00",
+    "secret_access_key": "bootstrap-secret"
+  },
+  "faults": {
+    "enabled": true,
+    "rules": [
+      { "service": "s3", "action": "ListObjectsV2", "max_page_size": 3 },
+      { "service": "ce", "action": "GetCostAndUsage", "throttle_every": 3, "max_page_size": 1 }
+    ]
+  },
+  "accounts": [
+    {
+      "account_id": "111111111111",
+      "alias": "meteringco-control",
+      "roles": [
+        {
+          "name": "MeteringCoControlPlane",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": { "AWS": "arn:aws:iam::111111111111:root" },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "attached_policy_arns": ["arn:aws:iam::111111111111:policy/MeteringCoRead"]
+        }
+      ],
+      "policies": [
+        {
+          "arn": "arn:aws:iam::111111111111:policy/MeteringCoRead",
+          "name": "MeteringCoRead",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [{ "Effect": "Allow", "Action": ["s3:GetObject"], "Resource": ["*"] }]
+          }
+        }
+      ],
+      "buckets": [
+        {
+          "name": "meteringco-metering",
+          "versioning": "Enabled",
+          "encryption": "AES256",
+          "objects": [
+            { "key": "usage/2026-01-01/part-0.json", "body_json": { "records": 3 }, "last_modified": "2026-01-02T00:00:00Z" },
+            { "key": "usage/2026-01-01/part-1.json", "body_json": { "records": 5 }, "last_modified": "2026-01-02T00:05:00Z" },
+            { "key": "usage/2026-01-02/part-0.json", "body_size": 2048, "storage_class": "STANDARD_IA", "last_modified": "2026-01-03T00:00:00Z" },
+            { "key": "usage/2026-01-02/part-0.json", "body_size": 4096, "storage_class": "STANDARD", "last_modified": "2026-01-03T06:00:00Z" },
+            { "key": "usage/2026-01-03/part-0.json", "body_size": 512, "storage_class": "GLACIER", "last_modified": "2026-01-04T00:00:00Z" },
+            { "key": "usage/2026-01-04/part-0.json", "delete_marker": true, "last_modified": "2026-01-05T00:00:00Z" }
+          ]
+        }
+      ],
+      "clusters": [
+        {
+          "name": "meteringco-prod",
+          "version": "1.29",
+          "role_arn": "arn:aws:iam::111111111111:role/eks-cluster",
+          "subnets": ["subnet-a", "subnet-b"],
+          "nodegroups": [
+            {
+              "name": "general",
+              "instance_types": ["m6i.xlarge"],
+              "min_size": 1,
+              "max_size": 6,
+              "desired_size": 3,
+              "labels": { "workload": "general" }
+            }
+          ]
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0aa11bb22cc33dd44",
+          "instance_type": "m6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "launch_time": "2026-01-01T00:00:00Z",
+          "tags": { "eks:cluster-name": "meteringco-prod", "eks:nodegroup-name": "general" }
+        }
+      ],
+      "reserved_instances": [
+        {
+          "id": "ri-0001",
+          "instance_type": "m6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "instance_count": 2,
+          "start": "2025-07-01T00:00:00Z",
+          "end": "2026-07-01T00:00:00Z"
+        }
+      ],
+      "metrics": [
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": { "InstanceId": "i-0aa11bb22cc33dd44" },
+          "points": [
+            ["2026-01-01T00:00:00Z", 1048576.0],
+            ["2026-01-01T01:00:00Z", 2097152.0],
+            ["2026-01-01T02:00:00Z", 524288.0]
+          ]
+        }
+      ],
+      "costs": [
+        {
+          "start": "2026-01-01T00:00:00Z",
+          "end": "2026-01-02T00:00:00Z",
+          "keys": { "SERVICE": "Amazon Elastic Compute Cloud - Compute", "USAGE_TYPE": "BoxUsage:m6i.xlarge" },
+          "amortized_cost": 12.5,
+          "unblended_cost": 14.0,
+          "usage_quantity": 24.0
+        },
+        {
+          "start": "2026-02-01T00:00:00Z",
+          "end": "2026-02-02T00:00:00Z",
+          "keys": { "SERVICE": "Amazon Simple Storage Service", "USAGE_TYPE": "TimedStorage-ByteHrs" },
+          "amortized_cost": 3.25,
+          "unblended_cost": 3.25,
+          "usage_quantity": 100.0
+        }
+      ],
+      "trail": [
+        {
+          "event_id": "evt-1",
+          "event_time": "2026-01-05T10:00:00Z",
+          "event_name": "GetObject",
+          "event_source": "s3.amazonaws.com",
+          "username": "meteringco-metering",
+          "resources": [{ "type": "AWS::S3::Object", "name": "meteringco-metering/usage/2026-01-01/part-0.json" }]
+        },
+        {
+          "event_id": "evt-2",
+          "event_time": "2026-01-05T10:05:00Z",
+          "event_name": "DescribeInstances",
+          "event_source": "ec2.amazonaws.com",
+          "username": "meteringco-metering"
+        }
+      ]
+    }
+  ],
+  "pricing": [
+    {
+      "sku": "SKU-M6IXLARGE",
+      "service_code": "AmazonEC2",
+      "attributes": {
+        "instanceType": "m6i.xlarge",
+        "location": "US East (N. Virginia)",
+        "operatingSystem": "Linux",
+        "tenancy": "Shared",
+        "capacitystatus": "Used",
+        "preInstalledSw": "NA"
+      },
+      "terms": {
+        "OnDemand": {
+          "SKU-M6IXLARGE.JRTCKXETXF": {
+            "priceDimensions": {
+              "SKU-M6IXLARGE.JRTCKXETXF.6YS6EN2CT7": {
+                "unit": "Hrs",
+                "pricePerUnit": { "USD": "0.1920000000" }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

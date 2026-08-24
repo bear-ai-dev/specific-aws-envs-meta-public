@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "run_date": "2026-08-24",
+  "purpose": "post-normalization oracle and no-op validation of all runnable public tasks",
+  "harbor_version": "0.18.0",
+  "environment": "docker",
+  "config": "harness/controls.json",
+  "job_name": "meta-public-controls-20260824",
+  "summary": {
+    "trials": 6,
+    "exceptions": 0,
+    "oracle_all_reward_one": true,
+    "nop_all_reward_zero": true
+  },
+  "tasks": {
+    "02-entitlement-overage-lines": {
+      "public_task_sha256": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
+      "harbor_task_checksum": "5eb0435279e4aa29e4d689d5adda0851cadf938ca1923d368f59f37a885f2d1d",
+      "oracle": {
+        "trial_id": "uz6ZfoR",
+        "reward": 1.0,
+        "exception": null
+      },
+      "nop": {
+        "trial_id": "5hUtJgx",
+        "reward": 0.0,
+        "exception": null
+      }
+    },
+    "04-measurement-failure-dlq": {
+      "public_task_sha256": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
+      "harbor_task_checksum": "2445bf1e92cdabfa3d1a05a7966c3cf9c1a82e02b606dcb9850dce5acfe35c50",
+      "oracle": {
+        "trial_id": "aKUJ2G4",
+        "reward": 1.0,
+        "exception": null
+      },
+      "nop": {
+        "trial_id": "offSFdm",
+        "reward": 0.0,
+        "exception": null
+      }
+    },
+    "05-customer-communication-dispatch": {
+      "public_task_sha256": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
+      "harbor_task_checksum": "c45361552735c058eb35e8346bf116124bfcb06e91ad47067cb0fb8e5408462c",
+      "oracle": {
+        "trial_id": "75cLxce",
+        "reward": 1.0,
+        "exception": null
+      },
+      "nop": {
+        "trial_id": "HMiZue7",
+        "reward": 0.0,
+        "exception": null
+      }
+    }
+  }
+}

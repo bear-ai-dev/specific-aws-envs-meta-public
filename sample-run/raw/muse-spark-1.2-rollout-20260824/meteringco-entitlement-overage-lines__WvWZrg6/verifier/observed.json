@@ -1,0 +1,150 @@
+{
+  "runs": {
+    "cardinal-july": {
+      "ok": true,
+      "results": [
+        {
+          "customerId": "cus_meridian",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": [
+            {
+              "name": "Cardinal API Requests - Cardinal Scale",
+              "quantity": 1840,
+              "unitCost": 0.004
+            },
+            {
+              "name": "Cardinal Included Seats - Cardinal Scale",
+              "quantity": 6,
+              "unitCost": 12
+            }
+          ]
+        },
+        {
+          "customerId": "cus_falconry",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": []
+        },
+        {
+          "customerId": "cus_marlowe",
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "lineItems": [
+            {
+              "name": "Cardinal API Requests - Cardinal Scale",
+              "quantity": 705,
+              "unitCost": 0.004
+            }
+          ]
+        },
+        {
+          "customerId": "cus_larkspur",
+          "offeringId": "off-cardinal-metered",
+          "offeringName": "Cardinal Metered",
+          "lineItems": [
+            {
+              "name": "Cardinal Events Ingested - Cardinal Metered",
+              "quantity": 24500,
+              "unitCost": 0.002
+            },
+            {
+              "name": "Cardinal Webhook Calls - Cardinal Metered",
+              "quantity": 140,
+              "unitCost": 0.01
+            }
+          ]
+        },
+        {
+          "customerId": "cus_pinnacle",
+          "offeringId": "off-cardinal-metered",
+          "offeringName": "Cardinal Metered",
+          "lineItems": []
+        }
+      ]
+    },
+    "solstice-july": {
+      "ok": true,
+      "results": [
+        {
+          "customerId": "cus_orchard",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 3120,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 13,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 440,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 18,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_juniper",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": []
+        },
+        {
+          "customerId": "cus_dunmore",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 95,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 1,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 1,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_vesper",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": [
+            {
+              "name": "Solstice Queries Run - Solstice Flex",
+              "quantity": 880,
+              "unitCost": 0.03
+            },
+            {
+              "name": "Solstice Index Updates - Solstice Flex",
+              "quantity": 60,
+              "unitCost": 0.05
+            }
+          ]
+        },
+        {
+          "customerId": "cus_cobalt",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": []
+        }
+      ]
+    }
+  }
+}

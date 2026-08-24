@@ -1,0 +1,9 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - solstice-july: cus_cobalt is missing lines for ['solstice-model-invocations']
+  - solstice-july: cus_dunmore is missing lines for ['solstice-retention-days']
+  - solstice-july: cus_juniper is missing lines for ['solstice-bandwidth-gigabytes', 'solstice-retention-days']
+  - solstice-july: cus_vesper is missing lines for ['solstice-model-invocations']

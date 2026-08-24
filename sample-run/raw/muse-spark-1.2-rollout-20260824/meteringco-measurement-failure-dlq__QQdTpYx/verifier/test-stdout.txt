@@ -1,0 +1,21 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+=== Phase main ===
+driver diagnostic exit: 0
+meteringco-usage-record-dlq-bucket-qa7: 6 object(s)
+=== Phase degraded ===
+driver diagnostic exit: 0
+meteringco-usage-record-dlq-bucket-qa7: 0 object(s)
+=== Assemble the observations ===
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - truncated-payload/truncated-payload-redelivered: 2 failure(s) of biz-arclight/2026/05/04/usage-004412.json left 0 record(s) behind ([])
+  - timestamp-not-rfc3339: 1 failure(s) of biz-arclight/2026/05/04/usage-004413.json left 0 record(s) behind ([])
+  - customer-absent: 1 failure(s) of biz-westmoor/2026/05/05/usage-000098.json left 0 record(s) behind ([])
+  - value-not-a-number-string: 1 failure(s) of biz-westmoor/2026/05/05/usage-000099.json left 0 record(s) behind ([])
+  - blank-source-file: the record at meteringco-unknown/2adf0e0b-d811-4bc3-81d0-e68b7d45cd7d.json keeps a stack trace
+  - no-source-file: the record at meteringco-unknown/a60de15f-bce3-4f99-83f7-90ed356e100d.json keeps a stack trace
+  - the dead-letter store holds biz-arclight/2026/05/04/usage-004412.json, which no failing call accounts for
+  - the dead-letter store holds biz-arclight/2026/05/04/usage-004413.json, which no failing call accounts for
+  - the dead-letter store holds biz-westmoor/2026/05/05/usage-000098.json, which no failing call accounts for
+  - the dead-letter store holds biz-westmoor/2026/05/05/usage-000099.json, which no failing call accounts for

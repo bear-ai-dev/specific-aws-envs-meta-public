@@ -1,0 +1,127 @@
+{
+  "main": {
+    "observed": {
+      "cases": {
+        "loads-arclight": {
+          "threw": false,
+          "loaded": true
+        },
+        "loads-westmoor": {
+          "threw": false,
+          "loaded": true
+        },
+        "truncated-payload": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "truncated-payload-redelivered": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "timestamp-not-rfc3339": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "customer-absent": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "value-not-a-number-string": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "no-source-file": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "blank-source-file": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        },
+        "kafka-intake-failure": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format, and check DLQ for message"
+          }
+        }
+      }
+    },
+    "dlq": {
+      "objects": {
+        "biz-arclight/2026/05/04/usage-004412.json-blyigi.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\":\\\"2026-05-04T11:20:00Z\\\",\\\"customerId\\\":\\\"cus_meridian\\\",\\\"dimensi\",\"s3Key\":\"biz-arclight/2026/05/04/usage-004412.json\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.908Z\",\"errorInfo\":{\"name\":\"SyntaxError\",\"message\":\"Unterminated string in JSON at position 72 (line 1 column 73)\"},\"results\":\"failed to load data\",\"orginalProcessedName\":\"biz-arclight/2026/05/04/usage-004412.json\"}}",
+        "biz-arclight/2026/05/04/usage-004412.json-yug03w.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\":\\\"2026-05-04T11:20:00Z\\\",\\\"customerId\\\":\\\"cus_meridian\\\",\\\"dimensi\",\"s3Key\":\"biz-arclight/2026/05/04/usage-004412.json\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.934Z\",\"errorInfo\":{\"name\":\"SyntaxError\",\"message\":\"Unterminated string in JSON at position 72 (line 1 column 73)\"},\"results\":\"failed to load data\",\"orginalProcessedName\":\"biz-arclight/2026/05/04/usage-004412.json\"}}",
+        "biz-arclight/2026/05/04/usage-004413.json-du7ret.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\": \\\"04/05/2026 11:15\\\", \\\"customerId\\\": \\\"cus_meridian\\\", \\\"dimensionId\\\": \\\"dim-requests\\\", \\\"recordValue\\\": \\\"12\\\"}\",\"s3Key\":\"biz-arclight/2026/05/04/usage-004413.json\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.940Z\",\"errorInfo\":[{\"target\":{\"businessID\":\"biz-arclight\",\"timestamp\":\"04/05/2026 11:15\",\"customerId\":\"cus_meridian\",\"dimensionId\":\"dim-requests\",\"recordValue\":\"12\"},\"value\":\"04/05/2026 11:15\",\"property\":\"timestamp\",\"children\":[],\"constraints\":{\"isRFC3339\":\"timestamp must be RFC 3339 date\"}}],\"results\":\"failed to load data\",\"orginalProcessedName\":\"biz-arclight/2026/05/04/usage-004413.json\"}}",
+        "biz-westmoor/2026/05/05/usage-000098.json-6agydt.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\": \\\"2026-05-05T09:00:00Z\\\", \\\"dimensionId\\\": \\\"dim-seats\\\", \\\"recordValue\\\": \\\"41\\\"}\",\"s3Key\":\"biz-westmoor/2026/05/05/usage-000098.json\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.944Z\",\"errorInfo\":[{\"target\":{\"businessID\":\"biz-westmoor\",\"timestamp\":\"2026-05-05T09:00:00Z\",\"dimensionId\":\"dim-seats\",\"recordValue\":\"41\"},\"property\":\"customerId\",\"children\":[],\"constraints\":{\"isNotEmpty\":\"customerId should not be empty\",\"isString\":\"customerId must be a string\"}}],\"results\":\"failed to load data\",\"orginalProcessedName\":\"biz-westmoor/2026/05/05/usage-000098.json\"}}",
+        "biz-westmoor/2026/05/05/usage-000099.json-mt09vi.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\": \\\"2026-05-05T10:00:00Z\\\", \\\"customerId\\\": \\\"cus_tessellate\\\", \\\"dimensionId\\\": \\\"dim-seats\\\", \\\"recordValue\\\": \\\"several\\\"}\",\"s3Key\":\"biz-westmoor/2026/05/05/usage-000099.json\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.947Z\",\"errorInfo\":[{\"target\":{\"businessID\":\"biz-westmoor\",\"timestamp\":\"2026-05-05T10:00:00Z\",\"customerId\":\"cus_tessellate\",\"dimensionId\":\"dim-seats\",\"recordValue\":\"several\"},\"value\":\"several\",\"property\":\"recordValue\",\"children\":[],\"constraints\":{\"isNumberString\":\"recordValue must be a number string\"}}],\"results\":\"failed to load data\",\"orginalProcessedName\":\"biz-westmoor/2026/05/05/usage-000099.json\"}}",
+        "meteringco-unknown/67f2c955-cbf4-44fa-aebc-15143cc456e4-f5hgbv.json": "{\"failedDocument\":{\"originalFileContent\":\"{\\\"timestamp\\\": \\\"2026-05-05T12:00:00Z\\\", \\\"customerId\\\": \\\"cus_meridian\\\", \\\"dimensionId\\\": \\\"dim-requests\\\", \\\"recordValue\\\": \\\"77\\\"}\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.951Z\",\"errorInfo\":{\"response\":{\"message\":\"Invalid message format, please check the documentation for the correct format\",\"error\":\"Bad Request\",\"statusCode\":400},\"status\":400,\"options\":{},\"message\":\"Invalid message format, please check the documentation for the correct format\",\"name\":\"BadRequestException\"},\"results\":\"failed to load data\",\"orginalProcessedName\":\"meteringco-unknown/67f2c955-cbf4-44fa-aebc-15143cc456e4\"}}",
+        "meteringco-unknown/de9a4fc8-96d5-4f3a-8664-d961429a2401-6rxl5p.json": "{\"failedDocument\":{\"originalFileContent\":\"<usage><record value='3'/></usage>\"},\"metadata\":{\"timestamp\":\"2026-08-24T08:42:50.955Z\",\"errorInfo\":{\"response\":{\"message\":\"Invalid message format, please check the documentation for the correct format\",\"error\":\"Bad Request\",\"statusCode\":400},\"status\":400,\"options\":{},\"message\":\"Invalid message format, please check the documentation for the correct format\",\"name\":\"BadRequestException\"},\"results\":\"failed to load data\",\"orginalProcessedName\":\"meteringco-unknown/de9a4fc8-96d5-4f3a-8664-d961429a2401\"}}"
+      }
+    }
+  },
+  "degraded": {
+    "observed": {
+      "cases": {
+        "dead-letter-store-refuses": {
+          "threw": true,
+          "loaded": false,
+          "error": {
+            "name": "BadRequestException",
+            "className": "BadRequestException",
+            "status": 400,
+            "message": "Invalid message format, please check the documentation for the correct format"
+          }
+        }
+      }
+    },
+    "dlq": {
+      "missing": true,
+      "reason": "HTTP Error 404: Not Found"
+    }
+  }
+}

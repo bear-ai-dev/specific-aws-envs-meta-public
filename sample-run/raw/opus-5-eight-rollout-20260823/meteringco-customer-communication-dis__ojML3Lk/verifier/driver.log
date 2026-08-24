@@ -1,0 +1,54 @@
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:27 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 010017733fd1c9635a73f38b-mockaws, subject: New invoice from Bravado Freight #INV-90311[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:29 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 01001622c10e8befc14d55ac-mockaws, subject: Facture — Bravado Frêt #INV-90312[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:31 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 0100b6f5365e1c92f09b625e-mockaws, subject: Zahlungsbestätigung[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:33 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 01004ebed81f189c025b5b3e-mockaws, subject: Payment received for INV-90309[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:35 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 0100176cf06a930c3d4eea5e-mockaws, subject: Statement 2026-02 for Kestrel Marine[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:37 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 0100257daae8acb74f0ddb0d-mockaws, subject: Contract renewal for Meridian Labs[39m
+[33m[Nest] 2171  - [39m08/23/2026, 5:39:39 AM [33m   WARN[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[33mNo email found on customer communication, skipping send[39m
+[31m[Nest] 2171  - [39m08/23/2026, 5:39:41 AM [31m  ERROR[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[31mFailed to send email to customer: hardbounce@meridian-labs.example, subject: New invoice from Bravado Freight #INV-90314[39m
+[31m[Nest] 2171  - [39m08/23/2026, 5:39:41 AM [31m  ERROR[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[31mObject:[39m
+{
+  "name": "MessageRejected",
+  "$fault": "client",
+  "$metadata": {
+    "httpStatusCode": 400,
+    "requestId": "mockaws-request",
+    "attempts": 1,
+    "totalRetryDelay": 0
+  },
+  "Error": {
+    "Type": "Sender",
+    "Code": "MessageRejected",
+    "Message": "Recipient address on the account-level suppression list: hardbounce@meridian-labs.example",
+    "message": "Recipient address on the account-level suppression list: hardbounce@meridian-labs.example"
+  },
+  "RequestId": "mockaws-request",
+  "message": "Recipient address on the account-level suppression list: hardbounce@meridian-labs.example",
+  "stack": "MessageRejected: Recipient address on the account-level suppression list: hardbounce@meridian-labs.example\n    at de_MessageRejectedRes (/app/node_modules/@aws-sdk/client-ses/dist-cjs/protocols/Aws_query.js:3346:23)\n    at de_SendEmailCommandError (/app/node_modules/@aws-sdk/client-ses/dist-cjs/protocols/Aws_query.js:2370:25)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async /app/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24\n    at async /app/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20\n    at async /app/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46\n    at async /app/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26\n    at async sendEmail (/app/src/utils/aws/ses.ts:63:27)\n    at async EventEmitter.process (/app/src/customer/entities/customerCommunication.entity.ts:53:31)"
+}
+
+[31m[Nest] 2171  - [39m08/23/2026, 5:39:43 AM [31m  ERROR[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[31mFailed to send email to customer: quarantine@sable-foods.example, subject: Overdue notice for Sable Foods[39m
+[31m[Nest] 2171  - [39m08/23/2026, 5:39:43 AM [31m  ERROR[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[31mObject:[39m
+{
+  "name": "MessageRejected",
+  "$fault": "client",
+  "$metadata": {
+    "httpStatusCode": 400,
+    "requestId": "mockaws-request",
+    "attempts": 1,
+    "totalRetryDelay": 0
+  },
+  "Error": {
+    "Type": "Sender",
+    "Code": "MessageRejected",
+    "Message": "Recipient address on the account-level suppression list: quarantine@sable-foods.example",
+    "message": "Recipient address on the account-level suppression list: quarantine@sable-foods.example"
+  },
+  "RequestId": "mockaws-request",
+  "message": "Recipient address on the account-level suppression list: quarantine@sable-foods.example",
+  "stack": "MessageRejected: Recipient address on the account-level suppression list: quarantine@sable-foods.example\n    at de_MessageRejectedRes (/app/node_modules/@aws-sdk/client-ses/dist-cjs/protocols/Aws_query.js:3346:23)\n    at de_SendEmailCommandError (/app/node_modules/@aws-sdk/client-ses/dist-cjs/protocols/Aws_query.js:2370:25)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async /app/node_modules/@smithy/middleware-serde/dist-cjs/deserializerMiddleware.js:7:24\n    at async /app/node_modules/@aws-sdk/middleware-signing/dist-cjs/awsAuthMiddleware.js:14:20\n    at async /app/node_modules/@smithy/middleware-retry/dist-cjs/retryMiddleware.js:27:46\n    at async /app/node_modules/@aws-sdk/middleware-logger/dist-cjs/loggerMiddleware.js:7:26\n    at async sendEmail (/app/src/utils/aws/ses.ts:63:27)\n    at async EventEmitter.process (/app/src/customer/entities/customerCommunication.entity.ts:53:31)"
+}
+
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:45 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 010000537fb092365eb7b9e5-mockaws, subject: 請求書 #INV-90315 — Bravado Freight[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:47 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 010027cda5f0ad440aea5d3a-mockaws, subject: Receipt for INV-90316[39m
+[32m[Nest] 2171  - [39m08/23/2026, 5:39:49 AM [32m    LOG[39m [38;5;3m[EmailCustomerCommunicationProcessor] [39m[32mEmail sent to customer, messageId: 010052fea0ddccaaff029f4b-mockaws, subject: New invoice from Bravado Freight #INV-90317[39m

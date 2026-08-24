@@ -1,0 +1,23 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "900000000001",
+    "access_key_id": "LOCALMETERINGKEY02"
+  },
+  "accounts": [
+    {
+      "account_id": "900000000001",
+      "alias": "meteringco-notifications"
+    }
+  ],
+  "ses": {
+    "identities": [
+      "meteringco.example",
+      "no-reply@meteringco.example",
+      "billing@harbor-analytics.example"
+    ],
+    "suppressed": [
+      "bounced@lattice-robotics.example"
+    ]
+  }
+}

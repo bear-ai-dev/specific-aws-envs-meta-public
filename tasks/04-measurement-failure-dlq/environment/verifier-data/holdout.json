@@ -1,0 +1,45 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "900000000042",
+    "access_key_id": "LOCALMETERINGKEY02"
+  },
+  "accounts": [
+    {
+      "account_id": "900000000042",
+      "alias": "meteringco-platform",
+      "buckets": [
+        {
+          "name": "meteringco-usage-record-dump-bucket-qa7",
+          "region": "us-east-1",
+          "objects": [
+            {
+              "key": "biz-arclight/2026/05/04/usage-004411.json",
+              "body_b64": "eyJ0aW1lc3RhbXAiOiAiMjAyNi0wNS0wNFQxMTowMDowMFoiLCAiY3VzdG9tZXJJZCI6ICJjdXNfbWVyaWRpYW4iLCAiZGltZW5zaW9uSWQiOiAiZGltLXJlcXVlc3RzIiwgInJlY29yZFZhbHVlIjogIjkxMjAifQ==",
+              "last_modified": "2026-05-04T11:01:00Z"
+            },
+            {
+              "key": "biz-westmoor/2026/05/04/usage-000097.json",
+              "body_b64": "eyJ0aW1lc3RhbXAiOiAiMjAyNi0wNS0wNFQxMTowMDowMFoiLCAiY3VzdG9tZXJJZCI6ICJjdXNfdGVzc2VsbGF0ZSIsICJkaW1lbnNpb25JZCI6ICJkaW0tc2VhdHMiLCAicmVjb3JkVmFsdWUiOiAiNDAifQ==",
+              "last_modified": "2026-05-04T11:02:00Z"
+            },
+            {
+              "key": "biz-arclight/2026/05/04/usage-004412.json",
+              "body_b64": "e30=",
+              "last_modified": "2026-05-04T11:03:00Z"
+            }
+          ]
+        },
+        {
+          "name": "meteringco-usage-record-dlq-bucket-qa7",
+          "region": "us-east-1",
+          "objects": []
+        }
+      ]
+    }
+  ],
+  "faults": {
+    "enabled": true,
+    "rules": []
+  }
+}

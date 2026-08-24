@@ -1,0 +1,16 @@
+{
+ "runs": [
+  {
+   "label": "cardinal-july",
+   "businessID": "biz-cardinal",
+   "catalogueBucket": "meteringco-billing-holdout",
+   "catalogueKey": "catalogues/biz-cardinal-2026-07.json"
+  },
+  {
+   "label": "solstice-july",
+   "businessID": "biz-solstice",
+   "catalogueBucket": "meteringco-billing-holdout",
+   "catalogueKey": "catalogues/biz-solstice-2026-07.json"
+  }
+ ]
+}

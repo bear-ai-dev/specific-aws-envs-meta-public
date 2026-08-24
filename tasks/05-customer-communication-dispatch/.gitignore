@@ -1,0 +1,6 @@
+.local/
+__pycache__/
+.pytest_cache/
+environment/workspace/node_modules/
+environment/workspace/dist/
+*.tsbuildinfo

@@ -1,0 +1,25 @@
+{
+  "cohort_directories": [
+    "sample-run/raw/muse-spark-1.2-rollout-20260824",
+    "sample-run/raw/opus-5-eight-rollout-20260823"
+  ],
+  "scored_valid_trials": 48,
+  "trials_excluded_no_attempt": 0,
+  "denominator_policy": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, reward, and deliverable",
+  "by_model": {
+    "Muse Spark 1.2": {
+      "scored": 24,
+      "solved": 7
+    },
+    "Opus 5": {
+      "scored": 24,
+      "solved": 24
+    }
+  },
+  "public_controls": {
+    "trials": 6,
+    "exceptions": 0,
+    "oracle_all_reward_one": true,
+    "nop_all_reward_zero": true
+  }
+}

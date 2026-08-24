@@ -1,0 +1,24 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "900000000009",
+    "access_key_id": "LOCALMETERINGKEY02"
+  },
+  "accounts": [
+    {
+      "account_id": "900000000009",
+      "alias": "bravado-notifications"
+    }
+  ],
+  "ses": {
+    "identities": [
+      "meteringco.example",
+      "no-reply@meteringco.example",
+      "invoices@bravado-freight.example"
+    ],
+    "suppressed": [
+      "hardbounce@meridian-labs.example",
+      "quarantine@sable-foods.example"
+    ]
+  }
+}

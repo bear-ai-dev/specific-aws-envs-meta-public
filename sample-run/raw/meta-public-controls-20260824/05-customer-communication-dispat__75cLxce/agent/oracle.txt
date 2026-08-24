@@ -1,0 +1,4 @@
+patching file src/customer/customer.module.ts
+patching file src/customer/entities/customerCommunication.entity.ts
+patching file src/utils/aws/ses.ts
+reference solution applied to /app

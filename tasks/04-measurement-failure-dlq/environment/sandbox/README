@@ -1,0 +1,48 @@
+Local AWS sandbox
+=================
+
+This box has no route to AWS. Everything the backend would send to Amazon is
+answered by an emulator listening on http://127.0.0.1:4566, which speaks the
+same wire protocols the AWS SDK uses. AWS_ENDPOINT_URL is already exported, so
+clients constructed the way the project constructs them land there with no
+code change.
+
+The credentials in the environment belong to the platform account that holds
+the datastore measurement buckets:
+
+    account            900000000001
+    region             us-east-1
+    businesses seen    biz-cadence, biz-lumen
+
+The two buckets this deployment was configured with are named by the
+environment, not by the code, and the verifier runs against a different pair:
+
+    DB_MEASUREMENT_BUCKET_NAME       where customers' usage files are dropped
+    DB_MEASUREMENT_DLQ_BUCKET_NAME   where intake failures are kept
+
+The second one is not empty. It holds what earlier failures of this deployment
+left behind, from a period when the intake still kept them, and it is the only
+surviving description of how those records were written.
+
+The world the emulator is currently serving is described by
+/opt/dlq-sandbox/public.json. It is small and quiet: a few source files and a
+handful of past failures. Real deployments run far more traffic through the
+same two buckets, so treat what you see here as a sample rather than the shape
+of the world.
+
+To point the emulator at a different world, restart it yourself:
+
+    pkill -f mockaws
+    PYTHONPATH=/opt/mockaws python3 -m mockaws \
+        --scenario /path/to/your.json --host 127.0.0.1 --port 4566 --seed 7 &
+
+That is also how to see what the intake does when a bucket it expects is not
+there: write a world without one and point the emulator at it.
+
+TypeScript in this project can be run directly with tsx, for example
+
+    tsx -e "import('./src/usage/usage.controller.js').then(console.log)"
+
+and the buckets answer an ordinary S3 client, or plain HTTP:
+
+    curl -s "$AWS_ENDPOINT_URL/$DB_MEASUREMENT_DLQ_BUCKET_NAME?list-type=2"

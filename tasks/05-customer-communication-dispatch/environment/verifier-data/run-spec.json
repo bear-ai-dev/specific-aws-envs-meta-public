@@ -1,0 +1,213 @@
+{
+  "events": [
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "New invoice from Bravado Freight #INV-90311",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "accounts@meridian-labs.example",
+          "content": "<html>Hi,<br/>A new invoice is ready for review.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Facture — Bravado Frêt #INV-90312",
+          "fromName": "Bravado Frêt Société Anonyme",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "comptabilite@sable-foods.example",
+          "content": "<html>Bonjour,<br/>Votre facture est disponible.</html>",
+          "replyToName": "Bravado Frêt Société Anonyme",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Zahlungsbestätigung",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "kreditoren@nordwind-guss.example",
+          "content": "<html>Vielen Dank für Ihre Zahlung.</html>",
+          "replyToName": "Bravado Kundenbetreuung Groß & Söhne",
+          "replyToEmail": "hilfe@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Payment received for INV-90309",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "ap@kestrel-marine.example",
+          "content": "Thanks for your business.",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example"
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Statement 2026-02 for Kestrel Marine",
+          "fromName": "Bravado Freight",
+          "fromEmail": "invoices@bravado-freight.example",
+          "toEmail": "statements@kestrel-marine.example",
+          "content": "Your February statement is ready to download.",
+          "replyToName": "Bravado Support",
+          "replyToEmail": "support@meteringco.example",
+          "html": false
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Contract renewal for Meridian Labs",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "legal@meridian-labs.example",
+          "content": "<html>Your contract renews on the 1st.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        },
+        {
+          "subject": "Contract renewal for Meridian Labs",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "procurement@meridian-labs.example",
+          "content": "<html>Your contract renews on the 1st.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        },
+        {
+          "subject": "Contract renewal for Meridian Labs",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "cfo@meridian-labs.example",
+          "content": "<html>Your contract renews on the 1st.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": []
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "New invoice from Bravado Freight #INV-90314",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "hardbounce@meridian-labs.example",
+          "content": "<html>A new invoice is ready for review.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Overdue notice for Sable Foods",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "quarantine@sable-foods.example",
+          "content": "<html>Please review the attached.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        },
+        {
+          "subject": "Overdue notice for Sable Foods",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "backup-ap@sable-foods.example",
+          "content": "<html>Please review the attached.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "請求書 #INV-90315 — Bravado Freight",
+          "fromName": "Bravado Freight 株式会社",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "keiri@aoi-denki.example",
+          "content": "<html>いつもお世話になっております。</html>",
+          "replyToName": "Bravado Freight 株式会社",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "Receipt for INV-90316",
+          "fromName": "",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "billing@harrow-optics.example",
+          "content": "Thanks for your payment.",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example"
+        }
+      ]
+    },
+    {
+      "message": "Sending email to customer",
+      "topic": "EMAIL",
+      "data": [
+        {
+          "subject": "New invoice from Bravado Freight #INV-90317",
+          "fromName": "Bravado Freight",
+          "fromEmail": "no-reply@meteringco.example",
+          "toEmail": "ap@windlass-rail.example",
+          "content": "<html>A new invoice is ready for review.</html>",
+          "replyToName": "Bravado Freight",
+          "replyToEmail": "support@meteringco.example",
+          "html": true
+        }
+      ]
+    }
+  ]
+}

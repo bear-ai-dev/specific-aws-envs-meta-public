@@ -1,0 +1,14 @@
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+*.ts text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+
+# These trees are evidence snapshots. Preserve their original bytes instead of
+# treating source-repository whitespace as a publication defect.
+sample-run/raw/** whitespace=-blank-at-eol,-blank-at-eof
+tasks/*/environment/workspace/** whitespace=-blank-at-eol,-blank-at-eof
+tasks/*/solution/solution.patch whitespace=-blank-at-eol,-blank-at-eof

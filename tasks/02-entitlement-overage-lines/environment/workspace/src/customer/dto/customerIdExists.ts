@@ -1,0 +1,50 @@
+import { Injectable } from '@nestjs/common';
+import {
+    ValidationArguments,
+    ValidationOptions,
+    registerDecorator,
+    ValidatorConstraint,
+    ValidatorConstraintInterface,
+} from 'class-validator';
+import { CustomerService } from '../customer.service.js';
+
+@ValidatorConstraint({ name: 'CustomerIdExistsRule', async: true })
+@Injectable()
+export class CustomerIdExistsRule implements ValidatorConstraintInterface {
+    constructor(readonly customerService: CustomerService) {}
+
+    async validate(id: string, args: ValidationArguments) {
+        if (id) {
+            try {
+                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                // @ts-ignore
+                await this.customerService.findOne({ customerId: id, businessID: args?.object?.businessID });
+                return true;
+            } catch (e) {
+                console.log(e);
+                return false;
+            }
+        } else {
+            return true;
+        }
+    }
+
+    defaultMessage(args: ValidationArguments) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        return `customerId: ${args.object?.customerId} doesn't exist`;
+    }
+}
+
+export function CustomerIdExists(property: string, validationOptions?: ValidationOptions) {
+    return function (object: unknown, propertyName: string) {
+        registerDecorator({
+            name: 'CustomerIdExists',
+            target: object.constructor,
+            propertyName: propertyName,
+            constraints: [property],
+            options: validationOptions,
+            validator: CustomerIdExistsRule,
+        });
+    };
+}

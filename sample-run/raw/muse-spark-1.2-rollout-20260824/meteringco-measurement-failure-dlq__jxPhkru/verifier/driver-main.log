@@ -1,0 +1,82 @@
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unterminated string in JSON at position 72 (line 1 column 73)[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unterminated string in JSON at position 72 (line 1 column 73)[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-arclight",
+      "timestamp": "04/05/2026 11:15",
+      "customerId": "cus_meridian",
+      "dimensionId": "dim-requests",
+      "recordValue": "12"
+    },
+    "value": "04/05/2026 11:15",
+    "property": "timestamp",
+    "children": [],
+    "constraints": {
+      "isRFC3339": "timestamp must be RFC 3339 date"
+    }
+  }
+]
+
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-westmoor",
+      "timestamp": "2026-05-05T09:00:00Z",
+      "dimensionId": "dim-seats",
+      "recordValue": "41"
+    },
+    "property": "customerId",
+    "children": [],
+    "constraints": {
+      "isNotEmpty": "customerId should not be empty",
+      "isString": "customerId must be a string"
+    }
+  }
+]
+
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mObject:[39m
+[
+  {
+    "target": {
+      "businessID": "biz-westmoor",
+      "timestamp": "2026-05-05T10:00:00Z",
+      "customerId": "cus_tessellate",
+      "dimensionId": "dim-seats",
+      "recordValue": "several"
+    },
+    "value": "several",
+    "property": "recordValue",
+    "children": [],
+    "constraints": {
+      "isNumberString": "recordValue must be a number string"
+    }
+  }
+]
+
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mBadRequestException: Invalid message format, please check the documentation for the correct format[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mBadRequestException: Invalid message format, please check the documentation for the correct format[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected token 'h', "this is not json" is not valid JSON[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32mwrite to kafka dlq isn't implemented yet[39m
+[32m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [32m    LOG[39m [38;5;3m[StandardMeasurementEntity] [39m[32m{"failedDocument":{"originalFileContent":{"original":"this is not json"}},"metadata":{"timestamp":"2026-08-24T10:17:09.963Z","errorInfo":{"name":"SyntaxError","message":"Unexpected token 'h', \"this is not json\" is not valid JSON"},"results":"failed to load data","orginalProcessedName":"biz-arclight - rand-1e3e8252-f2a0-4f2e-a3eb-019f9578c73d}","businessID":"biz-arclight"},"dlqType":"kafka"}[39m
+[31m[Nest] 10885  - [39m08/24/2026, 10:17:09 AM [31m  ERROR[39m [38;5;3m[StandardMeasurementEntity] [39m[31mFailed to write to kafka dlq, missing businessID or measurementId[39m

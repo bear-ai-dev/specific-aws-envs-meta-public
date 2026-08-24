@@ -1,0 +1,72 @@
+Local AWS sandbox
+=================
+
+This box has no route to AWS. Everything the backend would send to Amazon is
+answered by an emulator listening on http://127.0.0.1:4566, which speaks the
+same wire protocols the AWS SDK uses. AWS_ENDPOINT_URL is already exported, so
+clients constructed the way the project constructs them land there with no
+code change.
+
+Credentials already in the environment belong to a bootstrap identity in the
+notifications account:
+
+    notifications account   900000000001
+    region                  us-east-1
+    verified identities     meteringco.example, no-reply@meteringco.example,
+                            billing@harbor-analytics.example
+    suppressed recipient    bounced@lattice-robotics.example
+
+Mail is the only service this account is set up for. The emulator answers
+SendEmail, ListIdentities, GetIdentityVerificationAttributes and GetSendQuota;
+anything else comes back InvalidAction. A message whose sender is not one of
+the verified identities is refused, and so is one addressed to the suppressed
+recipient: both come back MessageRejected with nothing queued.
+
+The account the emulator is currently serving is described by
+/opt/meteringco-mail-sandbox/public.json. It is a small, quiet account with three
+verified identities and one suppressed address. Production accounts carry many
+more of both.
+
+dispatch-capture/
+-----------------
+
+/opt/meteringco-mail-sandbox/dispatch-capture holds a recording taken off the
+running service in staging, before the mail path was lost:
+
+    communication-events.jsonl   every customer communication the bus carried
+                                 during the window, in the order it carried it.
+
+    ses-outbox.jsonl             every message the endpoint accepted during the
+                                 same window, in the order it accepted it, as
+                                 the endpoint recorded it off the wire.
+
+The two files are paired by nothing but their order. They are not the same
+length: the window contains events that put no message on the wire at all.
+Recipients, sender names and bodies in the capture are the staging account's,
+not this one's.
+
+Everything the endpoint keeps about an accepted message is in the outbox file:
+the envelope, the header values exactly as the sender framed them, the
+configuration set the send was attributed to, and each body part with its
+charset. Nothing is normalised on the way in, so two framings that differ only
+in how a header was spelled are two different records here.
+
+To point the emulator at a different account document, restart it yourself:
+
+    pkill -f mockaws
+    PYTHONPATH=/opt/mockaws python3 -m mockaws \
+        --scenario /path/to/your.json --host 127.0.0.1 --port 4566 --seed 7 &
+
+Whatever this box sends is appended to /tmp/task-infra/ses-outbox.jsonl in the
+same form as the capture, so you can read back what your own code put on the
+wire. Point MOCKAWS_SES_OUTBOX somewhere else if you would rather keep runs
+apart:
+
+    pkill -f mockaws
+    MOCKAWS_SES_OUTBOX=/tmp/my-outbox.jsonl PYTHONPATH=/opt/mockaws \
+        python3 -m mockaws --scenario /opt/meteringco-mail-sandbox/public.json \
+        --host 127.0.0.1 --port 4566 --seed 7 &
+
+TypeScript in this project can be run directly with tsx, for example
+
+    tsx -e "import('./src/customer/customer.service.js').then(console.log)"

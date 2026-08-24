@@ -1,0 +1,4 @@
+Skipping image OS validation for hb__31cc5e37a22d030401d8387dc6baba68: docker inspect returned 1
+Running healthcheck: test -f /tmp/task-infra/.ready
+Healthcheck passed
+Collecting main service artifacts

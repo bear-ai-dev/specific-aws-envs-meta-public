@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: ubuntu
+    labels:
+        app: ubuntu
+        meteringcoServiceId: c7b7fa44-0ff5-4c9b-921c-2f2440f5ba0e
+spec:
+    containers:
+        - image: ubuntu
+          command:
+              - 'sleep'
+              - '3000'
+          imagePullPolicy: IfNotPresent
+          name: ubuntu
+          resources:
+              requests:
+                  memory: '64Mi'
+                  cpu: '250m'
+              limits:
+                  memory: '128Mi'
+                  cpu: '500m'
+    restartPolicy: Always
+---
+apiVersion: v1
+kind: Pod
+metadata:
+    name: ubuntu2
+    labels:
+        app: ubuntu2
+        meteringcoApplicationId: c61d483a-63c3-4716-9535-2b39e4f1453c
+spec:
+    containers:
+        - image: ubuntu
+          command:
+              - 'sleep'
+              - '3000'
+          imagePullPolicy: IfNotPresent
+          name: ubuntu
+          resources:
+              requests:
+                  memory: '64Mi'
+                  cpu: '250m'
+              limits:
+                  memory: '128Mi'
+                  cpu: '500m'
+    restartPolicy: Always

@@ -1,0 +1,12 @@
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:16 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to accounts@meridian-labs.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:18 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to comptabilite@sable-foods.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:20 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to kreditoren@nordwind-guss.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:22 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to ap@kestrel-marine.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:24 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to statements@kestrel-marine.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:26 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to legal@meridian-labs.example[39m
+[95m[Nest] 52640  - [39m08/24/2026, 8:42:28 AM [95m  DEBUG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[95mCustomerCommunication EMAIL: no data, skipping[39m
+[31m[Nest] 52640  - [39m08/24/2026, 8:42:30 AM [31m  ERROR[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[31mFailed to send email via SES [MessageRejected]: Recipient address on the account-level suppression list: hardbounce@meridian-labs.example[39m
+[31m[Nest] 52640  - [39m08/24/2026, 8:42:32 AM [31m  ERROR[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[31mFailed to send email via SES [MessageRejected]: Recipient address on the account-level suppression list: quarantine@sable-foods.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:34 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to keiri@aoi-denki.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:37 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to billing@harrow-optics.example[39m
+[32m[Nest] 52640  - [39m08/24/2026, 8:42:39 AM [32m    LOG[39m [38;5;3m[CustomerCommunicationEmailProcessor] [39m[32mEmail sent to ap@windlass-rail.example[39m

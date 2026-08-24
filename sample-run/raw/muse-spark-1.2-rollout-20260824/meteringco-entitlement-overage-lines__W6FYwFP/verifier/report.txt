@@ -1,0 +1,5 @@
+solstice-july: cus_cobalt is missing lines for ['solstice-model-invocations']
+solstice-july: cus_dunmore is missing lines for ['solstice-retention-days']
+solstice-july: cus_juniper is missing lines for ['solstice-bandwidth-gigabytes', 'solstice-retention-days']
+solstice-july: cus_vesper is missing lines for ['solstice-model-invocations']
+reward=0.0

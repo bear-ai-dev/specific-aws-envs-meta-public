@@ -1,0 +1,166 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "900000000001",
+    "access_key_id": "LOCALMETERINGKEY02"
+  },
+  "accounts": [
+    {
+      "account_id": "900000000001",
+      "alias": "meteringco-platform",
+      "buckets": [
+        {
+          "name": "meteringco-usage-record-dump-bucket-sandbox",
+          "region": "us-east-1",
+          "objects": [
+            {
+              "key": "biz-cadence/2026/02/03/usage-000116.json",
+              "body_b64": "eyJ0aW1lc3RhbXAiOiAiMjAyNi0wMi0wM1QwODowMDowMFoiLCAiY3VzdG9tZXJJZCI6ICJjdXNfaGFyYm9yIiwgImRpbWVuc2lvbklkIjogImRpbS1hcGktY2FsbHMiLCAicmVjb3JkVmFsdWUiOiAiMTQ1MCJ9",
+              "last_modified": "2026-02-03T08:01:00Z"
+            },
+            {
+              "key": "biz-cadence/2026/02/11/usage-000203.json",
+              "body_b64": "eyJ0aW1lc3RhbXAiOiAiMjAyNi0wMi0xMVQwODowMDowMFoiLCAiY3VzdG9tZXJJZCI6ICJjdXNfbGF0dGljZSIsICJkaW1lbnNpb25JZCI6ICJkaW0tYXBpLWNhbGxzIiwgInJlY29yZFZhbHVlIjogIjg4In0=",
+              "last_modified": "2026-02-11T08:01:00Z"
+            },
+            {
+              "key": "biz-lumen/2026/02/12/usage-000030.json",
+              "body_b64": "eyJ0aW1lc3RhbXAiOiAiMjAyNi0wMi0xMlQwOTozMDowMFoiLCAiY3VzdG9tZXJJZCI6ICJjdXNfcGVyZ29sYSIsICJkaW1lbnNpb25JZCI6ICJkaW0tc3RvcmFnZS1nYiIsICJyZWNvcmRWYWx1ZSI6ICIxMi43NSJ9",
+              "last_modified": "2026-02-12T09:31:00Z"
+            }
+          ]
+        },
+        {
+          "name": "meteringco-usage-record-dlq-bucket-sandbox",
+          "region": "us-east-1",
+          "objects": [
+            {
+              "key": "biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json",
+              "body_json": {
+                "failedDocument": {
+                  "originalFileContent": "{\"timestamp\":\"2026-02-03T08:05:00Z\",\"customerId\":\"cus_harbor\",\"dimensionId\":\"dim-api-c",
+                  "s3Key": "biz-cadence/2026/02/03/usage-000117.json"
+                },
+                "metadata": {
+                  "timestamp": "2026-02-03T08:06:11.402Z",
+                  "errorInfo": {
+                    "name": "SyntaxError",
+                    "message": "Unterminated string in JSON at position 86"
+                  },
+                  "results": "failed to load data",
+                  "orginalProcessedName": "biz-cadence/2026/02/03/usage-000117.json"
+                }
+              },
+              "last_modified": "2026-02-03T08:06:11.402Z"
+            },
+            {
+              "key": "biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json",
+              "body_json": {
+                "failedDocument": {
+                  "originalFileContent": "{\"timestamp\":\"2026-02-03T08:05:00Z\",\"customerId\":\"cus_harbor\",\"dimensionId\":\"dim-api-c",
+                  "s3Key": "biz-cadence/2026/02/03/usage-000117.json"
+                },
+                "metadata": {
+                  "timestamp": "2026-02-03T11:42:57.918Z",
+                  "errorInfo": {
+                    "name": "SyntaxError",
+                    "message": "Unterminated string in JSON at position 86"
+                  },
+                  "results": "failed to load data",
+                  "orginalProcessedName": "biz-cadence/2026/02/03/usage-000117.json"
+                }
+              },
+              "last_modified": "2026-02-03T11:42:57.918Z"
+            },
+            {
+              "key": "biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json",
+              "body_json": {
+                "failedDocument": {
+                  "originalFileContent": "{\"timestamp\": \"11/02/2026 08:00\", \"customerId\": \"cus_lattice\", \"dimensionId\": \"dim-api-calls\", \"recordValue\": \"301\"}",
+                  "s3Key": "biz-cadence/2026/02/11/usage-000204.json"
+                },
+                "metadata": {
+                  "timestamp": "2026-02-11T08:00:41.264Z",
+                  "errorInfo": [
+                    {
+                      "target": {
+                        "businessID": "biz-cadence",
+                        "timestamp": "11/02/2026 08:00",
+                        "customerId": "cus_lattice",
+                        "dimensionId": "dim-api-calls",
+                        "recordValue": "301"
+                      },
+                      "value": "11/02/2026 08:00",
+                      "property": "timestamp",
+                      "children": [],
+                      "constraints": {
+                        "isRFC3339": "timestamp must be RFC 3339 date"
+                      }
+                    }
+                  ],
+                  "results": "failed to load data",
+                  "orginalProcessedName": "biz-cadence/2026/02/11/usage-000204.json"
+                }
+              },
+              "last_modified": "2026-02-11T08:00:41.264Z"
+            },
+            {
+              "key": "meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json",
+              "body_json": {
+                "failedDocument": {
+                  "originalFileContent": "{\"timestamp\":\"2026-02-11T22:14:00Z\",\"customerId\":\"cus_lattice\",\"dimensionId\":\"dim-api-calls\",\"recordValue\":\"4\"}"
+                },
+                "metadata": {
+                  "timestamp": "2026-02-11T22:14:03.771Z",
+                  "errorInfo": {
+                    "name": "BadRequestException",
+                    "message": "Invalid message format, please check the documentation for the correct format"
+                  },
+                  "results": "failed to load data",
+                  "orginalProcessedName": "meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122"
+                }
+              },
+              "last_modified": "2026-02-11T22:14:03.771Z"
+            },
+            {
+              "key": "biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json",
+              "body_json": {
+                "failedDocument": {
+                  "originalFileContent": "{\"timestamp\":\"2026-02-12T09:35:00Z\",\"customerId\":\"cus_pergola\",\"dimensionId\":\"dim-storage-gb\",\"recordValue\":\"not a number\"}",
+                  "s3Key": "biz-lumen/2026/02/12/usage-000031.json"
+                },
+                "metadata": {
+                  "timestamp": "2026-02-12T09:35:22.005Z",
+                  "errorInfo": [
+                    {
+                      "target": {
+                        "businessID": "biz-lumen",
+                        "timestamp": "2026-02-12T09:35:00Z",
+                        "customerId": "cus_pergola",
+                        "dimensionId": "dim-storage-gb",
+                        "recordValue": "not a number"
+                      },
+                      "value": "not a number",
+                      "property": "recordValue",
+                      "children": [],
+                      "constraints": {
+                        "isNumberString": "recordValue must be a number string"
+                      }
+                    }
+                  ],
+                  "results": "failed to load data",
+                  "orginalProcessedName": "biz-lumen/2026/02/12/usage-000031.json"
+                }
+              },
+              "last_modified": "2026-02-12T09:35:22.005Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "faults": {
+    "enabled": true,
+    "rules": []
+  }
+}

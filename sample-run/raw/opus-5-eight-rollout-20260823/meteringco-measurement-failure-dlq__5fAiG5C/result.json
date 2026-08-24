@@ -1,0 +1,137 @@
+{
+    "id": "c2968593-0864-4487-8c85-3c4610babc54",
+    "task_name": "meteringco/measurement-failure-dlq",
+    "trial_name": "meteringco-measurement-failure-dlq__5fAiG5C",
+    "trial_uri": "file:///tmp/managed-runner/trials/run-fd4ba034bc71/meteringco-measurement-failure-dlq__5fAiG5C",
+    "task_id": {
+        "path": "/tmp/managed-runner/tasks/meteringco-measurement-failure-dlq"
+    },
+    "source": null,
+    "task_checksum": "19361ed95829b44118d905302f14abe8c8194bb17238b22c55ee524ef97a4dd5",
+    "config": {
+        "task": {
+            "path": "/tmp/managed-runner/tasks/meteringco-measurement-failure-dlq",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "meteringco-measurement-failure-dlq__5fAiG5C",
+        "trials_dir": "/tmp/managed-runner/trials/run-fd4ba034bc71",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "managed_agents.harbor_agents:BedrockMiniSweAgent",
+            "model_name": "bedrock/us.anthropic.claude-opus-5",
+            "n_concurrent": 8,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.4.5",
+                "cost_limit": "0",
+                "config_file": "/usr/local/lib/python3.12/site-packages/managed_agents/mini-swe-bedrock.yaml",
+                "reasoning_effort": "high"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": null,
+            "import_path": "managed_sandbox.fargate:FargateEnvironment",
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": 4,
+            "override_memory_mb": 8192,
+            "override_storage_mb": 102400,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {
+                "cluster": "managed-runner",
+                "aws_region": "us-east-1",
+                "execution_role_arn": "arn:aws:iam::000000000000:role/managed-execution-role",
+                "task_role_arn": "arn:aws:iam::000000000000:role/managed-sandbox-role",
+                "subnets": [
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted"
+                ],
+                "security_groups": [
+                    "sg-redacted"
+                ],
+                "init_container_image_uri": "000000000000.dkr.ecr.us-east-1.amazonaws.com/managed/runtime-init@sha256:db6cb314ff6afa9384a0a371ecd4fbd981125e13bc7358260eb87e0229f5b168",
+                "use_spot": false,
+                "cpu_units": 4096,
+                "storage_gib": 100
+            },
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "d63f9759-627c-4caa-8841-4aebdd56348d"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "2.4.5",
+        "model_info": {
+            "name": "us.anthropic.claude-opus-5",
+            "provider": "bedrock"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 2280641,
+        "n_cache_tokens": 2194612,
+        "n_output_tokens": 37671,
+        "cost_usd": 2.8343037250000003,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0,
+            "score": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-23T06:14:03.618482Z",
+    "finished_at": "2026-08-23T06:29:22.103312Z",
+    "environment_setup": {
+        "started_at": "2026-08-23T06:14:04.444702Z",
+        "finished_at": "2026-08-23T06:15:23.098053Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-23T06:15:23.109887Z",
+        "finished_at": "2026-08-23T06:15:31.821590Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-23T06:15:31.821710Z",
+        "finished_at": "2026-08-23T06:29:09.967635Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-23T06:29:15.578862Z",
+        "finished_at": "2026-08-23T06:29:22.040516Z"
+    },
+    "step_results": null
+}

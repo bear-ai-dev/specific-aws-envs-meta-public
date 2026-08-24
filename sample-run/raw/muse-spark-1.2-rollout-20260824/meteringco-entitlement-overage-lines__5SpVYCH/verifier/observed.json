@@ -1,0 +1,119 @@
+{
+  "runs": {
+    "cardinal-july": {
+      "ok": false,
+      "error": "Cannot read properties of undefined (reading 'findUsageForCustomer')",
+      "stack": "TypeError: Cannot read properties of undefined (reading 'findUsageForCustomer')\n    at Function.getLineItemsForUsage (/app/src/offering/entities/offeringPackage.entity.ts:393:47)\n    at InvoiceLineGathererService.gatherInvoiceLines (/app/src/microservices/invoiceLineGatherer/invoiceLineGatherer.service.ts:135:28)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async main (/app/.verifier-drive.ts:110:28)"
+    },
+    "solstice-july": {
+      "ok": true,
+      "results": [
+        {
+          "customerId": "cus_orchard",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 3120,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 13,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 440,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 18,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_juniper",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 0,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 0,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_dunmore",
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "lineItems": [
+            {
+              "name": "Solstice Messages Sent - Solstice Team",
+              "quantity": 95,
+              "unitCost": 0.006
+            },
+            {
+              "name": "Solstice Active Users - Solstice Team",
+              "quantity": 1,
+              "unitCost": 9
+            },
+            {
+              "name": "Solstice Bandwidth Gigabytes - Solstice Team",
+              "quantity": 1,
+              "unitCost": 0
+            },
+            {
+              "name": "Solstice Retention Days - Solstice Team",
+              "quantity": 0,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_vesper",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": [
+            {
+              "name": "Solstice Queries Run - Solstice Flex",
+              "quantity": 880,
+              "unitCost": 0.03
+            },
+            {
+              "name": "Solstice Index Updates - Solstice Flex",
+              "quantity": 60,
+              "unitCost": 0.05
+            },
+            {
+              "name": "Solstice Model Invocations - Solstice Flex",
+              "quantity": 0,
+              "unitCost": 0
+            }
+          ]
+        },
+        {
+          "customerId": "cus_cobalt",
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "lineItems": [
+            {
+              "name": "Solstice Model Invocations - Solstice Flex",
+              "quantity": 0,
+              "unitCost": 0
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

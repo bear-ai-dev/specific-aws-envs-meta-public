@@ -1,0 +1,563 @@
+{
+ "region": "us-east-1",
+ "bootstrap_identity": {
+  "account_id": "800000000001",
+  "access_key_id": "LOCALMETERINGKEY01",
+  "secret_access_key": "billing-secret"
+ },
+ "faults": {
+  "enabled": true,
+  "rules": [
+   {
+    "service": "cloudwatch",
+    "action": "GetMetricData",
+    "max_page_size": 3
+   }
+  ]
+ },
+ "accounts": [
+  {
+   "account_id": "800000000001",
+   "alias": "meteringco-billing",
+   "buckets": [
+    {
+     "name": "meteringco-billing-sandbox",
+     "region": "us-east-1",
+     "objects": [
+      {
+       "key": "catalogues/biz-ridge-2026-07.json",
+       "body_json": {
+        "businessID": "biz-ridge",
+        "periodStart": "2026-07-01T00:00:00Z",
+        "periodEnd": "2026-08-01T00:00:00Z",
+        "usageNamespace": "MeteringCo/Usage",
+        "usageMetricName": "AggregatedUsage",
+        "usagePeriod": 3600,
+        "settings": {
+         "businessID": "biz-ridge",
+         "invoiceGeneration": "perOffering",
+         "freeDimensionOnInvoice": "hide"
+        },
+        "offerings": [
+         {
+          "offeringId": "off-ridge-plan",
+          "offeringName": "Ridge Plan",
+          "offeringType": "subscription",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "ridge-api-calls",
+            "dimensionName": "Ridge API Calls",
+            "consumptionPrice": "0.01",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "ridge-seats",
+            "dimensionName": "Ridge Seats",
+            "consumptionPrice": "10.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 10,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "ridge-alerts",
+            "dimensionName": "Ridge Alerts",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "ridge-reports",
+            "dimensionName": "Ridge Reports",
+            "consumptionPrice": "1.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 5,
+            "overageAllowed": "false"
+           },
+           {
+            "dimensionId": "ridge-storage",
+            "dimensionName": "Ridge Storage",
+            "consumptionPrice": "0.20",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": "inf",
+            "overageAllowed": "true"
+           }
+          ],
+          "subscriptionPrice": 0
+         },
+         {
+          "offeringId": "off-ridge-usage",
+          "offeringName": "Ridge Metered",
+          "offeringType": "usage-based",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "ridge-jobs",
+            "dimensionName": "Ridge Jobs",
+            "consumptionPrice": "0.05",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "ridge-minutes",
+            "dimensionName": "Ridge Minutes",
+            "consumptionPrice": "0.02",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 100,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "ridge-scans",
+            "dimensionName": "Ridge Scans",
+            "consumptionPrice": "0.50",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": "inf",
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "ridge-tasks",
+            "dimensionName": "Ridge Tasks",
+            "consumptionPrice": "0.10",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 50
+           }
+          ]
+         }
+        ],
+        "enrolments": [
+         {
+          "customerId": "cus_sample_alpha",
+          "offeringId": "off-ridge-plan"
+         },
+         {
+          "customerId": "cus_sample_bravo",
+          "offeringId": "off-ridge-usage"
+         }
+        ]
+       },
+       "last_modified": "2026-08-01T00:05:00Z"
+      },
+      {
+       "key": "catalogues/biz-vale-2026-07.json",
+       "body_json": {
+        "businessID": "biz-vale",
+        "periodStart": "2026-07-01T00:00:00Z",
+        "periodEnd": "2026-08-01T00:00:00Z",
+        "usageNamespace": "MeteringCo/Usage",
+        "usageMetricName": "AggregatedUsage",
+        "usagePeriod": 3600,
+        "settings": {
+         "businessID": "biz-vale",
+         "invoiceGeneration": "perOffering",
+         "freeDimensionOnInvoice": "show"
+        },
+        "offerings": [
+         {
+          "offeringId": "off-vale-plan",
+          "offeringName": "Vale Plan",
+          "offeringType": "subscription",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "vale-messages",
+            "dimensionName": "Vale Messages",
+            "consumptionPrice": "0.01",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "vale-hours",
+            "dimensionName": "Vale Hours",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "vale-units",
+            "dimensionName": "Vale Units",
+            "consumptionPrice": "5.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 20,
+            "overageAllowed": "true"
+           }
+          ],
+          "subscriptionPrice": 0
+         }
+        ],
+        "enrolments": [
+         {
+          "customerId": "cus_sample_charlie",
+          "offeringId": "off-vale-plan"
+         }
+        ]
+       },
+       "last_modified": "2026-08-01T00:05:00Z"
+      }
+     ]
+    }
+   ],
+   "metrics": [
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_alpha",
+      "DimensionId": "ridge-api-calls"
+     },
+     "points": [
+      [
+       "2026-07-01T05:00:00Z",
+       34.0
+      ],
+      [
+       "2026-07-01T10:00:00Z",
+       33.0
+      ],
+      [
+       "2026-07-01T15:00:00Z",
+       33.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_alpha",
+      "DimensionId": "ridge-seats"
+     },
+     "points": [
+      [
+       "2026-07-01T10:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-01T20:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-02T06:00:00Z",
+       4.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_alpha",
+      "DimensionId": "ridge-alerts"
+     },
+     "points": [
+      [
+       "2026-07-01T15:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-02T06:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-02T21:00:00Z",
+       1.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_alpha",
+      "DimensionId": "ridge-reports"
+     },
+     "points": [
+      [
+       "2026-07-01T20:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T16:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-03T12:00:00Z",
+       2.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_alpha",
+      "DimensionId": "ridge-storage"
+     },
+     "points": [
+      [
+       "2026-07-01T08:00:00Z",
+       14.0
+      ],
+      [
+       "2026-07-01T16:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       13.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_bravo",
+      "DimensionId": "ridge-jobs"
+     },
+     "points": [
+      [
+       "2026-07-01T08:00:00Z",
+       67.0
+      ],
+      [
+       "2026-07-01T16:00:00Z",
+       67.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       66.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_bravo",
+      "DimensionId": "ridge-minutes"
+     },
+     "points": [
+      [
+       "2026-07-01T13:00:00Z",
+       27.0
+      ],
+      [
+       "2026-07-02T02:00:00Z",
+       27.0
+      ],
+      [
+       "2026-07-02T15:00:00Z",
+       26.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-ridge",
+      "CustomerId": "cus_sample_bravo",
+      "DimensionId": "ridge-tasks"
+     },
+     "points": [
+      [
+       "2026-07-01T06:00:00Z",
+       24.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       23.0
+      ],
+      [
+       "2026-07-01T18:00:00Z",
+       23.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-vale",
+      "CustomerId": "cus_sample_charlie",
+      "DimensionId": "vale-messages"
+     },
+     "points": [
+      [
+       "2026-07-01T11:00:00Z",
+       17.0
+      ],
+      [
+       "2026-07-01T22:00:00Z",
+       17.0
+      ],
+      [
+       "2026-07-02T09:00:00Z",
+       16.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-vale",
+      "CustomerId": "cus_sample_charlie",
+      "DimensionId": "vale-hours"
+     },
+     "points": [
+      [
+       "2026-07-01T16:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-02T08:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-03T00:00:00Z",
+       3.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-vale",
+      "CustomerId": "cus_sample_charlie",
+      "DimensionId": "vale-units"
+     },
+     "points": [
+      [
+       "2026-07-01T21:00:00Z",
+       9.0
+      ],
+      [
+       "2026-07-02T18:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-03T15:00:00Z",
+       8.0
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

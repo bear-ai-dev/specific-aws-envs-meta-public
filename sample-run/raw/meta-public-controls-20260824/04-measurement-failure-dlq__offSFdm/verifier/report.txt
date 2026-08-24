@@ -1,0 +1,8 @@
+truncated-payload/truncated-payload-redelivered: 2 failure(s) of biz-arclight/2026/05/04/usage-004412.json left 0 record(s) behind ([])
+timestamp-not-rfc3339: 1 failure(s) of biz-arclight/2026/05/04/usage-004413.json left 0 record(s) behind ([])
+customer-absent: 1 failure(s) of biz-westmoor/2026/05/05/usage-000098.json left 0 record(s) behind ([])
+value-not-a-number-string: 1 failure(s) of biz-westmoor/2026/05/05/usage-000099.json left 0 record(s) behind ([])
+messages with no source file left 0 record(s) behind, expected 2 ([])
+no-source-file: no record of this failure reached the dead-letter store
+blank-source-file: no record of this failure reached the dead-letter store
+reward=0.0

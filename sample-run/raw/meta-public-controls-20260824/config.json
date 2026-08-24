@@ -1,0 +1,34 @@
+{
+    "job_name": "meta-public-controls-20260824",
+    "jobs_dir": "sample-run/raw",
+    "n_concurrent_trials": 6,
+    "environment": {
+        "type": "docker",
+        "override_storage_mb": 10240,
+        "kwargs": {
+            "connection_pool_maxsize": 12,
+            "labels": {
+                "cohort": "meta-public-controls-20260824"
+            }
+        }
+    },
+    "agents": [
+        {
+            "name": "oracle"
+        },
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "tasks/02-entitlement-overage-lines"
+        },
+        {
+            "path": "tasks/04-measurement-failure-dlq"
+        },
+        {
+            "path": "tasks/05-customer-communication-dispatch"
+        }
+    ]
+}

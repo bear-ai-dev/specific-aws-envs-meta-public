@@ -1,0 +1,3 @@
+model:
+  model_kwargs:
+    drop_params: true

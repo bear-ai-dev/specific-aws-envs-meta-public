@@ -1,0 +1,137 @@
+{
+    "id": "61eeb6af-3aef-47a7-9d6d-c4f66e9482da",
+    "task_name": "meteringco/entitlement-overage-lines",
+    "trial_name": "meteringco-entitlement-overage-lines__WfFmkRa",
+    "trial_uri": "file:///tmp/managed-runner/trials/run-31149274a4f8/meteringco-entitlement-overage-lines__WfFmkRa",
+    "task_id": {
+        "path": "/tmp/managed-runner/tasks/meteringco-entitlement-overage-lines"
+    },
+    "source": null,
+    "task_checksum": "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
+    "config": {
+        "task": {
+            "path": "/tmp/managed-runner/tasks/meteringco-entitlement-overage-lines",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "meteringco-entitlement-overage-lines__WfFmkRa",
+        "trials_dir": "/tmp/managed-runner/trials/run-31149274a4f8",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "managed_agents.harbor_agents:BedrockMiniSweAgent",
+            "model_name": "bedrock/us.anthropic.claude-opus-5",
+            "n_concurrent": 8,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.4.5",
+                "cost_limit": "0",
+                "config_file": "/usr/local/lib/python3.12/site-packages/managed_agents/mini-swe-bedrock.yaml",
+                "reasoning_effort": "high"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": null,
+            "import_path": "managed_sandbox.fargate:FargateEnvironment",
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": 4,
+            "override_memory_mb": 8192,
+            "override_storage_mb": 102400,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {
+                "cluster": "managed-runner",
+                "aws_region": "us-east-1",
+                "execution_role_arn": "arn:aws:iam::000000000000:role/managed-execution-role",
+                "task_role_arn": "arn:aws:iam::000000000000:role/managed-sandbox-role",
+                "subnets": [
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted",
+                    "subnet-redacted"
+                ],
+                "security_groups": [
+                    "sg-redacted"
+                ],
+                "init_container_image_uri": "000000000000.dkr.ecr.us-east-1.amazonaws.com/managed/runtime-init@sha256:db6cb314ff6afa9384a0a371ecd4fbd981125e13bc7358260eb87e0229f5b168",
+                "use_spot": false,
+                "cpu_units": 4096,
+                "storage_gib": 100
+            },
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "a821153f-a5c3-48d8-918f-cfba8d13b8b5"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "2.4.5",
+        "model_info": {
+            "name": "us.anthropic.claude-opus-5",
+            "provider": "bedrock"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 3745422,
+        "n_cache_tokens": 3651595,
+        "n_output_tokens": 25173,
+        "cost_usd": 3.345519375000001,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0,
+            "score": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-23T05:31:08.435385Z",
+    "finished_at": "2026-08-23T05:44:29.838664Z",
+    "environment_setup": {
+        "started_at": "2026-08-23T05:31:09.159936Z",
+        "finished_at": "2026-08-23T05:32:27.629859Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-23T05:32:27.643868Z",
+        "finished_at": "2026-08-23T05:32:36.558431Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-23T05:32:36.558594Z",
+        "finished_at": "2026-08-23T05:44:16.520195Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-23T05:44:23.050185Z",
+        "finished_at": "2026-08-23T05:44:29.758632Z"
+    },
+    "step_results": null
+}

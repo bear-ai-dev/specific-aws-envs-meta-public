@@ -1,0 +1,66 @@
+schema_version = "1.4"
+
+[task]
+name = "meteringco/measurement-failure-dlq"
+version = "1.0.0"
+description = "Keep every datastore usage message the intake cannot load: write it to the dead-letter bucket under the source object it came from, byte-for-byte as it arrived and with the reason it failed, never overwriting an earlier failure of the same file, file unattributable messages where orphans go, and leave the caller's rejection and the Kafka-fed intake untouched."
+keywords = ["aws", "s3", "dead-letter", "ingestion", "error-handling", "typescript", "nestjs", "billing"]
+
+[[task.authors]]
+name = "meteringco-rl-envs"
+
+[metadata]
+difficulty = "hard"
+category = "aws-infrastructure"
+source = "meteringco-codebases"
+codebase = "meteringco-backend/top-up-billing-lifecycle"
+task_kind = "feature-removal"
+tags = [
+    "real-codebase",
+    "dead-letter-queue",
+    "s3-put-object",
+    "durable-failure-capture",
+    "object-key-conventions",
+    "tenant-prefix-scoping",
+    "redelivery-safety",
+    "best-effort-sink",
+    "unattributable-input",
+]
+
+[agent]
+user = "agent"
+timeout_sec = 14400
+
+[verifier]
+user = "root"
+timeout_sec = 1800
+
+[environment]
+workdir = "/app"
+build_timeout_sec = 2400
+cpus = 2
+memory_mb = 6144
+storage_mb = 20480
+network_mode = "public"
+
+[environment.env]
+TZ = "Etc/UTC"
+AWS_ENDPOINT_URL = "http://127.0.0.1:4566"
+AWS_ACCESS_KEY_ID = "LOCALMETERINGKEY02"
+AWS_SECRET_ACCESS_KEY = "metering-secret"
+# The SDK in this tree reads AWS_REGION only. A client built without an
+# explicit region has no other source for it inside the container.
+AWS_REGION = "us-east-1"
+AWS_DEFAULT_REGION = "us-east-1"
+# The two buckets the datastore measurement configuration hands a business:
+# where its usage files are dropped, and where failures are kept. The verifier
+# runs against a different pair, so these names are settings, not constants.
+DB_MEASUREMENT_BUCKET_NAME = "meteringco-usage-record-dump-bucket-sandbox"
+DB_MEASUREMENT_DLQ_BUCKET_NAME = "meteringco-usage-record-dlq-bucket-sandbox"
+
+[environment.healthcheck]
+command = "test -f /tmp/task-infra/.ready"
+interval_sec = 5
+timeout_sec = 5
+start_period_sec = 30
+retries = 12

@@ -1,0 +1,1647 @@
+{
+ "region": "us-east-1",
+ "bootstrap_identity": {
+  "account_id": "800000000001",
+  "access_key_id": "LOCALMETERINGKEY01",
+  "secret_access_key": "billing-secret"
+ },
+ "faults": {
+  "enabled": true,
+  "rules": [
+   {
+    "service": "cloudwatch",
+    "action": "GetMetricData",
+    "max_page_size": 2
+   }
+  ]
+ },
+ "accounts": [
+  {
+   "account_id": "800000000001",
+   "alias": "meteringco-billing",
+   "buckets": [
+    {
+     "name": "meteringco-billing-holdout",
+     "region": "us-east-1",
+     "objects": [
+      {
+       "key": "catalogues/biz-cardinal-2026-07.json",
+       "body_json": {
+        "businessID": "biz-cardinal",
+        "periodStart": "2026-07-01T00:00:00Z",
+        "periodEnd": "2026-08-01T00:00:00Z",
+        "usageNamespace": "MeteringCo/Usage",
+        "usageMetricName": "AggregatedUsage",
+        "usagePeriod": 3600,
+        "settings": {
+         "businessID": "biz-cardinal",
+         "invoiceGeneration": "perOffering",
+         "freeDimensionOnInvoice": "hide"
+        },
+        "offerings": [
+         {
+          "offeringId": "off-cardinal-scale",
+          "offeringName": "Cardinal Scale",
+          "offeringType": "subscription",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "cardinal-api-requests",
+            "dimensionName": "Cardinal API Requests",
+            "consumptionPrice": "0.004",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "cardinal-included-seats",
+            "dimensionName": "Cardinal Included Seats",
+            "consumptionPrice": "12.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 25,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "cardinal-storage-gigabytes",
+            "dimensionName": "Cardinal Storage Gigabytes",
+            "consumptionPrice": "0.15",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": "inf",
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "cardinal-support-tickets",
+            "dimensionName": "Cardinal Support Tickets",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "cardinal-audit-exports",
+            "dimensionName": "Cardinal Audit Exports",
+            "consumptionPrice": "3.50",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 40,
+            "overageAllowed": "false"
+           }
+          ],
+          "subscriptionPrice": 0
+         },
+         {
+          "offeringId": "off-cardinal-metered",
+          "offeringName": "Cardinal Metered",
+          "offeringType": "usage-based",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "cardinal-events-ingested",
+            "dimensionName": "Cardinal Events Ingested",
+            "consumptionPrice": "0.002",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "cardinal-webhook-calls",
+            "dimensionName": "Cardinal Webhook Calls",
+            "consumptionPrice": "0.01",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 500,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "cardinal-data-scans",
+            "dimensionName": "Cardinal Data Scans",
+            "consumptionPrice": "0.90",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": "inf",
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "cardinal-archive-restores",
+            "dimensionName": "Cardinal Archive Restores",
+            "consumptionPrice": "5.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 10,
+            "overageAllowed": "false"
+           },
+           {
+            "dimensionId": "cardinal-sandbox-hours",
+            "dimensionName": "Cardinal Sandbox Hours",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 100,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "cardinal-replay-jobs",
+            "dimensionName": "Cardinal Replay Jobs",
+            "consumptionPrice": "0.40",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 50,
+            "overageAllowed": null
+           }
+          ]
+         }
+        ],
+        "enrolments": [
+         {
+          "customerId": "cus_meridian",
+          "offeringId": "off-cardinal-scale"
+         },
+         {
+          "customerId": "cus_falconry",
+          "offeringId": "off-cardinal-scale"
+         },
+         {
+          "customerId": "cus_marlowe",
+          "offeringId": "off-cardinal-scale"
+         },
+         {
+          "customerId": "cus_larkspur",
+          "offeringId": "off-cardinal-metered"
+         },
+         {
+          "customerId": "cus_pinnacle",
+          "offeringId": "off-cardinal-metered"
+         }
+        ]
+       },
+       "last_modified": "2026-08-01T00:05:00Z"
+      },
+      {
+       "key": "catalogues/biz-solstice-2026-07.json",
+       "body_json": {
+        "businessID": "biz-solstice",
+        "periodStart": "2026-07-01T00:00:00Z",
+        "periodEnd": "2026-08-01T00:00:00Z",
+        "usageNamespace": "MeteringCo/Usage",
+        "usageMetricName": "AggregatedUsage",
+        "usagePeriod": 3600,
+        "settings": {
+         "businessID": "biz-solstice",
+         "invoiceGeneration": "perOffering",
+         "freeDimensionOnInvoice": "show"
+        },
+        "offerings": [
+         {
+          "offeringId": "off-solstice-team",
+          "offeringName": "Solstice Team",
+          "offeringType": "subscription",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "solstice-messages-sent",
+            "dimensionName": "Solstice Messages Sent",
+            "consumptionPrice": "0.006",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "solstice-active-users",
+            "dimensionName": "Solstice Active Users",
+            "consumptionPrice": "9.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 50,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "solstice-bandwidth-gigabytes",
+            "dimensionName": "Solstice Bandwidth Gigabytes",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "solstice-retention-days",
+            "dimensionName": "Solstice Retention Days",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 30,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "solstice-priority-builds",
+            "dimensionName": "Solstice Priority Builds",
+            "consumptionPrice": "2.25",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 20,
+            "overageAllowed": "false"
+           }
+          ],
+          "subscriptionPrice": 0
+         },
+         {
+          "offeringId": "off-solstice-flex",
+          "offeringName": "Solstice Flex",
+          "offeringType": "usage-based",
+          "billingCycle": "monthly",
+          "offeringVisibility": "public",
+          "dimensions": [
+           {
+            "dimensionId": "solstice-queries-run",
+            "dimensionName": "Solstice Queries Run",
+            "consumptionPrice": "0.03",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            }
+           },
+           {
+            "dimensionId": "solstice-index-updates",
+            "dimensionName": "Solstice Index Updates",
+            "consumptionPrice": "0.05",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 200,
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "solstice-model-invocations",
+            "dimensionName": "Solstice Model Invocations",
+            "consumptionPrice": "0.00",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": "inf",
+            "overageAllowed": "true"
+           },
+           {
+            "dimensionId": "solstice-export-jobs",
+            "dimensionName": "Solstice Export Jobs",
+            "consumptionPrice": "1.75",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 15,
+            "overageAllowed": "false"
+           },
+           {
+            "dimensionId": "solstice-stream-hours",
+            "dimensionName": "Solstice Stream Hours",
+            "consumptionPrice": "0.20",
+            "usageIncrement": "1",
+            "rounding": "round",
+            "sampleType": "gauge",
+            "aggregationInterval": "hour",
+            "aggregationMethod": "sum",
+            "paymentSchedule": "arrear",
+            "consumptionUnit": {
+             "type": "count",
+             "unit": "count-based"
+            },
+            "usageEntitlement": 100
+           }
+          ]
+         }
+        ],
+        "enrolments": [
+         {
+          "customerId": "cus_orchard",
+          "offeringId": "off-solstice-team"
+         },
+         {
+          "customerId": "cus_juniper",
+          "offeringId": "off-solstice-team"
+         },
+         {
+          "customerId": "cus_dunmore",
+          "offeringId": "off-solstice-team"
+         },
+         {
+          "customerId": "cus_vesper",
+          "offeringId": "off-solstice-flex"
+         },
+         {
+          "customerId": "cus_cobalt",
+          "offeringId": "off-solstice-flex"
+         }
+        ]
+       },
+       "last_modified": "2026-08-01T00:05:00Z"
+      }
+     ]
+    }
+   ],
+   "metrics": [
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_meridian",
+      "DimensionId": "cardinal-api-requests"
+     },
+     "points": [
+      [
+       "2026-07-01T03:00:00Z",
+       460.0
+      ],
+      [
+       "2026-07-01T06:00:00Z",
+       460.0
+      ],
+      [
+       "2026-07-01T09:00:00Z",
+       460.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       460.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_meridian",
+      "DimensionId": "cardinal-included-seats"
+     },
+     "points": [
+      [
+       "2026-07-01T08:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-01T16:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-02T08:00:00Z",
+       7.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_meridian",
+      "DimensionId": "cardinal-storage-gigabytes"
+     },
+     "points": [
+      [
+       "2026-07-01T13:00:00Z",
+       230.0
+      ],
+      [
+       "2026-07-02T02:00:00Z",
+       230.0
+      ],
+      [
+       "2026-07-02T15:00:00Z",
+       230.0
+      ],
+      [
+       "2026-07-03T04:00:00Z",
+       230.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_meridian",
+      "DimensionId": "cardinal-support-tickets"
+     },
+     "points": [
+      [
+       "2026-07-01T18:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-03T06:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-04T00:00:00Z",
+       3.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_meridian",
+      "DimensionId": "cardinal-audit-exports"
+     },
+     "points": [
+      [
+       "2026-07-01T06:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-01T18:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       13.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_falconry",
+      "DimensionId": "cardinal-included-seats"
+     },
+     "points": [
+      [
+       "2026-07-01T11:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-01T22:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-02T09:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-02T20:00:00Z",
+       4.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_falconry",
+      "DimensionId": "cardinal-support-tickets"
+     },
+     "points": [
+      [
+       "2026-07-01T04:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-01T08:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       1.0
+      ],
+      [
+       "2026-07-01T16:00:00Z",
+       1.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_falconry",
+      "DimensionId": "cardinal-audit-exports"
+     },
+     "points": [
+      [
+       "2026-07-01T09:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-01T18:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T03:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       3.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_marlowe",
+      "DimensionId": "cardinal-api-requests"
+     },
+     "points": [
+      [
+       "2026-07-01T09:00:00Z",
+       177.0
+      ],
+      [
+       "2026-07-01T18:00:00Z",
+       176.0
+      ],
+      [
+       "2026-07-02T03:00:00Z",
+       176.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       176.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_marlowe",
+      "DimensionId": "cardinal-included-seats"
+     },
+     "points": [
+      [
+       "2026-07-01T14:00:00Z",
+       7.0
+      ],
+      [
+       "2026-07-02T04:00:00Z",
+       6.0
+      ],
+      [
+       "2026-07-02T18:00:00Z",
+       6.0
+      ],
+      [
+       "2026-07-03T08:00:00Z",
+       6.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_marlowe",
+      "DimensionId": "cardinal-storage-gigabytes"
+     },
+     "points": [
+      [
+       "2026-07-01T19:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-02T14:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-03T09:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-04T04:00:00Z",
+       35.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_marlowe",
+      "DimensionId": "cardinal-audit-exports"
+     },
+     "points": [
+      [
+       "2026-07-01T12:00:00Z",
+       11.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       10.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       10.0
+      ],
+      [
+       "2026-07-03T00:00:00Z",
+       10.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-events-ingested"
+     },
+     "points": [
+      [
+       "2026-07-01T12:00:00Z",
+       6125.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       6125.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       6125.0
+      ],
+      [
+       "2026-07-03T00:00:00Z",
+       6125.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-webhook-calls"
+     },
+     "points": [
+      [
+       "2026-07-01T17:00:00Z",
+       160.0
+      ],
+      [
+       "2026-07-02T10:00:00Z",
+       160.0
+      ],
+      [
+       "2026-07-03T03:00:00Z",
+       160.0
+      ],
+      [
+       "2026-07-03T20:00:00Z",
+       160.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-data-scans"
+     },
+     "points": [
+      [
+       "2026-07-01T05:00:00Z",
+       78.0
+      ],
+      [
+       "2026-07-01T10:00:00Z",
+       78.0
+      ],
+      [
+       "2026-07-01T15:00:00Z",
+       77.0
+      ],
+      [
+       "2026-07-01T20:00:00Z",
+       77.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-archive-restores"
+     },
+     "points": [
+      [
+       "2026-07-01T10:00:00Z",
+       4.0
+      ],
+      [
+       "2026-07-01T20:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T06:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T16:00:00Z",
+       3.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-sandbox-hours"
+     },
+     "points": [
+      [
+       "2026-07-01T15:00:00Z",
+       45.0
+      ],
+      [
+       "2026-07-02T06:00:00Z",
+       45.0
+      ],
+      [
+       "2026-07-02T21:00:00Z",
+       45.0
+      ],
+      [
+       "2026-07-03T12:00:00Z",
+       45.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_larkspur",
+      "DimensionId": "cardinal-replay-jobs"
+     },
+     "points": [
+      [
+       "2026-07-01T03:00:00Z",
+       22.0
+      ],
+      [
+       "2026-07-01T06:00:00Z",
+       22.0
+      ],
+      [
+       "2026-07-01T09:00:00Z",
+       22.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       22.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_pinnacle",
+      "DimensionId": "cardinal-webhook-calls"
+     },
+     "points": [
+      [
+       "2026-07-01T03:00:00Z",
+       95.0
+      ],
+      [
+       "2026-07-01T06:00:00Z",
+       95.0
+      ],
+      [
+       "2026-07-01T09:00:00Z",
+       95.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       95.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_pinnacle",
+      "DimensionId": "cardinal-archive-restores"
+     },
+     "points": [
+      [
+       "2026-07-01T13:00:00Z",
+       1.0
+      ],
+      [
+       "2026-07-02T02:00:00Z",
+       1.0
+      ],
+      [
+       "2026-07-02T15:00:00Z",
+       1.0
+      ],
+      [
+       "2026-07-03T04:00:00Z",
+       1.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_pinnacle",
+      "DimensionId": "cardinal-sandbox-hours"
+     },
+     "points": [
+      [
+       "2026-07-01T18:00:00Z",
+       23.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       23.0
+      ],
+      [
+       "2026-07-03T06:00:00Z",
+       22.0
+      ],
+      [
+       "2026-07-04T00:00:00Z",
+       22.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-cardinal",
+      "CustomerId": "cus_pinnacle",
+      "DimensionId": "cardinal-replay-jobs"
+     },
+     "points": [
+      [
+       "2026-07-01T06:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-01T12:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-01T18:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-02T00:00:00Z",
+       5.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_orchard",
+      "DimensionId": "solstice-messages-sent"
+     },
+     "points": [
+      [
+       "2026-07-01T13:00:00Z",
+       780.0
+      ],
+      [
+       "2026-07-02T02:00:00Z",
+       780.0
+      ],
+      [
+       "2026-07-02T15:00:00Z",
+       780.0
+      ],
+      [
+       "2026-07-03T04:00:00Z",
+       780.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_orchard",
+      "DimensionId": "solstice-active-users"
+     },
+     "points": [
+      [
+       "2026-07-01T18:00:00Z",
+       16.0
+      ],
+      [
+       "2026-07-02T12:00:00Z",
+       16.0
+      ],
+      [
+       "2026-07-03T06:00:00Z",
+       16.0
+      ],
+      [
+       "2026-07-04T00:00:00Z",
+       15.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_orchard",
+      "DimensionId": "solstice-bandwidth-gigabytes"
+     },
+     "points": [
+      [
+       "2026-07-01T23:00:00Z",
+       110.0
+      ],
+      [
+       "2026-07-02T22:00:00Z",
+       110.0
+      ],
+      [
+       "2026-07-03T21:00:00Z",
+       110.0
+      ],
+      [
+       "2026-07-04T20:00:00Z",
+       110.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_orchard",
+      "DimensionId": "solstice-retention-days"
+     },
+     "points": [
+      [
+       "2026-07-02T04:00:00Z",
+       12.0
+      ],
+      [
+       "2026-07-03T08:00:00Z",
+       12.0
+      ],
+      [
+       "2026-07-04T12:00:00Z",
+       12.0
+      ],
+      [
+       "2026-07-05T16:00:00Z",
+       12.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_orchard",
+      "DimensionId": "solstice-priority-builds"
+     },
+     "points": [
+      [
+       "2026-07-01T16:00:00Z",
+       7.0
+      ],
+      [
+       "2026-07-02T08:00:00Z",
+       7.0
+      ],
+      [
+       "2026-07-03T00:00:00Z",
+       7.0
+      ],
+      [
+       "2026-07-03T16:00:00Z",
+       6.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_juniper",
+      "DimensionId": "solstice-active-users"
+     },
+     "points": [
+      [
+       "2026-07-01T21:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-02T18:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-03T15:00:00Z",
+       12.0
+      ],
+      [
+       "2026-07-04T12:00:00Z",
+       12.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_juniper",
+      "DimensionId": "solstice-retention-days"
+     },
+     "points": [
+      [
+       "2026-07-01T14:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T04:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T18:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-03T08:00:00Z",
+       3.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_juniper",
+      "DimensionId": "solstice-priority-builds"
+     },
+     "points": [
+      [
+       "2026-07-01T19:00:00Z",
+       3.0
+      ],
+      [
+       "2026-07-02T14:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-03T09:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-04T04:00:00Z",
+       2.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_dunmore",
+      "DimensionId": "solstice-messages-sent"
+     },
+     "points": [
+      [
+       "2026-07-01T19:00:00Z",
+       24.0
+      ],
+      [
+       "2026-07-02T14:00:00Z",
+       24.0
+      ],
+      [
+       "2026-07-03T09:00:00Z",
+       24.0
+      ],
+      [
+       "2026-07-04T04:00:00Z",
+       23.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_dunmore",
+      "DimensionId": "solstice-active-users"
+     },
+     "points": [
+      [
+       "2026-07-02T00:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-03T00:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-04T00:00:00Z",
+       13.0
+      ],
+      [
+       "2026-07-05T00:00:00Z",
+       12.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_dunmore",
+      "DimensionId": "solstice-bandwidth-gigabytes"
+     },
+     "points": [
+      [
+       "2026-07-02T05:00:00Z",
+       1.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_dunmore",
+      "DimensionId": "solstice-retention-days"
+     },
+     "points": [
+      [
+       "2026-07-01T17:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-02T10:00:00Z",
+       8.0
+      ],
+      [
+       "2026-07-03T03:00:00Z",
+       7.0
+      ],
+      [
+       "2026-07-03T20:00:00Z",
+       7.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_dunmore",
+      "DimensionId": "solstice-priority-builds"
+     },
+     "points": [
+      [
+       "2026-07-01T22:00:00Z",
+       6.0
+      ],
+      [
+       "2026-07-02T20:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-03T18:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-04T16:00:00Z",
+       5.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_vesper",
+      "DimensionId": "solstice-queries-run"
+     },
+     "points": [
+      [
+       "2026-07-01T22:00:00Z",
+       220.0
+      ],
+      [
+       "2026-07-02T20:00:00Z",
+       220.0
+      ],
+      [
+       "2026-07-03T18:00:00Z",
+       220.0
+      ],
+      [
+       "2026-07-04T16:00:00Z",
+       220.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_vesper",
+      "DimensionId": "solstice-index-updates"
+     },
+     "points": [
+      [
+       "2026-07-02T03:00:00Z",
+       65.0
+      ],
+      [
+       "2026-07-03T06:00:00Z",
+       65.0
+      ],
+      [
+       "2026-07-04T09:00:00Z",
+       65.0
+      ],
+      [
+       "2026-07-05T12:00:00Z",
+       65.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_vesper",
+      "DimensionId": "solstice-model-invocations"
+     },
+     "points": [
+      [
+       "2026-07-01T15:00:00Z",
+       19.0
+      ],
+      [
+       "2026-07-02T06:00:00Z",
+       19.0
+      ],
+      [
+       "2026-07-02T21:00:00Z",
+       19.0
+      ],
+      [
+       "2026-07-03T12:00:00Z",
+       18.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_vesper",
+      "DimensionId": "solstice-export-jobs"
+     },
+     "points": [
+      [
+       "2026-07-01T20:00:00Z",
+       6.0
+      ],
+      [
+       "2026-07-02T16:00:00Z",
+       6.0
+      ],
+      [
+       "2026-07-03T12:00:00Z",
+       5.0
+      ],
+      [
+       "2026-07-04T08:00:00Z",
+       5.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_vesper",
+      "DimensionId": "solstice-stream-hours"
+     },
+     "points": [
+      [
+       "2026-07-02T01:00:00Z",
+       44.0
+      ],
+      [
+       "2026-07-03T02:00:00Z",
+       44.0
+      ],
+      [
+       "2026-07-04T03:00:00Z",
+       44.0
+      ],
+      [
+       "2026-07-05T04:00:00Z",
+       43.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_cobalt",
+      "DimensionId": "solstice-index-updates"
+     },
+     "points": [
+      [
+       "2026-07-01T13:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-02T02:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-02T15:00:00Z",
+       35.0
+      ],
+      [
+       "2026-07-03T04:00:00Z",
+       35.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_cobalt",
+      "DimensionId": "solstice-export-jobs"
+     },
+     "points": [
+      [
+       "2026-07-01T23:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-02T22:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-03T21:00:00Z",
+       2.0
+      ],
+      [
+       "2026-07-04T20:00:00Z",
+       2.0
+      ]
+     ]
+    },
+    {
+     "namespace": "MeteringCo/Usage",
+     "metric_name": "AggregatedUsage",
+     "dimensions": {
+      "BusinessId": "biz-solstice",
+      "CustomerId": "cus_cobalt",
+      "DimensionId": "solstice-stream-hours"
+     },
+     "points": [
+      [
+       "2026-07-02T04:00:00Z",
+       10.0
+      ],
+      [
+       "2026-07-03T08:00:00Z",
+       10.0
+      ],
+      [
+       "2026-07-04T12:00:00Z",
+       10.0
+      ],
+      [
+       "2026-07-05T16:00:00Z",
+       10.0
+      ]
+     ]
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,5 @@
+[32m[Nest] 1981  - [39m08/23/2026, 6:23:01 AM [32m    LOG[39m [38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 1981  - [39m08/23/2026, 6:23:01 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 1981  - [39m08/23/2026, 6:23:01 AM [31m  ERROR[39m [38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected end of JSON input[39m
+[31m[Nest] 1981  - [39m08/23/2026, 6:23:01 AM [31m  ERROR[39m [38;5;3m[StandardMeasurementEntity] [39m[31merror occurred writing to s3 dlq[39m
+[31m[Nest] 1981  - [39m08/23/2026, 6:23:01 AM [31m  ERROR[39m [38;5;3m[StandardMeasurementEntity] [39m[31mNoSuchBucket: The specified bucket does not exist: meteringco-usage-record-dlq-bucket-qa7[39m

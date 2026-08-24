@@ -1,0 +1,4008 @@
+This is mini-swe-agent version 2.4.5.
+Check the v2 migration guide at https://klieret.short.gy/mini-v2-migration
+Loading global config from '/home/agent/.config/mini-swe-agent/.env'
+Warning: Input is not a terminal (fd=0).
+Building agent config from specs: ['mini', '/tmp/mswea-config/custom.yaml']
+
+System:
+You are a helpful assistant that can interact with a computer.
+
+User:
+Please solve this issue: When datastore usage intake rejects a message, preserve
+it in the configured dead-letter bucket under its source file so the owning 
+business can find it. Keep the original input and useful failure information, 
+never overwrite an earlier rejection of the same source, and retain messages 
+that have no source file. The caller must still receive a rejection even if 
+dead-letter storage refuses the write. Leave the Kafka-fed intake's separate 
+arrangement unchanged. This task includes a local AWS-compatible emulator at the
+preconfigured AWS_ENDPOINT_URL. Its credentials and region are already in the 
+shell, repository AWS clients use it, no real AWS account is involved, and you 
+may inspect its resources while working.
+
+
+You can execute bash commands and edit files to implement the necessary changes.
+
+## Recommended Workflow
+
+This workflow should be done step-by-step so that you can iterate on your 
+changes and any possible problems.
+
+1. Analyze the codebase by finding and reading relevant files
+2. Create a script to reproduce the issue
+3. Edit the source code to resolve the issue
+4. Verify your fix works by running your script again
+5. Test edge cases to ensure your fix is robust
+6. Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+   Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+## Command Execution Rules
+
+You are operating in an environment where
+
+1. You issue at least one command
+2. The system executes the command(s) in a subshell
+3. You see the result(s)
+4. You write your next command(s)
+
+Each response should include:
+
+1. **Reasoning text** where you explain your analysis and plan
+2. At least one tool call with your command
+
+**CRITICAL REQUIREMENTS:**
+
+- Your response SHOULD include reasoning text explaining what you're doing
+- Your response MUST include AT LEAST ONE bash tool call
+- Directory or environment variable changes are not persistent. Every action is 
+executed in a new subshell.
+- However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd 
+/path/to/working/dir && ...` or write/load environment variables from files
+- Submit your changes and finish your work by issuing the following command: 
+`echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.
+  Do not combine it with any other command. <important>After this command, you 
+cannot continue working on this task.</important>
+
+Example of a CORRECT response:
+<example_response>
+I need to understand the structure of the repository first. Let me check what 
+files are in the current directory to get a better understanding of the 
+codebase.
+
+[Makes bash tool call with {"command": "ls -la"} as arguments]
+</example_response>
+
+<system_information>
+Linux 6.1.177 #1 SMP PREEMPT_DYNAMIC Wed Aug  5 16:35:02 UTC 2026 x86_64
+</system_information>
+
+## Useful command examples
+
+### Create a new file:
+
+```bash
+cat <<'EOF' > newfile.py
+import numpy as np
+hello = "world"
+print(hello)
+EOF
+```
+
+### Edit files with sed:```bash
+# Replace all occurrences
+sed -i 's/old_string/new_string/g' filename.py
+
+# Replace only first occurrence
+sed -i 's/old_string/new_string/' filename.py
+
+# Replace first occurrence on line 1
+sed -i '1s/old_string/new_string/' filename.py
+
+# Replace all occurrences in lines 1-10
+sed -i '1,10s/old_string/new_string/g' filename.py
+```
+
+### View file content:
+
+```bash
+# View specific lines with numbers
+nl -ba filename.py | sed -n '10,20p'
+```
+
+### Any other command you want to run
+
+```bash
+anything
+```
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 1, $0.00):
+I'll start by exploring the repository structure.
+
+```
+ls -la; cat README* 2>/dev/null | head -50
+```
+
+```
+env | grep -i aws
+```
+
+Tool:
+<returncode>
+0
+<output>
+total 1376
+drwxr-xr-x.    1 agent agent    4096 Aug 23 05:20 .
+drwxr-xr-x.    1 root  root     4096 Aug 23 06:15 ..
+-rw-r--r--.    1 agent agent      15 Aug 20 21:22 .eslintignore
+-rw-r--r--.    1 agent agent     760 Aug 20 21:22 .eslintrc.js
+drwxr-xr-x.    3 agent agent    4096 Aug 23 05:19 .github
+-rw-r--r--.    1 agent agent    1783 Aug 20 21:22 .gitignore
+drwxr-xr-x.    2 agent agent    4096 Aug 23 05:19 .husky
+-rw-r--r--.    1 agent agent      99 Aug 20 21:22 .prettierrc.json
+drwxr-xr-x.    2 agent agent    4096 Aug 23 05:19 .vscode
+-rw-r--r--.    1 agent agent    2064 Aug 20 21:22 Dockerfile
+-rw-r--r--.    1 agent agent    8358 Aug 20 21:22 README.md
+drwxr-xr-x.    2 agent agent    4096 Aug 23 05:19 docs
+drwxr-xr-x.   16 agent agent    4096 Aug 23 05:19 integration
+-rw-r--r--.    1 agent agent     641 Aug 20 21:22 jest.unit.config.json
+-rw-r--r--.    1 agent agent     400 Aug 20 21:22 nest-cli.json
+drwxr-xr-x. 1004 agent agent   36864 Aug 23 05:20 node_modules
+-rw-r--r--.    1 agent agent 1224450 Aug 23 05:20 package-lock.json
+-rw-r--r--.    1 agent agent    9725 Aug 20 21:22 package.json
+drwxr-xr-x.    4 agent agent    4096 Aug 23 05:19 resources
+drwxr-xr-x.   39 agent agent    4096 Aug 23 05:19 src
+drwxr-xr-x.    6 agent agent    4096 Aug 23 05:19 test
+-rw-r--r--.    1 agent agent     770 Aug 20 21:22 testTSConfig.json
+-rw-r--r--.    1 agent agent     109 Aug 20 21:22 tsconfig.build.json
+-rw-r--r--.    1 agent agent     758 Aug 20 21:22 tsconfig.json
+# MeteringCo Backend
+
+This repository serves to hold the backend infrastructure for MeteringCo. 
+Specifically it contains the code for the Private and Public API
+
+### Current Status
+
+Don't break this.
+[![CI](https://github.com/example-metering-org/example-billing-service/actions/workflows/main.yml/ba
+dge.svg)](https://github.com/example-metering-org/example-billing-service/actions/workflows/main.yml
+)
+
+# Folder Structure
+
+| .prettierrc.json - prettier formatting file  
+| .eslintrc.cjs - linter configuration only comment out linting rules if there a
+good reason  
+| .gitignore - ignored files for source control  
+| src - source for the api application  
+
+
+# Getting started with Local Development
+
+# Environment
+
+-   Latest version of [NVM](https://github.com/nvm-sh/nvm)
+-   Latest version of NodeJS 18.x `nvm install 18`
+-   Latest version of [AWS CLI](https://aws.amazon.com/cli/)
+-   Latest version of [Docker 
+Desktop](https://www.docker.com/products/docker-desktop/)
+-   Assigned AWS accounts and IAM credentials
+-   [Redoc](https://github.com/Redocly/redoc#redoc-cli) for automatically 
+generating html from the open api specification, see install 
+[here](https://stackoverflow.com/questions/25800493/converting-swagger-specifica
+tion-json-to-html-documentation)
+-   Latest version of [Kind](https://kind.sigs.k8s.io/) for the local 
+integration test enviornment, see install 
+[here](https://kind.sigs.k8s.io/docs/user/quick-start/#installation)
+-   Latest version of [Helm](https://helm.sh/) see the install guild 
+[here](https://helm.sh/docs/intro/install/)
+
+For the remainng item of this list, you should figure out yourself if you don't 
+already know.
+
+-   [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+-   A good terminal (such as [iTerm2](https://iterm2.com/index.html) + 
+[ohmyzsh](https://ohmyz.sh/))
+-   A good IDE (such as [VSCode](https://code.visualstudio.com/), or 
+[WebStorm](https://www.jetbrains.com/webstorm/))
+-   Helpful for command line navigation 
+[z](https://facilecode.com/how-to-setup-z-jump-around/)
+
+# Setup
+
+1. Configure AWS CLI. `aws configure`. See sample config below. Use _us-east-1_ 
+as default region and _json_ as default output format.
+
+```bash
+aws configure
+AWS Access Key ID [None]: XXXXXXXXXXX
+AWS Secret Access Key [None]: XXXXXXXXXXXXXXXXXXXXXX
+Default region name [None]: us-east-1
+Default output format [None]: json
+```
+
+2. Clone the repository.
+
+
+Tool:
+<returncode>
+0
+<output>
+AWS_CONFIG_FILE=/tmp/mswea-bedrock-provider/config
+AWS_CONTAINER_CREDENTIALS_RELATIVE_URI=/v2/credentials/02fec236-cdeb-41c9-bf42-e
+e67048ae63c
+AWS_EXECUTION_ENV=AWS_ECS_FARGATE
+AWS_DEFAULT_REGION=us-east-1
+AWS_ENDPOINT_URL=http://127.0.0.1:4566
+AWS_SHARED_CREDENTIALS_FILE=/tmp/mswea-bedrock-provider/credentials
+AWS_REGION=us-east-1
+AWS_ACCESS_KEY_ID=[REDACTED_AWS_ACCESS_KEY_ID]
+AWS_SECRET_ACCESS_KEY=[REDACTED_AWS_SECRET_ACCESS_KEY]
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 2, $0.03):
+```
+cd /workspace 2>/dev/null || cd ~; ls; grep -ril "dead" --include=*.ts src | 
+head -50
+```
+
+```
+ls src; ls src/*
+```
+
+Tool:
+<returncode>
+0
+<output>
+grep: src: No such file or directory
+
+
+Tool:
+<returncode>
+0
+<output>
+agent-measurement
+alerts
+analytics
+app.controller.spec.ts
+app.controller.ts
+app.module.ts
+app.service.ts
+audit
+authz
+azure
+basicResponseDTO.ts
+billing
+cacheStore.ts
+contract
+cost
+credit
+customer
+customergroup
+dimensions
+genericExpressEnv.ts
+inbox
+influx
+interceptors
+invoice
+kubernetes-deployer
+ledger
+margincalc
+measurement
+measurement-config
+microservices
+offering
+onboarding
+openApiPublicSpecGenerator.ts
+openApiSpecGenerator.ts
+payment
+portal
+scheduler
+services
+setting
+tax
+token-consumer
+tracer.ts
+transformer
+usage
+users
+utils
+webhook
+src/app.controller.spec.ts
+src/app.controller.ts
+src/app.module.ts
+src/app.service.ts
+src/basicResponseDTO.ts
+src/cacheStore.ts
+src/genericExpressEnv.ts
+src/openApiPublicSpecGenerator.ts
+src/openApiSpecGenerator.ts
+src/tracer.ts
+
+src/agent-measurement:
+agent-measurement.controller.spec.ts
+agent-measurement.controller.ts
+agent-measurement.module.ts
+agent-measurement.service.spec.ts
+agent-measurement.service.ts
+dto
+entities
+gogoproto
+remote.proto
+types.proto
+
+src/alerts:
+alerts.module.ts
+alerts.service.spec.ts
+alerts.service.ts
+dto
+entities
+
+src/analytics:
+analytics.controller.spec.ts
+analytics.controller.ts
+analytics.module.ts
+analytics.service.spec.ts
+analytics.service.ts
+dto
+entities
+
+src/audit:
+audit.module.ts
+audit.service.spec.ts
+audit.service.ts
+entities
+
+src/authz:
+PermissionsGaurd.ts
+authz.module.ts
+jwt-local.gaurd.ts
+jwt-local.strategy.ts
+jwt.strategy.ts
+logGaurd.ts
+login.gaurd.ts
+oidc.strategy.ts
+sessionSerializer.ts
+
+src/azure:
+azure.controller.spec.ts
+azure.controller.ts
+azure.module.ts
+azure.service.spec.ts
+azure.service.ts
+dto
+entities
+
+src/billing:
+billing.module.ts
+billing.service.spec.ts
+billing.service.ts
+dto
+entities
+
+src/contract:
+contract.module.ts
+contract.service.spec.ts
+contract.service.ts
+dto
+entities
+
+src/cost:
+cost.controller.ts
+cost.module.ts
+cost.service.spec.ts
+cost.service.ts
+dto
+entities
+
+src/credit:
+credit.controller.spec.ts
+credit.controller.ts
+credit.module.ts
+credit.service.spec.ts
+credit.service.ts
+dto
+entities
+
+src/customer:
+customer.controller.spec.ts
+customer.controller.ts
+customer.module.ts
+customer.service.spec.ts
+customer.service.ts
+dto
+entities
+
+src/customergroup:
+customergroup.module.ts
+customergroup.service.spec.ts
+customergroup.service.ts
+dto
+entities
+
+src/dimensions:
+dimensions.controller.spec.ts
+dimensions.controller.ts
+dimensions.module.ts
+dimensions.service.spec.ts
+dimensions.service.ts
+dimensionsAggregation.service.ts
+dto
+entities
+
+src/inbox:
+dto
+entities
+inbox.controller.spec.ts
+inbox.controller.ts
+inbox.module.ts
+inbox.service.spec.ts
+inbox.service.ts
+
+src/influx:
+dto
+entities
+influx.module.ts
+influx.service.spec.ts
+influx.service.ts
+influxUsageAggregateEvent.ts
+utils
+
+src/interceptors:
+500InternalResponseHandler.ts
+businessID.interceptor.ts
+timing.interceptor.ts
+tokenRegisterInterceptor.ts
+
+src/invoice:
+dto
+entities
+invoice.entity.spec.ts
+invoice.services.spec.ts
+invoices.controller.spec.ts
+invoices.controller.ts
+invoices.module.ts
+invoices.service.ts
+
+src/kubernetes-deployer:
+deploymentResources
+dto
+entities
+kubernetes-deployer.module.ts
+kubernetes-deployer.service.spec.ts
+kubernetes-deployer.service.ts
+
+src/ledger:
+dto
+entities
+ledger.controller.spec.ts
+ledger.controller.ts
+ledger.module.ts
+ledger.service.spec.ts
+ledger.service.ts
+
+src/margincalc:
+dto
+entities
+margincalc.controller.spec.ts
+margincalc.controller.ts
+margincalc.module.ts
+margincalc.service.spec.ts
+margincalc.service.ts
+
+src/measurement:
+dto
+entities
+measurement.controller.spec.ts
+measurement.controller.ts
+measurement.module.ts
+measurement.service.spec.ts
+measurement.service.ts
+
+src/measurement-config:
+dto
+entities
+measurement-config.controller.spec.ts
+measurement-config.controller.ts
+measurement-config.module.ts
+measurement-config.service.spec.ts
+measurement-config.service.ts
+
+src/microservices:
+ebsSnapshotDataGatherer
+ebsVolumeDataGatherer
+ec2EgressDataGatherer
+ec2InstanceDataGatherer
+entitlementChecker
+instanceUpTime
+invoiceStatusChecker
+reservedInstanceHistory
+
+src/offering:
+dto
+entities
+offering.controller.spec.ts
+offering.controller.ts
+offering.module.ts
+offering.service.spec.ts
+offering.service.ts
+
+src/onboarding:
+dto
+entities
+onboarding.controller.spec.ts
+onboarding.controller.ts
+onboarding.module.ts
+onboarding.service.spec.ts
+onboarding.service.ts
+
+src/payment:
+dto
+entities
+payment.controller.spec.ts
+payment.controller.ts
+payment.module.ts
+payment.service.spec.ts
+payment.service.ts
+
+src/portal:
+dto
+entities
+portal.controller.spec.ts
+portal.controller.ts
+portal.module.ts
+portal.service.spec.ts
+portal.service.ts
+
+src/scheduler:
+dto
+entities
+scheduler.controller.ts
+scheduler.module.ts
+scheduler.service.ts
+
+src/services:
+dto
+entities
+services.module.ts
+services.service.ts
+
+src/setting:
+countryCode.json
+countryLookup.json
+dto
+entities
+euCountries.json
+settings.controller.spec.ts
+settings.controller.ts
+settings.module.ts
+settings.service.spec.ts
+settings.service.ts
+stateCode.json
+
+src/tax:
+tax.module.ts
+tax.service.spec.ts
+tax.service.ts
+
+src/token-consumer:
+dto
+entities
+token-consumer-async-processor.ts
+token-consumer.controller.spec.ts
+token-consumer.controller.ts
+token-consumer.module.ts
+token-consumer.service.spec.ts
+token-consumer.service.ts
+
+src/transformer:
+gogoproto
+remote.proto
+transformer.controller.ts
+transformer.module.ts
+transformer.service.ts
+types.proto
+
+src/usage:
+dto
+entities
+usage.controller.spec.ts
+usage.controller.ts
+usage.module.ts
+usage.permissions.ts
+usage.service.spec.ts
+usage.service.ts
+
+src/users:
+dto
+entities
+organization.permissions.ts
+user.permissions.ts
+users.controller.spec.ts
+users.controller.ts
+users.module.ts
+users.service.spec.ts
+users.service.ts
+
+src/utils:
+aws
+datetime.ts
+shared
+validator.ts
+
+src/webhook:
+dto
+entities
+webhook.controller.spec.ts
+webhook.controller.ts
+webhook.module.ts
+webhook.service.spec.ts
+webhook.service.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 3, $0.06):
+```
+cd ~/*/ 2>/dev/null; pwd; grep -ril "deadletter\|dead_letter\|dead-letter\|DLQ" 
+--include=*.ts --include=*.json --include=*.yaml --include=*.yml . 
+--exclude-dir=node_modules | head -30
+```
+
+```
+grep -ril "datastore" --include=*.ts . --exclude-dir=node_modules | head -30
+```
+
+Tool:
+<returncode>
+0
+<output>
+/app
+./package-lock.json
+./docs/open-api-public-spec.json
+./docs/open-api-private-spec.json
+./integration/client/publicClient/measurement.ts
+./integration/measurement/usageDataInS3.integration.input.ts
+./integration/measurement/usageDataInKafka.integration.spec.ts
+./integration/measurement/usageDataInS3.integration.spec.ts
+./src/kubernetes-deployer/entities/kafkaConsumer/kafkaDeploymentParametersEntity
+.ts
+./src/kubernetes-deployer/entities/kafkaConsumer/kafkaDeploymentParametersDto.ts
+./src/microservices/ebsSnapshotDataGatherer/ebsSnapshotDataGatherer.service.ts
+./src/microservices/ebsVolumeDataGatherer/ebsvolumeDataGatherer.service.ts
+./src/measurement-config/entities/standardMeasurement.entity.ts
+./src/measurement-config/entities/measurement-config.entity.ts
+./src/measurement-config/dto/create-measurement-config.dto.ts
+./src/measurement-config/dto/read-measurement-config.dto.ts
+./src/measurement-config/measurement-config.service.ts
+./src/usage/usage.controller.ts
+./.github/workflows/integrationTestCron.yml
+./.github/workflows/integrationTest.yml
+
+
+Tool:
+<returncode>
+0
+<output>
+./integration/client/publicClient/measurement.ts
+./integration/measurement/usageDataInKafka.integration.spec.ts
+./integration/measurement/measurementCrud.integration.spec.ts
+./src/kubernetes-deployer/entities/kafkaConsumer/logstashConfiguration.ts
+./src/interceptors/businessID.interceptor.ts
+./src/measurement-config/entities/measurement-config.entity.ts
+./src/measurement-config/dto/update-measurement-config.dto.ts
+./src/measurement-config/dto/create-measurement-config.dto.ts
+./src/measurement-config/dto/read-measurement-config.dto.ts
+./src/measurement-config/measurement-config.service.ts
+./src/measurement-config/measurement-config.controller.ts
+./src/usage/usage.controller.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 4, $0.08):
+```
+cd /app && cat src/usage/usage.controller.ts
+```
+
+Tool:
+<returncode>
+0
+<output_head>
+import { BadRequestException, Body, Controller, Logger, Post, Query, Req, 
+UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
+import { serializeError } from 'serialize-error';
+import {
+    ApiBadRequestResponse,
+    ApiBearerAuth,
+    ApiCreatedResponse,
+    ApiOperation,
+    ApiQuery,
+    ApiTags,
+} from '@nestjs/swagger';
+import { BasicResponseDTO } from '../basicResponseDTO.js';
+import { CreateUsageDto } from './dto/create-usage.dto.js';
+import { UsageService } from './usage.service.js';
+import { Request } from 'express';
+import { LogGaurd } from '../authz/logGaurd.js';
+import { DlqType, StandardMeasurementEntity } from 
+'../measurement-config/entities/standardMeasurement.entity.js';
+import { randomUUID } from 'crypto';
+import { AuditService } from '../audit/audit.service.js';
+import { AuditScope } from '../audit/entities/audit.interface.js';
+import { Validator } from 'class-validator';
+import { CreateStandardMeasurementDto } from 
+'../measurement-config/dto/create-standard-measurement.dto.js';
+import { PermissionsGuard } from '../authz/PermissionsGaurd.js';
+import { UsagePermissions } from './usage.permissions.js';
+import { InvoicesService } from '../invoice/invoices.service.js';
+import { AuthorizedRequest } from '../authz/jwt-local.gaurd.js';
+import { CustomerService } from '../customer/customer.service.js';
+import { InfluxAggregateUsageEvent } from 
+'../influx/influxUsageAggregateEvent.js';
+import { PaymentSchedule, aggregationMethod } from 
+'../dimensions/dto/create-dimension.dto.js';
+import { UsageResponseDocument } from '../customer/dto/read-customer.dto.js';
+import { ReadOfferingResponseData } from '../offering/dto/readOffering.dto.js';
+
+@ApiBearerAuth('bearer')
+@ApiTags('Usage')
+@Controller('usage')
+export class UsageController {
+    readonly validator = new Validator();
+    public static readonly logger = new Logger(UsageController.name);
+    constructor(
+        public readonly usageService: UsageService,
+        public readonly invoiceService: InvoicesService,
+        public readonly customerService: CustomerService,
+    ) {}
+
+    /**
+     * Collect usage data by API-based method.
+     * See <a 
+href="https://docs.meteringco.example/measure-usage-and-collect-data/measure-and-collect
+-usage-data-at-production-scale">Measure and Collect Usage Data At Production 
+Scale</a>
+     * for full documentation on MeteringCo <b>Usage Measurement and Collection</b>.
+     * @param createUsageDto
+     * @param request
+     */
+    @ApiCreatedResponse({
+        status: 201,
+        description: 'OK',
+        type: BasicResponseDTO,
+    })
+    @ApiBadRequestResponse({
+        status: 400,
+        description: 'Bad Request',
+        type: BasicResponseDTO,
+    })
+    @ApiQuery({
+        description:
+            'The invoice query parameter is used to create an invoice for the 
+usage data body. It can _only_ be used with dimensions that have an `upfront` 
+payment schedule and `last` aggregation method. If the dimension does not have 
+these properties, the invoice will not be created and a `400` status code will 
+be returned. Additionally, the customer for the usage must be actively enrolled 
+in an offering in order to make use of the automated invoice, otherwise a `400` 
+error will be returned. The body will not be loaded into the database on any 
+`400` error. <br/><br/> The invoice created is independent of any `tiers`, or 
+`entitlement` associated with the dimension, and will be created for the exact 
+usage data sent in. <br/><br/> The invoice will be created for the difference 
+between the usage data sent in, and the most recent usage data for the 
+dimension. If the usage data sent in is less than the most recent usage data, a 
+zero quantity line item will be created. For example if the most recent usage 
+data for a dimension is `5`, and the usage data sent in is `3`, a zero quantity 
+line item will be created. If the usage data sent in is `7`, a `2` quantity line
+item will be created.',
+        name: 'invoice',
+        type: Boolean,
+        example: true,
+        required: false,
+    })
+    @ApiOperation({ operationId: 'Collect usage data' })
+    @UseGuards(AuthGuard('jwt'))
+    @Post()
+    async create(
+        @Body() createUsageDto: CreateUsageDto,
+        @Req() request: AuthorizedRequest,
+        @Query('invoice') invoice: boolean,
+    ) {
+        const { businessID } = request.user;
+        if (invoice) {
+            const customerReadResponse = await this.customerService.findOne({
+                customerId: createUsageDto.customerId,
+                businessID,
+            });
+            const {
+                data: [{ enrollments }],
+            } = customerReadResponse;
+            if (!enrollments?.length) {
+                throw new BadRequestException('No offering/enrollment found for 
+customer cannot create invoice');
+            }
+            const dimensions = enrollments.reduce((acc, enrollment) => {
+                if (enrollment && enrollment?.offering?.dimensions) {
+                    const 
+<output_tail>
+        {},
+            );
+            const dimensionUsage = usage.find((usage) => usage.dimensionId === 
+createUsageDto.dimensionId);
+            const { usage: recentDimensionUsageForInvoice } = dimensionUsage;
+            const { value } = recentDimensionUsageForInvoice[
+                recentDimensionUsageForInvoice.length - 1
+            ] as UsageResponseDocument;
+
+            await this.usageService.create({ ...createUsageDto, businessID });
+            let invoiceUsageValueInput: number;
+
+            if (parseFloat(value) < parseFloat(createUsageDto?.recordValue)) {
+                invoiceUsageValueInput = parseFloat(createUsageDto?.recordValue)
+- parseFloat(value);
+            } else {
+                invoiceUsageValueInput = 0;
+            }
+
+            return this.invoiceService.generateInvoiceGivenUsage(
+                customer,
+                InfluxAggregateUsageEvent.convertCreateUsageDtoToAggregateUsageR
+esponse([
+                    { ...createUsageDto, recordValue: 
+invoiceUsageValueInput.toFixed(2) },
+                ]),
+            );
+        } else {
+            return this.usageService.create({ ...createUsageDto, businessID }, 
+request?.user?.sub);
+        }
+    }
+}
+
+@ApiBearerAuth('bearer')
+@ApiTags('Usage')
+@Controller('usage')
+export class PrivateAPIUsageController extends UsageController {
+    @UseGuards(LogGaurd, AuthGuard('jwt'))
+    @Post('db')
+    async dbUsage(@Body() createUsageDto) {
+        // Custom validator for DB usage, on failure push to DLQ for manual 
+processing
+        try {
+            UsageController.logger.log('Starting DB Usage Endpoint execution');
+
+            const { message, s3Key } = createUsageDto;
+            // TODO: check if the passed in BusinessID is an authorized 
+producer, if not throw message away
+            if (s3Key) {
+                const [businessID] = s3Key.split('/');
+
+                const parsed = JSON.parse(message);
+                const doc = new CreateStandardMeasurementDto({ ...parsed, 
+businessID });
+                await this.validator.validateOrReject(doc, { 
+enableDebugMessages: true });
+                const input = { ...parsed, businessID };
+                return this.usageService.create(input);
+            } else {
+                AuditService.publishEvent({
+                    topic: AuditScope.ERROR,
+                    message: 'Unknown S3 Key and BusinessID In datastore 
+measurement system',
+                    data: [{ e: 'Unknown S3 Key and BusinessID In datastore 
+measurement system', createUsageDto }],
+                });
+                throw new BadRequestException(
+                    'Invalid message format, please check the documentation for 
+the correct format',
+                );
+            }
+        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format',
+            );
+        }
+    }
+    @UseGuards(PermissionsGuard([UsagePermissions.ADMIN_CREATE_USAGE]))
+    @UseGuards(AuthGuard('jwt'))
+    @Post('datastore')
+    async datastoreUsage(@Body() createUsageDto, @Req() request: Request) {
+        // Custom validator for DB usage, on failure push to DLQ for manual 
+processing
+
+        try {
+            const { businessid } = request.headers;
+            //TODO: make this a standardized parser which is driven by an 
+event-type
+
+            UsageController.logger.log('Starting DB Usage Endpoint execution');
+
+            const { event } = createUsageDto;
+            const parsed = JSON.parse(event?.original);
+            const doc = new CreateStandardMeasurementDto({ ...parsed, 
+businessID: businessid });
+            await this.validator.validateOrReject(doc, { enableDebugMessages: 
+true });
+            return this.usageService.create(doc as CreateUsageDto);
+        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            e.stack = undefined;
+            await StandardMeasurementEntity.publishFailureToDLQ(
+                { originalFileContent: createUsageDto?.event },
+                {
+                    timestamp: new Date().toISOString(),
+                    errorInfo: serializeError(e),
+                    results: 'failed to load data',
+
+                    orginalProcessedName: `${
+                        request?.headers?.businessid ? 
+request?.headers?.businessid : 'unknown'
+                    } - ${request?.headers?.uniqueid ? 
+request?.headers?.uniqueid : `rand-${randomUUID()}`}}`,
+                    businessID: request?.headers?.businessid as string,
+                    measurementId: request?.headers?.uniqueid as string,
+                },
+                DlqType.kafka,
+            );
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format, and check DLQ for message',
+            );
+        }
+    }
+}
+
+<elided_chars>
+1342
+<warning>
+Output too long.
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 5, $0.12):
+```
+cd /app && cat src/measurement-config/entities/standardMeasurement.entity.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+import { Tag } from '@aws-sdk/client-ec2';
+import { Logger } from '@nestjs/common';
+import { randomUUID } from 'crypto';
+import EventEmitter from 'events';
+import { AuditService } from '../../audit/audit.service.js';
+import { AuditScope } from '../../audit/entities/audit.interface.js';
+import { InfluxService } from '../../influx/influx.service.js';
+import { DeploymentType } from 
+'../../kubernetes-deployer/dto/DeploymentType.js';
+import { KafkaManager } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/kafkaClient.entity.js';
+import { KafkaDeploymentParametersEntity } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/kafkaDeploymentParametersEntit
+y.js';
+import { KafkaSecurityMechanism } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/KafkaSecurityMechanism.js';
+import { MeasurementFormat } from './measurement.interface.js';
+
+const eventEmitter = new EventEmitter();
+export enum DlqType {
+    kafka = 'kafka',
+}
+export class StandardMeasurementEntity implements MeasurementFormat {
+    private static readonly logger = new Logger(StandardMeasurementEntity.name);
+    public timestamp?: string;
+    public dimensionId?: string;
+    public businessID: string;
+    public customerId: string;
+    public recordValue: number;
+    public metadata?: Record<string, string | number | null>;
+    public _measurement: string;
+    public static allowedTags = ['meteringcoCustomerId', 'meteringcoDimensionId'];
+
+    constructor(measurement: MeasurementFormat) {
+        if (measurement.timestamp) {
+            this.timestamp = measurement.timestamp;
+        } else {
+            this.timestamp = new Date().toISOString();
+        }
+        this.dimensionId = measurement.dimensionId;
+        this.customerId = measurement.customerId;
+        this.recordValue = measurement.recordValue;
+        this.metadata = measurement.metadata;
+        this.businessID = measurement.businessID;
+        this._measurement = measurement._measurement;
+    }
+    static publish(publishRequest: MeasurementFormat) {
+        eventEmitter.emit('standardMeasurements', publishRequest);
+        return {
+            message: 'published',
+            id: randomUUID(),
+            data: [publishRequest],
+        };
+    }
+    static subscribe(influxService: InfluxService) {
+        eventEmitter.on('standardMeasurements', async (measurementFormat: 
+MeasurementFormat) => {
+            const point = MeasurementFormat.getPointForm(measurementFormat, 
+influxService);
+            try {
+                await 
+influxService.loadPoints(`${process.env.STAGE}-usage-data`, 
+process.env.INFLUX_ORG, [point]);
+            } catch (err) {
+                AuditService.publishEvent({
+                    data: [{ err }],
+                    message: 'Failed to index Measurement',
+                    topic: AuditScope.ERROR,
+                });
+            }
+        });
+    }
+    static awsTagKeyReducer(Tags: Tag[]) {
+        if (Tags) {
+            return Tags.reduce((acc, { Key, Value }): any => {
+                if (StandardMeasurementEntity.allowedTags.includes(Key)) {
+                    acc[Key] = Value;
+                }
+                return acc;
+            }, {});
+        } else {
+            return {};
+        }
+    }
+
+    static async publishFailureToDLQ(failedDocument, metadata: 
+MeasurementFailureMetadata, dlqType: DlqType) {
+        if (dlqType === DlqType.kafka) {
+            StandardMeasurementEntity.logger.log(
+                "write to kafka dlq isn't implemented yet",
+                JSON.stringify({ failedDocument: failedDocument, metadata, 
+dlqType }),
+            );
+            // Get the original deployment parameters from 
+KafkaDeploymentParametersEntity
+            const kafkaDeploymentParameters = new 
+KafkaDeploymentParametersEntity();
+            const { businessID, measurementId } = metadata;
+            if (!businessID || !measurementId) {
+                StandardMeasurementEntity.logger.error(
+                    'Failed to write to kafka dlq, missing businessID or 
+measurementId',
+                );
+                AuditService.publishEvent({
+                    topic: AuditScope.ERROR,
+                    message: 'Failed to write to kafka dlq, missing businessID 
+or measurementId',
+                    data: [
+                        {
+                            failedDocument,
+                            metadata,
+                            dlqType,
+                        },
+                    ],
+                });
+                return;
+            }
+            try {
+                const manager = await 
+kafkaDeploymentParameters.getOriginalDeploymentParameters({
+                    businessID,
+                    uniqueId: measurementId,
+                    deploymentType: DeploymentType.kafkaConsumer,
+                });
+                // Get the client
+                const {
+                    deploymentParameters: { securityMechanism, dlqTopic },
+                } = manager;
+                if (securityMechanism === KafkaSecurityMechanism.PLAIN) {
+                    const client = new KafkaManager({
+                        securityMechanism,
+                        ...manager.deploymentParameters,
+                        clientId: 'meteringco-dlq-writer',
+                    } as {
+                        securityMechanism: KafkaSecurityMechanism;
+                        clientId: string;
+                        username: string;
+                        password: string;
+                        bootstrapServerEndpoint: string;
+                    });
+                    const initalized = await 
+KafkaManager.initalizeClient(client);
+                    await KafkaManager.writeMessageToTopic({
+                        client: initalized,
+                        topic: dlqTopic,
+                        message: JSON.stringify({ failedDocument: 
+failedDocument, metadata }),
+                        timestamp: new 
+Date(metadata?.timestamp).getTime().toString(),
+                    });
+                } else {
+                    throw new Error('Not implemented yet');
+                }
+            } catch (e) {
+                StandardMeasurementEntity.logger.error('error occurred writing 
+to dlq', e);
+                AuditService.publishEvent({
+                    topic: AuditScope.ERROR,
+                    message: 'Failed to write to DLQ',
+                    data: [
+                        {
+                            errorCode: e?.Code,
+                            errorMessage: e?.message,
+                            errorName: e?.name,
+                            failedDocument,
+                            metadata,
+                            dlqType,
+                        },
+                    ],
+                });
+                return;
+            }
+            // Write to the topic
+        }
+    }
+}
+
+export class MeasurementFailureMetadata {
+    timestamp: string;
+    results: string;
+    errorInfo: any;
+
+    /**
+     * This is the processed name from the system where the measurement occured
+     * In S3 its the complete fileName
+     * */
+    orginalProcessedName: string;
+    businessID?: string;
+    measurementId?: string;
+
+    constructor({ timestamp, results, businessID, measurementId }: 
+MeasurementFailureMetadata) {
+        this.timestamp = timestamp;
+        this.results = results;
+        this.businessID = businessID;
+        this.measurementId = measurementId;
+    }
+}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 6, $0.16):
+```
+cd /app && cat integration/measurement/usageDataInS3.integration.spec.ts; echo 
+====; cat integration/measurement/usageDataInS3.integration.input.ts | head -60
+```
+
+Tool:
+<returncode>
+0
+<output_head>
+import {
+    setupCustomerWallStrTrading,
+    setupDimensionRequest,
+    setupS3Measurement,
+    setupSimpleUsageBasedOffering,
+} from '../setupAndTeardown/setup.js';
+import { AggregationInterval } from '../client/publicClient/dimension.js';
+import { getDocument, listDocuments, putDocument } from '../utils/s3.js';
+import { sleep } from '../utils/utils.js';
+import { ONE_OBJECT_INPUT } from './usageDataInS3.integration.input.js';
+import { DLQ_INPUT } from './usageDataInS3.integration.input.js';
+import { assumeRole } from '../utils/sts.js';
+import { Customer } from '../client/publicClient/customer.js';
+
+const TEST_1_ACCOUNT_ID: string = process.env.TEST_1_ACCOUNT_ID;
+const TEST_2_ACCOUNT_ID: string = process.env.TEST_2_ACCOUNT_ID;
+const regex = /s3:\/\/([a-zA-Z0-9-]+)\/(.*)/;
+
+const constructPrefix = (root: string, randomize: boolean = true, path: boolean 
+= true) => {
+    const fullPath = path
+        ? new Date()
+              .toISOString()
+              .split(/-|T|:|\./)
+              .join('/')
+        : new Date()
+              .toISOString()
+              .split(/-|T|:|\./)
+              .join('');
+    return `${root}/${fullPath}${randomize ? Math.round(Math.random() * 
+1000).toString() : ''}.txt`;
+};
+
+const printData = (measurement, customer, dimension, offering) => {
+    console.debug('Print out resource data');
+    console.debug('Measurement: ', JSON.stringify(measurement, null, 2));
+    console.debug('Customer: ', JSON.stringify(customer, null, 2));
+    console.debug('Dimension: ', JSON.stringify(dimension, null, 2));
+    console.debug('Offering: ', JSON.stringify(offering, null, 2));
+};
+
+xdescribe('NDJSON Usage Data', () => {
+    const largeObjectInput = [];
+    for (let i = 0; i < 200; i++) {
+        largeObjectInput.push(i.toString());
+    }
+    ONE_OBJECT_INPUT.push({ recordValues: largeObjectInput, expected: 
+largeObjectInput });
+    test.concurrent.each(ONE_OBJECT_INPUT)(
+        'Validate NDJSON with input $recordValues',
+        async ({ recordValues, expected }) => {
+            const measurement = await setupS3Measurement(TEST_1_ACCOUNT_ID);
+
+            const dimension = await 
+setupDimensionRequest(measurement.measurementId);
+            const offering = await 
+setupSimpleUsageBasedOffering([dimension.dimensionId]);
+            const customer = await setupCustomerWallStrTrading({ offeringId: 
+offering.offeringId });
+            printData(measurement, customer, dimension, offering);
+            const match = regex.exec(measurement.ingestion);
+            const bucket = match[1];
+            const key = match[2];
+            await sleep(1000 * 10);
+            const credentials = await assumeRole(
+                measurement.iamRoleArn,
+                measurement.externalId,
+                measurement.region,
+                process.env.TEST_1_AWS_ACCESS_KEY_ID,
+                process.env.TEST_1_AWS_SECRET_ACCESS_KEY
+            );
+            let objectContent = '';
+            let counter = recordValues.length + 1;
+            for (const recordValue of recordValues) {
+                objectContent +=
+                    JSON.stringify({
+                        customerId: customer.customerId,
+                        dimensionId: dimension.dimensionId,
+                        recordValue,
+                        timestamp: new Date(new Date().getTime() - 1000 * 
+counter * 5).toISOString(),
+                    }) + '\n';
+                counter--;
+            }
+            const objectKey = constructPrefix(key);
+            await putDocument(
+                objectContent,
+                bucket,
+                objectKey,
+                measurement.region,
+                credentials.AccessKeyId,
+                credentials.SecretAccessKey,
+                credentials.SessionToken
+            );
+            await sleep(1000 * 60 * 3);
+            // validating
+            const customerUsage = await customer.getUsage(
+                new Date(new Date().getTime() - 1000 * 60 * 60).toISOString(),
+                new Date().toISOString(),
+                AggregationInterval.None
+            );
+            console.debug('customer Usage: ', JSON.stringify(customerUsage, 
+null, 2));
+            expect(customerUsage[0].usage.length).toBe(expected.length);
+            expected.forEach((expectedValue, index) => {
+                expect(customerUsage[0].usage[index].recordValue).toBe(expectedV
+alue);
+            });
+            // DLQ
+            if (expected.length < recordValues.length) {
+                const dlqMatch = regex.exec(measurement.dlq);
+                const dlqBucket = dlqMatch[1];
+                const dlqKey = dlqMatch[2];
+                const dlqMsgList = await listDocuments(
+                    dlqBucket,
+                    objectKey,
+                    measurement.region,
+                    credentials.AccessKeyId,
+                    credentials.SecretAccessKey,
+                    credentials.SessionToken
+                );
+                console.debug('DLQ Message List: ',
+<output_tail>
+mension.delete();
+        await measurement.delete();
+        await expect(measurement.get()).rejects.toThrow();
+    });
+});
+
+xdescribe('S3 DLQ', () => {
+    let measurement;
+    let customer: Customer;
+    let dimension;
+    let offering;
+    let match;
+    let bucket;
+    let key;
+    let credentials;
+
+    beforeAll(async () => {
+        measurement = await setupS3Measurement(TEST_1_ACCOUNT_ID);
+        await sleep(2 * 1000);
+        dimension = await setupDimensionRequest(measurement.measurementId);
+        await sleep(2 * 1000);
+        offering = await setupSimpleUsageBasedOffering([dimension.dimensionId]);
+        await sleep(2 * 1000);
+        customer = await setupCustomerWallStrTrading({ offeringId: 
+offering.offeringId });
+        await sleep(2 * 1000);
+        match = regex.exec(measurement.ingestion);
+        bucket = match[1];
+        key = match[2];
+        await sleep(1000 * 10);
+        credentials = await assumeRole(
+            measurement.iamRoleArn,
+            measurement.externalId,
+            measurement.region,
+            process.env.TEST_1_AWS_ACCESS_KEY_ID,
+            process.env.TEST_1_AWS_SECRET_ACCESS_KEY
+        );
+        printData(measurement, customer, dimension, offering);
+    });
+
+    // Concurrent cannot be used with beforeAll, not supported by jest
+    test.each(DLQ_INPUT)('Validate DLQ with input $content', async ({ content, 
+items }) => {
+        const objectKey = constructPrefix(key);
+        await putDocument(
+            content.toString(),
+            bucket,
+            objectKey,
+            measurement.region,
+            credentials.AccessKeyId,
+            credentials.SecretAccessKey,
+            credentials.SessionToken
+        );
+        console.debug('Object key: ', objectKey);
+        // logstash runs every minute
+        await sleep(1000 * 60 * 2);
+        // validating
+        const customerUsage = await customer.getUsage(
+            new Date(new Date().getTime() - 1000 * 60 * 60).toISOString(),
+            new Date().toISOString(),
+            AggregationInterval.None
+        );
+        console.debug('Customer Usage: ', JSON.stringify(customerUsage, null, 
+2));
+        expect(customerUsage[0].usage.length).toBe(0);
+        const dlqMatch = regex.exec(measurement.dlq);
+        const dlqBucket = dlqMatch[1];
+        const dlqKey = dlqMatch[2];
+        const dlqMsgList = await listDocuments(
+            dlqBucket,
+            objectKey,
+            measurement.region,
+            credentials.AccessKeyId,
+            credentials.SecretAccessKey,
+            credentials.SessionToken
+        );
+        console.debug('DLQ Messages: ', JSON.stringify(dlqMsgList, null, 2));
+        expect(dlqMsgList.Contents?.length).toBe(items);
+        const dlqObjectContent = dlqMsgList.Contents?.[0];
+        if (!dlqObjectContent) {
+            throw new Error('missing content from object in DLQ');
+        }
+        const objectDLQDoc = await getDocument(
+            dlqBucket,
+            dlqObjectContent?.Key,
+            measurement.region,
+            credentials.AccessKeyId,
+            credentials.SecretAccessKey,
+            credentials.SessionToken
+        );
+        expect(objectDLQDoc.Body).toEqual(expect.anything());
+    });
+});
+====
+export const ONE_OBJECT_INPUT = [
+    { recordValues: ['1'], expected: ['1'] },
+    { recordValues: ['1', '2'], expected: ['1', '2'] },
+    { recordValues: ['1', '2', '3'], expected: ['1', '2', '3'] },
+    { recordValues: ['0.1', '0.2', '0.3'], expected: ['0.1', '0.2', '0.3'] },
+    { recordValues: ['-1', '-2', '-3'], expected: ['-1', '-2', '-3'] },
+    { recordValues: ['1000000000', '2000000000', '3000000000'], expected: 
+['1000000000', '2000000000', '3000000000'] },
+    {
+        recordValues: ['-1000000000', '-2000000000', '-3000000000'],
+        expected: ['-1000000000', '-2000000000', '-3000000000'],
+    },
+    // { recordValues: ["1", null], expected: ["1"] },
+    // { recordValues: [null, "1"], expected: ["1"] },
+    // { recordValues: [null, null], expected: [] },
+    // { recordValues: [null], expected: [] },
+    // { recordValues: ["1", "2", null], expected: ["1", "2"] },
+    // { recordValues: ["1", null, "2"], expected: ["1", "2"] },
+    // { recordValues: [null, "1", "2"], expected: ["1", "2"] },
+    // { recordValues: [null, null, "1"], expected: ["1"] },
+    // { recordValues: [null, "1", null], expected: ["1"] },
+    // { recordValues: ["1", null, null], expected: ["1"] },
+    // { recordValues: [1], expected: [] },
+    // { recordValues: ['a'], expected: [] },
+    // { recordValues: ["a"], expected: [] },
+    // { recordValues: [{"foo": "bar"}], expected: ["1"] },
+    // { recordValues: [null, "1", null, null, null, null, null, null, null, 
+null, null, null, null, null], expected: ["1"] }
+];
+
+export const DLQ_INPUT = [
+    { content: '1', items: 1 },
+    { content: 1, items: 1 },
+    { content: 'a', items: 1 },
+    { content: JSON.stringify({ foo: 'bar' }, null, 2), items: 3 },
+    { content: '1\n2\n3', items: 3 },
+];
+
+<elided_chars>
+5574
+<warning>
+Output too long.
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 7, $0.20):
+```
+cd /app && grep -rn "dlq\|DLQ" --include=*.ts src | grep -iv "kafka" | head -50
+```
+
+Tool:
+<returncode>
+0
+<output>
+src/microservices/ebsSnapshotDataGatherer/ebsSnapshotDataGatherer.service.ts:80:
+// Throw Errors as needed, DLQ handles them
+src/microservices/ebsVolumeDataGatherer/ebsvolumeDataGatherer.service.ts:76:    
+} // Throw Errors as needed, DLQ handles them
+src/measurement-config/entities/standardMeasurement.entity.ts:77:    static 
+async publishFailureToDLQ(failedDocument, metadata: MeasurementFailureMetadata, 
+dlqType: DlqType) {
+src/measurement-config/entities/standardMeasurement.entity.ts:81:               
+JSON.stringify({ failedDocument: failedDocument, metadata, dlqType }),
+src/measurement-config/entities/standardMeasurement.entity.ts:97:               
+dlqType,
+src/measurement-config/entities/standardMeasurement.entity.ts:111:              
+deploymentParameters: { securityMechanism, dlqTopic },
+src/measurement-config/entities/standardMeasurement.entity.ts:117:              
+clientId: 'meteringco-dlq-writer',
+src/measurement-config/entities/standardMeasurement.entity.ts:128:              
+topic: dlqTopic,
+src/measurement-config/entities/standardMeasurement.entity.ts:136:              
+StandardMeasurementEntity.logger.error('error occurred writing to dlq', e);
+src/measurement-config/entities/standardMeasurement.entity.ts:139:              
+message: 'Failed to write to DLQ',
+src/measurement-config/entities/standardMeasurement.entity.ts:147:              
+dlqType,
+src/measurement-config/entities/measurement-config.entity.ts:282:    ): 
+Promise<{ iamRoleArn: string; externalId: string; dlq: string; ingestion: string
+} | any> {
+src/measurement-config/entities/measurement-config.entity.ts:292:    ): 
+Promise<{ iamRoleArn: string; externalId: string; dlq: string; ingestion: string
+} | any> {
+src/measurement-config/entities/measurement-config.entity.ts:302:    ): 
+Promise<{ iamRoleArn: string; externalId: string; dlq: string; ingestion: string
+} | any> {
+src/measurement-config/entities/measurement-config.entity.ts:512:    public dlq:
+string;
+src/measurement-config/entities/measurement-config.entity.ts:525:               
+dlq,
+src/measurement-config/entities/measurement-config.entity.ts:537:               
+this.dlq = dlq;
+src/measurement-config/entities/measurement-config.entity.ts:551:               
+dlq,
+src/measurement-config/entities/measurement-config.entity.ts:563:               
+if (dlq) influxPoint.tag('dlq', dlq);
+src/measurement-config/entities/measurement-config.entity.ts:578:        dlq,
+src/measurement-config/entities/measurement-config.entity.ts:582:        
+dlqTopic,
+src/measurement-config/entities/measurement-config.entity.ts:590:               
+dlqTopic,
+src/measurement-config/entities/measurement-config.entity.ts:596:            
+dlq,
+src/measurement-config/entities/measurement-config.entity.ts:633:               
+`arn:aws:s3:::${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}/*`,
+src/measurement-config/entities/measurement-config.entity.ts:635:               
+`arn:aws:s3:::${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}/`,
+src/measurement-config/entities/measurement-config.entity.ts:637:               
+`arn:aws:s3:::${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}`,
+src/measurement-config/entities/measurement-config.entity.ts:658:               
+`arn:aws:s3:::${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}/${businessID}/*`,
+src/measurement-config/entities/measurement-config.entity.ts:702:               
+dlq: `s3://${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}/${businessID}`,
+src/measurement-config/entities/measurement-config.entity.ts:784:               
+dlq: `s3://${process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME}/${businessID}`,
+src/measurement-config/dto/create-measurement-config.dto.ts:159:     * The URL 
+of the DLQ endpoint associated with the datastore measurement
+src/measurement-config/dto/create-measurement-config.dto.ts:161:     * Example: 
+`"s3://meteringco-datastore-dlq-bucket/"`
+src/measurement-config/dto/create-measurement-config.dto.ts:162:     * @example 
+'s3://meteringco-datastore-dlq-bucket/'
+src/measurement-config/dto/create-measurement-config.dto.ts:164:    public dlq?:
+string;
+src/measurement-config/dto/read-measurement-config.dto.ts:21:     * The DLQ 
+endpoint for data which has failed to be processed.
+src/measurement-config/dto/read-measurement-config.dto.ts:24:    public declare 
+dlq: string;
+src/measurement-config/measurement-config.service.ts:120:            dlq: 
+measurementConfigEntity?.measurementConfiguration?.dlq,
+src/measurement-config/measurement-config.service.ts:224:            dlq: 
+measurementConfigEntity?.measurementConfiguration?.dlq,
+src/usage/usage.controller.ts:153:        // Custom validator for DB usage, on 
+failure push to DLQ for manual processing
+src/usage/usage.controller.ts:188:        // Custom validator for DB usage, on 
+failure push to DLQ for manual processing
+src/usage/usage.controller.ts:204:            await 
+StandardMeasurementEntity.publishFailureToDLQ(
+src/usage/usage.controller.ts:220:                'Invalid message format, 
+please check the documentation for the correct format, and check DLQ for 
+message',
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 8, $0.24):
+```
+cd /app && cat 
+src/kubernetes-deployer/entities/kafkaConsumer/logstashConfiguration.ts | head 
+-120
+```
+
+Tool:
+<returncode>
+0
+<output>
+import { DeploymentType } from '../../dto/DeploymentType.js';
+import { KafkaDeploymentParametersEntity } from 
+'./kafkaDeploymentParametersEntity.js';
+import { KubernetesManager } from '../kubernetes-deployer.entity.js';
+
+const jaas_path = '/usr/share/logstash/config/jaas.conf';
+export const buildLogstashConfiguration = ({
+    kubernetesConfiguration,
+}: {
+    kubernetesConfiguration: KubernetesManager;
+}): string => {
+    const { deploymentParameters, deploymentType, businessID, uniqueId } = 
+kubernetesConfiguration;
+    if (deploymentType === DeploymentType.kafkaConsumer) {
+        const {
+            bootstrapServerEndpoint: bootstrapServerEndpoint,
+            topic,
+            securityMechanism: securityProtocol,
+        } = deploymentParameters as KafkaDeploymentParametersEntity;
+        return `input {
+            kafka {
+                bootstrap_servers => "${bootstrapServerEndpoint}"
+                jaas_path => "${jaas_path}"
+                sasl_mechanism => "${securityProtocol}"
+                security_protocol => "SASL_SSL"
+                ssl_endpoint_identification_algorithm => "https"
+                topics => ["${topic}"]
+                client_id => "meteringco-${uniqueId}"
+
+            }
+        }
+        filter {
+            mutate {
+                add_field => { "webtoken" => "jwttoken" }
+            } 
+            translate {
+              dictionary_path => '/usr/share/secrets/token.yml'
+              field => 'webtoken'
+              destination => 'webtoken'
+              override => true
+              refresh_interval => 1800
+            }
+            mutate {  
+                    add_field => { "authtoken" => "Bearer %{webtoken}" }
+                  }
+            }
+            output { 
+                http { 
+                    http_method => "post" 
+                    url => "${process.env.METERINGCO_URL}/usage/datastore"
+                    headers => { 
+                                 "Authorization" => "%{authtoken}" 
+                                 "businessID" => "${businessID}" 
+                                 "Content-Type" => "application/json"
+                                 "deployment-platform" => 
+"${DeploymentType.kafkaConsumer}"
+                                 "uniqueId" => "${uniqueId}"
+                                } 
+                    } 
+                }`;
+    }
+};
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 9, $0.27):
+```
+cd /app && git log --oneline | head -20; echo ===; sed -n 1,200p 
+src/usage/usage.controller.spec.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+fatal: not a git repository (or any of the parent directories): .git
+===
+import { Test, TestingModule } from '@nestjs/testing';
+import { UsageController } from './usage.controller.js';
+import { UsageService } from './usage.service.js';
+import { createMock } from '@golevelup/ts-jest';
+
+describe('UsageController', () => {
+    let controller: UsageController;
+
+    beforeEach(async () => {
+        const module: TestingModule = await Test.createTestingModule({
+            controllers: [UsageController],
+            providers: [UsageService],
+        })
+            .useMocker(createMock)
+            .compile();
+
+        controller = module.get<UsageController>(UsageController);
+    });
+
+    it('should be defined', () => {
+        expect(controller).toBeDefined();
+    });
+});
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 10, $0.29):
+```
+cd /app && ls src/utils/aws src/utils/shared; echo ===; aws s3 ls; echo ===; env
+| grep -i "BUCKET\|STAGE\|MEASUREMENT" 
+```
+
+Tool:
+<returncode>
+0
+<output>
+src/utils/aws:
+awsCloutrail.ts
+awsEc2.ts
+awsPricing.ts
+awsSSM.ts
+cloudwatch.ts
+costExplorer.ts
+s3.ts
+ses.ts
+
+src/utils/shared:
+dateFormating.ts
+utils.ts
+===
+/bin/sh: 1: aws: not found
+===
+DB_MEASUREMENT_DLQ_BUCKET_NAME=meteringco-usage-record-dlq-bucket-sandbox
+DB_MEASUREMENT_BUCKET_NAME=meteringco-usage-record-dump-bucket-sandbox
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 11, $0.31):
+```
+cd /app && cat src/utils/aws/s3.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+import { S3Client } from '@aws-sdk/client-s3';
+import { Upload } from '@aws-sdk/lib-storage';
+
+export const putDocument = (document, Bucket, Key) =>
+    new Upload({ client: new S3Client({ region: 'us-east-1' }), params: { Body: 
+document, Bucket, Key } });
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 12, $0.34):
+```
+cd /app && grep -rn "putDocument\|S3Client\|@aws-sdk/client-s3" --include=*.ts 
+src | head -30; echo ===; node -e 
+"console.log(require('/app/node_modules/@aws-sdk/client-s3/package.json').versio
+n)"
+```
+
+Tool:
+<returncode>
+0
+<output>
+src/setting/settings.service.ts:14:import { putDocument } from 
+'../utils/aws/s3.js';
+src/setting/settings.service.ts:157:        await putDocument(file, 
+invoiceImageBucket, imageKey).done();
+src/invoice/entities/invoice.entity.ts:6:import { GetObjectCommand, 
+HeadObjectCommand, S3Client } from '@aws-sdk/client-s3';
+src/invoice/entities/invoice.entity.ts:17:import { putDocument } from 
+'../../utils/aws/s3.js';
+src/invoice/entities/invoice.entity.ts:248:    const client = new S3Client({
+src/invoice/entities/invoice.entity.ts:261:    const s3Client = new S3Client({ 
+region: 'us-east-1' });
+src/invoice/entities/invoice.entity.ts:664:        await putDocument(invoicePdf,
+this.invoiceS3bucket, this.invoiceS3key).done();
+src/utils/aws/s3.ts:1:import { S3Client } from '@aws-sdk/client-s3';
+src/utils/aws/s3.ts:4:export const putDocument = (document, Bucket, Key) =>
+src/utils/aws/s3.ts:5:    new Upload({ client: new S3Client({ region: 
+'us-east-1' }), params: { Body: document, Bucket, Key } });
+===
+3.437.0
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 13, $0.36):
+```
+cd /app && ls -R test | head -60; cat jest.unit.config.json; cat package.json | 
+head -60
+```
+
+Tool:
+<returncode>
+0
+<output>
+test:
+api
+app.e2e-spec.ts
+db
+e2e
+fixtures
+jest-api.json
+jest-db.json
+jest-e2e.json
+
+test/api:
+analytics.api-spec.ts
+customers.api-spec.ts
+dimensions.api-spec.ts
+invoices.api-spec.ts
+offerings.api-spec.ts
+portal.api-spec.ts
+settings.api-spec.ts
+usage.api-spec.ts
+
+test/db:
+usage.db-spec.ts
+
+test/e2e:
+buildPdf.spec.js
+
+test/fixtures:
+data
+module
+
+test/fixtures/data:
+customer.ts
+dimension.ts
+influx
+invoice.ts
+offering.ts
+payment.ts
+setting.ts
+usage.ts
+user.ts
+
+test/fixtures/data/influx:
+usage.db.ts
+
+test/fixtures/module:
+mockInfluxService.ts
+mockJwtStrategy.ts
+mockTokenRegister.ts
+{
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": "./src",
+    "testEnvironment": "node",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "transformIgnorePatterns": ["node_modules/(?!serialize-error/.*)"],
+    "testRegex": ".spec.ts$",
+    "preset": "ts-jest/presets/js-with-ts",
+    "globals": {
+        "ts-jest": {
+            "isolatedModules": true,
+            "tsConfig": "testTSConfig.json",
+            "useESM": true
+        }
+    },
+    "moduleNameMapper": {
+        "^(\\.\\.?\\/.+)\\.js$": "$1"
+    },
+    "extensionsToTreatAsEsm": [".ts"],
+    "maxWorkers": "20%",
+    "testTimeout": 30000
+}
+ {
+    "name": "meteringco-backend",
+    "version": "1.0.0",
+    "description": "",
+    "scripts": {
+        "start:influx": "sudo docker start influxdb",
+        "pre-commit": "npm run lint",
+        "pre-push": "npm run build && npm run test",
+        "stop:influx": "sudo docker stop influxdb",
+        "setup:influx": "sudo docker pull influxdb:2.6.0 && sudo docker run 
+--name influxdb -p 8086:8086 influxdb:2.6.0",
+        "setup:redis": "sudo docker run --name bullmq-redis -p 6379:6379 -d 
+redis redis-server --save 60 1 --loglevel warning",
+        "stop:redis": "sudo docker stop bullmq-redis",
+        "start:redis": "sudo docker start bullmq-redis",
+        "start:dev": "nest start --watch --entryFile genericExpressEnv",
+        "prebuild": "rimraf dist",
+        "cleanup": "kind delete cluster && docker image rm 
+meteringco-agent-transformer:local",
+        "cleanup:integration": "npm run stop:influx && npm run stop:redis",
+        "build": "nest build",
+        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+        "deploy:dev": "sls deploy --stage=dev",
+        "deploy:prod": "sls deploy --stage=prod",
+        "start:generic": "node dist/genericExpressEnv",
+        "start:lambda": "node dist/lambda",
+        "generate:private:specification": "node dist/openApiSpecGenerator && 
+redoc-cli bundle -o ./docs/private_api.html ./docs/open-api-private-spec.json",
+        "generate:public:specification": "node dist/openApiPublicSpecGenerator 
+&& redoc-cli bundle --options.theme.shape.borderRadius=0 
+--options.hideDownloadButton=true --options.theme.typography.fontSize=14px -o 
+./docs/public_api.html ./docs/open-api-public-spec.json",
+        "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --quiet",
+        "prepare": "husky install",
+        "prepare:integration": "npm run start:influx && npm run start:redis",
+        "prepare:kindcluster": "kind create cluster --config 
+./resources/kind-config.yaml && kubectl apply -f 
+https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/pr
+ovider/kind/deploy.yaml &&  kubectl wait --namespace ingress-nginx 
+--for=condition=ready pod --selector=app.kubernetes.io/component=controller 
+--timeout=90s&& helm repo add bitnami https://charts.bitnami.com/bitnami && helm
+install my-release bitnami/redis && export REDIS_PASSWORD=$(kubectl get secret 
+--namespace default my-release-redis -o jsonpath=\"{.data.redis-password}\" | 
+base64 -d) && npm run build-docker-integration && sed -i 
+\"s/REDIS_PASSWORD=.*/REDIS_PASSWORD=$REDIS_PASSWORD/\" .env && kind load 
+docker-image meteringco-agent-transformer:local && kubectl apply -f 
+./resources/local/deployment_local.yml && export POD=$(kubectl get pod -l 
+app=meteringco-agent-transformer -o jsonpath=\"{.items[0].metadata.name}\") ",
+        "test": "jest --config ./jest.unit.config.json",
+        "test:ci": "jest --config ./jest.unit.config.json --forceExit",
+        "test:watch": "jest --watch",
+        "test:cov": "jest --coverage",
+        "test:debug": "node --inspect-brk -r tsconfig-paths/register -r 
+ts-node/register node_modules/.bin/jest --runInBand",
+        "test:e2e": "jest --config ./test/jest-e2e.json",
+        "test:api": "jest --config ./test/jest-api.json",
+        "test:db": "jest --config ./test/jest-db.json",
+        "test:local:integration": "jest --config 
+./integration/jest.local.config.json",
+        "test:ci:integration": "jest --config 
+./integration/jest.ci.config.json",
+        "deploy:specification": "node docs/deployDocument.js",
+        "build-docker": "docker build -t meteringco-agent-transformer --no-cache .",
+        "build-docker-integration": "docker build -t 
+meteringco-agent-transformer:local --no-cache .",
+        "development:refresh:integration": "npm run build-docker-integration && 
+kind load docker-image meteringco-agent-transformer:local && kubectl rollout restart 
+deployment meteringco-agent-transformer",
+        "run-docker": "docker run -p 3000:3000 meteringco-agent-transformer",
+        "push-image-dev": "docker tag meteringco-agent-transformer 
+123456789012.dkr.ecr.us-east-1.amazonaws.com/meteringco-agent-transformer:latest && 
+docker push 
+123456789012.dkr.ecr.us-east-1.amazonaws.com/meteringco-agent-transformer:latest",
+        "push-image-prod": "docker tag meteringco-agent-transformer 
+123456789012.dkr.ecr.us-east-1.amazonaws.com/meteringco-agent-transformer:prod && 
+docker push 
+123456789012.dkr.ecr.us-east-1.amazonaws.com/meteringco-agent-transformer:prod"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@aws-sdk/client-cloudtrail": "^3.437.0",
+        "@aws-sdk/client-cloudwatch": "^3.437.0",
+        "@aws-sdk/client-cost-explorer": "^3.437.0",
+        "@aws-sdk/client-ec2": "^3.437.0",
+        "@aws-sdk/client-iam": "^3.437.0",
+        "@aws-sdk/client-pricing": "^3.437.0",
+        "@aws-sdk/client-s3": "^3.437.0",
+        "@aws-sdk/client-ses": "^3.245.0",
+        "@aws-sdk/client-ssm": "^3.437.0",
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 14, $0.41):
+```
+cd /app && cat > /tmp/t.mjs <<'EOF'
+import { S3Client, ListBucketsCommand, ListObjectsV2Command } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+console.log(await c.config.endpoint?.());
+const r = await c.send(new ListBucketsCommand({}));
+console.log(r.Buckets);
+EOF
+node /tmp/t.mjs
+```
+
+Tool:
+<returncode>
+1
+<output>
+node:internal/modules/package_json_reader:314
+  throw new ERR_MODULE_NOT_FOUND(packageName, fileURLToPath(base), null);
+        ^
+
+Error [ERR_MODULE_NOT_FOUND]: Cannot find package '@aws-sdk/client-s3' imported 
+from /tmp/t.mjs
+    at Object.getPackageJSONURL 
+(node:internal/modules/package_json_reader:314:9)
+    at packageResolve (node:internal/modules/esm/resolve:768:81)
+    at moduleResolve (node:internal/modules/esm/resolve:855:18)
+    at defaultResolve (node:internal/modules/esm/resolve:985:11)
+    at #cachedDefaultResolve (node:internal/modules/esm/loader:747:20)
+    at ModuleLoader.resolve (node:internal/modules/esm/loader:724:38)
+    at ModuleLoader.getModuleJobForImport 
+(node:internal/modules/esm/loader:320:38)
+    at ModuleJob._link (node:internal/modules/esm/module_job:182:49) {
+  code: 'ERR_MODULE_NOT_FOUND'
+}
+
+Node.js v22.23.2
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 15, $0.43):
+```
+cd /app && cp /tmp/t.mjs ./t.mjs && node t.mjs; rm t.mjs
+```
+
+Tool:
+<returncode>
+0
+<output>
+undefined
+[
+  {
+    Name: 'meteringco-usage-record-dump-bucket-sandbox',
+    CreationDate: 2025-06-01T00:00:00.000Z
+  },
+  {
+    Name: 'meteringco-usage-record-dlq-bucket-sandbox',
+    CreationDate: 2025-06-01T00:00:00.000Z
+  }
+]
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 16, $0.49):
+```
+cd /app && ls integration; ls integration/measurement integration/utils; grep 
+-rn "usage/db\|dbUsage\|/db" integration test --include=*.ts | head -20
+```
+
+Tool:
+<returncode>
+0
+<output>
+analytics
+billing
+ciEnvVars.js
+client
+customer
+dimension
+invoice
+jest.ci.config.json
+jest.local.config.json
+localEnvVars.js
+measurement
+offering
+service
+settings
+setupAndTeardown
+usage
+users
+utils
+integration/measurement:
+apiBasedMeasurement.integration.input.ts
+apiBasedMeasurement.integration.spec.ts
+ec2EgressMeasurement.integration.spec.ts
+ec2RunningTimeMeasurement.integration.spec.ts
+measurementCrud.integration.spec.ts
+usageDataInKafka.integration.spec.ts
+usageDataInS3.integration.input.ts
+usageDataInS3.integration.spec.ts
+
+integration/utils:
+Datetime.ts
+cloudwatch.ts
+deleteAll.ts
+ec2.ts
+s3.ts
+setupServices.ts
+sts.ts
+utils.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 17, $0.52):
+```
+cd /app && cat integration/utils/s3.ts; ls integration/usage; 
+```
+
+Tool:
+<returncode>
+0
+<output>
+import { ListObjectsV2Command, PutObjectCommand, S3Client, GetObjectCommand } 
+from '@aws-sdk/client-s3';
+import { Upload } from '@aws-sdk/lib-storage';
+
+export const putDocument = async (
+    Body,
+    Bucket,
+    Key,
+    region: string = 'us-east-1',
+    accessKeyId: string = process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: string = process.env.AWS_SECRET_ACCESS_KEY,
+    sessionToken: string = ''
+) => {
+    const params = { Bucket, Key, Body };
+    const s3client = new S3Client({
+        region,
+        credentials: {
+            accessKeyId,
+            secretAccessKey,
+            sessionToken,
+        },
+    });
+    const data = await s3client.send(new PutObjectCommand(params));
+    return data;
+};
+
+export const listDocuments = async (
+    Bucket,
+    Prefix,
+    region: string = 'us-east-1',
+    accessKeyId: string = process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: string = process.env.AWS_SECRET_ACCESS_KEY,
+    sessionToken: string = ''
+) => {
+    const params = { Bucket, Prefix };
+    const s3client = new S3Client({
+        region,
+        credentials: {
+            accessKeyId,
+            secretAccessKey,
+            sessionToken,
+        },
+    });
+    const data = await s3client.send(new ListObjectsV2Command(params));
+    return data;
+};
+
+export const getDocument = async (
+    Bucket,
+    Key,
+    region: string = 'us-east-1',
+    accessKeyId: string = process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: string = process.env.AWS_SECRET_ACCESS_KEY,
+    sessionToken: string = ''
+) => {
+    const params = { Bucket, Key };
+    const s3client = new S3Client({
+        region,
+        credentials: {
+            accessKeyId,
+            secretAccessKey,
+            sessionToken,
+        },
+    });
+    const data = await s3client.send(new GetObjectCommand(params));
+    return data;
+};
+usage.integration.spec.ts
+usageDate.integration.input.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 18, $0.55):
+```
+cd /app && cat > lst.mjs <<'EOF'
+import { S3Client, ListObjectsV2Command, GetObjectCommand } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+for (const b of 
+['meteringco-usage-record-dump-bucket-sandbox','meteringco-usage-record-dlq-bucket-sandbox
+']) {
+  const r = await c.send(new ListObjectsV2Command({Bucket:b}));
+  console.log(b, JSON.stringify(r.Contents,null,1));
+}
+EOF
+node lst.mjs; rm lst.mjs
+```
+
+Tool:
+<returncode>
+0
+<output>
+meteringco-usage-record-dump-bucket-sandbox [
+ {
+  "Key": "biz-cadence/2026/02/03/usage-000116.json",
+  "LastModified": "2026-02-03T08:01:00.000Z",
+  "ETag": "\"9efc4c5bd5f73393f578d2dc0927b678\"",
+  "Size": 120,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "biz-cadence/2026/02/11/usage-000203.json",
+  "LastModified": "2026-02-11T08:01:00.000Z",
+  "ETag": "\"4fe2931705b345396de6c5f92b4c1003\"",
+  "Size": 119,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "biz-lumen/2026/02/12/usage-000030.json",
+  "LastModified": "2026-02-12T09:31:00.000Z",
+  "ETag": "\"fc730589de4b19ed26c80170d2f82b27\"",
+  "Size": 123,
+  "StorageClass": "STANDARD"
+ }
+]
+meteringco-usage-record-dlq-bucket-sandbox [
+ {
+  "Key": "biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json",
+  "LastModified": "2026-02-03T11:42:57.000Z",
+  "ETag": "\"7a077dd90cd18ba9dd76dcae5f6bcfa5\"",
+  "Size": 433,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json",
+  "LastModified": "2026-02-03T08:06:11.000Z",
+  "ETag": "\"9e078641fbad064fa8845e4185fd1115\"",
+  "Size": 433,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json",
+  "LastModified": "2026-02-11T08:00:41.000Z",
+  "ETag": "\"a9a08017a4793d093aa8f877841a3aa3\"",
+  "Size": 666,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json",
+  "LastModified": "2026-02-12T09:35:22.000Z",
+  "ETag": "\"eb1efc893ee2e21630b0fc3288d6ba50\"",
+  "Size": 688,
+  "StorageClass": "STANDARD"
+ },
+ {
+  "Key": "meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json",
+  "LastModified": "2026-02-11T22:14:03.000Z",
+  "ETag": "\"f347c289c6fa7a58ac2c3b6867ffb2f2\"",
+  "Size": 465,
+  "StorageClass": "STANDARD"
+ }
+]
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 19, $0.60):
+```
+cd /app && cat > lst.mjs <<'EOF'
+import { S3Client, ListObjectsV2Command, GetObjectCommand } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+const B='meteringco-usage-record-dlq-bucket-sandbox';
+const r = await c.send(new ListObjectsV2Command({Bucket:B}));
+for (const o of r.Contents) {
+  const g = await c.send(new GetObjectCommand({Bucket:B,Key:o.Key}));
+  console.log('=== ', o.Key, JSON.stringify(g.Metadata), g.ContentType);
+  console.log(await g.Body.transformToString());
+}
+const d = await c.send(new 
+ListObjectsV2Command({Bucket:'meteringco-usage-record-dump-bucket-sandbox'}));
+for (const o of d.Contents) {
+  const g = await c.send(new 
+GetObjectCommand({Bucket:'meteringco-usage-record-dump-bucket-sandbox',Key:o.Key}));
+  console.log('--- ', o.Key);
+  console.log(await g.Body.transformToString());
+}
+EOF
+node lst.mjs; rm lst.mjs
+```
+
+Tool:
+<returncode>
+0
+<output>
+===  biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json {} 
+application/octet-stream
+{"failedDocument":{"originalFileContent":"{\"timestamp\":\"2026-02-03T08:05:00Z\
+",\"customerId\":\"cus_harbor\",\"dimensionId\":\"dim-api-c","s3Key":"biz-cadenc
+e/2026/02/03/usage-000117.json"},"metadata":{"timestamp":"2026-02-03T11:42:57.91
+8Z","errorInfo":{"name":"SyntaxError","message":"Unterminated string in JSON at 
+position 86"},"results":"failed to load 
+data","orginalProcessedName":"biz-cadence/2026/02/03/usage-000117.json"}}
+===  biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json {} 
+application/octet-stream
+{"failedDocument":{"originalFileContent":"{\"timestamp\":\"2026-02-03T08:05:00Z\
+",\"customerId\":\"cus_harbor\",\"dimensionId\":\"dim-api-c","s3Key":"biz-cadenc
+e/2026/02/03/usage-000117.json"},"metadata":{"timestamp":"2026-02-03T08:06:11.40
+2Z","errorInfo":{"name":"SyntaxError","message":"Unterminated string in JSON at 
+position 86"},"results":"failed to load 
+data","orginalProcessedName":"biz-cadence/2026/02/03/usage-000117.json"}}
+===  biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json {} 
+application/octet-stream
+{"failedDocument":{"originalFileContent":"{\"timestamp\": \"11/02/2026 08:00\", 
+\"customerId\": \"cus_lattice\", \"dimensionId\": \"dim-api-calls\", 
+\"recordValue\": 
+\"301\"}","s3Key":"biz-cadence/2026/02/11/usage-000204.json"},"metadata":{"times
+tamp":"2026-02-11T08:00:41.264Z","errorInfo":[{"target":{"businessID":"biz-caden
+ce","timestamp":"11/02/2026 
+08:00","customerId":"cus_lattice","dimensionId":"dim-api-calls","recordValue":"3
+01"},"value":"11/02/2026 
+08:00","property":"timestamp","children":[],"constraints":{"isRFC3339":"timestam
+p must be RFC 3339 date"}}],"results":"failed to load 
+data","orginalProcessedName":"biz-cadence/2026/02/11/usage-000204.json"}}
+===  biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json {} 
+application/octet-stream
+{"failedDocument":{"originalFileContent":"{\"timestamp\":\"2026-02-12T09:35:00Z\
+",\"customerId\":\"cus_pergola\",\"dimensionId\":\"dim-storage-gb\",\"recordValu
+e\":\"not a 
+number\"}","s3Key":"biz-lumen/2026/02/12/usage-000031.json"},"metadata":{"timest
+amp":"2026-02-12T09:35:22.005Z","errorInfo":[{"target":{"businessID":"biz-lumen"
+,"timestamp":"2026-02-12T09:35:00Z","customerId":"cus_pergola","dimensionId":"di
+m-storage-gb","recordValue":"not a number"},"value":"not a 
+number","property":"recordValue","children":[],"constraints":{"isNumberString":"
+recordValue must be a number string"}}],"results":"failed to load 
+data","orginalProcessedName":"biz-lumen/2026/02/12/usage-000031.json"}}
+===  meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json {} 
+application/octet-stream
+{"failedDocument":{"originalFileContent":"{\"timestamp\":\"2026-02-11T22:14:00Z\
+",\"customerId\":\"cus_lattice\",\"dimensionId\":\"dim-api-calls\",\"recordValue
+\":\"4\"}"},"metadata":{"timestamp":"2026-02-11T22:14:03.771Z","errorInfo":{"nam
+e":"BadRequestException","message":"Invalid message format, please check the 
+documentation for the correct format"},"results":"failed to load 
+data","orginalProcessedName":"meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122
+"}}
+---  biz-cadence/2026/02/03/usage-000116.json
+{"timestamp": "2026-02-03T08:00:00Z", "customerId": "cus_harbor", "dimensionId":
+"dim-api-calls", "recordValue": "1450"}
+---  biz-cadence/2026/02/11/usage-000203.json
+{"timestamp": "2026-02-11T08:00:00Z", "customerId": "cus_lattice", 
+"dimensionId": "dim-api-calls", "recordValue": "88"}
+---  biz-lumen/2026/02/12/usage-000030.json
+{"timestamp": "2026-02-12T09:30:00Z", "customerId": "cus_pergola", 
+"dimensionId": "dim-storage-gb", "recordValue": "12.75"}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 20, $0.71):
+```
+cd /app && grep -rn "meteringco-unknown\|unknown" --include=* -r resources src 
+integration docs 2>/dev/null | grep -v node_modules | head -20
+```
+
+Tool:
+<returncode>
+0
+<output>
+src/ledger/dto/filterValidator.ts:53:    return function (object: unknown, 
+propertyName: string) {
+src/billing/billing.service.spec.ts:153:        await service.create({ data: { 
+scheduleParameters: { customerId }, businessID } as unknown } as any);
+src/billing/billing.service.spec.ts:193:            data: { scheduleParameters: 
+{ customerId, offeringId }, businessID } as unknown,
+src/customer/dto/validatePastDate.ts:26:    return function (object: unknown, 
+propertyName: string) {
+src/customer/dto/enrollmentValidation.ts:28:    return function (object: 
+unknown, propertyName: string) {
+src/customer/dto/validateFutureDate.ts:26:    return function (object: unknown, 
+propertyName: string) {
+src/customer/dto/stripeCustomerValidator.ts:4:    return function (object: 
+unknown, propertyName: string) {
+src/customer/dto/customerIdExists.ts:40:    return function (object: unknown, 
+propertyName: string) {
+src/customer/dto/hasNonOverlappingDimensions.ts:28:    return function (object: 
+unknown, propertyName: string) {
+src/customer/customer.service.spec.ts:135:                                } as 
+unknown,
+src/setting/dto/taxJarAuthorizer.ts:49:    return function (object: unknown, 
+propertyName: string) {
+src/setting/dto/taxJarAuthorizer.ts:124:    return function (object: unknown, 
+propertyName: string) {
+src/setting/dto/customIAMAuthorizer.ts:4:    return function (object: unknown, 
+propertyName: string) {
+src/contract/contract.service.ts:267:                
+currentOverridesForOffering?.discount as unknown as Record<string, string>,
+src/contract/contract.service.ts:268:                
+overridesForOffering?.discount as unknown as Record<string, string>,
+src/contract/contract.service.ts:269:            ) as unknown as 
+CustomerContractDiscount,
+src/contract/contract.service.spec.ts:254:        } as unknown as Offering;
+src/contract/contract.service.spec.ts:292:            customer as unknown as 
+ReadCustomerResponseData,
+src/contract/contract.service.spec.ts:344:                }) as unknown as 
+Offering,
+src/contract/contract.service.spec.ts:440:                }) as unknown as 
+Offering,
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 21, $0.81):
+Now I understand the expected format from the emulator's existing DLQ objects. 
+Let me implement.
+
+```
+cd /app && sed -n 140,225p src/usage/usage.controller.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+        } else {
+            return this.usageService.create({ ...createUsageDto, businessID }, 
+request?.user?.sub);
+        }
+    }
+}
+
+@ApiBearerAuth('bearer')
+@ApiTags('Usage')
+@Controller('usage')
+export class PrivateAPIUsageController extends UsageController {
+    @UseGuards(LogGaurd, AuthGuard('jwt'))
+    @Post('db')
+    async dbUsage(@Body() createUsageDto) {
+        // Custom validator for DB usage, on failure push to DLQ for manual 
+processing
+        try {
+            UsageController.logger.log('Starting DB Usage Endpoint execution');
+
+            const { message, s3Key } = createUsageDto;
+            // TODO: check if the passed in BusinessID is an authorized 
+producer, if not throw message away
+            if (s3Key) {
+                const [businessID] = s3Key.split('/');
+
+                const parsed = JSON.parse(message);
+                const doc = new CreateStandardMeasurementDto({ ...parsed, 
+businessID });
+                await this.validator.validateOrReject(doc, { 
+enableDebugMessages: true });
+                const input = { ...parsed, businessID };
+                return this.usageService.create(input);
+            } else {
+                AuditService.publishEvent({
+                    topic: AuditScope.ERROR,
+                    message: 'Unknown S3 Key and BusinessID In datastore 
+measurement system',
+                    data: [{ e: 'Unknown S3 Key and BusinessID In datastore 
+measurement system', createUsageDto }],
+                });
+                throw new BadRequestException(
+                    'Invalid message format, please check the documentation for 
+the correct format',
+                );
+            }
+        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format',
+            );
+        }
+    }
+    @UseGuards(PermissionsGuard([UsagePermissions.ADMIN_CREATE_USAGE]))
+    @UseGuards(AuthGuard('jwt'))
+    @Post('datastore')
+    async datastoreUsage(@Body() createUsageDto, @Req() request: Request) {
+        // Custom validator for DB usage, on failure push to DLQ for manual 
+processing
+
+        try {
+            const { businessid } = request.headers;
+            //TODO: make this a standardized parser which is driven by an 
+event-type
+
+            UsageController.logger.log('Starting DB Usage Endpoint execution');
+
+            const { event } = createUsageDto;
+            const parsed = JSON.parse(event?.original);
+            const doc = new CreateStandardMeasurementDto({ ...parsed, 
+businessID: businessid });
+            await this.validator.validateOrReject(doc, { enableDebugMessages: 
+true });
+            return this.usageService.create(doc as CreateUsageDto);
+        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            e.stack = undefined;
+            await StandardMeasurementEntity.publishFailureToDLQ(
+                { originalFileContent: createUsageDto?.event },
+                {
+                    timestamp: new Date().toISOString(),
+                    errorInfo: serializeError(e),
+                    results: 'failed to load data',
+
+                    orginalProcessedName: `${
+                        request?.headers?.businessid ? 
+request?.headers?.businessid : 'unknown'
+                    } - ${request?.headers?.uniqueid ? 
+request?.headers?.uniqueid : `rand-${randomUUID()}`}}`,
+                    businessID: request?.headers?.businessid as string,
+                    measurementId: request?.headers?.uniqueid as string,
+                },
+                DlqType.kafka,
+            );
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format, and check DLQ for message',
+            );
+        }
+    }
+}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 22, $0.88):
+```
+cd /app && cat > src/utils/aws/s3.ts <<'EOF'
+import { HeadObjectCommand, PutObjectCommand, S3Client } from 
+'@aws-sdk/client-s3';
+import { Upload } from '@aws-sdk/lib-storage';
+
+export const putDocument = (document, Bucket, Key) =>
+    new Upload({ client: new S3Client({ region: 'us-east-1' }), params: { Body: 
+document, Bucket, Key } });
+
+/**
+ * Writes a document to S3, the promise resolves once the object has been 
+persisted.
+ */
+export const putObject = async (document, Bucket: string, Key: string) =>
+    new S3Client({ region: process.env.AWS_REGION ?? 'us-east-1' }).send(
+        new PutObjectCommand({ Body: document, Bucket, Key }),
+    );
+
+/**
+ * Checks if an object already exists in a bucket.
+ * Any error which isn't a `404/NotFound` is bubbled up to the caller.
+ */
+export const objectExists = async (Bucket: string, Key: string): 
+Promise<boolean> => {
+    try {
+        await new S3Client({ region: process.env.AWS_REGION ?? 'us-east-1' 
+}).send(
+            new HeadObjectCommand({ Bucket, Key }),
+        );
+        return true;
+    } catch (e) {
+        if (e?.name === 'NotFound' || e?.name === 'NoSuchKey' || 
+e?.$metadata?.httpStatusCode === 404) {
+            return false;
+        }
+        throw e;
+    }
+};
+EOF
+npx prettier --check src/utils/aws/s3.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+Checking formatting...
+All matched files use Prettier code style!
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 23, $0.96):
+Now the entity DLQ implementation:
+
+```
+cd /app && python3 - <<'PY'
+import re
+p='src/measurement-config/entities/standardMeasurement.entity.ts'
+s=open(p).read()
+
+s = s.replace("""import { MeasurementFormat } from 
+'./measurement.interface.js';""",
+"""import { objectExists, putObject } from '../../utils/aws/s3.js';
+import { MeasurementFormat } from './measurement.interface.js';""")
+
+s = s.replace("""export enum DlqType {
+    kafka = 'kafka',
+}""","""export enum DlqType {
+    kafka = 'kafka',
+    /** Object store (S3) backed dead letter queue used by the datastore (S3) 
+measurement system */
+    s3 = 's3',
+}
+
+/** Prefix used in the dlq bucket when the failed message can't be traced back 
+to a source file */
+export const UNKNOWN_DLQ_SOURCE_PREFIX = 'meteringco-unknown';""")
+
+# add s3 branch and helpers
+old = """    static async publishFailureToDLQ(failedDocument, metadata: 
+MeasurementFailureMetadata, dlqType: DlqType) {
+        if (dlqType === DlqType.kafka) {"""
+new = """    /**
+     * Builds a short random suffix which keeps every dlq object unique, even 
+when the very same
+     * source file is rejected multiple times.
+     */
+    private static dlqKeySuffix(): string {
+        return randomBytes(8).readUInt32BE(0).toString(36).padStart(6, 
+'0').slice(-6);
+    }
+
+    /**
+     * Resolves the object key to be used in the dlq bucket. The key is derived 
+from the source file
+     * of the message (so the owning business can find its own failures under 
+its own prefix) with a
+     * random suffix appended so an earlier rejection of the same source file is
+never overwritten.
+     */
+    static async buildDLQObjectKey(bucket: string, sourceName: string): 
+Promise<string> {
+        const source =
+            sourceName && `${sourceName}`.trim().length
+                ? `${sourceName}`
+                : `${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`;
+        for (let attempt = 0; attempt < 5; attempt++) {
+            const key = 
+`${source}-${StandardMeasurementEntity.dlqKeySuffix()}.json`;
+            try {
+                if (!(await objectExists(bucket, key))) {
+                    return key;
+                }
+            } catch (e) {
+                // Unable to verify, the random suffix makes a collision 
+extremely unlikely anyway
+                StandardMeasurementEntity.logger.warn(
+                    `Unable to verify if dlq object ${key} already exists, 
+${e?.message}`,
+                );
+                return key;
+            }
+        }
+        return `${source}-${randomUUID()}.json`;
+    }
+
+    /**
+     * Persists a rejected datastore (S3) measurement in the dlq bucket, next to
+the prefix of the
+     * source file it originated from, keeping the original content plus the 
+failure information.
+     */
+    private static async publishFailureToS3DLQ(failedDocument, metadata: 
+MeasurementFailureMetadata) {
+        const bucket = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+        try {
+            if (!bucket) {
+                throw new Error('Missing DB_MEASUREMENT_DLQ_BUCKET_NAME 
+configuration, cannot write to the s3 dlq');
+            }
+            const sourceName = metadata?.orginalProcessedName ?? 
+failedDocument?.s3Key;
+            const key = await 
+StandardMeasurementEntity.buildDLQObjectKey(bucket, sourceName);
+            await putObject(JSON.stringify({ failedDocument, metadata }), 
+bucket, key);
+            StandardMeasurementEntity.logger.log(`Wrote failed datastore 
+measurement to dlq s3://${bucket}/${key}`);
+            return { bucket, key };
+        } catch (e) {
+            StandardMeasurementEntity.logger.error('error occurred writing to 
+dlq', e);
+            AuditService.publishEvent({
+                topic: AuditScope.ERROR,
+                message: 'Failed to write to DLQ',
+                data: [
+                    {
+                        errorCode: e?.Code,
+                        errorMessage: e?.message,
+                        errorName: e?.name,
+                        failedDocument,
+                        metadata,
+                        dlqType: DlqType.s3,
+                    },
+                ],
+            });
+            return;
+        }
+    }
+
+    static async publishFailureToDLQ(failedDocument, metadata: 
+MeasurementFailureMetadata, dlqType: DlqType) {
+        if (dlqType === DlqType.s3) {
+            return 
+StandardMeasurementEntity.publishFailureToS3DLQ(failedDocument, metadata);
+        }
+        if (dlqType === DlqType.kafka) {"""
+assert old in s
+s = s.replace(old,new)
+s = s.replace("import { randomUUID } from 'crypto';","import { randomBytes, 
+randomUUID } from 'crypto';")
+open(p,'w').write(s)
+PY
+npx prettier --check 
+src/measurement-config/entities/standardMeasurement.entity.ts && npx tsc 
+--noEmit -p tsconfig.json 2>&1 | head -20
+```
+
+Tool:
+<returncode>
+0
+<output>
+Checking formatting...
+All matched files use Prettier code style!
+src/billing/billing.service.spec.ts(76,28): error TS2345: Argument of type 
+'string' is not assignable to parameter of type 'FakeTimersConfig | 
+LegacyFakeTimersConfig'.
+src/billing/billing.service.spec.ts(97,28): error TS2345: Argument of type 
+'string' is not assignable to parameter of type 'FakeTimersConfig | 
+LegacyFakeTimersConfig'.
+src/billing/billing.service.spec.ts(114,28): error TS2345: Argument of type 
+'string' is not assignable to parameter of type 'FakeTimersConfig | 
+LegacyFakeTimersConfig'.
+src/contract/contract.service.spec.ts(25,28): error TS2345: Argument of type 
+'string' is not assignable to parameter of type 'FakeTimersConfig | 
+LegacyFakeTimersConfig'.
+src/contract/contract.service.spec.ts(60,78): error TS2345: Argument of type '{ 
+offering: { enroll: jest.Mock<any, any, any>; }; }' is not assignable to 
+parameter of type 'PrepareContractResponseDto | 
+Promise<PrepareContractResponseDto>'.
+  Type '{ offering: { enroll: Mock<any, any, any>; }; }' is missing the 
+following properties from type 'PrepareContractResponseDto': customerId, 
+businessID, offeringId, offeringEnrollmentDate, readOfferingResponseData
+src/contract/contract.service.spec.ts(64,37): error TS2345: Argument of type '{ 
+customerId: string; offeringId: string; businessID: string; 
+readSettingsResponseData: { id: string; name: string; }; }' is not assignable to
+parameter of type 'CreateContractDto'.
+  Types of property 'readSettingsResponseData' are incompatible.
+    Type '{ id: string; name: string; }' has no properties in common with type 
+'ReadSettingsResponseData'.
+src/contract/contract.service.spec.ts(1032,13): error TS2345: Argument of type 
+'{ customer: ReadCustomerResponseData; oldOfferingId: string; newOfferingId: 
+string; subject: string; }' is not assignable to parameter of type '{ customer: 
+ReadCustomerResponseData; subject: string; businessID: string; oldOfferingIds?: 
+string[]; newOfferingId?: string; overridesForCustomer?: CustomOverrides; 
+usageOverrides?: UsageForCustomerEnrollment[]; removePriorOffering?: boolean; 
+unenrollOfferingId?: string; }'.
+  Object literal may only specify known properties, but 'oldOfferingId' does not
+exist in type '{ customer: ReadCustomerResponseData; subject: string; 
+businessID: string; oldOfferingIds?: string[]; newOfferingId?: string; 
+overridesForCustomer?: CustomOverrides; usageOverrides?: 
+UsageForCustomerEnrollment[]; removePriorOffering?: boolean; 
+unenrollOfferingId?: string; }'. Did you mean to write 'oldOfferingIds'?
+src/customer/customer.service.spec.ts(80,9): error TS2322: Type 'Promise<{ 
+customerId: string; businessID: string; discount?: CustomerContractDiscount; 
+dimensionOverrides?: DimensionOverridesDto[]; offeringId: string; ... 4 more 
+...; message: string; }>' is not assignable to type 
+'Promise<CreateContractResponseDto>'.
+  Property 'readOfferingResponseData' is missing in type '{ customerId: string; 
+businessID: string; discount?: CustomerContractDiscount; dimensionOverrides?: 
+DimensionOverridesDto[]; offeringId: string; ... 4 more ...; message: string; }'
+but required in type 'CreateContractResponseDto'.
+src/customer/customer.service.spec.ts(125,45): error TS2352: Conversion of type 
+'{ overridesForOffering: { freeTrialEndDate: any; }; offeringEnrollmentDate: 
+Date; readOfferingResponseData: unknown; }' to type 'ReadContractResponseDto' 
+may be a mistake because neither type sufficiently overlaps with the other. If 
+this was intentional, convert the expression to 'unknown' first.
+  Type '{ overridesForOffering: { freeTrialEndDate: any; }; 
+offeringEnrollmentDate: Date; readOfferingResponseData: unknown; }' is missing 
+the following properties from type 'ReadContractResponseDto': customerId, 
+offeringId
+src/customer/customer.service.spec.ts(218,21): error TS2322: Type 'string' is 
+not assignable to type 'number'.
+src/customer/customer.service.spec.ts(231,21): error TS2322: Type 'string' is 
+not assignable to type 'number'.
+src/customer/customer.service.spec.ts(236,93): error TS2740: Type '{ unenroll: 
+Mock<any, any, any>; enroll: Mock<any, any, any>; }' is missing the following 
+properties from type 'Offering': offeringType, offeringName, invoicesService, 
+businessID, and 13 more.
+src/customer/customer.service.spec.ts(292,23): error TS2554: Expected 3-5 
+arguments, but got 2.
+src/customer/customer.service.spec.ts(300,23): error TS2554: Expected 3-5 
+arguments, but got 2.
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 24, $1.02):
+```
+cd /app && npx tsc --noEmit -p tsconfig.build.json 2>&1 | head -20
+```
+
+Tool:
+<returncode>
+0
+<output>
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 25, $1.07):
+```
+cd /app && python3 - <<'PY'
+p='src/usage/usage.controller.ts'
+s=open(p).read()
+old = """        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format',
+            );
+        }
+    }
+    @UseGuards(PermissionsGuard([UsagePermissions.ADMIN_CREATE_USAGE]))"""
+new = """        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            e.stack = undefined;
+            const s3Key = createUsageDto?.s3Key;
+            // The rejected message is kept in the dlq bucket, under the prefix 
+of the file it came
+            // from, so the owning business is able to find and reprocess it.
+            await StandardMeasurementEntity.publishFailureToDLQ(
+                {
+                    originalFileContent: createUsageDto?.message,
+                    ...(s3Key ? { s3Key } : {}),
+                },
+                {
+                    timestamp: new Date().toISOString(),
+                    errorInfo: serializeError(e),
+                    results: 'failed to load data',
+                    orginalProcessedName: s3Key ? s3Key : 
+`${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`,
+                } as MeasurementFailureMetadata,
+                DlqType.s3,
+            );
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format',
+            );
+        }
+    }
+    @UseGuards(PermissionsGuard([UsagePermissions.ADMIN_CREATE_USAGE]))"""
+assert old in s
+s = s.replace(old,new)
+s = s.replace("""import { DlqType, StandardMeasurementEntity } from 
+'../measurement-config/entities/standardMeasurement.entity.js';""",
+"""import {
+    DlqType,
+    MeasurementFailureMetadata,
+    StandardMeasurementEntity,
+    UNKNOWN_DLQ_SOURCE_PREFIX,
+} from '../measurement-config/entities/standardMeasurement.entity.js';""")
+open(p,'w').write(s)
+PY
+npx prettier --check src/usage/usage.controller.ts; npx tsc --noEmit -p 
+tsconfig.build.json 2>&1 | head
+```
+
+Tool:
+<returncode>
+0
+<output>
+Checking formatting...
+All matched files use Prettier code style!
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 26, $1.12):
+```
+cd /app && sed -n 1,60p src/audit/audit.service.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+import { Injectable } from '@nestjs/common';
+import { AuditScope, AuditPublishRequest } from './entities/audit.interface.js';
+import { AuditEntity, ErrorAuditProcessor } from './entities/audit.entity.js';
+
+@Injectable()
+export class AuditService {
+    private static auditSystem = new AuditEntity();
+
+    public subscribeForAuditEvents() {
+        AuditService.auditSystem.subscribe(AuditScope.ERROR, new 
+ErrorAuditProcessor());
+    }
+
+    public static publishEvent(auditPublishRequest: AuditPublishRequest) {
+        AuditService.auditSystem.publish(auditPublishRequest);
+    }
+}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 27, $1.21):
+```
+cd /app && cat > src/usage/tmp_dlq.spec.ts <<'EOF'
+import { ListObjectsV2Command, S3Client, GetObjectCommand } from 
+'@aws-sdk/client-s3';
+import { PrivateAPIUsageController } from './usage.controller.js';
+
+const BUCKET = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+const client = new S3Client({ region: 'us-east-1' });
+
+const list = async (prefix: string) => {
+    const r = await client.send(new ListObjectsV2Command({ Bucket: BUCKET, 
+Prefix: prefix }));
+    return r.Contents ?? [];
+};
+const body = async (key: string) => {
+    const r = await client.send(new GetObjectCommand({ Bucket: BUCKET, Key: key 
+}));
+    return r.Body.transformToString();
+};
+
+const buildController = () => {
+    const usageService = { create: jest.fn().mockResolvedValue({ message: 
+'created' }) };
+    return {
+        controller: new PrivateAPIUsageController(usageService as any, {} as 
+any, {} as any),
+        usageService,
+    };
+};
+
+describe('db usage dlq', () => {
+    it('writes malformed message under source file prefix', async () => {
+        const { controller, usageService } = buildController();
+        const s3Key = `biz-test/2026/03/01/usage-${Date.now()}.json`;
+        await expect(controller.dbUsage({ message: '{"broken": ', s3Key 
+})).rejects.toThrow(/Invalid message format/);
+        expect(usageService.create).not.toHaveBeenCalled();
+        const objs = await list(s3Key);
+        expect(objs.length).toBe(1);
+        console.log('KEY:', objs[0].Key);
+        const content = JSON.parse(await body(objs[0].Key));
+        console.log(JSON.stringify(content, null, 1));
+        expect(content.failedDocument.originalFileContent).toBe('{"broken": ');
+        expect(content.failedDocument.s3Key).toBe(s3Key);
+        expect(content.metadata.orginalProcessedName).toBe(s3Key);
+        expect(content.metadata.results).toBe('failed to load data');
+        expect(content.metadata.errorInfo).toBeTruthy();
+    });
+
+    it('does not overwrite an earlier rejection of same source', async () => {
+        const { controller } = buildController();
+        const s3Key = `biz-test/2026/03/02/usage-${Date.now()}.json`;
+        await expect(controller.dbUsage({ message: 'nope', s3Key 
+})).rejects.toThrow();
+        await expect(controller.dbUsage({ message: 'nope again', s3Key 
+})).rejects.toThrow();
+        const objs = await list(s3Key);
+        expect(objs.length).toBe(2);
+        console.log('KEYS:', objs.map((o) => o.Key));
+    });
+
+    it('validation failures are captured', async () => {
+        const { controller } = buildController();
+        const s3Key = `biz-test/2026/03/03/usage-${Date.now()}.json`;
+        await expect(
+            controller.dbUsage({
+                message: JSON.stringify({ timestamp: '2026-03-03T00:00:00Z', 
+customerId: 'cus_x', dimensionId: 'dim', recordValue: 'abc' }),
+                s3Key,
+            }),
+        ).rejects.toThrow();
+        const objs = await list(s3Key);
+        expect(objs.length).toBe(1);
+        console.log('VALIDATION BODY:', await body(objs[0].Key));
+    });
+
+    it('retains messages with no source file', async () => {
+        const { controller } = buildController();
+        const before = await list('meteringco-unknown/');
+        await expect(controller.dbUsage({ message: '{"a":1}' 
+})).rejects.toThrow();
+        const after = await list('meteringco-unknown/');
+        expect(after.length).toBe(before.length + 1);
+        const added = after.filter((o) => !before.find((b) => b.Key === o.Key));
+        console.log('UNKNOWN KEY:', added[0].Key);
+        console.log(await body(added[0].Key));
+    });
+
+    it('still rejects when dlq storage refuses the write', async () => {
+        const { controller } = buildController();
+        const original = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+        process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME = 
+'this-bucket-does-not-exist-anywhere';
+        try {
+            await expect(controller.dbUsage({ message: 'bad', s3Key: 
+'biz-test/x/y.json' })).rejects.toThrow(
+                /Invalid message format/,
+            );
+        } finally {
+            process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME = original;
+        }
+    });
+
+    it('still rejects when dlq bucket is not configured', async () => {
+        const { controller } = buildController();
+        const original = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+        delete process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+        try {
+            await expect(controller.dbUsage({ message: 'bad', s3Key: 
+'biz-test/x/y.json' })).rejects.toThrow(
+                /Invalid message format/,
+            );
+        } finally {
+            process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME = original;
+        }
+    });
+});
+EOF
+npx jest --config ./jest.unit.config.json src/usage/tmp_dlq.spec.ts 2>&1 | tail 
+-60
+```
+
+Tool:
+<returncode>
+0
+<output>
+    "target": {
+      "businessID": "biz-test",
+      "timestamp": "2026-03-03T00:00:00Z",
+      "customerId": "cus_x",
+      "dimensionId": "dim",
+      "recordValue": "abc"
+    },
+    "value": "abc",
+    "property": "recordValue",
+    "children": [],
+    "constraints": {
+      "isNumberString": "recordValue must be a number string"
+    }
+  }
+]
+
+[32m[Nest] 1234  - [39m08/23/2026, 6:19:49 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement
+to dlq 
+s3://meteringco-usage-record-dlq-bucket-sandbox/biz-test/2026/03/03/usage-17874659897
+60.json-v8dkor.json[39m
+  console.log
+    VALIDATION BODY: 
+{"failedDocument":{"originalFileContent":"{\"timestamp\":\"2026-03-03T00:00:00Z\
+",\"customerId\":\"cus_x\",\"dimensionId\":\"dim\",\"recordValue\":\"abc\"}","s3
+Key":"biz-test/2026/03/03/usage-1787465989760.json"},"metadata":{"timestamp":"20
+26-08-23T06:19:49.762Z","errorInfo":[{"target":{"businessID":"biz-test","timesta
+mp":"2026-03-03T00:00:00Z","customerId":"cus_x","dimensionId":"dim","recordValue
+":"abc"},"value":"abc","property":"recordValue","children":[],"constraints":{"is
+NumberString":"recordValue must be a number string"}}],"results":"failed to load
+data","orginalProcessedName":"biz-test/2026/03/03/usage-1787465989760.json"}}
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:63:17)
+
+[32m[Nest] 1234  - [39m08/23/2026, 6:19:49 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:49 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:49 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mBadRequestException: Invalid message format,
+please check the documentation for the correct format[39m
+[32m[Nest] 1234  - [39m08/23/2026, 6:19:49 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement
+to dlq 
+s3://meteringco-usage-record-dlq-bucket-sandbox/meteringco-unknown/6413f9ba-082a-4cb3-b21e
+-89206e364d70-nnp27u.json[39m
+  console.log
+    UNKNOWN KEY: meteringco-unknown/6413f9ba-082a-4cb3-b21e-89206e364d70-nnp27u.json
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:73:17)
+
+  console.log
+    {"failedDocument":{"originalFileContent":"{\"a\":1}"},"metadata":{"timestamp
+":"2026-08-23T06:19:49.919Z","errorInfo":{"response":{"message":"Invalid message
+format, please check the documentation for the correct format","error":"Bad 
+Request","statusCode":400},"status":400,"options":{},"message":"Invalid message 
+format, please check the documentation for the correct 
+format","name":"BadRequestException"},"results":"failed to load 
+data","orginalProcessedName":"meteringco-unknown/6413f9ba-082a-4cb3-b21e-89206e364d70
+"}}
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:74:17)
+
+[32m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected token 'b', "bad" is
+not valid JSON[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[31merror occurred writing to dlq[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[31mNoSuchBucket: The specified bucket
+does not exist: this-bucket-does-not-exist-anywhere[39m
+[32m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected token 'b', "bad" is
+not valid JSON[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[31merror occurred writing to dlq[39m
+[31m[Nest] 1234  - [39m08/23/2026, 6:19:50 AM [31m  ERROR[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[31mError: Missing 
+DB_MEASUREMENT_DLQ_BUCKET_NAME configuration, cannot write to the s3 dlq[39m
+PASS src/usage/tmp_dlq.spec.ts (6.662 s)
+  db usage dlq
+    ✓ writes malformed message under source file prefix (126 ms)
+    ✓ does not overwrite an earlier rejection of same source (70 ms)
+    ✓ validation failures are captured (108 ms)
+    ✓ retains messages with no source file (150 ms)
+    ✓ still rejects when dlq storage refuses the write (50 ms)
+    ✓ still rejects when dlq bucket is not configured (1 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       6 passed, 6 total
+Snapshots:   0 total
+Time:        6.757 s
+Ran all test suites matching /src\/usage\/tmp_dlq.spec.ts/i.
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 28, $1.31):
+```
+cd /app && npx jest --config ./jest.unit.config.json src/usage/tmp_dlq.spec.ts 
+-t 'writes malformed' 2>&1 | grep -A3 "console.log" | head -40
+```
+
+```
+cd /app && grep -n "db\b\|dbUsage\|usage/db" test/api/usage.api-spec.ts | head; 
+cat test/jest-api.json
+```
+
+Tool:
+<returncode>
+0
+<output>
+  console.log
+    KEY: biz-test/2026/03/01/usage-1787466013735.json-6n91pd.json
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:32:17)
+--
+  console.log
+    {
+     "failedDocument": {
+      "originalFileContent": "{\"broken\": ",
+
+
+Tool:
+<returncode>
+0
+<output>
+26:jest.mock('@influxdata/influxdb-client', () => ({
+{
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": ".",
+    "transformIgnorePatterns": ["node_modules/(?!serialize-error/.*)"],
+    "testEnvironment": "node",
+    "testRegex": ".api-spec.ts$",
+    "preset": "ts-jest/presets/js-with-ts",
+    "globals": {
+        "ts-jest": {
+            "isolatedModules": true,
+            "tsConfig": "testTSConfig.json",
+            "useESM": true
+        }
+    },
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "moduleNameMapper": {
+        "^(\\.\\.?\\/.+)\\.js$": "$1"
+    },
+    "extensionsToTreatAsEsm": [".ts"],
+    "maxWorkers": "20%",
+    "testTimeout": 30000
+}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 29, $1.37):
+```
+cd /app && npx jest --config ./jest.unit.config.json src/usage/tmp_dlq.spec.ts 
+-t 'writes malformed' 2>&1 | sed -n '/failedDocument/,/^$/p' | head -40
+```
+
+Tool:
+<returncode>
+0
+<output>
+     "failedDocument": {
+      "originalFileContent": "{\"broken\": ",
+      "s3Key": "biz-test/2026/03/01/usage-1787466019644.json"
+     },
+     "metadata": {
+      "timestamp": "2026-08-23T06:20:19.645Z",
+      "errorInfo": {
+       "name": "SyntaxError",
+       "message": "Unexpected end of JSON input"
+      },
+      "results": "failed to load data",
+      "orginalProcessedName": "biz-test/2026/03/01/usage-1787466019644.json"
+     }
+    }
+
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 30, $1.45):
+```
+cd /app && cat > se.mjs <<'EOF'
+import { serializeError } from 'serialize-error';
+class BadRequestException extends Error {
+  constructor(m){super(m); this.name='BadRequestException'; 
+this.response={message:m,error:'Bad Request',statusCode:400}; this.status=400; 
+this.options={};}
+}
+const e = new BadRequestException('Invalid message format, please check the 
+documentation for the correct format');
+e.stack=undefined;
+console.log(JSON.stringify(serializeError(e)));
+console.log(JSON.stringify(serializeError(e,{maxDepth:1})));
+EOF
+node se.mjs; rm se.mjs
+```
+
+Tool:
+<returncode>
+0
+<output>
+{"name":"BadRequestException","response":{"message":"Invalid message format, 
+please check the documentation for the correct format","error":"Bad 
+Request","statusCode":400},"status":400,"options":{},"message":"Invalid message 
+format, please check the documentation for the correct format"}
+{"name":"BadRequestException","response":{},"status":400,"options":{},"message":
+"Invalid message format, please check the documentation for the correct format"}
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 31, $1.55):
+```
+cd /app && npx jest --config ./jest.unit.config.json src/usage 
+src/measurement-config 2>&1 | tail -20
+```
+
+```
+cd /app && npx eslint src/usage/usage.controller.ts 
+src/measurement-config/entities/standardMeasurement.entity.ts 
+src/utils/aws/s3.ts --quiet
+```
+
+Tool:
+<returncode>
+0
+<output>
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:63:17)
+
+    console.log
+      UNKNOWN KEY: 
+meteringco-unknown/95f782e5-21c9-49d7-88b9-8898e208674f-rkhpys.json
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:73:17)
+
+    console.log
+      {"failedDocument":{"originalFileContent":"{\"a\":1}"},"metadata":{"timesta
+mp":"2026-08-23T06:21:14.249Z","errorInfo":{"response":{"message":"Invalid 
+message format, please check the documentation for the correct 
+format","error":"Bad 
+Request","statusCode":400},"status":400,"options":{},"message":"Invalid message 
+format, please check the documentation for the correct 
+format","name":"BadRequestException"},"results":"failed to load 
+data","orginalProcessedName":"meteringco-unknown/95f782e5-21c9-49d7-88b9-8898e208674f
+"}}
+
+      at Object.<anonymous> (usage/tmp_dlq.spec.ts:74:17)
+
+
+Test Suites: 5 passed, 5 total
+Tests:       10 passed, 10 total
+Snapshots:   0 total
+Time:        5.969 s
+Ran all test suites matching /src\/usage|src\/measurement-config/i.
+[32m[Nest] 1476  - [39m08/23/2026, 6:21:14 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+
+
+Tool:
+<returncode>
+0
+<output>
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 32, $1.63):
+```
+cd /app && cat > clean.mjs <<'EOF'
+import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+const B='meteringco-usage-record-dlq-bucket-sandbox';
+const keep = new Set([
+ 'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+ 'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+ 'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+ 'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+ 'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json',
+]);
+const r = await c.send(new ListObjectsV2Command({Bucket:B}));
+for (const o of r.Contents ?? []) {
+  if (!keep.has(o.Key)) { await c.send(new 
+DeleteObjectCommand({Bucket:B,Key:o.Key})); console.log('deleted', o.Key); }
+}
+const after = await c.send(new ListObjectsV2Command({Bucket:B}));
+console.log((after.Contents??[]).map(o=>o.Key));
+EOF
+node clean.mjs; rm clean.mjs; rm src/usage/tmp_dlq.spec.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+deleted biz-test/2026/03/01/usage-1787465989564.json-rv2jok.json
+deleted biz-test/2026/03/01/usage-1787466013735.json-6n91pd.json
+deleted biz-test/2026/03/01/usage-1787466019644.json-a7k6f1.json
+deleted biz-test/2026/03/01/usage-1787466073911.json-hfxx59.json
+deleted biz-test/2026/03/02/usage-1787465989691.json-929vul.json
+deleted biz-test/2026/03/02/usage-1787465989691.json-f1uurp.json
+deleted biz-test/2026/03/02/usage-1787466074029.json-hw5v84.json
+deleted biz-test/2026/03/02/usage-1787466074029.json-w8tqhe.json
+deleted biz-test/2026/03/03/usage-1787465989760.json-v8dkor.json
+deleted biz-test/2026/03/03/usage-1787466074090.json-8t4ymw.json
+deleted meteringco-unknown/6413f9ba-082a-4cb3-b21e-89206e364d70-nnp27u.json
+deleted meteringco-unknown/95f782e5-21c9-49d7-88b9-8898e208674f-rkhpys.json
+[
+  'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+  'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+  'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+  'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+  'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json'
+]
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 33, $1.72):
+```
+cd /app && python3 - <<'PY'
+p='src/measurement-config/entities/standardMeasurement.entity.ts'
+s=open(p).read()
+s=s.replace("""    /** Object store (S3) backed dead letter queue used by the 
+datastore (S3) measurement system */
+    s3 = 's3',""","""    /** Object store (S3) backed dead letter queue used by 
+the datastore (S3) measurement system */
+    s3 = 's3',
+    /** Alias of {@link DlqType.s3}, the datastore measurement system is backed 
+by S3 */
+    datastore = 's3',""")
+s=s.replace("""    static async publishFailureToDLQ(failedDocument, metadata: 
+MeasurementFailureMetadata, dlqType: DlqType) {
+        if (dlqType === DlqType.s3) {
+            return 
+StandardMeasurementEntity.publishFailureToS3DLQ(failedDocument, metadata);
+        }
+        if (dlqType === DlqType.kafka) {""","""    static async 
+publishFailureToDLQ(failedDocument, metadata: MeasurementFailureMetadata, 
+dlqType: DlqType) {
+        if (dlqType !== DlqType.kafka) {
+            // Everything which isn't fed by kafka is a datastore (S3) sourced 
+measurement
+            return 
+StandardMeasurementEntity.publishFailureToS3DLQ(failedDocument, metadata);
+        }
+        if (dlqType === DlqType.kafka) {""")
+open(p,'w').write(s)
+PY
+npx prettier --check 
+src/measurement-config/entities/standardMeasurement.entity.ts && npx tsc 
+--noEmit -p tsconfig.build.json && sed -n 1,40p 
+src/measurement-config/entities/standardMeasurement.entity.ts && sed -n 75,160p 
+src/measurement-config/entities/standardMeasurement.entity.ts
+```
+
+Tool:
+<returncode>
+0
+<output>
+Checking formatting...
+All matched files use Prettier code style!
+import { Tag } from '@aws-sdk/client-ec2';
+import { Logger } from '@nestjs/common';
+import { randomBytes, randomUUID } from 'crypto';
+import EventEmitter from 'events';
+import { AuditService } from '../../audit/audit.service.js';
+import { AuditScope } from '../../audit/entities/audit.interface.js';
+import { InfluxService } from '../../influx/influx.service.js';
+import { DeploymentType } from 
+'../../kubernetes-deployer/dto/DeploymentType.js';
+import { KafkaManager } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/kafkaClient.entity.js';
+import { KafkaDeploymentParametersEntity } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/kafkaDeploymentParametersEntit
+y.js';
+import { KafkaSecurityMechanism } from 
+'../../kubernetes-deployer/entities/kafkaConsumer/KafkaSecurityMechanism.js';
+import { objectExists, putObject } from '../../utils/aws/s3.js';
+import { MeasurementFormat } from './measurement.interface.js';
+
+const eventEmitter = new EventEmitter();
+export enum DlqType {
+    kafka = 'kafka',
+    /** Object store (S3) backed dead letter queue used by the datastore (S3) 
+measurement system */
+    s3 = 's3',
+    /** Alias of {@link DlqType.s3}, the datastore measurement system is backed 
+by S3 */
+    datastore = 's3',
+}
+
+/** Prefix used in the dlq bucket when the failed message can't be traced back 
+to a source file */
+export const UNKNOWN_DLQ_SOURCE_PREFIX = 'meteringco-unknown';
+export class StandardMeasurementEntity implements MeasurementFormat {
+    private static readonly logger = new Logger(StandardMeasurementEntity.name);
+    public timestamp?: string;
+    public dimensionId?: string;
+    public businessID: string;
+    public customerId: string;
+    public recordValue: number;
+    public metadata?: Record<string, string | number | null>;
+    public _measurement: string;
+    public static allowedTags = ['meteringcoCustomerId', 'meteringcoDimensionId'];
+
+    constructor(measurement: MeasurementFormat) {
+        if (measurement.timestamp) {
+            this.timestamp = measurement.timestamp;
+        } else {
+                if (StandardMeasurementEntity.allowedTags.includes(Key)) {
+                    acc[Key] = Value;
+                }
+                return acc;
+            }, {});
+        } else {
+            return {};
+        }
+    }
+
+    /**
+     * Builds a short random suffix which keeps every dlq object unique, even 
+when the very same
+     * source file is rejected multiple times.
+     */
+    private static dlqKeySuffix(): string {
+        return randomBytes(8).readUInt32BE(0).toString(36).padStart(6, 
+'0').slice(-6);
+    }
+
+    /**
+     * Resolves the object key to be used in the dlq bucket. The key is derived 
+from the source file
+     * of the message (so the owning business can find its own failures under 
+its own prefix) with a
+     * random suffix appended so an earlier rejection of the same source file is
+never overwritten.
+     */
+    static async buildDLQObjectKey(bucket: string, sourceName: string): 
+Promise<string> {
+        const source =
+            sourceName && `${sourceName}`.trim().length
+                ? `${sourceName}`
+                : `${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`;
+        for (let attempt = 0; attempt < 5; attempt++) {
+            const key = 
+`${source}-${StandardMeasurementEntity.dlqKeySuffix()}.json`;
+            try {
+                if (!(await objectExists(bucket, key))) {
+                    return key;
+                }
+            } catch (e) {
+                // Unable to verify, the random suffix makes a collision 
+extremely unlikely anyway
+                StandardMeasurementEntity.logger.warn(
+                    `Unable to verify if dlq object ${key} already exists, 
+${e?.message}`,
+                );
+                return key;
+            }
+        }
+        return `${source}-${randomUUID()}.json`;
+    }
+
+    /**
+     * Persists a rejected datastore (S3) measurement in the dlq bucket, next to
+the prefix of the
+     * source file it originated from, keeping the original content plus the 
+failure information.
+     */
+    private static async publishFailureToS3DLQ(failedDocument, metadata: 
+MeasurementFailureMetadata) {
+        const bucket = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+        try {
+            if (!bucket) {
+                throw new Error('Missing DB_MEASUREMENT_DLQ_BUCKET_NAME 
+configuration, cannot write to the s3 dlq');
+            }
+            const sourceName = metadata?.orginalProcessedName ?? 
+failedDocument?.s3Key;
+            const key = await 
+StandardMeasurementEntity.buildDLQObjectKey(bucket, sourceName);
+            await putObject(JSON.stringify({ failedDocument, metadata }), 
+bucket, key);
+            StandardMeasurementEntity.logger.log(`Wrote failed datastore 
+measurement to dlq s3://${bucket}/${key}`);
+            return { bucket, key };
+        } catch (e) {
+            StandardMeasurementEntity.logger.error('error occurred writing to 
+dlq', e);
+            AuditService.publishEvent({
+                topic: AuditScope.ERROR,
+                message: 'Failed to write to DLQ',
+                data: [
+                    {
+                        errorCode: e?.Code,
+                        errorMessage: e?.message,
+                        errorName: e?.name,
+                        failedDocument,
+                        metadata,
+                        dlqType: DlqType.s3,
+                    },
+                ],
+            });
+            return;
+        }
+    }
+
+    static async publishFailureToDLQ(failedDocument, metadata: 
+MeasurementFailureMetadata, dlqType: DlqType) {
+        if (dlqType !== DlqType.kafka) {
+            // Everything which isn't fed by kafka is a datastore (S3) sourced 
+measurement
+            return 
+StandardMeasurementEntity.publishFailureToS3DLQ(failedDocument, metadata);
+        }
+        if (dlqType === DlqType.kafka) {
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 34, $1.82):
+```
+cd /app && cat > src/usage/tmp_verify.spec.ts <<'EOF'
+import { ListObjectsV2Command, S3Client, GetObjectCommand } from 
+'@aws-sdk/client-s3';
+import { PrivateAPIUsageController } from './usage.controller.js';
+import { DlqType, StandardMeasurementEntity } from 
+'../measurement-config/entities/standardMeasurement.entity.js';
+
+const BUCKET = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+const client = new S3Client({ region: 'us-east-1' });
+const list = async (prefix: string) =>
+    (await client.send(new ListObjectsV2Command({ Bucket: BUCKET, Prefix: prefix
+}))).Contents ?? [];
+const body = async (key: string) =>
+    (await client.send(new GetObjectCommand({ Bucket: BUCKET, Key: key 
+}))).Body.transformToString();
+
+const controller = () =>
+    new PrivateAPIUsageController({ create: jest.fn().mockResolvedValue({ 
+message: 'ok' }) } as any, {} as any, {} as any);
+
+describe('verify', () => {
+    it('handles happy path unchanged', async () => {
+        const c = controller();
+        const res = await c.dbUsage({
+            message: JSON.stringify({ timestamp: new Date().toISOString(), 
+customerId: 'cus_x', dimensionId: 'dim', recordValue: '4' }),
+            s3Key: 'biz-verify/2026/03/09/ok.json',
+        });
+        expect(res).toEqual({ message: 'ok' });
+        expect(await list('biz-verify/')).toHaveLength(0);
+    });
+    it('rejects and stores under source key with alias enum', async () => {
+        const c = controller();
+        const s3Key = `biz-verify/2026/03/10/bad-${Date.now()}.json`;
+        await expect(c.dbUsage({ message: 'not json', s3Key 
+})).rejects.toThrow(/Invalid message format/);
+        const objs = await list(s3Key);
+        expect(objs).toHaveLength(1);
+        expect(objs[0].Key).toMatch(new 
+RegExp(`^${s3Key}-[a-z0-9]{6}\\.json$`));
+        expect(JSON.parse(await 
+body(objs[0].Key)).failedDocument.originalFileContent).toBe('not json');
+        expect(DlqType.datastore).toBe('s3');
+        const direct = await StandardMeasurementEntity.publishFailureToDLQ({ 
+originalFileContent: 'x' }, { orginalProcessedName: s3Key } as any, 
+DlqType.datastore);
+        expect((direct as any).key).toMatch(new RegExp(`^${s3Key}-`));
+        expect(await list(s3Key)).toHaveLength(2);
+    });
+    it('kafka path untouched (no s3 write)', async () => {
+        const before = await list('');
+        await StandardMeasurementEntity.publishFailureToDLQ({ 
+originalFileContent: 'y' }, {} as any, DlqType.kafka);
+        expect(await list('')).toHaveLength(before.length);
+    });
+});
+EOF
+npx jest --config ./jest.unit.config.json src/usage/tmp_verify.spec.ts 2>&1 | 
+tail -25
+```
+
+Tool:
+<returncode>
+0
+<output>
+transform: {
+    <transform_regex>: ['ts-jest', { /* ts-jest config goes here in Jest */ }],
+},
+ts-jest[backports] (WARN) "[jest-config].globals.ts-jest.tsConfig" is 
+deprecated, use "[jest-config].globals.ts-jest.tsconfig" instead.
+ts-jest[backports] (WARN) Your Jest configuration is outdated. Use the CLI to 
+help migrating it: ts-jest config:migrate <config-file>.
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:19 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [32m    LOG[39m 
+[38;5;3m[UsageController] [39m[32mStarting DB Usage Endpoint execution[39m
+[31m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mError parsing datastore usage message[39m
+[31m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [31m  ERROR[39m 
+[38;5;3m[UsageController] [39m[31mSyntaxError: Unexpected token 'o', "not json"
+is not valid JSON[39m
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement
+to dlq 
+s3://meteringco-usage-record-dlq-bucket-sandbox/biz-verify/2026/03/10/bad-17874661400
+15.json-3hg489.json[39m
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement
+to dlq 
+s3://meteringco-usage-record-dlq-bucket-sandbox/biz-verify/2026/03/10/bad-17874661400
+15.json-j2pvc4.json[39m
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mwrite to kafka dlq isn't implemented
+yet[39m
+[32m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] 
+[39m[32m{"failedDocument":{"originalFileContent":"y"},"metadata":{},"dlqType":"k
+afka"}[39m
+[31m[Nest] 1704  - [39m08/23/2026, 6:22:20 AM [31m  ERROR[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[31mFailed to write to kafka dlq, 
+missing businessID or measurementId[39m
+PASS src/usage/tmp_verify.spec.ts
+  verify
+    ✓ handles happy path unchanged (33 ms)
+    ✓ rejects and stores under source key with alias enum (125 ms)
+    ✓ kafka path untouched (no s3 write) (110 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       3 passed, 3 total
+Snapshots:   0 total
+Time:        3.155 s
+Ran all test suites matching /src\/usage\/tmp_verify.spec.ts/i.
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 35, $1.90):
+```
+cd /app && rm src/usage/tmp_verify.spec.ts && cat > clean.mjs <<'EOF'
+import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+const B='meteringco-usage-record-dlq-bucket-sandbox';
+const keep = new Set([
+ 'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+ 'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+ 'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+ 'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+ 'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json',
+]);
+const r = await c.send(new ListObjectsV2Command({Bucket:B}));
+for (const o of r.Contents ?? []) if (!keep.has(o.Key)) { await c.send(new 
+DeleteObjectCommand({Bucket:B,Key:o.Key})); console.log('deleted', o.Key); }
+console.log(((await c.send(new 
+ListObjectsV2Command({Bucket:B}))).Contents??[]).map(o=>o.Key));
+EOF
+node clean.mjs; rm clean.mjs; ls src/usage
+```
+
+Tool:
+<returncode>
+0
+<output>
+deleted biz-verify/2026/03/10/bad-1787466140015.json-3hg489.json
+deleted biz-verify/2026/03/10/bad-1787466140015.json-j2pvc4.json
+[
+  'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+  'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+  'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+  'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+  'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json'
+]
+dto
+entities
+usage.controller.spec.ts
+usage.controller.ts
+usage.module.ts
+usage.permissions.ts
+usage.service.spec.ts
+usage.service.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 36, $1.95):
+```
+cd /app && sed -n 149,205p src/usage/usage.controller.ts
+```
+
+```
+cd /app && timeout 900 npx jest --config ./jest.unit.config.json --silent 2>&1 |
+tail -12
+```
+
+Tool:
+<returncode>
+0
+<output>
+}
+
+@ApiBearerAuth('bearer')
+@ApiTags('Usage')
+@Controller('usage')
+export class PrivateAPIUsageController extends UsageController {
+    @UseGuards(LogGaurd, AuthGuard('jwt'))
+    @Post('db')
+    async dbUsage(@Body() createUsageDto) {
+        // Custom validator for DB usage, on failure push to DLQ for manual 
+processing
+        try {
+            UsageController.logger.log('Starting DB Usage Endpoint execution');
+
+            const { message, s3Key } = createUsageDto;
+            // TODO: check if the passed in BusinessID is an authorized 
+producer, if not throw message away
+            if (s3Key) {
+                const [businessID] = s3Key.split('/');
+
+                const parsed = JSON.parse(message);
+                const doc = new CreateStandardMeasurementDto({ ...parsed, 
+businessID });
+                await this.validator.validateOrReject(doc, { 
+enableDebugMessages: true });
+                const input = { ...parsed, businessID };
+                return this.usageService.create(input);
+            } else {
+                AuditService.publishEvent({
+                    topic: AuditScope.ERROR,
+                    message: 'Unknown S3 Key and BusinessID In datastore 
+measurement system',
+                    data: [{ e: 'Unknown S3 Key and BusinessID In datastore 
+measurement system', createUsageDto }],
+                });
+                throw new BadRequestException(
+                    'Invalid message format, please check the documentation for 
+the correct format',
+                );
+            }
+        } catch (e) {
+            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            e.stack = undefined;
+            const s3Key = createUsageDto?.s3Key;
+            // The rejected message is kept in the dlq bucket, under the prefix 
+of the file it came
+            // from, so the owning business is able to find and reprocess it.
+            await StandardMeasurementEntity.publishFailureToDLQ(
+                {
+                    originalFileContent: createUsageDto?.message,
+                    ...(s3Key ? { s3Key } : {}),
+                },
+                {
+                    timestamp: new Date().toISOString(),
+                    errorInfo: serializeError(e),
+                    results: 'failed to load data',
+                    orginalProcessedName: s3Key ? s3Key : 
+`${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`,
+                } as MeasurementFailureMetadata,
+                DlqType.s3,
+            );
+            throw new BadRequestException(
+                'Invalid message format, please check the documentation for the 
+correct format',
+            );
+        }
+    }
+
+
+Tool:
+<returncode>
+-1
+<output>
+
+<exception_info>
+An error occurred while executing the command: Command 'cd /app && timeout 900 
+npx jest --config ./jest.unit.config.json --silent 2>&1 | tail -12' timed out 
+after 30 seconds
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 37, $2.05):
+```
+cd /app && python3 - <<'PY'
+p='src/usage/usage.controller.ts'
+s=open(p).read()
+old="""            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            e.stack = undefined;
+            const s3Key = createUsageDto?.s3Key;
+            // The rejected message is kept in the dlq bucket, under the prefix 
+of the file it came
+            // from, so the owning business is able to find and reprocess it.
+            await StandardMeasurementEntity.publishFailureToDLQ(
+                {
+                    originalFileContent: createUsageDto?.message,
+                    ...(s3Key ? { s3Key } : {}),
+                },
+                {
+                    timestamp: new Date().toISOString(),
+                    errorInfo: serializeError(e),
+                    results: 'failed to load data',
+                    orginalProcessedName: s3Key ? s3Key : 
+`${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`,
+                } as MeasurementFailureMetadata,
+                DlqType.s3,
+            );
+            throw new BadRequestException("""
+new="""            UsageController.logger.error('Error parsing datastore usage 
+message', e);
+            if (e && typeof e === 'object') {
+                e.stack = undefined;
+            }
+            const s3Key = createUsageDto?.s3Key;
+            // The rejected message is kept in the dlq bucket, under the prefix 
+of the file it came
+            // from, so the owning business is able to find and reprocess it. A 
+failure to write to
+            // the dlq must never hide the rejection from the caller.
+            try {
+                await StandardMeasurementEntity.publishFailureToDLQ(
+                    {
+                        originalFileContent: createUsageDto?.message,
+                        ...(s3Key ? { s3Key } : {}),
+                    },
+                    {
+                        timestamp: new Date().toISOString(),
+                        errorInfo: serializeError(e),
+                        results: 'failed to load data',
+                        orginalProcessedName: s3Key ? s3Key : 
+`${UNKNOWN_DLQ_SOURCE_PREFIX}/${randomUUID()}`,
+                    } as MeasurementFailureMetadata,
+                    DlqType.s3,
+                );
+            } catch (dlqError) {
+                UsageController.logger.error('Failed to write rejected datastore
+usage message to DLQ', dlqError);
+            }
+            throw new BadRequestException("""
+assert old in s
+s=s.replace(old,new)
+open(p,'w').write(s)
+PY
+npx prettier --check src/usage/usage.controller.ts && npx eslint 
+src/usage/usage.controller.ts --quiet && npx tsc --noEmit -p tsconfig.build.json
+&& echo OK
+```
+
+Tool:
+<returncode>
+0
+<output>
+Checking formatting...
+All matched files use Prettier code style!
+OK
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 38, $2.13):
+```
+cd /app && cat > src/usage/tmp_final.spec.ts <<'EOF'
+import { ListObjectsV2Command, S3Client, GetObjectCommand } from 
+'@aws-sdk/client-s3';
+import { PrivateAPIUsageController } from './usage.controller.js';
+
+const BUCKET = process.env.DB_MEASUREMENT_DLQ_BUCKET_NAME;
+const client = new S3Client({ region: 'us-east-1' });
+const list = async (p: string) => (await client.send(new ListObjectsV2Command({ 
+Bucket: BUCKET, Prefix: p }))).Contents ?? [];
+const body = async (k: string) => (await client.send(new GetObjectCommand({ 
+Bucket: BUCKET, Key: k }))).Body.transformToString();
+const c = () => new PrivateAPIUsageController({ create: 
+jest.fn().mockResolvedValue({ message: 'ok' }) } as any, {} as any, {} as any);
+
+describe('final', () => {
+    it('covers all requirements', async () => {
+        const s3Key = `biz-final/2026/03/11/f-${Date.now()}.json`;
+        await expect(c().dbUsage({ message: '{"recordValue":', s3Key 
+})).rejects.toThrow(/Invalid message format/);
+        await expect(c().dbUsage({ message: '{"recordValue":', s3Key 
+})).rejects.toThrow();
+        const objs = await list(s3Key);
+        expect(objs).toHaveLength(2);
+        const parsed = JSON.parse(await body(objs[0].Key));
+        expect(parsed.failedDocument).toEqual({ originalFileContent: 
+'{"recordValue":', s3Key });
+        expect(parsed.metadata.errorInfo.name).toBe('SyntaxError');
+        // no source file
+        const before = await list('meteringco-unknown/');
+        await expect(c().dbUsage({ message: '{"a":1}' })).rejects.toThrow();
+        expect(await list('meteringco-unknown/')).toHaveLength(before.length + 1);
+        // no body at all
+        await expect(c().dbUsage(undefined)).rejects.toThrow(/Invalid message 
+format/);
+        expect(await list('meteringco-unknown/')).toHaveLength(before.length + 2);
+        // non object throw / string message
+        await expect(c().dbUsage({ message: 12345, s3Key: `${s3Key}.b` 
+})).rejects.toThrow();
+        expect(await list(`${s3Key}.b`)).toHaveLength(1);
+    });
+});
+EOF
+npx jest --config ./jest.unit.config.json src/usage/tmp_final.spec.ts 2>&1 | 
+tail -12
+```
+
+Tool:
+<returncode>
+0
+<output>
+]
+
+[32m[Nest] 1993  - [39m08/23/2026, 6:23:51 AM [32m    LOG[39m 
+[38;5;3m[StandardMeasurementEntity] [39m[32mWrote failed datastore measurement
+to dlq 
+s3://meteringco-usage-record-dlq-bucket-sandbox/biz-final/2026/03/11/f-1787466230953.
+json.b-s105jo.json[39m
+PASS src/usage/tmp_final.spec.ts
+  final
+    ✓ covers all requirements (348 ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        3.226 s
+Ran all test suites matching /src\/usage\/tmp_final.spec.ts/i.
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 39, $2.20):
+All scenarios pass, including messages with no source file and no body at all. 
+Now final cleanup of test artifacts.
+
+```
+cd /app && rm src/usage/tmp_final.spec.ts && cat > clean.mjs <<'EOF'
+import { S3Client, ListObjectsV2Command, DeleteObjectCommand } from 
+'@aws-sdk/client-s3';
+const c = new S3Client({ region: 'us-east-1' });
+const B='meteringco-usage-record-dlq-bucket-sandbox';
+const keep = new Set([
+ 'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+ 'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+ 'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+ 'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+ 'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json',
+]);
+const r = await c.send(new ListObjectsV2Command({Bucket:B}));
+for (const o of r.Contents ?? []) if (!keep.has(o.Key)) { await c.send(new 
+DeleteObjectCommand({Bucket:B,Key:o.Key})); console.log('deleted', o.Key); }
+console.log('remaining:', ((await c.send(new 
+ListObjectsV2Command({Bucket:B}))).Contents??[]).map(o=>o.Key));
+EOF
+node clean.mjs; rm clean.mjs; git status 2>/dev/null; ls src/usage src/utils/aws
+```
+
+Tool:
+<returncode>
+0
+<output>
+deleted biz-final/2026/03/11/f-1787466230953.json-fp0vcm.json
+deleted biz-final/2026/03/11/f-1787466230953.json-vfgt2d.json
+deleted biz-final/2026/03/11/f-1787466230953.json.b-s105jo.json
+deleted meteringco-unknown/096587e4-d81b-4809-80c8-aa425e8097c2-b540qx.json
+deleted meteringco-unknown/9729b7ca-edfb-4302-b02c-5ad19fb58e17-7nhrbl.json
+remaining: [
+  'biz-cadence/2026/02/03/usage-000117.json-9wq2mz.json',
+  'biz-cadence/2026/02/03/usage-000117.json-k3f9a1.json',
+  'biz-cadence/2026/02/11/usage-000204.json-b7t4xd.json',
+  'biz-lumen/2026/02/12/usage-000031.json-m4p1cs.json',
+  'meteringco-unknown/1f5c9d2e-8a41-4f2b-9c07-6b3e5a0d1122-h2k8vq.json'
+]
+src/usage:
+dto
+entities
+usage.controller.spec.ts
+usage.controller.ts
+usage.module.ts
+usage.permissions.ts
+usage.service.spec.ts
+usage.service.ts
+
+src/utils/aws:
+awsCloutrail.ts
+awsEc2.ts
+awsPricing.ts
+awsSSM.ts
+cloudwatch.ts
+costExplorer.ts
+s3.ts
+ses.ts
+
+────────────────────────────────────────────────────────────────────────────────
+
+mini-swe-agent (step 40, $2.28):
+The implementation is complete and the emulator's DLQ bucket has been restored 
+to its seed state.
+
+**Summary of changes:**
+
+1. **`src/utils/aws/s3.ts`** — added `putObject` (awaitable `PutObject`) and 
+`objectExists` (`HeadObject`, treating 404/NotFound as absent) helpers.
+
+2. **`src/measurement-config/entities/standardMeasurement.entity.ts`**
+   - `DlqType` now has `s3` (with a `datastore` alias) alongside `kafka`, plus 
+an exported `UNKNOWN_DLQ_SOURCE_PREFIX = 'meteringco-unknown'`.
+   - New `buildDLQObjectKey()` derives the dead-letter key from the message's 
+source file (`<s3Key>-<6 char random>.json`), so failures land under the owning 
+business's own prefix, and a fresh random suffix (verified free with 
+`HeadObject`, with retries) guarantees an earlier rejection of the same source 
+file is never overwritten. When there is no source file, the message is still 
+retained under `meteringco-unknown/<uuid>-<suffix>.json`.
+   - New `publishFailureToS3DLQ()` writes `{ failedDocument, metadata }` 
+(original file content + `s3Key`, timestamp, serialized error info, `results`, 
+`orginalProcessedName`) to `DB_MEASUREMENT_DLQ_BUCKET_NAME`, and swallows/audits
+any storage error (missing bucket config, `NoSuchBucket`, access errors) so the 
+caller's rejection is never masked.
+   - `publishFailureToDLQ()` routes non-kafka types to the new S3 path; the 
+Kafka branch is byte-for-byte unchanged.
+
+3. **`src/usage/usage.controller.ts`** — the datastore intake (`POST /usage/db`)
+catch block now preserves the rejected payload in the dead-letter bucket 
+(source-file-derived key, or the `meteringco-unknown/<uuid>` fallback), strips stacks
+like the kafka path, guards the DLQ call in its own try/catch, and still throws 
+the same `BadRequestException` to the caller. The Kafka-fed `POST 
+/usage/datastore` handler is untouched.
+
+```
+echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT
+```
+
+Tool:
+<returncode>
+-1
+<output>
+
+<exception_info>
+action was not executed
+
+Exit:
+
+Saved trajectory to '/logs/agent/mini-swe-agent.trajectory.json'
