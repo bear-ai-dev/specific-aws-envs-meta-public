@@ -1,0 +1,177 @@
+{
+  "source_index": "sample-run/indexes/trials.json",
+  "trials": 48,
+  "valid_trials": 48,
+  "models": [
+    "Muse Spark 1.2",
+    "Opus 5"
+  ],
+  "tasks": [
+    "02-entitlement-overage-lines",
+    "04-measurement-failure-dlq",
+    "05-customer-communication-dispatch"
+  ],
+  "tool_names": [
+    "bash"
+  ],
+  "metrics": {
+    "agent_seconds": {
+      "min": 347.23697,
+      "median": 1309.509615,
+      "p90": 4088.328932,
+      "max": 7234.974114
+    },
+    "full_trial_seconds": {
+      "min": 451.187694,
+      "median": 1410.589814,
+      "p90": 4180.898053,
+      "max": 7330.966532
+    },
+    "setup_seconds": {
+      "min": 5.671054,
+      "median": 8.124283,
+      "p90": 9.405215,
+      "max": 10.117788
+    },
+    "verifier_seconds": {
+      "min": 4.612498,
+      "median": 6.763510999999999,
+      "p90": 30.844547,
+      "max": 31.24539
+    },
+    "model_api_calls": {
+      "min": 33,
+      "median": 67.0,
+      "p90": 101,
+      "max": 189
+    },
+    "tool_calls_requested": {
+      "min": 40,
+      "median": 71.0,
+      "p90": 100,
+      "max": 186
+    },
+    "tool_calls_executed": {
+      "min": 37,
+      "median": 69.0,
+      "p90": 98,
+      "max": 184
+    },
+    "input_tokens": {
+      "min": 1088122,
+      "median": 4912147.5,
+      "p90": 11906309,
+      "max": 35832063
+    },
+    "cached_input_tokens": {
+      "min": 1036396,
+      "median": 3657838.5,
+      "p90": 8062472,
+      "max": 26616476
+    },
+    "output_tokens": {
+      "min": 19319,
+      "median": 101703.5,
+      "p90": 352700,
+      "max": 627099
+    },
+    "total_tokens": {
+      "min": 1108102,
+      "median": 5097685.0,
+      "p90": 12249270,
+      "max": 36405782
+    },
+    "cost_usd": {
+      "min": 1.41215525,
+      "median": 3.4092401,
+      "p90": 6.912320000000003,
+      "max": 22.619395749999992
+    }
+  },
+  "cells": [
+    {
+      "task": "02-entitlement-overage-lines",
+      "task_label": "Task 2",
+      "model": "openrouter/meta/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 0,
+      "observed_pass_rate": 0.0,
+      "median_agent_seconds": 2719.020072,
+      "median_model_api_calls": 76.0,
+      "median_tool_calls_requested": 75.0,
+      "median_total_tokens": 6888203.5,
+      "median_cost_usd": 4.006741900000001
+    },
+    {
+      "task": "02-entitlement-overage-lines",
+      "task_label": "Task 2",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 675.522695,
+      "median_model_api_calls": 63.0,
+      "median_tool_calls_requested": 74.0,
+      "median_total_tokens": 3831776.0,
+      "median_cost_usd": 3.4495579250000006
+    },
+    {
+      "task": "04-measurement-failure-dlq",
+      "task_label": "Task 4",
+      "model": "openrouter/meta/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 2,
+      "observed_pass_rate": 0.25,
+      "median_agent_seconds": 3387.4952045,
+      "median_model_api_calls": 89.0,
+      "median_tool_calls_requested": 88.0,
+      "median_total_tokens": 10533967.0,
+      "median_cost_usd": 5.889743375
+    },
+    {
+      "task": "04-measurement-failure-dlq",
+      "task_label": "Task 4",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 509.08515,
+      "median_model_api_calls": 39.0,
+      "median_tool_calls_requested": 45.0,
+      "median_total_tokens": 1727925.0,
+      "median_cost_usd": 2.2802388125000004
+    },
+    {
+      "task": "05-customer-communication-dispatch",
+      "task_label": "Task 5",
+      "model": "openrouter/meta/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 5,
+      "observed_pass_rate": 0.625,
+      "median_agent_seconds": 3170.5468170000004,
+      "median_model_api_calls": 76.5,
+      "median_tool_calls_requested": 75.5,
+      "median_total_tokens": 7203603.5,
+      "median_cost_usd": 5.753566450000001
+    },
+    {
+      "task": "05-customer-communication-dispatch",
+      "task_label": "Task 5",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 556.936051,
+      "median_model_api_calls": 47.0,
+      "median_tool_calls_requested": 57.5,
+      "median_total_tokens": 2173129.5,
+      "median_cost_usd": 2.358746225
+    }
+  ]
+}

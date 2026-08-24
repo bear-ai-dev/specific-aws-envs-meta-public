@@ -36,7 +36,10 @@ comparator on the stored task variants.
 
 The [machine-readable trial index](indexes/trials.json) resolves every admitted
 trial to its native trajectory, normalized trajectory, final deliverable,
-verifier report, and reward.
+verifier report, and reward. The generated [per-trial metrics](metrics/) add
+recorded duration, model-call, tool-call, token, and cost fields for every one
+of those 48 trials. They are descriptive effort measures, not causal evidence
+for the failure modes below.
 
 | Evidence | Muse Spark 1.2 | Opus 5 |
 | --- | --- | --- |

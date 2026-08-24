@@ -73,6 +73,7 @@ Point the indexer at one or more Harbor job directories:
 ```sh
 python3 harness/summarize_cohort.py sample-run/raw/<job-dir> [sample-run/raw/<job-dir> ...]
 python3 harness/freeze_manifest.py
+python3 harness/export_trial_metrics.py
 ```
 
 A trial is admitted only when the agent phase started, the verifier produced a
@@ -83,13 +84,14 @@ verifier artifacts are present. Raw solves and pass@k stay separate.
 
 ```sh
 python3 harness/redact_artifacts.py --check
+python3 harness/export_trial_metrics.py --check
 python3 harness/validate_publication.py
 git status --short
 ```
 
 The publication validator checks task headings and digests, the six 8-attempt
-cells, all 48 evidence paths, result/reward agreement, controls, local Markdown
-links, selected JSON documents, and privacy patterns.
+cells, all 48 evidence paths, result/reward agreement, reproducible metrics,
+controls, local Markdown links, selected JSON documents, and privacy patterns.
 
 ## Recorded-evidence boundary
 

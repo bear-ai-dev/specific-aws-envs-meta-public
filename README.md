@@ -18,7 +18,9 @@ contracts through boundary cases. It is not a universal model ranking.
 Read the [verifier-backed analysis](sample-run/analysis.md) for the failure
 modes, representative traces, fairness controls, and evidence limitations. The
 [pass-rate matrix](sample-run/indexes/pass-rate-matrix.md) reports raw solves
-separately from pass@1, pass@3, and pass@8.
+separately from pass@1, pass@3, and pass@8. Plot-ready execution-time,
+model-call, tool-call, token, and cost data are under
+[`sample-run/metrics`](sample-run/metrics/).
 
 ## What is included
 
@@ -28,6 +30,8 @@ separately from pass@1, pass@3, and pass@8.
   trial in the reported denominator.
 - Native mini-SWE-agent and normalized ATIF trajectories, submitted code,
   verifier reports, reward files, and run metadata.
+- Reproducible per-trial execution, call, token, and cost metrics in CSV and
+  JSON, plus machine-readable cohort summaries.
 - Oracle and no-op control configuration, post-normalization control results,
   task digests, a frozen cohort manifest, and an automated publication check.
 - A reproduction harness for Harbor 0.18.0 and mini-SWE-agent 2.4.5.
@@ -41,6 +45,7 @@ shared/                deterministic local AWS-compatible task runtime
 sample-run/raw/        complete admitted model-trial evidence
 sample-run/indexes/    machine-readable trial index and pass-rate tables
 sample-run/manifests/  frozen hashes, controls, and redaction records
+sample-run/metrics/    generated per-trial effort and execution metrics
 sample-run/analysis.md verifier-backed model comparison
 ```
 
@@ -59,7 +64,7 @@ verifier outputs, and rewards were preserved.
 The normalized tasks were rerun with both controls: each oracle scored `1.0`,
 each no-op scored `0.0`, and no control raised an exception. Run
 `python3 harness/validate_publication.py` to check the complete public file set,
-trial cells, hashes, links, controls, and privacy gates.
+trial cells, generated metrics, hashes, links, controls, and privacy gates.
 
 Task 5 has one additional evidence-boundary note: the eight stored Opus trials
 are a documented retained slice of 24 measured attempts. All eight retained

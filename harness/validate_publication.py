@@ -6,8 +6,11 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+import sys
 from pathlib import Path
 from urllib.parse import unquote
+
+sys.dont_write_bytecode = True
 
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -179,6 +182,50 @@ def validate_controls() -> None:
             raise SystemExit(f"control exception: {task}")
 
 
+def validate_metrics(trials: list[dict]) -> None:
+    from export_trial_metrics import generate as generate_metric_outputs
+
+    try:
+        expected_outputs = generate_metric_outputs()
+    except (KeyError, OSError, TypeError, ValueError) as error:
+        raise SystemExit(f"metric source validation failed: {error}") from error
+    for path, expected in expected_outputs.items():
+        if not path.is_file():
+            raise SystemExit(f"missing metric export: {path.relative_to(ROOT)}")
+        if path.read_text() != expected:
+            raise SystemExit(f"stale metric export: {path.relative_to(ROOT)}")
+
+    rows = load_json(ROOT / "sample-run" / "metrics" / "per-trial-metrics.json")
+    summary = load_json(ROOT / "sample-run" / "metrics" / "summary.json")
+    if not isinstance(rows, list) or len(rows) != 48:
+        raise SystemExit("expected exactly 48 metric rows")
+    if {row.get("trial_id") for row in rows} != {trial["trial"] for trial in trials}:
+        raise SystemExit("metric rows do not match indexed trial membership")
+    for key in EXPECTED_SOLVES:
+        cell = [row for row in rows if (row.get("task"), row.get("model")) == key]
+        if sorted(row.get("attempt") for row in cell) != list(range(1, 9)):
+            raise SystemExit(f"unexpected metric attempts for {key}")
+        if sum(bool(row.get("passed")) for row in cell) != EXPECTED_SOLVES[key]:
+            raise SystemExit(f"unexpected metric solves for {key}")
+        for row in cell:
+            if row["tool_calls_requested"] != (
+                row["tool_calls_executed"] + row["tool_calls_not_executed"]
+            ):
+                raise SystemExit(f"tool-call accounting mismatch: {row['trial_id']}")
+            if row["total_tokens"] != row["input_tokens"] + row["output_tokens"]:
+                raise SystemExit(f"token accounting mismatch: {row['trial_id']}")
+            if row["uncached_input_tokens"] != (
+                row["input_tokens"] - row["cached_input_tokens"]
+            ):
+                raise SystemExit(f"cached-token accounting mismatch: {row['trial_id']}")
+    if summary.get("source_index") != "sample-run/indexes/trials.json":
+        raise SystemExit("metric summary source mismatch")
+    if summary.get("trials") != 48 or summary.get("valid_trials") != 48:
+        raise SystemExit("metric summary trial count mismatch")
+    if len(summary.get("cells") or []) != 6:
+        raise SystemExit("metric summary cell count mismatch")
+
+
 def validate_manifests() -> None:
     transformation_path = ROOT / "sample-run" / "manifests" / "public-transformation.json"
     transformation = load_json(transformation_path)
@@ -209,6 +256,8 @@ def validate_json_documents(trials: list[dict]) -> int:
         ROOT / "sample-run" / "indexes" / "trials.json",
         ROOT / "sample-run" / "indexes" / "execution-summary.json",
         ROOT / "sample-run" / "indexes" / "redaction-manifest.json",
+        ROOT / "sample-run" / "metrics" / "per-trial-metrics.json",
+        ROOT / "sample-run" / "metrics" / "summary.json",
     }
     paths.update((ROOT / "sample-run" / "manifests").glob("*.json"))
     for trial in trials:
@@ -274,6 +323,7 @@ def main() -> None:
         if first_line != EXPECTED_HEADINGS[task]:
             raise SystemExit(f"task heading mismatch: {task}")
     trials = validate_trials()
+    validate_metrics(trials)
     validate_controls()
     validate_manifests()
     json_docs = validate_json_documents(trials)
