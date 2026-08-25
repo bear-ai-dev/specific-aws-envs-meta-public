@@ -61,11 +61,13 @@ PRIVATE_KEY = re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----")
 SOURCE_TERMS = (
     "Paigo",
     "paigo",
-    "bear-ai-dev/specific-aws-envs-meta",
     "specific-aws-envs-xai",
     "dalton.dandrea",
     "matt.sun",
     "Daniel Wasserlauf",
+)
+SOURCE_PATTERNS = (
+    re.compile(r"bear-ai-dev/specific-aws-envs-meta(?!-public)", re.IGNORECASE),
 )
 PATTERN_DEFINITIONS = {
     ROOT / "harness" / "redact_artifacts.py",
@@ -325,6 +327,11 @@ def validate_privacy() -> int:
             lowered = text.lower()
             for term in SOURCE_TERMS:
                 if term.lower() in lowered:
+                    raise SystemExit(
+                        f"source-only identifier in {path.relative_to(ROOT)}"
+                    )
+            for pattern in SOURCE_PATTERNS:
+                if pattern.search(text):
                     raise SystemExit(
                         f"source-only identifier in {path.relative_to(ROOT)}"
                     )
