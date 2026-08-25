@@ -311,8 +311,8 @@ def validate_json_documents(trials: list[dict]) -> int:
             trial_dir / "result.json",
             trial_dir / "config.json",
             trial_dir / "lock.json",
-            trial_dir / "mini-swe-agent.trajectory.json",
-            trial_dir / "trajectory.json",
+            trial_dir / "agent" / "mini-swe-agent.trajectory.json",
+            trial_dir / "agent" / "trajectory.json",
             ROOT / trial["verifier"],
         }
         paths.update(path for path in candidates if path.is_file())

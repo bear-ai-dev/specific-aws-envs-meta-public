@@ -56,12 +56,10 @@ sample-run/analysis.md verifier-backed model comparison
 
 All 64 advertised trials use the same
 `sample-run/trajectories/<task>/<model>/trial-XX` layout and include native,
-ATIF, and text trajectories directly in each trial directory as
-`mini-swe-agent.trajectory.json`, `trajectory.json`, and `mini-swe-agent.txt`.
-Tasks 1, 2, and 3 include the submitted deliverable under
-`verifier/deliverable/`. Task 4 keeps the remaining evidence without duplicated
-submitted-code snapshots; its text views are deterministic renders of the
-native public JSON trajectories.
+ATIF, and text trajectories. Tasks 1, 2, and 3 include the submitted deliverable
+under `verifier/deliverable/`. Task 4 keeps the remaining evidence without
+duplicated submitted-code snapshots; its text views are deterministic renders
+of the native public JSON trajectories.
 
 ## Evidence validity
 

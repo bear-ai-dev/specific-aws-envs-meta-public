@@ -5,13 +5,11 @@ eight each for Muse Spark 1.2 and Opus 5 across four tasks. Attempts are ordered
 chronologically by the recorded agent start timestamp within each task-model
 cell.
 
-Each `trial-*` directory exposes `mini-swe-agent.trajectory.json`,
-`trajectory.json`, and `mini-swe-agent.txt` at its top level so reviewers see
-the native mini-SWE-agent trajectory, normalized ATIF trajectory, and text
-transcript immediately. The same directory also contains the Harbor result,
-verifier report, reward, logs, and run metadata. The native `result.json`
-preserves the recorded trial identifier and provider route; the public index
-maps those identifiers to this canonical layout.
+Each `trial-*` directory includes the native mini-SWE-agent trajectory,
+normalized ATIF trajectory, text transcript, Harbor result, verifier report,
+reward, logs, and run metadata. The native `result.json` preserves the recorded
+trial identifier and provider route; the public index maps those identifiers to
+this canonical layout.
 
 Tasks 1, 2, and 3 also include the submitted deliverable. Task 4 omits its
 duplicated full submitted-code snapshots. Its text transcripts are deterministic
