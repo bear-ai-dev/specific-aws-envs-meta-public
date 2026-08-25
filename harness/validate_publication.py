@@ -28,7 +28,6 @@ EXPECTED_HEADINGS = {
 }
 MUSE = "openrouter/meta/muse-spark-1.2"
 MUSE_DIRECT = "meta/responses/muse-spark-1.2"
-GPT_SOL = "bedrock/openai/gpt-5.6-sol"
 OPUS = "bedrock/us.anthropic.claude-opus-5"
 EXPECTED_SOLVES = {
     (TASKS[0], MUSE): 0,
@@ -38,8 +37,12 @@ EXPECTED_SOLVES = {
     (TASKS[2], MUSE): 5,
     (TASKS[2], OPUS): 8,
     (TASKS[3], MUSE_DIRECT): 4,
-    (TASKS[3], GPT_SOL): 3,
     (TASKS[3], OPUS): 8,
+}
+MODEL_SLUGS = {
+    MUSE: "muse-spark-1.2",
+    MUSE_DIRECT: "muse-spark-1.2",
+    OPUS: "opus-5",
 }
 RECORDED_TASK_CHECKSUMS = {
     TASKS[0]: "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
@@ -121,8 +124,8 @@ def validate_links() -> int:
 
 def validate_trials() -> list[dict]:
     trials = load_json(ROOT / "sample-run" / "indexes" / "trials.json")
-    if not isinstance(trials, list) or len(trials) != 72:
-        raise SystemExit("expected exactly 72 indexed trials")
+    if not isinstance(trials, list) or len(trials) != 64:
+        raise SystemExit("expected exactly 64 indexed trials")
     if not all(trial.get("valid") for trial in trials):
         raise SystemExit("every indexed trial must be valid")
 
@@ -208,8 +211,8 @@ def validate_metrics(trials: list[dict]) -> None:
 
     rows = load_json(ROOT / "sample-run" / "metrics" / "per-trial-metrics.json")
     summary = load_json(ROOT / "sample-run" / "metrics" / "summary.json")
-    if not isinstance(rows, list) or len(rows) != 72:
-        raise SystemExit("expected exactly 72 metric rows")
+    if not isinstance(rows, list) or len(rows) != 64:
+        raise SystemExit("expected exactly 64 metric rows")
     if {row.get("trial_id") for row in rows} != {trial["trial"] for trial in trials}:
         raise SystemExit("metric rows do not match indexed trial membership")
     for key in EXPECTED_SOLVES:
@@ -219,6 +222,16 @@ def validate_metrics(trials: list[dict]) -> None:
         if sum(bool(row.get("passed")) for row in cell) != EXPECTED_SOLVES[key]:
             raise SystemExit(f"unexpected metric solves for {key}")
         for row in cell:
+            expected_trial_dir = (
+                ROOT
+                / "sample-run"
+                / "trajectories"
+                / row["task"]
+                / MODEL_SLUGS[row["model"]]
+                / f"trial-{row['attempt']:02d}"
+            )
+            if (ROOT / row["result_path"]).parent != expected_trial_dir:
+                raise SystemExit(f"noncanonical trial path: {row['trial_id']}")
             if row["tool_calls_requested"] != (
                 row["tool_calls_executed"] + row["tool_calls_not_executed"]
             ):
@@ -231,9 +244,9 @@ def validate_metrics(trials: list[dict]) -> None:
                 raise SystemExit(f"cached-token accounting mismatch: {row['trial_id']}")
     if summary.get("source_index") != "sample-run/indexes/trials.json":
         raise SystemExit("metric summary source mismatch")
-    if summary.get("trials") != 72 or summary.get("valid_trials") != 72:
+    if summary.get("trials") != 64 or summary.get("valid_trials") != 64:
         raise SystemExit("metric summary trial count mismatch")
-    if len(summary.get("cells") or []) != 9:
+    if len(summary.get("cells") or []) != 8:
         raise SystemExit("metric summary cell count mismatch")
 
 
@@ -300,6 +313,7 @@ def validate_privacy() -> int:
         ROOT / ".env",
         ROOT / "DOCTRINE.md",
         ROOT / "harness" / "normalize_publication.py",
+        ROOT / "sample-run" / "raw",
         ROOT / "sample-run" / "manifests" / "normalization-report.json",
     )
     for path in forbidden_files:
@@ -352,11 +366,11 @@ def main() -> None:
     links = validate_links()
     text_files = validate_privacy()
     summary = load_json(ROOT / "sample-run" / "indexes" / "execution-summary.json")
-    if summary.get("scored_valid_trials") != 72:
+    if summary.get("scored_valid_trials") != 64:
         raise SystemExit("execution summary trial count mismatch")
     print(
         "publication validation passed: "
-        f"tasks=4 trials=72 controls=8 json={json_docs} "
+        f"tasks=4 trials=64 controls=8 json={json_docs} "
         f"links={links} text_files={text_files}"
     )
 

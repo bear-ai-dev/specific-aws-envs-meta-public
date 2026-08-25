@@ -3,7 +3,7 @@
   "transformation": "deterministic_identifier_only_publication_normalization",
   "scope": [
     "four task definitions and workspaces",
-    "captured trajectories, retained deliverables, and verifier artifacts",
+    "captured trajectories, submitted deliverables, and verifier artifacts",
     "manifests, indexes, and documentation"
   ],
   "normalized_identifier_classes": [
@@ -24,11 +24,7 @@
     "recorded trial identifiers and trial membership"
   ],
   "public_evidence_layout": {
-    "muse-spark-1.2": "sample-run/raw/muse-spark-1.2-rollout-20260824",
-    "opus-5": "sample-run/raw/opus-5-eight-rollout-20260823",
-    "14-muse-spark-1.2": "sample-run/trajectories/14-iam-role-validation/muse-spark-1.2",
-    "14-gpt-5.6-sol": "sample-run/trajectories/14-iam-role-validation/gpt-5.6-sol",
-    "14-opus-5": "sample-run/trajectories/14-iam-role-validation/opus-5",
+    "trajectories": "sample-run/trajectories/<task>/<model>/trial-XX",
     "trial_index": "sample-run/indexes/trials.json"
   },
   "recorded_runtime_task_sha256": {
@@ -47,7 +43,7 @@
     "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
     "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
     "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
-    "14-iam-role-validation": "4214d694027f35d5d0a9335733f72cb997fef154968a2b5c75a880f73eaba2af"
+    "14-iam-role-validation": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9"
   },
   "recorded_runtime_controls": {
     "oracle_required": 1.0,

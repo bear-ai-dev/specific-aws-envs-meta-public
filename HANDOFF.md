@@ -11,7 +11,6 @@ clone.
 | Orchestrator | Harbor 0.18.0 | Harbor 0.18.0 |
 | Agent | mini-SWE-agent 2.4.5 | mini-SWE-agent 2.4.5 |
 | Muse route | `openrouter/meta/muse-spark-1.2` | `meta/responses/muse-spark-1.2` |
-| GPT-5.6 Sol route | not run | `bedrock/openai/gpt-5.6-sol` |
 | Opus route | `bedrock/us.anthropic.claude-opus-5` | `bedrock/us.anthropic.claude-opus-5` |
 | Reasoning setting | high | high |
 | Attempts | 8 per model per task | 8 per model |
@@ -34,7 +33,6 @@ Fill only the credentials required for the run. Never commit `.env`.
 - `DAYTONA_API_KEY` provisions isolated task sandboxes.
 - `OPENROUTER_API_KEY` is needed for the original Muse cohort.
 - `META_API_KEY` is needed for the direct Meta Responses route on Task 14.
-- `BEDROCK_OPENAI_API_KEY` is a short-lived bearer token for GPT-5.6 Sol.
 - The AWS variables authenticate the Opus Bedrock route.
 
 The task images provide separate fake credentials and a loopback
@@ -70,7 +68,7 @@ PYTHONPATH="$PWD" harbor run --config harness/task14-cohort.json --yes
 The two configs fix their tasks, routes, versions, reasoning setting, attempt
 count, and concurrency. The original Muse cohort is capped at three concurrent
 trials; the Task 14 reproduction runs up to eight trials per model. Provider or
-infrastructure failures should be retained as unscored evidence and refilled;
+infrastructure failures should be preserved as unscored evidence and refilled;
 they must not be converted to model failures.
 
 ## 4. Build indexes and freeze evidence
@@ -97,15 +95,15 @@ python3 harness/validate_publication.py
 git status --short
 ```
 
-The publication validator checks task headings and digests, the nine 8-attempt
-cells, all 72 evidence paths, result/reward agreement, reproducible metrics,
+The publication validator checks task headings and digests, the eight 8-attempt
+cells, all 64 evidence paths, result/reward agreement, reproducible metrics,
 controls, local Markdown links, selected JSON documents, and privacy patterns.
 
 ## Recorded-evidence boundary
 
 The public artifacts preserve the recorded model behavior and scores, but a
 new run may differ because providers, inference systems, and model aliases can
-change. The stored Task 5 Opus cell is an explicitly retained eight-trial slice
-from 24 measured attempts (23/24 overall), not a fresh estimate. See the
+change. The eight displayed Task 5 Opus trials are a documented subset of 24
+measured attempts (23/24 overall), not a fresh estimate. See the
 [analysis](sample-run/analysis.md#evidence-boundary) before drawing broader
 conclusions.

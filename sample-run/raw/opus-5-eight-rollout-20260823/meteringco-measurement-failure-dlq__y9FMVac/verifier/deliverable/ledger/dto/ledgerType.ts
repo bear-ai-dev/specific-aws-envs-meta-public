@@ -1,7 +1,0 @@
-export enum LedgerType {
-    INVOICE = 'INVOICE',
-    CUSTOMER = 'CUSTOMER',
-    ENROLLMENT = 'ENROLLMENT',
-    CUSTOMERGROUP = 'CUSTOMERGROUP',
-    CHILDROW = 'CHILDROW',
-}

@@ -1,8 +1,8 @@
 {
-  "job_name": "meta-task14-muse12-gpt56sol-opus5-eight-rollout-reproduction",
-  "jobs_dir": "sample-run/raw",
+  "job_name": "meta-task14-muse12-opus5-eight-rollout-reproduction",
+  "jobs_dir": "jobs",
   "n_attempts": 8,
-  "n_concurrent_trials": 24,
+  "n_concurrent_trials": 16,
   "quiet": false,
   "retry": {
     "max_retries": 0
@@ -13,7 +13,7 @@
     "kwargs": {
       "connection_pool_maxsize": 48,
       "labels": {
-        "cohort": "meta-task14-muse12-gpt56sol-opus5-eight-rollout-reproduction"
+        "cohort": "meta-task14-muse12-opus5-eight-rollout-reproduction"
       }
     }
   },
@@ -32,22 +32,6 @@
       "env": {
         "OPENAI_API_KEY": "${META_API_KEY}",
         "OPENAI_BASE_URL": "https://api.meta.ai/v1"
-      }
-    },
-    {
-      "import_path": "harness.harbor_agents:ResponsesMiniSweAgent",
-      "model_name": "openai/us.openai.gpt-5.6-sol",
-      "n_concurrent": 8,
-      "kwargs": {
-        "version": "2.4.5",
-        "cost_limit": "0",
-        "config_file": "harness/mini-swe-bedrock-openai-responses.yaml",
-        "reasoning_effort": "high",
-        "max_tokens": 32768
-      },
-      "env": {
-        "OPENAI_API_KEY": "${BEDROCK_OPENAI_API_KEY}",
-        "OPENAI_BASE_URL": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1"
       }
     },
     {

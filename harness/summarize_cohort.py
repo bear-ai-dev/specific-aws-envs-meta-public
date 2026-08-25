@@ -21,24 +21,22 @@ TASK_ALIASES = {
     "meteringco-entitlement-overage-lines": TASKS[0],
     "meteringco-measurement-failure-dlq": TASKS[1],
     "meteringco-customer-communication-dis": TASKS[2],
+    "meteringco-customer-communication-dispatch": TASKS[2],
     "meteringco-iam-role-validation": TASKS[3],
     **{task: task for task in TASKS},
 }
 MUSE_OPENROUTER = "openrouter/meta/muse-spark-1.2"
 MUSE_DIRECT = "meta/responses/muse-spark-1.2"
-GPT_SOL = "bedrock/openai/gpt-5.6-sol"
 OPUS = "bedrock/us.anthropic.claude-opus-5"
 MODEL_ALIASES = {
     "openrouter/meta/muse-spark-1.2": (MUSE_OPENROUTER, "Muse Spark 1.2"),
     "openai/muse-spark-1.2": (MUSE_DIRECT, "Muse Spark 1.2"),
-    "openai/us.openai.gpt-5.6-sol": (GPT_SOL, "GPT-5.6 Sol"),
     "bedrock/us.anthropic.claude-opus-5": (OPUS, "Opus 5"),
     "bedrock/converse/us.anthropic.claude-opus-5": (OPUS, "Opus 5"),
 }
 MODEL_ORDER = (
     MUSE_OPENROUTER,
     MUSE_DIRECT,
-    GPT_SOL,
     OPUS,
 )
 EXPECTED_SOLVES = {
@@ -49,13 +47,10 @@ EXPECTED_SOLVES = {
     (TASKS[2], MUSE_OPENROUTER): 5,
     (TASKS[2], OPUS): 8,
     (TASKS[3], MUSE_DIRECT): 4,
-    (TASKS[3], GPT_SOL): 3,
     (TASKS[3], OPUS): 8,
 }
 DEFAULT_ROOTS = (
-    ROOT / "sample-run" / "raw" / "muse-spark-1.2-rollout-20260824",
-    ROOT / "sample-run" / "raw" / "opus-5-eight-rollout-20260823",
-    ROOT / "sample-run" / "trajectories" / "14-iam-role-validation",
+    ROOT / "sample-run" / "trajectories",
 )
 
 
@@ -77,11 +72,11 @@ def task_name(result: dict, trial_dir: Path) -> str | None:
     return TASK_ALIASES.get(prefix)
 
 
-def load_trials(raw_roots: tuple[Path, ...]) -> list[dict]:
+def load_trials(evidence_roots: tuple[Path, ...]) -> list[dict]:
     trials = []
     seen = set()
-    for raw_root in raw_roots:
-        for result_path in sorted(raw_root.rglob("result.json")):
+    for evidence_root in evidence_roots:
+        for result_path in sorted(evidence_root.rglob("result.json")):
             trial_dir = result_path.parent
             if trial_dir.resolve() in seen:
                 continue
@@ -128,7 +123,6 @@ def load_trials(raw_roots: tuple[Path, ...]) -> list[dict]:
                 "model": model,
                 "model_label": model_label,
                 "trial": trial_id,
-                "run_id": Path(str((result.get("config") or {}).get("trials_dir") or "")).name,
                 "reward": float(reward) if isinstance(reward, (int, float)) else None,
                 "passed": bool(valid and float(reward) >= 1.0),
                 "valid": valid,
@@ -215,9 +209,9 @@ def validate_cells(trials: list[dict]) -> None:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("raw_dirs", type=Path, nargs="*")
+    parser.add_argument("evidence_dirs", type=Path, nargs="*")
     args = parser.parse_args()
-    roots = tuple(path.resolve() for path in args.raw_dirs) or DEFAULT_ROOTS
+    roots = tuple(path.resolve() for path in args.evidence_dirs) or DEFAULT_ROOTS
     trials = load_trials(roots)
     validate_cells(trials)
 
@@ -245,8 +239,8 @@ def main() -> None:
         "trials_excluded_no_attempt": sum(not trial["valid"] for trial in trials),
         "denominator_policy": (
             "numeric verifier reward, agent process started, no Harbor exception, "
-            "native and normalized trajectories, verifier report, and reward; complete "
-            "deliverables are retained where the source evidence package included them"
+            "native and normalized trajectories, verifier report, and reward; submitted "
+            "deliverables are included where the source evidence package provided them"
         ),
         "by_model": by_model,
         "public_controls": controls,

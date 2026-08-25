@@ -64,7 +64,7 @@
       }
     },
     "14-iam-role-validation": {
-      "public_task_sha256": "4214d694027f35d5d0a9335733f72cb997fef154968a2b5c75a880f73eaba2af",
+      "public_task_sha256": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9",
       "control_source_public_task_sha256": "38747a620a3dcdc45516f20d074bd98c7e127b8086b4b2630023354345214288",
       "reuse_basis": "The current task differs from the controlled public tree only by README documentation; environment, solution, and verifier files are byte-identical.",
       "oracle": {

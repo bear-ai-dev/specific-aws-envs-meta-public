@@ -11,7 +11,6 @@ jobs/
 .calib-archive/
 tasks/*/.local/
 
-# New Harbor runs are local by default. The two recorded evidence directories
-# already tracked by this repository remain tracked.
-sample-run/raw/*-reproduction-*/
+# New Harbor runs are local by default. Recorded evidence is curated under
+# sample-run/trajectories instead of written directly by Harbor.
 sample-run/logs/

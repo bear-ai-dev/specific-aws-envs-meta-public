@@ -54,7 +54,6 @@ def main() -> None:
         "harness/mini-swe-bedrock.yaml",
         "harness/mini-swe-openrouter.yaml",
         "harness/mini-swe-meta-responses.yaml",
-        "harness/mini-swe-bedrock-openai-responses.yaml",
         "harness/mini-swe-bedrock-anthropic-v2.yaml",
     )
     controls_manifest = ROOT / "sample-run" / "manifests" / "public-controls-validation.json"
@@ -73,15 +72,13 @@ def main() -> None:
             },
         ],
         "evidence_roots": [
-            "sample-run/raw/muse-spark-1.2-rollout-20260824",
-            "sample-run/raw/opus-5-eight-rollout-20260823",
-            "sample-run/trajectories/14-iam-role-validation",
+            "sample-run/trajectories",
         ],
         "attempts_per_task_model": CONFIG["n_attempts"],
         "validity_rule": (
             "numeric verifier reward, agent process started, no Harbor exception, "
             "native and normalized trajectories, verifier report, and reward; "
-            "submitted deliverable retained where available"
+            "submitted deliverable included where available"
         ),
         "harbor_version": harbor_version(),
         "mini_swe_agent_version": "2.4.5",
@@ -89,7 +86,6 @@ def main() -> None:
             "muse-spark-1.2": "openrouter/meta/muse-spark-1.2",
             "opus-5": "bedrock/us.anthropic.claude-opus-5",
             "muse-spark-1.2-direct": "meta/responses/muse-spark-1.2",
-            "gpt-5.6-sol": "bedrock/openai/gpt-5.6-sol",
         },
         "agent": "mini-swe-agent",
         "reasoning_effort": "high",
