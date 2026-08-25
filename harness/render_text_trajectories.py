@@ -135,7 +135,7 @@ def render(source: Path) -> str:
 
 def generate_outputs() -> dict[Path, str]:
     outputs: dict[Path, str] = {}
-    for source in sorted(TASK_ROOT.glob("*/trial-*/mini-swe-agent.trajectory.json")):
+    for source in sorted(TASK_ROOT.glob("*/trial-*/agent/mini-swe-agent.trajectory.json")):
         outputs[source.with_name("mini-swe-agent.txt")] = render(source)
     return outputs
 

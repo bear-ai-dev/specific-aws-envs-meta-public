@@ -40,8 +40,8 @@
     "total_tokens": 5105491,
     "cost_usd": 3.658675250000001,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-01/verifier/report.txt"
   },
   {
@@ -85,8 +85,8 @@
     "total_tokens": 9726778,
     "cost_usd": 5.704828000000001,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-02/verifier/report.txt"
   },
   {
@@ -130,8 +130,8 @@
     "total_tokens": 6427476,
     "cost_usd": 4.3548085500000004,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-03/verifier/report.txt"
   },
   {
@@ -175,8 +175,8 @@
     "total_tokens": 7769458,
     "cost_usd": 6.232242050000001,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-04/verifier/report.txt"
   },
   {
@@ -220,8 +220,8 @@
     "total_tokens": 7348931,
     "cost_usd": 3.44480895,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-05/verifier/report.txt"
   },
   {
@@ -265,8 +265,8 @@
     "total_tokens": 4677797,
     "cost_usd": 2.839665450000001,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-06/verifier/report.txt"
   },
   {
@@ -310,8 +310,8 @@
     "total_tokens": 5776006,
     "cost_usd": 3.523647199999999,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-07/verifier/report.txt"
   },
   {
@@ -355,8 +355,8 @@
     "total_tokens": 33179306,
     "cost_usd": 13.913563400000008,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/muse-spark-1.2/trial-08/verifier/report.txt"
   },
   {
@@ -400,8 +400,8 @@
     "total_tokens": 2812700,
     "cost_usd": 2.61591275,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-01/verifier/report.txt"
   },
   {
@@ -445,8 +445,8 @@
     "total_tokens": 4305899,
     "cost_usd": 3.830530825,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-02/verifier/report.txt"
   },
   {
@@ -490,8 +490,8 @@
     "total_tokens": 3770595,
     "cost_usd": 3.345519375000001,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-03/verifier/report.txt"
   },
   {
@@ -535,8 +535,8 @@
     "total_tokens": 2056693,
     "cost_usd": 2.051410075,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-04/verifier/report.txt"
   },
   {
@@ -580,8 +580,8 @@
     "total_tokens": 3892957,
     "cost_usd": 3.5535964749999995,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-05/verifier/report.txt"
   },
   {
@@ -625,8 +625,8 @@
     "total_tokens": 5282945,
     "cost_usd": 4.504437574999999,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-06/verifier/report.txt"
   },
   {
@@ -670,8 +670,8 @@
     "total_tokens": 2828882,
     "cost_usd": 2.6606255500000007,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-07/verifier/report.txt"
   },
   {
@@ -715,8 +715,8 @@
     "total_tokens": 5272335,
     "cost_usd": 4.55187535,
     "result_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/01-entitlement-overage-lines/opus-5/trial-08/verifier/report.txt"
   },
   {
@@ -760,8 +760,8 @@
     "total_tokens": 9443459,
     "cost_usd": 5.704651050000001,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-01/verifier/report.txt"
   },
   {
@@ -805,8 +805,8 @@
     "total_tokens": 36405782,
     "cost_usd": 22.619395749999992,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-02/verifier/report.txt"
   },
   {
@@ -850,8 +850,8 @@
     "total_tokens": 5656407,
     "cost_usd": 2.34798155,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-03/verifier/report.txt"
   },
   {
@@ -895,8 +895,8 @@
     "total_tokens": 11624475,
     "cost_usd": 6.39203705,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-04/verifier/report.txt"
   },
   {
@@ -940,8 +940,8 @@
     "total_tokens": 6919493,
     "cost_usd": 3.301784,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-05/verifier/report.txt"
   },
   {
@@ -985,8 +985,8 @@
     "total_tokens": 8048768,
     "cost_usd": 4.41587935,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-06/verifier/report.txt"
   },
   {
@@ -1030,8 +1030,8 @@
     "total_tokens": 13863319,
     "cost_usd": 10.16748145,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-07/verifier/report.txt"
   },
   {
@@ -1075,8 +1075,8 @@
     "total_tokens": 12249270,
     "cost_usd": 6.074835699999999,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/muse-spark-1.2/trial-08/verifier/report.txt"
   },
   {
@@ -1120,8 +1120,8 @@
     "total_tokens": 2318312,
     "cost_usd": 2.8343037250000003,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-01/verifier/report.txt"
   },
   {
@@ -1165,8 +1165,8 @@
     "total_tokens": 1697993,
     "cost_usd": 2.2882065250000005,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-02/verifier/report.txt"
   },
   {
@@ -1210,8 +1210,8 @@
     "total_tokens": 1971097,
     "cost_usd": 2.2808010500000004,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-03/verifier/report.txt"
   },
   {
@@ -1255,8 +1255,8 @@
     "total_tokens": 2137138,
     "cost_usd": 2.483077575,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-04/verifier/report.txt"
   },
   {
@@ -1300,8 +1300,8 @@
     "total_tokens": 1445940,
     "cost_usd": 1.7207613499999999,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-05/verifier/report.txt"
   },
   {
@@ -1345,8 +1345,8 @@
     "total_tokens": 1108102,
     "cost_usd": 1.4749878,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-06/verifier/report.txt"
   },
   {
@@ -1390,8 +1390,8 @@
     "total_tokens": 1757857,
     "cost_usd": 2.2796765750000008,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-07/verifier/report.txt"
   },
   {
@@ -1435,8 +1435,8 @@
     "total_tokens": 1165983,
     "cost_usd": 1.41215525,
     "result_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/02-measurement-failure-dlq/opus-5/trial-08/verifier/report.txt"
   },
   {
@@ -1480,8 +1480,8 @@
     "total_tokens": 10719375,
     "cost_usd": 6.419650900000001,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-01/verifier/report.txt"
   },
   {
@@ -1525,8 +1525,8 @@
     "total_tokens": 5089879,
     "cost_usd": 3.37367125,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-02/verifier/report.txt"
   },
   {
@@ -1570,8 +1570,8 @@
     "total_tokens": 7288882,
     "cost_usd": 4.940795300000001,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-03/verifier/report.txt"
   },
   {
@@ -1615,8 +1615,8 @@
     "total_tokens": 16862614,
     "cost_usd": 12.24516765,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-04/verifier/report.txt"
   },
   {
@@ -1660,8 +1660,8 @@
     "total_tokens": 6432625,
     "cost_usd": 5.898641300000001,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-05/verifier/report.txt"
   },
   {
@@ -1705,8 +1705,8 @@
     "total_tokens": 6790493,
     "cost_usd": 4.835414999999999,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-06/verifier/report.txt"
   },
   {
@@ -1750,8 +1750,8 @@
     "total_tokens": 7118325,
     "cost_usd": 5.6084916,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-07/verifier/report.txt"
   },
   {
@@ -1795,8 +1795,8 @@
     "total_tokens": 10297819,
     "cost_usd": 6.912320000000003,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/muse-spark-1.2/trial-08/verifier/report.txt"
   },
   {
@@ -1840,8 +1840,8 @@
     "total_tokens": 1819347,
     "cost_usd": 1.8654361000000006,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-01/verifier/report.txt"
   },
   {
@@ -1885,8 +1885,8 @@
     "total_tokens": 2593674,
     "cost_usd": 2.702675525,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-02/verifier/report.txt"
   },
   {
@@ -1930,8 +1930,8 @@
     "total_tokens": 2885818,
     "cost_usd": 2.9272182499999992,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-03/verifier/report.txt"
   },
   {
@@ -1975,8 +1975,8 @@
     "total_tokens": 2126640,
     "cost_usd": 2.344168475,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-04/verifier/report.txt"
   },
   {
@@ -2020,8 +2020,8 @@
     "total_tokens": 1907572,
     "cost_usd": 2.043448825,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-05/verifier/report.txt"
   },
   {
@@ -2065,8 +2065,8 @@
     "total_tokens": 2318374,
     "cost_usd": 2.4214605250000005,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-06/verifier/report.txt"
   },
   {
@@ -2110,8 +2110,8 @@
     "total_tokens": 2219619,
     "cost_usd": 2.3733239749999995,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-07/verifier/report.txt"
   },
   {
@@ -2155,8 +2155,8 @@
     "total_tokens": 1987966,
     "cost_usd": 2.2489323999999997,
     "result_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/03-customer-communication-dispatch/opus-5/trial-08/verifier/report.txt"
   },
   {
@@ -2198,8 +2198,8 @@
     "total_tokens": 6043057,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-01/verifier/report.txt"
   },
   {
@@ -2241,8 +2241,8 @@
     "total_tokens": 6790700,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-02/verifier/report.txt"
   },
   {
@@ -2284,8 +2284,8 @@
     "total_tokens": 6938868,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-03/verifier/report.txt"
   },
   {
@@ -2327,8 +2327,8 @@
     "total_tokens": 5164253,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-04/verifier/report.txt"
   },
   {
@@ -2370,8 +2370,8 @@
     "total_tokens": 5952983,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-05/verifier/report.txt"
   },
   {
@@ -2413,8 +2413,8 @@
     "total_tokens": 3529276,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-06/verifier/report.txt"
   },
   {
@@ -2456,8 +2456,8 @@
     "total_tokens": 6098541,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-07/verifier/report.txt"
   },
   {
@@ -2499,8 +2499,8 @@
     "total_tokens": 4399799,
     "cost_usd": 0.0,
     "result_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/muse-spark-1.2/trial-08/verifier/report.txt"
   },
   {
@@ -2544,8 +2544,8 @@
     "total_tokens": 5824877,
     "cost_usd": 5.31117455,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-01/verifier/report.txt"
   },
   {
@@ -2589,8 +2589,8 @@
     "total_tokens": 4074888,
     "cost_usd": 4.229565999999999,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-02/verifier/report.txt"
   },
   {
@@ -2634,8 +2634,8 @@
     "total_tokens": 5534420,
     "cost_usd": 4.903694125000001,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-03/verifier/report.txt"
   },
   {
@@ -2679,8 +2679,8 @@
     "total_tokens": 5210047,
     "cost_usd": 4.963396074999999,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-04/verifier/report.txt"
   },
   {
@@ -2724,8 +2724,8 @@
     "total_tokens": 4653197,
     "cost_usd": 4.447042875,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-05/verifier/report.txt"
   },
   {
@@ -2769,8 +2769,8 @@
     "total_tokens": 6306245,
     "cost_usd": 5.779656850000001,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-06/verifier/report.txt"
   },
   {
@@ -2814,8 +2814,8 @@
     "total_tokens": 6723918,
     "cost_usd": 6.149876975000001,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-07/verifier/report.txt"
   },
   {
@@ -2859,8 +2859,8 @@
     "total_tokens": 4478413,
     "cost_usd": 4.669975475,
     "result_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/result.json",
-    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/trajectory.json",
-    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/mini-swe-agent.trajectory.json",
+    "trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/agent/trajectory.json",
+    "native_trajectory_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/agent/mini-swe-agent.trajectory.json",
     "verifier_report_path": "sample-run/trajectories/04-iam-role-validation/opus-5/trial-08/verifier/report.txt"
   }
 ]
