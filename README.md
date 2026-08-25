@@ -1,10 +1,12 @@
 # Meta Muse Spark 1.2 RL evaluation sample
 
+[![Publication QC](https://github.com/bear-ai-dev/specific-aws-envs-meta-public/actions/workflows/publication-qc.yml/badge.svg)](https://github.com/bear-ai-dev/specific-aws-envs-meta-public/actions/workflows/publication-qc.yml)
+
 This public sample contains four deterministic, AWS-backed coding tasks and
-repeated verifier-backed rollouts for Meta Muse Spark 1.2, Claude Opus 5, and,
-on the newly added task, GPT-5.6 Sol. Every reported task-model cell contains
-eight scored attempts with native and normalized trajectories, verifier
-reports, and binary rewards.
+repeated verifier-backed rollouts for Meta Muse Spark 1.2 and Claude Opus 5.
+Task 14 also includes GPT-5.6 Sol. Every reported task-model cell contains eight
+scored attempts with native and normalized trajectories, verifier reports, and
+binary rewards.
 
 The narrow result is a reliability gap in carrying multi-part business
 contracts through boundary cases. It is not a universal model ranking.
@@ -13,13 +15,13 @@ contracts through boundary cases. It is not a universal model ranking.
 | --- | ---: | ---: | ---: |
 | [Task 2 — entitlement overage lines](tasks/02-entitlement-overage-lines/instruction.md) | 0/8 | — | 8/8 |
 | [Task 4 — measurement failure DLQ](tasks/04-measurement-failure-dlq/instruction.md) | 2/8 | — | 8/8 |
-| [Task 5 — customer communication dispatch](tasks/05-customer-communication-dispatch/instruction.md) | 5/8 | — | 8/8 |
+| [Task 5 — customer communication dispatch](tasks/05-customer-communication-dispatch/instruction.md) | 5/8 | — | 8/8 retained |
 | [Task 14 — IAM role validation](tasks/14-iam-role-validation/instruction.md) | 4/8 | 3/8 | 8/8 |
-| **Overall across reported cells** | **11/32** | **3/8** | **32/32** |
+| **Overall across reported cells** | **11/32** | **3/8** | **32/32 retained** |
 
-Task 14 is the only addition from the latest six-task screening cohort that met
-the publication rule of a Muse solve rate at or below 50% (`4/8`). The three
-earlier public tasks predate that gate and remain unchanged for continuity.
+Task 14 extends the original three-task sample with a second model comparison.
+Its Muse solve rate is exactly the release's inclusion threshold of 50%
+(`4/8`). The original three tasks remain unchanged for continuity.
 
 Read the [verifier-backed analysis](sample-run/analysis.md) for the failure
 modes, representative traces, fairness controls, and evidence limitations. The
@@ -59,8 +61,8 @@ sample-run/analysis.md verifier-backed model comparison
 Large workdir archives are omitted. The original 48-trial cohort retains the
 submitted deliverable under `verifier/deliverable/`. The 24 Task 14 trials use
 a compact canonical layout that retains native and ATIF trajectories, results,
-verifier reports, rewards, logs, and run metadata; duplicated submitted-code
-snapshots remain in the private source archive.
+verifier reports, rewards, logs, and run metadata. Duplicated submitted-code
+snapshots are not needed to validate the recorded scores and are omitted.
 
 ## Evidence validity
 
@@ -77,10 +79,10 @@ only its README changed. Run
 `python3 harness/validate_publication.py` to check the complete public file set,
 trial cells, generated metrics, hashes, links, controls, and privacy gates.
 
-Task 5 has one additional evidence-boundary note: the eight stored Opus trials
-are a documented retained slice of 24 measured attempts. All eight retained
-trials passed; the full measurement was 23/24. Tasks 2 and 4 retain every Opus
-attempt measured for their cells. This distinction is carried into the
+Task 5 has one additional evidence-boundary note: `8/8 retained` is a documented
+slice of 24 measured Opus attempts. All eight retained trials passed; the full
+measurement was 23/24. Tasks 2 and 4 retain every Opus attempt measured for
+their cells. This distinction is carried into the
 [analysis](sample-run/analysis.md#evidence-boundary) so the repository does not
 present the retained Task 5 slice as a prospective estimate.
 

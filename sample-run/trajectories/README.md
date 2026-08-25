@@ -13,8 +13,7 @@ canonical layout.
 Duplicated full submitted-code snapshots are omitted from this compact public
 copy. They are not needed to recompute the published scores: each reward is
 independently present in the Harbor result and verifier reward document, while
-the verifier report records the observable held-out outcome. The original
-submitted snapshots remain in the retained private run archive.
+the verifier report records the observable held-out outcome.
 
 Use the repository-level commands to regenerate and validate all indexes and
 metrics:

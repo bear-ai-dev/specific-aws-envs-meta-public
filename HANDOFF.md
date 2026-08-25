@@ -1,7 +1,8 @@
 # Reproduction and reviewer handoff
 
 The repository is both a review package and a runnable Harbor sample. The
-commands below assume macOS or Linux, Docker, Python 3.11+, and a clean clone.
+commands below assume macOS or Linux, Docker, Python 3.11+, `uv`, and a clean
+clone.
 
 ## Recorded runtime
 

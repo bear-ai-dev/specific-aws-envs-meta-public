@@ -1,0 +1,37 @@
+name: Publication QC
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publication-qc-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out the public sample
+        uses: actions/checkout@v7.0.1
+
+      - name: Set up Python
+        uses: actions/setup-python@v7.0.0
+        with:
+          python-version: "3.11"
+
+      - name: Verify redaction and privacy invariants
+        run: python3 harness/redact_artifacts.py --check
+
+      - name: Verify generated metrics
+        run: python3 harness/export_trial_metrics.py --check
+
+      - name: Validate the complete publication package
+        run: python3 harness/validate_publication.py

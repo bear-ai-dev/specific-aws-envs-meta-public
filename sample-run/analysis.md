@@ -21,11 +21,11 @@ report, and no Harbor exception.
 
 The [full matrix](indexes/pass-rate-matrix.md) keeps raw solves separate from
 pass@1, pass@3, and pass@8. Across the reported cells, the aggregate stored
-result is 11/32 for Muse, 3/8 for GPT-5.6 Sol, and 32/32 for Opus.
+result is 11/32 for Muse, 3/8 for GPT-5.6 Sol, and 32/32 retained for Opus.
 
-Task 14 is the only addition from the latest six-task screen that met the
-publication rule of Muse at or below 50% (`4/8`). The three earlier public
-tasks predate that gate and remain in the sample unchanged.
+Task 14 extends the original three-task sample and meets this release's
+inclusion threshold of Muse at or below 50% (`4/8`). The original three tasks
+remain in the sample unchanged.
 
 ## Observed model difference
 
