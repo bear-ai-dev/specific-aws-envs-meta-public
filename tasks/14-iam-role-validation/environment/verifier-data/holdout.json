@@ -1,0 +1,460 @@
+{
+  "region": "us-east-1",
+  "bootstrap_identity": {
+    "account_id": "755000000019",
+    "access_key_id": "LOCALMETERINGKEY14",
+    "secret_access_key": "metering-secret"
+  },
+  "accounts": [
+    {
+      "account_id": "755000000019",
+      "alias": "meteringco-platform",
+      "roles": [],
+      "policies": [],
+      "instances": []
+    },
+    {
+      "account_id": "411000000071",
+      "alias": "veridian-prod",
+      "roles": [
+        {
+          "name": "meteringco-metering",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "vd-9c41ab27"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000071:policy/metering-read"
+          ],
+          "inline_policies": {}
+        },
+        {
+          "name": "meteringco-metering-legacy",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000071:policy/metering-read"
+          ],
+          "inline_policies": {}
+        },
+        {
+          "name": "meteringco-archive",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "vd-31ff00"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000071:policy/invoice-archive"
+          ],
+          "inline_policies": {}
+        },
+        {
+          "name": "terraform-apply",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::411000000071:root"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000071:policy/metering-read"
+          ],
+          "inline_policies": {}
+        }
+      ],
+      "policies": [
+        {
+          "arn": "arn:aws:iam::411000000071:policy/metering-read",
+          "name": "metering-read",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ec2:Describe*",
+                  "cloudwatch:GetMetricStatistics",
+                  "cloudwatch:ListMetrics"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "arn": "arn:aws:iam::411000000071:policy/invoice-archive",
+          "name": "invoice-archive",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "s3:GetObject",
+                  "s3:ListBucket",
+                  "sts:GetCallerIdentity"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0d71dd0001",
+          "instance_type": "m6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "vd-api-1"
+          }
+        },
+        {
+          "instance_id": "i-0d71dd0002",
+          "instance_type": "m6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "vd-api-2"
+          }
+        },
+        {
+          "instance_id": "i-0d71dd0003",
+          "instance_type": "r6i.large",
+          "availability_zone": "us-east-1b",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "vd-db"
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "411000000082",
+      "alias": "veridian-analytics",
+      "roles": [
+        {
+          "name": "meteringco-cost-view",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "vd-an-7761"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000082:policy/cost-explorer"
+          ],
+          "inline_policies": {}
+        },
+        {
+          "name": "meteringco-empty",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "vd-an-0002"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [],
+          "inline_policies": {}
+        }
+      ],
+      "policies": [
+        {
+          "arn": "arn:aws:iam::411000000082:policy/cost-explorer",
+          "name": "cost-explorer",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ce:GetCostAndUsage",
+                  "ce:GetDimensionValues",
+                  "sts:GetCallerIdentity"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0e82ee0001",
+          "instance_type": "c6i.2xlarge",
+          "availability_zone": "us-east-1c",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "an-etl"
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "411000000093",
+      "alias": "kestrel-core",
+      "roles": [
+        {
+          "name": "meteringco-collector",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "attached_policy_arns": [],
+          "inline_policies": {
+            "inline-collector": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:Describe*",
+                    "cloudwatch:GetMetricStatistics",
+                    "cloudwatch:ListMetrics"
+                  ],
+                  "Resource": [
+                    "*"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "meteringco-collector-guarded",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "ks-core-88f1"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000093:policy/collector"
+          ],
+          "inline_policies": {}
+        },
+        {
+          "name": "ci-runner",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "Service": "codebuild.amazonaws.com"
+                },
+                "Action": "sts:AssumeRole"
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000093:policy/collector"
+          ],
+          "inline_policies": {}
+        }
+      ],
+      "policies": [
+        {
+          "arn": "arn:aws:iam::411000000093:policy/collector",
+          "name": "collector",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ec2:Describe*",
+                  "cloudwatch:GetMetricStatistics",
+                  "cloudwatch:ListMetrics"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0f93ff0001",
+          "instance_type": "t3.large",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "ks-web"
+          }
+        },
+        {
+          "instance_id": "i-0f93ff0002",
+          "instance_type": "t3.large",
+          "availability_zone": "us-east-1b",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "ks-web-2"
+          }
+        }
+      ]
+    },
+    {
+      "account_id": "411000000104",
+      "alias": "kestrel-lab",
+      "roles": [
+        {
+          "name": "meteringco-lab",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Principal": {
+                  "AWS": "arn:aws:iam::755000000019:root"
+                },
+                "Action": "sts:AssumeRole",
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "ks-lab-2f0a"
+                  }
+                }
+              }
+            ]
+          },
+          "attached_policy_arns": [
+            "arn:aws:iam::411000000104:policy/collector"
+          ],
+          "inline_policies": {}
+        }
+      ],
+      "policies": [
+        {
+          "arn": "arn:aws:iam::411000000104:policy/collector",
+          "name": "collector",
+          "document": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": [
+                  "ec2:Describe*",
+                  "cloudwatch:GetMetricStatistics",
+                  "cloudwatch:ListMetrics"
+                ],
+                "Resource": [
+                  "*"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0a04aa0001",
+          "instance_type": "t3.small",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "launch_time": "2026-02-01T00:00:00Z",
+          "tags": {
+            "Name": "lab-1"
+          }
+        }
+      ]
+    }
+  ]
+}

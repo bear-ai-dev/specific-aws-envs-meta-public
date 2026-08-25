@@ -18,7 +18,10 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-RAW = ROOT / "sample-run" / "raw"
+EVIDENCE_ROOTS = (
+    ROOT / "sample-run" / "raw",
+    ROOT / "sample-run" / "trajectories",
+)
 MANIFEST = ROOT / "sample-run" / "indexes" / "redaction-manifest.json"
 
 KEYS = (
@@ -30,6 +33,10 @@ KEYS = (
     "BEDROCK_PROVIDER_AWS_SESSION_TOKEN",
     "DAYTONA_API_KEY",
     "OPENROUTER_API_KEY",
+    "OPENAI_API_KEY",
+    "META_API_KEY",
+    "MUSE_API_KEY",
+    "BEDROCK_OPENAI_API_KEY",
     "GITHUB_TOKEN",
     "GH_TOKEN",
 )
@@ -42,6 +49,7 @@ PREFIXED = {
     "AWS_ACCESS_KEY_ID": re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
     "DAYTONA_API_KEY": re.compile(r"dtn_[A-Za-z0-9_-]{20,}"),
     "OPENROUTER_API_KEY": re.compile(r"sk-or-v1-[A-Za-z0-9_-]{20,}"),
+    "META_API_KEY": re.compile(r"\bLLM_[A-Za-z0-9_-]{20,}\b"),
     "GITHUB_TOKEN": re.compile(
         r"(?:gh[pousr]_[A-Za-z0-9_]{20,}|github_pat_[A-Za-z0-9_]{20,})"
     ),
@@ -58,18 +66,25 @@ LOCAL_REPO_PATH = re.compile(
     r"/Users/[^/\s\\\"']+/(?:Desktop|Documents|Projects|maintained)/"
     r"[^\s\\\"']+"
 )
+PUBLIC_IDENTIFIER_REPLACEMENTS = {
+    "AKIAPAIGO": "AKIAMETERING",
+}
+PUBLIC_IDENTIFIER_KEY = "SOURCE_IDENTIFIER"
 
 
 def text_files() -> list[Path]:
     found = []
-    for path in sorted(RAW.rglob("*")):
-        if not path.is_file():
+    for evidence_root in EVIDENCE_ROOTS:
+        if not evidence_root.is_dir():
             continue
-        try:
-            path.read_text()
-        except (OSError, UnicodeDecodeError):
-            continue
-        found.append(path)
+        for path in sorted(evidence_root.rglob("*")):
+            if not path.is_file():
+                continue
+            try:
+                path.read_text()
+            except (OSError, UnicodeDecodeError):
+                continue
+            found.append(path)
     return found
 
 
@@ -97,6 +112,8 @@ def main() -> None:
         for path in files:
             text = path.read_text()
             if ASSIGNMENT.search(text) or LOCAL_REPO_PATH.search(text):
+                residuals.append(path.relative_to(ROOT).as_posix())
+            if any(value in text for value in PUBLIC_IDENTIFIER_REPLACEMENTS):
                 residuals.append(path.relative_to(ROOT).as_posix())
             if any(pattern.search(text) for pattern in PREFIXED.values()):
                 residuals.append(path.relative_to(ROOT).as_posix())
@@ -131,6 +148,17 @@ def main() -> None:
         updated = text
         opaque_replacements = 0
         reasoning_data_replacements = 0
+        identifier_replacements = 0
+        for source, public in PUBLIC_IDENTIFIER_REPLACEMENTS.items():
+            occurrences = updated.count(source)
+            if occurrences:
+                updated = updated.replace(source, public)
+                identifier_replacements += occurrences
+        if identifier_replacements:
+            replacement_counts[PUBLIC_IDENTIFIER_KEY] += identifier_replacements
+            changed_by_key[PUBLIC_IDENTIFIER_KEY].add(
+                path.relative_to(ROOT).as_posix()
+            )
         local_path_replacements = len(LOCAL_REPO_PATH.findall(updated))
         if local_path_replacements:
             updated = LOCAL_REPO_PATH.sub("[REDACTED_LOCAL_REPO_PATH]", updated)
@@ -205,11 +233,15 @@ def main() -> None:
             residuals.append(path.relative_to(ROOT).as_posix())
         if LOCAL_REPO_PATH.search(text):
             residuals.append(path.relative_to(ROOT).as_posix())
+        if any(value in text for value in PUBLIC_IDENTIFIER_REPLACEMENTS):
+            residuals.append(path.relative_to(ROOT).as_posix())
     if residuals:
         raise SystemExit(f"credential-like values remain in: {sorted(set(residuals))}")
 
     manifest = {
-        "scope": "sample-run/raw",
+        "scope": [
+            root.relative_to(ROOT).as_posix() for root in EVIDENCE_ROOTS
+        ],
         "policy": "replace credential values, preserve trace structure",
         "placeholder_counts_total": dict(sorted(placeholder_counts.items())),
         "current_run_replacement_counts": dict(sorted(replacement_counts.items())),

@@ -1,0 +1,51 @@
+{
+    "schema_version": 1,
+    "task": {
+        "name": "14-iam-role-validation",
+        "type": "local",
+        "digest": "sha256:405025d78cadaf96f2d9bf560f3207fc71c8085eb14f0acc28a2dc7d677cdedf",
+        "path": "tasks/14-iam-role-validation"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "import_path": "harness.harbor_agents:ResponsesMiniSweAgent",
+        "model_name": "openai/us.openai.gpt-5.6-sol",
+        "n_concurrent": 35,
+        "skills": [],
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "harness/mini-swe-bedrock-openai-responses.yaml",
+            "reasoning_effort": "high",
+            "max_tokens": 32768
+        },
+        "env": {
+            "OPENAI_API_KEY": "${BEDROCK_OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1"
+        },
+        "mcp_servers": []
+    },
+    "skills": [],
+    "environment": {
+        "type": "daytona",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "override_storage_mb": 10240,
+        "extra_docker_compose": [],
+        "kwargs": {
+            "connection_pool_maxsize": 140,
+            "labels": {
+                "cohort": "meta-expansion-muse12-gpt56sol-eight-rollouts-20260824-v1",
+                "purpose": "matched-meta-expansion-eight-rollout-cohort"
+            }
+        },
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false
+    }
+}

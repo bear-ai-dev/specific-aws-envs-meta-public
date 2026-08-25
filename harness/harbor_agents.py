@@ -55,6 +55,14 @@ class OpenRouterMiniSweAgent(MiniSweAgent):
         await super().run(instruction, environment, context)
 
 
+class ResponsesMiniSweAgent(MiniSweAgent):
+    """Use an OpenAI-compatible Responses route after the emulator preflight."""
+
+    async def run(self, instruction, environment, context) -> None:
+        await _verify_task_emulator(self, environment)
+        await super().run(instruction, environment, context)
+
+
 class BedrockMiniSweAgent(MiniSweAgent):
     """Keep Bedrock authentication separate from task-local AWS authentication."""
 

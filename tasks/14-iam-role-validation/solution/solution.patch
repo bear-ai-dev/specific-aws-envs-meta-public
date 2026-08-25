@@ -1,0 +1,129 @@
+diff -ruN patchbase/src/measurement-config/entities/measurement-config.entity.ts patchwork/src/measurement-config/entities/measurement-config.entity.ts
+--- a/src/measurement-config/entities/measurement-config.entity.ts	2026-08-19 23:08:33
++++ b/src/measurement-config/entities/measurement-config.entity.ts	2026-08-19 23:30:27
+@@ -17,6 +17,7 @@
+ import { InfluxService } from '../../influx/influx.service.js';
+ import { CreateUserDto } from '../../users/dto/create-user.dto.js';
+ import { measurementMode } from '../dto/create-measurement-config.dto.js';
++import { ValidIAMRole } from '../../setting/dto/customIAMAuthorizer.js';
+ import { IAM } from '@aws-sdk/client-iam';
+ import { randomUUID } from 'crypto';
+ import { KafkaDeploymentParametersEntity } from '../../kubernetes-deployer/entities/kafkaConsumer/kafkaDeploymentParametersEntity.js';
+@@ -58,6 +59,9 @@
+      * Example `"arn:aws:iam::123456789012:role/meteringco-scraper"`
+      * @example "arn:aws:iam::123456789012:role/meteringco-scraper"
+      */
++    @ValidIAMRole('externalId', {
++        message: 'Unable to authenticate with the IAM role and External ID provided. Please double check',
++    })
+     @IsString()
+     @IsNotEmpty()
+     @ApiProperty()
+diff -ruN patchbase/src/setting/dto/customIAMAuthorizer.ts patchwork/src/setting/dto/customIAMAuthorizer.ts
+--- a/src/setting/dto/customIAMAuthorizer.ts	1970-01-01 05:30:00
++++ b/src/setting/dto/customIAMAuthorizer.ts	2026-08-19 23:30:07
+@@ -0,0 +1,59 @@
++import { registerDecorator, ValidationArguments, ValidationOptions } from 'class-validator';
++import { fromTemporaryCredentials } from '@aws-sdk/credential-providers';
++import { DescribeInstancesCommand, EC2Client } from '@aws-sdk/client-ec2';
++
++const PROBE_REGION = 'us-east-1';
++
++/**
++ * Throws unless the platform can step into `iamRoleArn` and the session that
++ * comes back can read the account's instance inventory. Assuming the role is
++ * only half of it: a role we can enter but that refuses every collection call
++ * bills nobody, and the customer only finds out weeks later.
++ */
++export async function assertScraperRoleUsable(iamRoleArn: string, externalId?: string): Promise<void> {
++    const credentials = fromTemporaryCredentials({
++        params: {
++            RoleArn: iamRoleArn,
++            RoleSessionName: 'meteringco-settings-check',
++            // The parameter has to be absent rather than blank when the
++            // customer did not give us one.
++            ExternalId: externalId ? externalId : undefined,
++        },
++        clientConfig: { region: PROBE_REGION },
++    });
++    const ec2 = new EC2Client({ region: PROBE_REGION, credentials });
++    try {
++        await ec2.send(new DescribeInstancesCommand({ MaxResults: 5 }));
++    } finally {
++        ec2.destroy();
++    }
++}
++
++export function ValidIAMRole(property: string, validationOptions?: ValidationOptions) {
++    return function (object: unknown, propertyName: string) {
++        registerDecorator({
++            name: 'validIAMRole',
++            target: object.constructor,
++            propertyName: propertyName,
++            constraints: [property],
++            options: validationOptions,
++            validator: {
++                async validate(iamRoleArn: any, args: ValidationArguments) {
++                    // A blank role is how a customer disconnects.
++                    if (iamRoleArn === '') {
++                        return true;
++                    }
++                    if (typeof iamRoleArn !== 'string') {
++                        return false;
++                    }
++                    try {
++                        await assertScraperRoleUsable(iamRoleArn, (args.object as any)?.externalId);
++                        return true;
++                    } catch (e) {
++                        return false;
++                    }
++                },
++            },
++        });
++    };
++}
+diff -ruN patchbase/src/setting/dto/update-settings.dto.ts patchwork/src/setting/dto/update-settings.dto.ts
+--- a/src/setting/dto/update-settings.dto.ts	2026-08-19 23:08:23
++++ b/src/setting/dto/update-settings.dto.ts	2026-08-19 23:30:17
+@@ -12,6 +12,7 @@
+ } from 'class-validator';
+ import { InvoicePaymentTerm } from '../../invoice/entities/InvoicePaymentTerm.js';
+ import { IAMAccessCredentials } from '../../measurement-config/entities/measurement-config.entity.js';
++import { ValidIAMRole } from './customIAMAuthorizer.js';
+ import { Type } from 'class-transformer';
+ import { StripeConnected } from '../entities/settings.entity.js';
+ import { AccountState } from '../entities/AccountState.js';
+@@ -98,6 +99,9 @@
+     appearance?: AppearanceOfferingPortalDto;
+ }
+ export class CloudIAM {
++    @ValidIAMRole('externalId', {
++        message: 'Unable to authenticate with the IAM role and External ID provided. Please double check',
++    })
+     @IsString()
+     public iamRoleArn: IAMAccessCredentials['iamRoleArn'];
+ 
+diff -ruN patchbase/src/setting/settings.service.ts patchwork/src/setting/settings.service.ts
+--- a/src/setting/settings.service.ts	2026-08-08 09:13:04
++++ b/src/setting/settings.service.ts	2026-08-19 23:30:54
+@@ -6,7 +6,7 @@
+     InternalServerErrorException,
+     Logger,
+ } from '@nestjs/common';
+-import { PortalPages, UpdateSettingsDto } from './dto/update-settings.dto.js';
++import { CloudIAM, PortalPages, UpdateSettingsDto } from './dto/update-settings.dto.js';
+ import { PortalOfferingPageDto } from '../portal/dto/PortalOfferingPageDto.js';
+ import { InfluxService } from '../influx/influx.service.js';
+ import { SettingsEntity, StripeConnected } from './entities/settings.entity.js';
+@@ -87,6 +87,11 @@
+         SettingsService.logger.log(JSON.stringify(updatedFileds));
+         const [setting] = await this.findAll({ businessID });
+         const { loadPoints } = this.InfluxService;
++        if (updatedFileds.cloudIAM && !updatedFileds.cloudIAM.iamRoleArn) {
++            // Disconnecting has to take the external id with it rather than
++            // leaving the customer's secret behind in a record nothing uses.
++            updatedFileds.cloudIAM = {} as CloudIAM;
++        }
+         const oldEntity = new SettingsEntity({ ...setting, businessID });
+         let pages = new PortalPages();
+         if (oldEntity.pages) {

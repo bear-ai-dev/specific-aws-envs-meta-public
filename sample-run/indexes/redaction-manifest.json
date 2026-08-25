@@ -1,23 +1,24 @@
 {
-  "scope": "sample-run/raw",
+  "scope": [
+    "sample-run/raw",
+    "sample-run/trajectories"
+  ],
   "policy": "replace credential values, preserve trace structure",
   "placeholder_counts_total": {
-    "AWS_ACCESS_KEY_ID": 1243,
-    "AWS_SECRET_ACCESS_KEY": 1084,
+    "AWS_ACCESS_KEY_ID": 1692,
+    "AWS_ACCOUNT_ID": 347,
+    "AWS_SECRET_ACCESS_KEY": 1250,
     "DAYTONA_API_KEY": 7,
     "GITHUB_TOKEN": 2,
-    "LOCAL_REPO_PATH": 10,
+    "LOCAL_REPOSITORY_PATH": 8,
+    "LOCAL_REPO_PATH": 42,
+    "META_API_KEY": 9,
     "OPAQUE_PROVIDER_REASONING_DATA": 7181,
-    "OPAQUE_PROVIDER_SIGNATURE": 2958,
+    "OPAQUE_PROVIDER_SIGNATURE": 4334,
+    "OPENAI_API_KEY": 3,
     "OPENROUTER_API_KEY": 118
   },
-  "current_run_replacement_counts": {
-    "GITHUB_TOKEN": 2
-  },
-  "changed_files_current_run": {
-    "GITHUB_TOKEN": [
-      "sample-run/raw/muse-spark-1.2-rollout-20260824/meteringco-measurement-failure-dlq__ytX3eeU/agent/mini-swe-agent.trajectory.json"
-    ]
-  },
+  "current_run_replacement_counts": {},
+  "changed_files_current_run": {},
   "residual_scan": "pass"
 }

@@ -1,0 +1,35 @@
+{
+    "task": {
+        "path": "tasks/14-iam-role-validation"
+    },
+    "trial_name": "14-iam-role-validation__iqnfJoV",
+    "trials_dir": "sample-run/raw/meta-expansion-muse12-gpt56sol-eight-rollouts-20260824-v1",
+    "agent": {
+        "import_path": "harness.harbor_agents:ResponsesMiniSweAgent",
+        "model_name": "openai/us.openai.gpt-5.6-sol",
+        "n_concurrent": 35,
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "harness/mini-swe-bedrock-openai-responses.yaml",
+            "reasoning_effort": "high",
+            "max_tokens": 32768
+        },
+        "env": {
+            "OPENAI_API_KEY": "${BEDROCK_OPENAI_API_KEY}",
+            "OPENAI_BASE_URL": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1"
+        }
+    },
+    "environment": {
+        "type": "daytona",
+        "override_storage_mb": 10240,
+        "kwargs": {
+            "connection_pool_maxsize": 140,
+            "labels": {
+                "cohort": "meta-expansion-muse12-gpt56sol-eight-rollouts-20260824-v1",
+                "purpose": "matched-meta-expansion-eight-rollout-cohort"
+            }
+        }
+    },
+    "job_id": "d335f3a8-8a7a-4e28-969d-3f4e85986ebf"
+}

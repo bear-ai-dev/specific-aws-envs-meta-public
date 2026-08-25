@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "skipLibCheck": true,
+        "strictNullChecks": false,
+        "noImplicitAny": false,
+        "strictBindCallApply": false,
+        "forceConsistentCasingInFileNames": false,
+        "noFallthroughCasesInSwitch": false,
+        "declaration": false,
+        "sourceMap": false,
+        "removeComments": true,
+        "incremental": false,
+        "noEmitOnError": false,
+        "baseUrl": "/app/src",
+        "rootDir": "/app",
+        "outDir": "/tmp/verifier-build"
+    },
+    "include": ["/app/src/**/*.ts", "/app/.verifier-drive.ts"],
+    "exclude": [
+        "/app/node_modules",
+        "/app/dist",
+        "/app/test",
+        "/app/docs",
+        "/app/integration",
+        "/app/**/*.spec.ts"
+    ]
+}

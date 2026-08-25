@@ -5,14 +5,15 @@ commands below assume macOS or Linux, Docker, Python 3.11+, and a clean clone.
 
 ## Recorded runtime
 
-| Component | Recorded value |
-| --- | --- |
-| Orchestrator | Harbor 0.18.0 |
-| Agent | mini-SWE-agent 2.4.5 |
-| Muse route | `openrouter/meta/muse-spark-1.2` |
-| Opus route | `bedrock/us.anthropic.claude-opus-5` |
-| Reasoning setting | high |
-| Attempts | 8 per model per task |
+| Component | Tasks 2, 4, 5 | Task 14 |
+| --- | --- | --- |
+| Orchestrator | Harbor 0.18.0 | Harbor 0.18.0 |
+| Agent | mini-SWE-agent 2.4.5 | mini-SWE-agent 2.4.5 |
+| Muse route | `openrouter/meta/muse-spark-1.2` | `meta/responses/muse-spark-1.2` |
+| GPT-5.6 Sol route | not run | `bedrock/openai/gpt-5.6-sol` |
+| Opus route | `bedrock/us.anthropic.claude-opus-5` | `bedrock/us.anthropic.claude-opus-5` |
+| Reasoning setting | high | high |
+| Attempts | 8 per model per task | 8 per model |
 
 The stored evidence was produced in managed AWS sandboxes. The included
 reproduction config uses Daytona so a reviewer can launch the same public task
@@ -30,7 +31,9 @@ cp .env.example .env
 Fill only the credentials required for the run. Never commit `.env`.
 
 - `DAYTONA_API_KEY` provisions isolated task sandboxes.
-- `OPENROUTER_API_KEY` is needed for Muse.
+- `OPENROUTER_API_KEY` is needed for the original Muse cohort.
+- `META_API_KEY` is needed for the direct Meta Responses route on Task 14.
+- `BEDROCK_OPENAI_API_KEY` is a short-lived bearer token for GPT-5.6 Sol.
 - The AWS variables authenticate the Opus Bedrock route.
 
 The task images provide separate fake credentials and a loopback
@@ -46,10 +49,12 @@ Docker controls need no model-provider credentials:
 harbor run --config harness/controls.json --yes
 ```
 
-The expected result is three oracle rewards of `1.0` and three no-op rewards of
-`0.0`, with no exceptions. The publication records for the normalized task
-digests are in
+The expected result is four oracle rewards of `1.0` and four no-op rewards of
+`0.0`, with no exceptions. The recorded publication controls and normalized
+task digests are in
 [`sample-run/manifests/public-controls-validation.json`](sample-run/manifests/public-controls-validation.json).
+Task 14's recorded control comes from a byte-identical executable task tree;
+the current package differs only in README documentation.
 
 ## 3. Launch the repeated cohort
 
@@ -58,27 +63,29 @@ set -a
 . ./.env
 set +a
 PYTHONPATH="$PWD" harbor run --config harness/cohort.json --yes
+PYTHONPATH="$PWD" harbor run --config harness/task14-cohort.json --yes
 ```
 
-The config fixes the tasks, routes, versions, reasoning setting, attempt count,
-and concurrency. Muse is capped at three concurrent trials to accommodate
-provider rate limits. Provider or infrastructure failures should be retained
-as unscored evidence and refilled; they must not be converted to model
-failures.
+The two configs fix their tasks, routes, versions, reasoning setting, attempt
+count, and concurrency. The original Muse cohort is capped at three concurrent
+trials; the Task 14 reproduction runs up to eight trials per model. Provider or
+infrastructure failures should be retained as unscored evidence and refilled;
+they must not be converted to model failures.
 
 ## 4. Build indexes and freeze evidence
 
 Point the indexer at one or more Harbor job directories:
 
 ```sh
-python3 harness/summarize_cohort.py sample-run/raw/<job-dir> [sample-run/raw/<job-dir> ...]
+python3 harness/summarize_cohort.py
 python3 harness/freeze_manifest.py
 python3 harness/export_trial_metrics.py
 ```
 
 A trial is admitted only when the agent phase started, the verifier produced a
-numeric reward, no pre-agent Harbor exception occurred, and its trajectory and
-verifier artifacts are present. Raw solves and pass@k stay separate.
+numeric reward, no Harbor exception occurred, and its native trajectory, ATIF
+trajectory, verifier report, and reward are present. Raw solves and pass@k stay
+separate.
 
 ## 5. Final QC
 
@@ -89,8 +96,8 @@ python3 harness/validate_publication.py
 git status --short
 ```
 
-The publication validator checks task headings and digests, the six 8-attempt
-cells, all 48 evidence paths, result/reward agreement, reproducible metrics,
+The publication validator checks task headings and digests, the nine 8-attempt
+cells, all 72 evidence paths, result/reward agreement, reproducible metrics,
 controls, local Markdown links, selected JSON documents, and privacy patterns.
 
 ## Recorded-evidence boundary

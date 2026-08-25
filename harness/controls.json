@@ -1,8 +1,8 @@
 {
-  "job_name": "meta-public-controls-20260824",
+  "job_name": "meta-public-controls-20260825",
   "jobs_dir": "sample-run/raw",
   "n_attempts": 1,
-  "n_concurrent_trials": 6,
+  "n_concurrent_trials": 8,
   "quiet": false,
   "environment": {
     "type": "docker",
@@ -10,7 +10,7 @@
     "kwargs": {
       "connection_pool_maxsize": 12,
       "labels": {
-        "cohort": "meta-public-controls-20260824"
+        "cohort": "meta-public-controls-20260825"
       }
     }
   },
@@ -21,6 +21,7 @@
   "tasks": [
     { "path": "tasks/02-entitlement-overage-lines" },
     { "path": "tasks/04-measurement-failure-dlq" },
-    { "path": "tasks/05-customer-communication-dispatch" }
+    { "path": "tasks/05-customer-communication-dispatch" },
+    { "path": "tasks/14-iam-role-validation" }
   ]
 }

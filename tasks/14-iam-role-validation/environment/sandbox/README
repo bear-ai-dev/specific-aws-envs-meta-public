@@ -1,0 +1,44 @@
+Local AWS sandbox
+=================
+
+This box has no route to AWS. Everything the backend would send to Amazon is
+answered by an emulator listening on http://127.0.0.1:4566, which speaks the
+same wire protocols the AWS SDK uses. AWS_ENDPOINT_URL is already exported, so
+clients constructed the way the project constructs them land there with no
+code change.
+
+The credentials already in the environment belong to the platform's own
+bootstrap identity. That is the caller a customer's trust policy has to name:
+
+    platform account   600000000042
+    caller identity    arn:aws:iam::600000000042:user/bootstrap
+    region             us-east-1
+
+Two customer accounts are set up here, 300000000011 and 300000000022, each with
+a handful of roles a customer might realistically paste into the settings
+screen. They differ in who their trust policy names, whether it carries an
+sts:ExternalId condition, and what their attached and inline policies actually
+grant. The full description of what the emulator is serving is readable at
+/opt/metering-sandbox/public.json, including every trust policy and permission
+document, so you can work out ahead of time what any given role should do and
+then check that against what the emulator answers.
+
+Two customer accounts and nine roles is the quiet case. Real businesses hand us
+more accounts and more inventive mistakes, so treat this as the easy end.
+
+To point the emulator at a different world document, restart it yourself:
+
+    pkill -f mockaws
+    PYTHONPATH=/opt/mockaws python3 -m mockaws \
+        --scenario /path/to/your.json --host 127.0.0.1 --port 4566 --seed 7 &
+
+TypeScript in this project can be run directly with tsx, for example
+
+    tsx -e "import('@aws-sdk/client-sts').then(async ({ STSClient, AssumeRoleCommand }) => {
+        const sts = new STSClient({ region: 'us-east-1' });
+        console.log(await sts.send(new AssumeRoleCommand({
+            RoleArn: 'arn:aws:iam::300000000011:role/meteringco-usage-scraper',
+            RoleSessionName: 'probe',
+            ExternalId: 'nw-7f31c2',
+        })));
+    })"

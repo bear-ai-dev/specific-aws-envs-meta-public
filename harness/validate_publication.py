@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the complete three-task public evaluation sample."""
+"""Validate the complete four-task public evaluation sample."""
 
 from __future__ import annotations
 
@@ -18,13 +18,17 @@ TASKS = (
     "02-entitlement-overage-lines",
     "04-measurement-failure-dlq",
     "05-customer-communication-dispatch",
+    "14-iam-role-validation",
 )
 EXPECTED_HEADINGS = {
     TASKS[0]: "# Task 2 — entitlement overage lines",
     TASKS[1]: "# Task 4 — measurement failure DLQ",
     TASKS[2]: "# Task 5 — customer communication dispatch",
+    TASKS[3]: "# Task 14 — IAM role validation",
 }
 MUSE = "openrouter/meta/muse-spark-1.2"
+MUSE_DIRECT = "meta/responses/muse-spark-1.2"
+GPT_SOL = "bedrock/openai/gpt-5.6-sol"
 OPUS = "bedrock/us.anthropic.claude-opus-5"
 EXPECTED_SOLVES = {
     (TASKS[0], MUSE): 0,
@@ -33,17 +37,22 @@ EXPECTED_SOLVES = {
     (TASKS[1], OPUS): 8,
     (TASKS[2], MUSE): 5,
     (TASKS[2], OPUS): 8,
+    (TASKS[3], MUSE_DIRECT): 4,
+    (TASKS[3], GPT_SOL): 3,
+    (TASKS[3], OPUS): 8,
 }
 RECORDED_TASK_CHECKSUMS = {
     TASKS[0]: "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
     TASKS[1]: "19361ed95829b44118d905302f14abe8c8194bb17238b22c55ee524ef97a4dd5",
     TASKS[2]: "ced28d55fa0d97f12302b61cb5a9106a1c304372b78cc594fcfc43d3b47a92ae",
+    TASKS[3]: "a74ca5430103a3a75e8c297f4629c77b51b8a3efcca108136df46566e1cc4a95",
 }
 LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
 REAL_AWS_KEY = re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b")
 TOKEN_PREFIX = re.compile(
     r"(?:sk-or-v1-[A-Za-z0-9_-]{20,}|gh[pousr]_[A-Za-z0-9_]{20,}|"
-    r"github_pat_[A-Za-z0-9_]{20,}|dtn_[A-Za-z0-9_-]{20,})"
+    r"github_pat_[A-Za-z0-9_]{20,}|dtn_[A-Za-z0-9_-]{20,}|"
+    r"LLM_[A-Za-z0-9_-]{20,})"
 )
 LOCAL_HOME = re.compile(
     r"/(?:Users|home)/[^/\s]+/(?:Desktop|Documents|Projects|maintained)/[^\s\"']+"
@@ -110,8 +119,8 @@ def validate_links() -> int:
 
 def validate_trials() -> list[dict]:
     trials = load_json(ROOT / "sample-run" / "indexes" / "trials.json")
-    if not isinstance(trials, list) or len(trials) != 48:
-        raise SystemExit("expected exactly 48 indexed trials")
+    if not isinstance(trials, list) or len(trials) != 72:
+        raise SystemExit("expected exactly 72 indexed trials")
     if not all(trial.get("valid") for trial in trials):
         raise SystemExit("every indexed trial must be valid")
 
@@ -132,16 +141,16 @@ def validate_trials() -> list[dict]:
             "normalized_trajectory",
             "verifier",
             "verifier_report",
-            "deliverable",
         )
         for field in required_paths:
             path = ROOT / str(trial.get(field) or "")
-            if field == "deliverable":
-                present = path.is_dir()
-            else:
-                present = path.is_file() if field != "trial_dir" else path.is_dir()
+            present = path.is_file() if field != "trial_dir" else path.is_dir()
             if not present:
                 raise SystemExit(f"missing trial artifact {field}: {trial.get(field)}")
+
+        deliverable = trial.get("deliverable")
+        if deliverable and not (ROOT / deliverable).is_dir():
+            raise SystemExit(f"missing submitted deliverable: {deliverable}")
 
         result = load_json(ROOT / trial["result"])
         reward_doc = load_json(ROOT / trial["verifier"])
@@ -162,7 +171,7 @@ def validate_controls() -> None:
     path = ROOT / "sample-run" / "manifests" / "public-controls-validation.json"
     manifest = load_json(path)
     if manifest.get("summary") != {
-        "trials": 6,
+        "trials": 8,
         "exceptions": 0,
         "oracle_all_reward_one": True,
         "nop_all_reward_zero": True,
@@ -197,8 +206,8 @@ def validate_metrics(trials: list[dict]) -> None:
 
     rows = load_json(ROOT / "sample-run" / "metrics" / "per-trial-metrics.json")
     summary = load_json(ROOT / "sample-run" / "metrics" / "summary.json")
-    if not isinstance(rows, list) or len(rows) != 48:
-        raise SystemExit("expected exactly 48 metric rows")
+    if not isinstance(rows, list) or len(rows) != 72:
+        raise SystemExit("expected exactly 72 metric rows")
     if {row.get("trial_id") for row in rows} != {trial["trial"] for trial in trials}:
         raise SystemExit("metric rows do not match indexed trial membership")
     for key in EXPECTED_SOLVES:
@@ -220,9 +229,9 @@ def validate_metrics(trials: list[dict]) -> None:
                 raise SystemExit(f"cached-token accounting mismatch: {row['trial_id']}")
     if summary.get("source_index") != "sample-run/indexes/trials.json":
         raise SystemExit("metric summary source mismatch")
-    if summary.get("trials") != 48 or summary.get("valid_trials") != 48:
+    if summary.get("trials") != 72 or summary.get("valid_trials") != 72:
         raise SystemExit("metric summary trial count mismatch")
-    if len(summary.get("cells") or []) != 6:
+    if len(summary.get("cells") or []) != 9:
         raise SystemExit("metric summary cell count mismatch")
 
 
@@ -238,10 +247,16 @@ def validate_manifests() -> None:
 
     frozen_path = ROOT / "sample-run" / "manifests" / "frozen-cohort.json"
     frozen = load_json(frozen_path)
+    if frozen.get("schema_version") != 2 or len(frozen.get("cohorts") or []) != 2:
+        raise SystemExit("frozen cohort registry mismatch")
     if frozen.get("attempts_per_task_model") != 8:
         raise SystemExit("frozen cohort attempt count mismatch")
     if frozen.get("cohort_config_sha256") != sha256(ROOT / "harness" / "cohort.json"):
         raise SystemExit("frozen cohort config hash mismatch")
+    if frozen.get("task14_cohort_config_sha256") != sha256(
+        ROOT / "harness" / "task14-cohort.json"
+    ):
+        raise SystemExit("frozen Task 14 cohort config hash mismatch")
     if frozen.get("controls_config_sha256") != sha256(ROOT / "harness" / "controls.json"):
         raise SystemExit("frozen controls config hash mismatch")
     for task in TASKS:
@@ -252,6 +267,7 @@ def validate_manifests() -> None:
 def validate_json_documents(trials: list[dict]) -> int:
     paths = {
         ROOT / "harness" / "cohort.json",
+        ROOT / "harness" / "task14-cohort.json",
         ROOT / "harness" / "controls.json",
         ROOT / "sample-run" / "indexes" / "trials.json",
         ROOT / "sample-run" / "indexes" / "execution-summary.json",
@@ -262,16 +278,15 @@ def validate_json_documents(trials: list[dict]) -> int:
     paths.update((ROOT / "sample-run" / "manifests").glob("*.json"))
     for trial in trials:
         trial_dir = ROOT / trial["trial_dir"]
-        paths.update(
-            {
-                trial_dir / "result.json",
-                trial_dir / "config.json",
-                trial_dir / "lock.json",
-                trial_dir / "agent" / "mini-swe-agent.trajectory.json",
-                trial_dir / "agent" / "trajectory.json",
-                ROOT / trial["verifier"],
-            }
-        )
+        candidates = {
+            trial_dir / "result.json",
+            trial_dir / "config.json",
+            trial_dir / "lock.json",
+            trial_dir / "agent" / "mini-swe-agent.trajectory.json",
+            trial_dir / "agent" / "trajectory.json",
+            ROOT / trial["verifier"],
+        }
+        paths.update(path for path in candidates if path.is_file())
     for path in sorted(paths):
         load_json(path)
     return len(paths)
@@ -330,11 +345,11 @@ def main() -> None:
     links = validate_links()
     text_files = validate_privacy()
     summary = load_json(ROOT / "sample-run" / "indexes" / "execution-summary.json")
-    if summary.get("scored_valid_trials") != 48:
+    if summary.get("scored_valid_trials") != 72:
         raise SystemExit("execution summary trial count mismatch")
     print(
         "publication validation passed: "
-        f"tasks=3 trials=48 controls=6 json={json_docs} "
+        f"tasks=4 trials=72 controls=8 json={json_docs} "
         f"links={links} text_files={text_files}"
     )
 

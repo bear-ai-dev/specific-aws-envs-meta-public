@@ -1,0 +1,7 @@
+model:
+  model_kwargs:
+    drop_params: true
+    max_tokens: 32768
+    reasoning_effort: high
+    aws_profile_name: bedrock-provider
+    aws_region_name: us-east-1

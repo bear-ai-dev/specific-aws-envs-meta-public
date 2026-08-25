@@ -1,0 +1,277 @@
+{
+  "observations": {
+    "connect-guarded-role": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering",
+        "externalId": "vd-9c41ab27",
+        "city": "Portland",
+        "vatId": "",
+        "businessName": "Veridian Systems",
+        "supportEmail": ""
+      }
+    },
+    "wrong-external-id": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering",
+        "externalId": "vd-9c41ab27",
+        "city": "Portland",
+        "vatId": "",
+        "businessName": "Veridian Systems",
+        "supportEmail": ""
+      }
+    },
+    "external-id-omitted": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering",
+        "externalId": "vd-9c41ab27",
+        "city": "Portland",
+        "vatId": "",
+        "businessName": "Veridian Systems",
+        "supportEmail": ""
+      }
+    },
+    "unguarded-role-no-external-id": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "unguarded-role-with-external-id": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "assumable-but-storage-only": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "assumable-but-cost-only": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "assumable-but-no-policies": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "trusts-only-its-own-account": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "trusts-a-service-not-us": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "role-does-not-exist": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "account-does-not-exist": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "not-an-arn": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "arn-of-a-user": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "external-id-but-no-role": {
+      "status": 400,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000071:role/meteringco-metering-legacy",
+        "externalId": "vd-not-required",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "inline-policy-role": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000093:role/meteringco-collector",
+        "externalId": "",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "guarded-role-in-another-account": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000093:role/meteringco-collector-guarded",
+        "externalId": "ks-core-88f1",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "blank-role-clears": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "",
+        "externalId": "",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "no-cloud-block-at-all": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "",
+        "externalId": "",
+        "city": "Eugene",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "reconnect-lab-role": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "arn:aws:iam::411000000104:role/meteringco-lab",
+        "externalId": "ks-lab-2f0a",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    },
+    "blank-role-drops-stale-external-id": {
+      "status": 200,
+      "error": "",
+      "readError": "",
+      "settings": {
+        "iamRoleArn": "",
+        "externalId": "",
+        "city": "",
+        "vatId": "",
+        "businessName": "",
+        "supportEmail": ""
+      }
+    }
+  }
+}

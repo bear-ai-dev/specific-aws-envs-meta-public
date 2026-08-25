@@ -6,3 +6,6 @@
 | [Task 4](../../tasks/04-measurement-failure-dlq/instruction.md) | Opus 5 | 8/8 | 1.0000 | 1.0000 | 1.0000 |
 | [Task 5](../../tasks/05-customer-communication-dispatch/instruction.md) | Muse Spark 1.2 | 5/8 | 0.6250 | 0.9821 | 1.0000 |
 | [Task 5](../../tasks/05-customer-communication-dispatch/instruction.md) | Opus 5 | 8/8 | 1.0000 | 1.0000 | 1.0000 |
+| [Task 14](../../tasks/14-iam-role-validation/instruction.md) | Muse Spark 1.2 | 4/8 | 0.5000 | 0.9286 | 1.0000 |
+| [Task 14](../../tasks/14-iam-role-validation/instruction.md) | GPT-5.6 Sol | 3/8 | 0.3750 | 0.8214 | 1.0000 |
+| [Task 14](../../tasks/14-iam-role-validation/instruction.md) | Opus 5 | 8/8 | 1.0000 | 1.0000 | 1.0000 |

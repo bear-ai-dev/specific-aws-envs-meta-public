@@ -1,0 +1,75 @@
+{
+  "job_name": "meta-task14-muse12-gpt56sol-opus5-eight-rollout-reproduction",
+  "jobs_dir": "sample-run/raw",
+  "n_attempts": 8,
+  "n_concurrent_trials": 24,
+  "quiet": false,
+  "retry": {
+    "max_retries": 0
+  },
+  "environment": {
+    "type": "daytona",
+    "override_storage_mb": 10240,
+    "kwargs": {
+      "connection_pool_maxsize": 48,
+      "labels": {
+        "cohort": "meta-task14-muse12-gpt56sol-opus5-eight-rollout-reproduction"
+      }
+    }
+  },
+  "agents": [
+    {
+      "import_path": "harness.harbor_agents:ResponsesMiniSweAgent",
+      "model_name": "openai/muse-spark-1.2",
+      "n_concurrent": 8,
+      "kwargs": {
+        "version": "2.4.5",
+        "cost_limit": "0",
+        "config_file": "harness/mini-swe-meta-responses.yaml",
+        "reasoning_effort": "high",
+        "max_tokens": 32768
+      },
+      "env": {
+        "OPENAI_API_KEY": "${META_API_KEY}",
+        "OPENAI_BASE_URL": "https://api.meta.ai/v1"
+      }
+    },
+    {
+      "import_path": "harness.harbor_agents:ResponsesMiniSweAgent",
+      "model_name": "openai/us.openai.gpt-5.6-sol",
+      "n_concurrent": 8,
+      "kwargs": {
+        "version": "2.4.5",
+        "cost_limit": "0",
+        "config_file": "harness/mini-swe-bedrock-openai-responses.yaml",
+        "reasoning_effort": "high",
+        "max_tokens": 32768
+      },
+      "env": {
+        "OPENAI_API_KEY": "${BEDROCK_OPENAI_API_KEY}",
+        "OPENAI_BASE_URL": "https://bedrock-runtime.us-east-1.amazonaws.com/openai/v1"
+      }
+    },
+    {
+      "import_path": "harness.harbor_agents:BedrockMiniSweAgent",
+      "model_name": "bedrock/us.anthropic.claude-opus-5",
+      "n_concurrent": 8,
+      "kwargs": {
+        "version": "2.4.5",
+        "cost_limit": "0",
+        "config_file": "harness/mini-swe-bedrock-anthropic-v2.yaml"
+      },
+      "env": {
+        "BEDROCK_PROVIDER_AWS_ACCESS_KEY_ID": "${AWS_ACCESS_KEY_ID}",
+        "BEDROCK_PROVIDER_AWS_SECRET_ACCESS_KEY": "${AWS_SECRET_ACCESS_KEY}",
+        "BEDROCK_PROVIDER_AWS_SESSION_TOKEN": "${AWS_SESSION_TOKEN:-}",
+        "BEDROCK_PROVIDER_AWS_REGION": "${AWS_REGION:-us-east-1}"
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "path": "tasks/14-iam-role-validation"
+    }
+  ]
+}

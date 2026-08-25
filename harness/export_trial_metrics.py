@@ -194,11 +194,17 @@ def build_row(index_item: dict, attempt: int, public_task_sha256: dict[str, str]
         raise ValueError(f"index/result validity mismatch for {index_item['trial']}")
 
     final_metrics = atif["final_metrics"]
+    atif_cost = final_metrics.get("total_cost_usd")
+    atif_cost_matches = (
+        math.isclose(atif_cost, cost_usd)
+        if isinstance(atif_cost, (int, float))
+        else math.isclose(cost_usd, 0.0)
+    )
     if (
         final_metrics["total_prompt_tokens"] != input_tokens
         or final_metrics["total_cached_tokens"] != cached_tokens
         or final_metrics["total_completion_tokens"] != output_tokens
-        or not math.isclose(final_metrics["total_cost_usd"], cost_usd)
+        or not atif_cost_matches
     ):
         raise ValueError(f"ATIF/result metric mismatch for {index_item['trial']}")
 
@@ -348,8 +354,8 @@ def generate() -> dict[Path, str]:
         build_row(item, attempt, manifest["public_task_sha256"])
         for item, attempt in ordered_attempts(index)
     ]
-    if len(rows) != 48 or not all(row["valid"] for row in rows):
-        raise SystemExit(f"expected 48 valid trials, found {len(rows)}")
+    if len(rows) != 72 or not all(row["valid"] for row in rows):
+        raise SystemExit(f"expected 72 valid trials, found {len(rows)}")
     return render_outputs(rows)
 
 
@@ -367,14 +373,14 @@ def main() -> None:
         stale = [path.relative_to(ROOT) for path, text in outputs.items() if not path.is_file() or path.read_text() != text]
         if stale:
             raise SystemExit("stale metric export: " + ", ".join(map(str, stale)))
-        print("metric export validation passed: trials=48 files=3")
+        print("metric export validation passed: trials=72 files=3")
         return
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     for path, text in outputs.items():
         path.write_text(text)
     print(
-        f"exported=48 csv={CSV_PATH.relative_to(ROOT)} "
+        f"exported=72 csv={CSV_PATH.relative_to(ROOT)} "
         f"json={JSON_PATH.relative_to(ROOT)}"
     )
 

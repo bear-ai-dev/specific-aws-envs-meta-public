@@ -1,7 +1,7 @@
 # Per-trial metrics
 
-This folder contains plot-ready metrics for all 48 valid trials in the matched
-three-task cohort.
+This folder contains plot-ready metrics for all 72 valid trials across four
+tasks and nine task-model cells.
 
 - [`per-trial-metrics.csv`](per-trial-metrics.csv): one flat row per trial
 - [`per-trial-metrics.json`](per-trial-metrics.json): the same rows with native JSON types
@@ -40,13 +40,14 @@ python3 harness/export_trial_metrics.py --check
 | `uncached_input_tokens` | `input_tokens - cached_input_tokens`. |
 | `output_tokens` | Total completion tokens reported by the agent. |
 | `total_tokens` | `input_tokens + output_tokens`; cached tokens are not added again. |
-| `cost_usd` | Agent-reported model cost in US dollars; it is not a normalized cross-provider price estimate. |
+| `cost_usd` | Agent-reported model cost in US dollars; direct Responses routes that did not expose provider pricing record `0.0`, so this is not a normalized cross-provider price estimate. |
 | `task_digest` | SHA-256 digest of the normalized public task package. |
 | `result_task_checksum` | Task checksum stored by the original recorded Harbor result. |
 
 The exporter verifies that index, result, and verifier rewards agree; ATIF and
 Harbor token and cost totals agree; every requested tool call has a recorded
-response; all 48 trials are valid; and every task-model cell has eight trials.
+response; all 72 trials are valid; and every reported task-model cell has eight
+trials.
 API-call and assistant-message counts are reported independently because the
 model client and retained trajectory record them at different layers; equality
 is not assumed.

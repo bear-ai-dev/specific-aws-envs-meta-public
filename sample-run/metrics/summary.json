@@ -1,90 +1,92 @@
 {
   "source_index": "sample-run/indexes/trials.json",
-  "trials": 48,
-  "valid_trials": 48,
+  "trials": 72,
+  "valid_trials": 72,
   "models": [
+    "GPT-5.6 Sol",
     "Muse Spark 1.2",
     "Opus 5"
   ],
   "tasks": [
     "02-entitlement-overage-lines",
     "04-measurement-failure-dlq",
-    "05-customer-communication-dispatch"
+    "05-customer-communication-dispatch",
+    "14-iam-role-validation"
   ],
   "tool_names": [
     "bash"
   ],
   "metrics": {
     "agent_seconds": {
-      "min": 347.23697,
-      "median": 1309.509615,
-      "p90": 4088.328932,
+      "min": 271.955106,
+      "median": 724.8158785,
+      "p90": 3440.41432,
       "max": 7234.974114
     },
     "full_trial_seconds": {
-      "min": 451.187694,
-      "median": 1410.589814,
-      "p90": 4180.898053,
+      "min": 303.091825,
+      "median": 801.4719150000001,
+      "p90": 3545.474769,
       "max": 7330.966532
     },
     "setup_seconds": {
       "min": 5.671054,
-      "median": 8.124283,
-      "p90": 9.405215,
-      "max": 10.117788
+      "median": 8.6953905,
+      "p90": 15.736515,
+      "max": 15.992488
     },
     "verifier_seconds": {
       "min": 4.612498,
-      "median": 6.763510999999999,
-      "p90": 30.844547,
+      "median": 14.1586505,
+      "p90": 30.714627,
       "max": 31.24539
     },
     "model_api_calls": {
-      "min": 33,
-      "median": 67.0,
-      "p90": 101,
+      "min": 20,
+      "median": 64.0,
+      "p90": 90,
       "max": 189
     },
     "tool_calls_requested": {
-      "min": 40,
-      "median": 71.0,
-      "p90": 100,
+      "min": 0,
+      "median": 64.5,
+      "p90": 88,
       "max": 186
     },
     "tool_calls_executed": {
-      "min": 37,
-      "median": 69.0,
-      "p90": 98,
+      "min": 0,
+      "median": 62.5,
+      "p90": 87,
       "max": 184
     },
     "input_tokens": {
-      "min": 1088122,
-      "median": 4912147.5,
-      "p90": 11906309,
+      "min": 987385,
+      "median": 4747632.0,
+      "p90": 9967962,
       "max": 35832063
     },
     "cached_input_tokens": {
-      "min": 1036396,
-      "median": 3657838.5,
-      "p90": 8062472,
+      "min": 913401,
+      "median": 3720347.5,
+      "p90": 6722922,
       "max": 26616476
     },
     "output_tokens": {
-      "min": 19319,
-      "median": 101703.5,
-      "p90": 352700,
+      "min": 14186,
+      "median": 35101.0,
+      "p90": 303446,
       "max": 627099
     },
     "total_tokens": {
-      "min": 1108102,
-      "median": 5097685.0,
-      "p90": 12249270,
+      "min": 1020510,
+      "median": 4883838.0,
+      "p90": 10297819,
       "max": 36405782
     },
     "cost_usd": {
-      "min": 1.41215525,
-      "median": 3.4092401,
-      "p90": 6.912320000000003,
+      "min": 0.0,
+      "median": 2.88344185,
+      "p90": 6.232242050000001,
       "max": 22.619395749999992
     }
   },
@@ -172,6 +174,48 @@
       "median_tool_calls_requested": 57.5,
       "median_total_tokens": 2173129.5,
       "median_cost_usd": 2.358746225
+    },
+    {
+      "task": "14-iam-role-validation",
+      "task_label": "Task 14",
+      "model": "meta/responses/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 4,
+      "observed_pass_rate": 0.5,
+      "median_agent_seconds": 380.771463,
+      "median_model_api_calls": 71.0,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 5998020.0,
+      "median_cost_usd": 0.0
+    },
+    {
+      "task": "14-iam-role-validation",
+      "task_label": "Task 14",
+      "model": "bedrock/openai/gpt-5.6-sol",
+      "model_label": "GPT-5.6 Sol",
+      "attempts": 8,
+      "solves": 3,
+      "observed_pass_rate": 0.375,
+      "median_agent_seconds": 335.07602499999996,
+      "median_model_api_calls": 26.5,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 1147335.0,
+      "median_cost_usd": 0.0
+    },
+    {
+      "task": "14-iam-role-validation",
+      "task_label": "Task 14",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 922.3632395,
+      "median_model_api_calls": 66.0,
+      "median_tool_calls_requested": 77.0,
+      "median_total_tokens": 5372233.5,
+      "median_cost_usd": 4.9335451
     }
   ]
 }

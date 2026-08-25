@@ -1,13 +1,21 @@
 {
-  "schema_version": 1,
-  "run_date": "2026-08-24",
-  "purpose": "post-normalization oracle and no-op validation of all runnable public tasks",
+  "schema_version": 2,
+  "run_dates": [
+    "2026-08-19",
+    "2026-08-24"
+  ],
+  "purpose": "post-normalization oracle and no-op validation of every runnable public task",
   "harbor_version": "0.18.0",
   "environment": "docker",
   "config": "harness/controls.json",
-  "job_name": "meta-public-controls-20260824",
+  "job_names": [
+    "xai-public-controls-20260819",
+    "meta-public-controls-20260824"
+  ],
+  "reproduction_job_name": "meta-public-controls-20260825",
+  "reuse_policy": "A recorded control is reusable only when executable task files are byte-identical; documentation-only changes are allowed and the current full-tree digest is recorded separately.",
   "summary": {
-    "trials": 6,
+    "trials": 8,
     "exceptions": 0,
     "oracle_all_reward_one": true,
     "nop_all_reward_zero": true
@@ -51,6 +59,21 @@
       },
       "nop": {
         "trial_id": "HMiZue7",
+        "reward": 0.0,
+        "exception": null
+      }
+    },
+    "14-iam-role-validation": {
+      "public_task_sha256": "4214d694027f35d5d0a9335733f72cb997fef154968a2b5c75a880f73eaba2af",
+      "control_source_public_task_sha256": "38747a620a3dcdc45516f20d074bd98c7e127b8086b4b2630023354345214288",
+      "reuse_basis": "The current task differs from the controlled public tree only by README documentation; environment, solution, and verifier files are byte-identical.",
+      "oracle": {
+        "trial_id": "CVLTK6u",
+        "reward": 1.0,
+        "exception": null
+      },
+      "nop": {
+        "trial_id": "b9YM7Af",
         "reward": 0.0,
         "exception": null
       }

@@ -1,0 +1,25 @@
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000071:role/meteringco-metering[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: Not authorized to perform sts:AssumeRole (ExternalId mismatch)[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000071:role/meteringco-metering[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: Not authorized to perform sts:AssumeRole (ExternalId mismatch)[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000071:role/meteringco-archive[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mTypeError: Cannot read properties of undefined (reading 'Error')
+  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000082:role/meteringco-cost-view[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mTypeError: Cannot read properties of undefined (reading 'Error')
+  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000082:role/meteringco-empty[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mTypeError: Cannot read properties of undefined (reading 'Error')
+  Deserialization error: to see the raw response, inspect the hidden field {error}.$response on this object.[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000071:role/terraform-apply[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: User: arn:aws:iam::755000000019:user/bootstrap is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::411000000071:role/terraform-apply[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000093:role/ci-runner[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: User: arn:aws:iam::755000000019:user/bootstrap is not authorized to perform: sts:AssumeRole on resource: arn:aws:iam::411000000093:role/ci-runner[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000093:role/meteringco-collector-typo[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: Not authorized to perform sts:AssumeRole on arn:aws:iam::411000000093:role/meteringco-collector-typo[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000999:role/meteringco-collector[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: Not authorized to perform sts:AssumeRole on arn:aws:iam::411000000999:role/meteringco-collector[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role meteringco-collector[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mValidationError: Invalid RoleArn: meteringco-collector[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mIAM validation failed for role arn:aws:iam::411000000093:user/meteringco-collector[39m
+[31m[Nest] 1958  - [39m08/25/2026, 2:40:22 AM [31m  ERROR[39m [38;5;3m[SettingsService] [39m[31mAccessDenied: Not authorized to perform sts:AssumeRole on arn:aws:iam::411000000093:user/meteringco-collector[39m

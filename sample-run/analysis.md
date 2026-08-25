@@ -2,10 +2,10 @@
 
 ## Cohort result
 
-This sample evaluates three frozen tasks with eight Muse Spark 1.2 trials and
-eight Opus 5 trials per task. All 48 reported trials have a numeric reward,
-native and normalized trajectories, final code, a verifier report, and no
-Harbor exception.
+This sample evaluates four frozen tasks. Muse Spark 1.2 and Opus 5 each have
+eight trials per task; GPT-5.6 Sol has eight trials on Task 14. All 72 reported
+trials have a numeric reward, native and normalized trajectories, a verifier
+report, and no Harbor exception.
 
 | Task | Model | Solves | Interpretation |
 | --- | --- | ---: | --- |
@@ -15,31 +15,39 @@ Harbor exception.
 | [Task 4: measurement failure DLQ](../tasks/04-measurement-failure-dlq/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
 | [Task 5: customer communication dispatch](../tasks/05-customer-communication-dispatch/instruction.md) | Muse Spark 1.2 | 5/8 | Solves, with three repeated draft-selection failures |
 | [Task 5: customer communication dispatch](../tasks/05-customer-communication-dispatch/instruction.md) | Opus 5 | 8/8 | Eight retained solving trials |
+| [Task 14: IAM role validation](../tasks/14-iam-role-validation/instruction.md) | Muse Spark 1.2 | 4/8 | Four repeated omitted-field boundary failures |
+| [Task 14: IAM role validation](../tasks/14-iam-role-validation/instruction.md) | GPT-5.6 Sol | 3/8 | Five repeated omitted-field boundary failures |
+| [Task 14: IAM role validation](../tasks/14-iam-role-validation/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
 
 The [full matrix](indexes/pass-rate-matrix.md) keeps raw solves separate from
-pass@1, pass@3, and pass@8. The aggregate stored result is 7/24 for Muse and
-24/24 for Opus.
+pass@1, pass@3, and pass@8. Across the reported cells, the aggregate stored
+result is 11/32 for Muse, 3/8 for GPT-5.6 Sol, and 32/32 for Opus.
+
+Task 14 is the only addition from the latest six-task screen that met the
+publication rule of Muse at or below 50% (`4/8`). The three earlier public
+tasks predate that gate and remain in the sample unchanged.
 
 ## Observed model difference
 
 The evidence supports a specific reliability difference: Muse less
 consistently preserves every branch of a multi-part business contract when a
 task combines normal behavior with zero-value visibility, duplicate delivery,
-error sanitization, or primary-versus-backup recipient rules.
+error sanitization, primary-versus-backup recipient rules, or optional nested
+settings fields.
 
 This is not evidence that Muse lacks the underlying coding or AWS capability.
-It solved Task 4 twice and Task 5 five times. Those counterexamples implement
-the same behaviors that the failing trials miss. Opus was a consistent solving
-comparator on the stored task variants.
+It solved Task 4 twice, Task 5 five times, and Task 14 four times. Those
+counterexamples implement the same behaviors that the failing trials miss.
+Opus was a consistent solving comparator on the stored task variants.
 
 ## Trial evidence
 
 The [machine-readable trial index](indexes/trials.json) resolves every admitted
-trial to its native trajectory, normalized trajectory, final deliverable,
-verifier report, and reward. The generated [per-trial metrics](metrics/) add
-recorded duration, model-call, tool-call, token, and cost fields for every one
-of those 48 trials. They are descriptive effort measures, not causal evidence
-for the failure modes below.
+trial to its native trajectory, normalized trajectory, verifier report,
+reward, and retained deliverable where included. The generated
+[per-trial metrics](metrics/) add recorded duration, model-call, tool-call,
+token, and cost fields for every one of those 72 trials. They are descriptive
+effort measures, not causal evidence for the failure modes below.
 
 | Evidence | Muse Spark 1.2 | Opus 5 |
 | --- | --- | --- |
@@ -47,6 +55,14 @@ for the failure modes below.
 | Representative Task 2 verifier | [missing required lines](raw/muse-spark-1.2-rollout-20260824/meteringco-entitlement-overage-lines__Dx39Knd/verifier/report.txt) | [solving report](raw/opus-5-eight-rollout-20260823/meteringco-entitlement-overage-lines__2ZgNsw5/verifier/report.txt) |
 | Representative Task 4 verifier | [duplicate and sanitization failures](raw/muse-spark-1.2-rollout-20260824/meteringco-measurement-failure-dlq__QQdTpYx/verifier/report.txt) | [solving report](raw/opus-5-eight-rollout-20260823/meteringco-measurement-failure-dlq__5fAiG5C/verifier/report.txt) |
 | Representative Task 5 verifier | [backup drafts sent](raw/muse-spark-1.2-rollout-20260824/meteringco-customer-communication-dis__L3hgp6Z/verifier/report.txt) | [solving report](raw/opus-5-eight-rollout-20260823/meteringco-customer-communication-dis__46Q6byc/verifier/report.txt) |
+
+Task 14 uses a compact canonical layout for all three models:
+
+| Model | Eight trajectories | Representative verifier |
+| --- | --- | --- |
+| Muse Spark 1.2 | [trial set](trajectories/14-iam-role-validation/muse-spark-1.2/) | [omitted-field failure](trajectories/14-iam-role-validation/muse-spark-1.2/trial-01/verifier/report.txt) |
+| GPT-5.6 Sol | [trial set](trajectories/14-iam-role-validation/gpt-5.6-sol/) | [omitted-field failure](trajectories/14-iam-role-validation/gpt-5.6-sol/trial-01/verifier/report.txt) |
+| Opus 5 | [trial set](trajectories/14-iam-role-validation/opus-5/) | [solving report](trajectories/14-iam-role-validation/opus-5/trial-01/verifier/report.txt) |
 
 ## Failure-mode analysis
 
@@ -107,6 +123,26 @@ selects `request.data[0]`. Both correctly build SES source, reply-to, UTF-8,
 body, and configuration-set fields. The failure is therefore a precise
 primary-versus-fallback selection error, not general SES unfamiliarity.
 
+### Task 14: an omitted cloud block was mistaken for an invalid block
+
+The settings endpoint must validate a supplied IAM role before writing, but an
+ordinary update that carries no `cloudIAM` block must pass through unchanged.
+All four failing Muse trials and all five failing GPT-5.6 Sol trials rejected
+the same city-only update with status 400 and left the city unwritten. Every
+other held-out case in those verifier reports passed.
+
+The repeated implementation error was checking whether `cloudIAM` was present
+as a property on the framework-transformed DTO. The validation pipeline can
+materialize an omitted optional field as `cloudIAM: undefined`, so a property
+presence test enters the validation branch and rejects it. The passing
+implementations instead guard on `updatedFields.cloudIAM !== undefined`.
+
+This is a narrow optional-field boundary error, not an IAM capability failure:
+the failing trials successfully implemented role assumption, external-ID,
+EC2 inventory, disconnect, and atomic rejection behavior. Four Muse and three
+GPT-5.6 Sol counterexamples handled the omitted field correctly, and all eight
+Opus trials passed the full 21-save sequence.
+
 ## Fairness and reachability
 
 Each instruction states that a local AWS-compatible endpoint is already
@@ -115,24 +151,28 @@ shell. Held-out verifier data is root-only. The public harness checks the exact
 agent shell's local AWS reachability before model execution and keeps Bedrock
 credentials separate from task credentials.
 
-The three normalized public tasks were rerun through Harbor 0.18.0 in Docker on
-2026-08-24. All three oracle trials scored `1.0`, all three no-op trials scored
-`0.0`, and none raised an exception. Trial IDs and public task digests are in
-the [control manifest](manifests/public-controls-validation.json).
+Every normalized public task has an oracle score of `1.0` and a no-op score of
+`0.0`, with no recorded exception. Tasks 2, 4, and 5 were rerun through Harbor
+0.18.0 in Docker on 2026-08-24. Task 14 reuses the 2026-08-19 control from a
+public task tree whose executable files are byte-identical; the current tree
+differs only in README documentation. Trial IDs, reuse basis, and task digests
+are in the [control manifest](manifests/public-controls-validation.json).
 
-The stored model trials used the same mini-SWE-agent version, reasoning setting,
-task packages, verifier logic, and eight-attempt cell size. They used different
-model providers. The recorded Opus route also inherited a 4,096-token output
-ceiling while the Muse route had no equivalent published ceiling; only Opus
-was constrained, so this asymmetry does not explain the Opus advantage, but it
-means the inference conditions were not perfectly identical.
+Within each task, the stored model trials used the same mini-SWE-agent version,
+reasoning setting, task package, verifier logic, and eight-attempt cell size.
+They used different model providers. Tasks 2, 4, and 5 routed Muse through
+OpenRouter; Task 14 routed Muse through Meta's Responses API and GPT-5.6 Sol
+through Bedrock's OpenAI-compatible Responses API. The Task 14 cells used the
+same high reasoning setting and 32,768-token output allowance. Provider stacks
+remain an inference-condition difference and the results should be read as
+end-to-end agent configurations, not provider-normalized model internals.
 
 ## Evidence boundary
 
 These conclusions are limited to the stored prompts, frozen task variants,
-trajectories, verifier outcomes, and controls. Three eight-run task cohorts do
-not establish a universal model ranking, and pass@8 reaching `1.0` for a cell
-with any solve should not be read as eight raw solves.
+trajectories, verifier outcomes, and controls. Four tasks and nine eight-run
+cells do not establish a universal model ranking, and pass@8 reaching `1.0` for
+a cell with any solve should not be read as eight raw solves.
 
 Tasks 2 and 4 include all eight Opus attempts measured for the reported cells.
 For Task 5, the repository retains eight solving Opus trials from 24 measured
