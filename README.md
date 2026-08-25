@@ -31,9 +31,8 @@ model-call, tool-call, token, and cost data are under
 
 - Four runnable Harbor task packages with frozen environments and independent
   verifiers.
-- Sixty-four admitted model trials across eight headline Muse and Opus cells,
-  plus eight additional model trials in supporting evidence. No scored cohort
-  includes an incomplete attempt.
+- Sixty-four admitted model trials across eight Muse and Opus cells. No scored
+  cohort includes an incomplete attempt.
 - Native mini-SWE-agent and normalized ATIF trajectories, submitted
   code where included, verifier reports, reward files, and run metadata.
 - Reproducible per-trial execution, call, token, and cost metrics in CSV and
@@ -48,19 +47,18 @@ model-call, tool-call, token, and cost data are under
 tasks/                 public task packages and frozen verifiers
 harness/               cohort, controls, indexing, and publication validation
 shared/                deterministic local AWS-compatible task runtime
-sample-run/raw/        complete admitted model-trial evidence
-sample-run/trajectories/ canonical Task 14 evidence by model and attempt
+sample-run/trajectories/ all 64 trials by task, model, and attempt
 sample-run/indexes/    machine-readable trial index and pass-rate tables
 sample-run/manifests/  frozen hashes, controls, and redaction records
 sample-run/metrics/    generated per-trial effort and execution metrics
 sample-run/analysis.md verifier-backed model comparison
 ```
 
-Large workdir archives are omitted. The original 48-trial cohort includes the
-submitted deliverable under `verifier/deliverable/`. The 24 Task 14 trials use
-a compact canonical layout that keeps native and ATIF trajectories, results,
-verifier reports, rewards, logs, and run metadata. Duplicated submitted-code
-snapshots are not needed to validate the recorded scores and are omitted.
+All 64 advertised trials use the same
+`sample-run/trajectories/<task>/<model>/trial-XX` layout. Tasks 2, 4, and 5
+include the submitted deliverable under `verifier/deliverable/`. Task 14 keeps
+the native and ATIF trajectories, results, verifier reports, rewards, logs, and
+run metadata without duplicated submitted-code snapshots.
 
 ## Evidence validity
 

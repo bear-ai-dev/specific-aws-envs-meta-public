@@ -1,7 +1,7 @@
 {
   "agent": "mini-swe-agent",
   "attempts_per_task_model": 8,
-  "cohort_config_sha256": "7db6875a3038c440631e761c18fae850ce8dedbd98c2f3b17e8c3c08e1a63320",
+  "cohort_config_sha256": "a1d8ad9247988dd238f3520ff8368ad80a5ec70a46c9b48d761786ae29538c23",
   "cohorts": [
     {
       "config": "harness/cohort.json",
@@ -9,19 +9,16 @@
     },
     {
       "config": "harness/task14-cohort.json",
-      "job_name": "meta-task14-muse12-gpt56sol-opus5-eight-rollout-reproduction"
+      "job_name": "meta-task14-muse12-opus5-eight-rollout-reproduction"
     }
   ],
-  "controls_config_sha256": "99e9a7a7377bb0aee9e7c79b0963107d10b725e1159eb7999161cbf856344673",
+  "controls_config_sha256": "b7bc12fc404aef775ef45dd14a647eb1b74a307586bddc145391d12c75042e7a",
   "evidence_roots": [
-    "sample-run/raw/muse-spark-1.2-rollout-20260824",
-    "sample-run/raw/opus-5-eight-rollout-20260823",
-    "sample-run/trajectories/14-iam-role-validation"
+    "sample-run/trajectories"
   ],
   "harbor_version": "0.18.0",
   "mini_swe_agent_version": "2.4.5",
   "models": {
-    "gpt-5.6-sol": "bedrock/openai/gpt-5.6-sol",
     "muse-spark-1.2": "openrouter/meta/muse-spark-1.2",
     "muse-spark-1.2-direct": "meta/responses/muse-spark-1.2",
     "opus-5": "bedrock/us.anthropic.claude-opus-5"
@@ -30,12 +27,12 @@
     "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
     "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
     "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
-    "14-iam-role-validation": "4214d694027f35d5d0a9335733f72cb997fef154968a2b5c75a880f73eaba2af"
+    "14-iam-role-validation": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9"
   },
   "publication_controls_validation": "sample-run/manifests/public-controls-validation.json",
-  "publication_controls_validation_sha256": "c6111df889b94b12ec7764e3f4ff3fdbfad639cf73455423148631e9f587d14e",
+  "publication_controls_validation_sha256": "aaa69cb3e42082bbfb71070e161f2869c54fb870f03ea0ff4da0b120fe1c3cc6",
   "publication_transformation": "sample-run/manifests/public-transformation.json",
-  "publication_transformation_sha256": "e1cfb524d99a72a77fb6db392f3adfb35fb6a9c645d5620d645d785900e8e8f8",
+  "publication_transformation_sha256": "abbb5bc778e3047454a44c4e32a35098a946472abc8500401a9a282d31307f80",
   "reasoning_effort": "high",
   "recorded_environment": "managed AWS sandbox",
   "recorded_runtime_task_sha256": {
@@ -44,17 +41,16 @@
     "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
     "14-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
   },
-  "redaction_manifest_sha256": "fe08b15cd6d73cb42254811fd93cd7f9c288143d0afd5a4b455620528d9b5c4d",
+  "redaction_manifest_sha256": "b95a582308237c7e7755ff35d1f02d10236017d32f753de061e42cef42238dcb",
   "reproduction_environment": "daytona",
   "runtime_file_sha256": {
     "harness/harbor_agents.py": "1d8b464038b9502f4f94dd7f0d8a795bd6f78aca87aee8c7acd6004897fee1bc",
     "harness/mini-swe-bedrock-anthropic-v2.yaml": "53db761f664be5f1392fa2a1d4a10b81617486257438fb0494913fdab5a0755d",
-    "harness/mini-swe-bedrock-openai-responses.yaml": "716f68882fb61d402319bd547b3059202e30834773f9e07e9bae24fbbe984a1f",
     "harness/mini-swe-bedrock.yaml": "a8ebaf00aa24ccd8d8f0dcb074cc11b9349dcc163c6a2a67783402ab74b5c19c",
-    "harness/mini-swe-meta-responses.yaml": "716f68882fb61d402319bd547b3059202e30834773f9e07e9bae24fbbe984a1f",
+    "harness/mini-swe-meta-responses.yaml": "a78f435bac5d14c06b3c2fc848d686ba6c889ba9a48cbdf4f7a27025f4616785",
     "harness/mini-swe-openrouter.yaml": "e1d63d9ae485d58037c82e3290d3e149048757301927f7d07754bd31ffb677f7"
   },
   "schema_version": 2,
-  "task14_cohort_config_sha256": "114b7c7bac3728b614c04bc483f6d12c5f2264528c7946220ddd651208430e52",
-  "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, and reward; submitted deliverable retained where available"
+  "task14_cohort_config_sha256": "b61c5fb4833d39511a398d8a9eabbc07ca8121a54b55f122cb8d419dd4c4b6d3",
+  "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, and reward; submitted deliverable included where available"
 }

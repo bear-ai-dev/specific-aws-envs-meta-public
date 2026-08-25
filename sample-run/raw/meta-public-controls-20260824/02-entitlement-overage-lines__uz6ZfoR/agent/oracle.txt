@@ -1,3 +1,0 @@
-patching file src/billing/entities/billing.entity.ts
-patching file src/offering/entities/offeringPackage.entity.ts
-reference solution applied to /app

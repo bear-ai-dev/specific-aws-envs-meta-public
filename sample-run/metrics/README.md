@@ -1,7 +1,7 @@
 # Per-trial metrics
 
-This folder contains plot-ready metrics for all 72 valid trials across four
-tasks and nine task-model cells.
+This folder contains plot-ready metrics for all 64 valid trials across four
+tasks and eight task-model cells.
 
 - [`per-trial-metrics.csv`](per-trial-metrics.csv): one flat row per trial
 - [`per-trial-metrics.json`](per-trial-metrics.json): the same rows with native JSON types
@@ -28,9 +28,9 @@ python3 harness/export_trial_metrics.py --check
 | `agent_seconds` | Time between Harbor's agent-execution start and finish timestamps. |
 | `full_trial_seconds` | Time from the trial start through its finish, including setup and verification. |
 | `model_api_calls` | Exact mini-SWE-agent `api_calls` count, recorded independently from serialized messages. |
-| `assistant_messages` | Assistant-role messages retained in the native mini-SWE-agent trajectory. |
+| `assistant_messages` | Assistant-role messages recorded in the native mini-SWE-agent trajectory. |
 | `atif_steps` | Step count in the normalized ATIF trajectory. |
-| `tool_calls_requested` | Tool-call envelopes emitted by retained model responses. One model call may request multiple tools. |
+| `tool_calls_requested` | Tool-call envelopes emitted by recorded model responses. One model call may request multiple tools. |
 | `tool_calls_executed` | Requested tools with a recorded response that was not marked “action was not executed.” |
 | `tool_calls_not_executed` | Calls explicitly recorded with return code `-1` or “action was not executed,” including submission-boundary calls. |
 | `tool_nonzero_exit_count` | Executed tool responses with a nonzero shell return code. This is diagnostic and does not by itself mean the trial failed. |
@@ -46,10 +46,10 @@ python3 harness/export_trial_metrics.py --check
 
 The exporter verifies that index, result, and verifier rewards agree; ATIF and
 Harbor token and cost totals agree; every requested tool call has a recorded
-response; all 72 trials are valid; and every reported task-model cell has eight
+response; all 64 trials are valid; and every reported task-model cell has eight
 trials.
 API-call and assistant-message counts are reported independently because the
-model client and retained trajectory record them at different layers; equality
+model client and recorded trajectory capture them at different layers; equality
 is not assumed.
 
 These metrics describe recorded effort and execution. They do not, on their

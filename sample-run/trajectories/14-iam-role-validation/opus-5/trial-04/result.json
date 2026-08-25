@@ -1,8 +1,8 @@
 {
-    "id": "f4dfc5fd-8031-44aa-92d6-9a17beda693f",
+    "id": "33a8139e-0cfd-4474-89b1-70608eff5758",
     "task_name": "meteringco/iam-role-validation",
-    "trial_name": "14-iam-role-validation__djaPJuT",
-    "trial_uri": "file://[REDACTED_LOCAL_REPOSITORY_PATH]/sample-run/raw/amazon-xai-v2-two-opus-eight-rollouts-20260823-v1/14-iam-role-validation__djaPJuT",
+    "trial_name": "14-iam-role-validation__H6zjprD",
+    "trial_uri": "file://[REDACTED_LOCAL_REPOSITORY_PATH]/sample-run/raw/amazon-xai-v2-two-opus-eight-rollouts-20260823-v1/14-iam-role-validation__H6zjprD",
     "task_id": {
         "path": "tasks/14-iam-role-validation"
     },
@@ -19,7 +19,7 @@
             "download_dir": null,
             "source": null
         },
-        "trial_name": "14-iam-role-validation__djaPJuT",
+        "trial_name": "14-iam-role-validation__H6zjprD",
         "trials_dir": "sample-run/raw/amazon-xai-v2-two-opus-eight-rollouts-20260823-v1",
         "install_only": false,
         "timeout_multiplier": 1.0,
@@ -92,10 +92,10 @@
         }
     },
     "agent_result": {
-        "n_input_tokens": 6252255,
-        "n_cache_tokens": 6116857,
-        "n_output_tokens": 53990,
-        "cost_usd": 5.779656850000001,
+        "n_input_tokens": 5163181,
+        "n_cache_tokens": 5031164,
+        "n_output_tokens": 46866,
+        "cost_usd": 4.963396074999999,
         "rollout_details": null,
         "metadata": null
     },
@@ -106,23 +106,23 @@
         }
     },
     "exception_info": null,
-    "started_at": "2026-08-24T04:51:29.099586Z",
-    "finished_at": "2026-08-24T05:13:45.535284Z",
+    "started_at": "2026-08-24T04:44:12.019857Z",
+    "finished_at": "2026-08-24T05:01:07.559972Z",
     "environment_setup": {
-        "started_at": "2026-08-24T04:51:29.125688Z",
-        "finished_at": "2026-08-24T04:51:54.363207Z"
+        "started_at": "2026-08-24T04:44:19.311440Z",
+        "finished_at": "2026-08-24T04:44:52.505133Z"
     },
     "agent_setup": {
-        "started_at": "2026-08-24T04:51:55.020024Z",
-        "finished_at": "2026-08-24T04:52:10.850848Z"
+        "started_at": "2026-08-24T04:44:53.183155Z",
+        "finished_at": "2026-08-24T04:45:09.003895Z"
     },
     "agent_execution": {
-        "started_at": "2026-08-24T04:52:10.851002Z",
-        "finished_at": "2026-08-24T05:13:18.393568Z"
+        "started_at": "2026-08-24T04:45:09.003986Z",
+        "finished_at": "2026-08-24T05:00:37.688843Z"
     },
     "verifier": {
-        "started_at": "2026-08-24T05:13:23.572633Z",
-        "finished_at": "2026-08-24T05:13:45.234842Z"
+        "started_at": "2026-08-24T05:00:42.984623Z",
+        "finished_at": "2026-08-24T05:01:07.368420Z"
     },
     "step_results": null
 }

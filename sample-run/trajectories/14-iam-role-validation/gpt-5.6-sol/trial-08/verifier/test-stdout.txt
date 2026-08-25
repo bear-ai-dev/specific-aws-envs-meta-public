@@ -1,9 +1,0 @@
-=== Snapshot the deliverable for audit ===
-=== Stop the agent-facing endpoint ===
-=== Build the submitted tree ===
-compiler diagnostic exit: 0
-driver diagnostic exit: 0
-=== Compute reward (root, no submitted code loaded) ===
-reward=0.0
-  - no-cloud-block-at-all: should have been saved, answered 400
-  - no-cloud-block-at-all: city reads back as '', the record should hold 'Eugene'

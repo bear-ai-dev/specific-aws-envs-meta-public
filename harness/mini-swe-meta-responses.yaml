@@ -10,5 +10,4 @@ environment:
   env:
     OPENAI_API_KEY: ""
     META_API_KEY: ""
-    BEDROCK_OPENAI_API_KEY: ""
     AWS_BEARER_TOKEN_BEDROCK: ""

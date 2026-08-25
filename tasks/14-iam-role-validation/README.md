@@ -5,7 +5,6 @@
 | Model | Solves `c/n` | pass@1 | pass@3 | pass@8 |
 | --- | ---: | ---: | ---: | ---: |
 | Muse Spark 1.2 | 4/8 | 0.5000 | 0.9286 | 1.0000 |
-| GPT-5.6 Sol | 3/8 | 0.3750 | 0.8214 | 1.0000 |
 | Opus 5 | 8/8 | 1.0000 | 1.0000 | 1.0000 |
 
 A feature-removal task cut from a real NestJS TypeScript backend

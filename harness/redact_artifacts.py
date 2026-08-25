@@ -4,7 +4,7 @@
 Some agents inspect their environment while debugging. This two-pass scrubber
 first discovers credential values only when attached to a sensitive variable
 name (plus strongly identifying provider-token prefixes), then replaces each
-discovered value everywhere in the raw artifact tree. It records counts and
+discovered value everywhere in the public evidence tree. It records counts and
 paths, never values or fingerprints.
 """
 
@@ -19,7 +19,6 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 EVIDENCE_ROOTS = (
-    ROOT / "sample-run" / "raw",
     ROOT / "sample-run" / "trajectories",
 )
 MANIFEST = ROOT / "sample-run" / "indexes" / "redaction-manifest.json"

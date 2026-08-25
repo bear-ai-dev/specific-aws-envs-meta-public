@@ -1,6 +1,6 @@
 {
   "job_name": "meta-public-controls-20260825",
-  "jobs_dir": "sample-run/raw",
+  "jobs_dir": "jobs",
   "n_attempts": 1,
   "n_concurrent_trials": 8,
   "quiet": false,

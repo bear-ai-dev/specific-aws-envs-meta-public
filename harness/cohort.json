@@ -1,6 +1,6 @@
 {
   "job_name": "meta-muse-opus-eight-rollout-reproduction-20260824",
-  "jobs_dir": "sample-run/raw",
+  "jobs_dir": "jobs",
   "n_attempts": 8,
   "n_concurrent_trials": 12,
   "quiet": false,
