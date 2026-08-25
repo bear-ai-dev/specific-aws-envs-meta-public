@@ -1,18 +1,18 @@
 {
   "agent": "mini-swe-agent",
   "attempts_per_task_model": 8,
-  "cohort_config_sha256": "a1d8ad9247988dd238f3520ff8368ad80a5ec70a46c9b48d761786ae29538c23",
+  "cohort_config_sha256": "e372cc194988616f4ae816978197af5fe0991f31325890206111418923106d61",
   "cohorts": [
     {
       "config": "harness/cohort.json",
       "job_name": "meta-muse-opus-eight-rollout-reproduction-20260824"
     },
     {
-      "config": "harness/task14-cohort.json",
-      "job_name": "meta-task14-muse12-opus5-eight-rollout-reproduction"
+      "config": "harness/task4-cohort.json",
+      "job_name": "meta-task4-muse12-opus5-eight-rollout-reproduction"
     }
   ],
-  "controls_config_sha256": "b7bc12fc404aef775ef45dd14a647eb1b74a307586bddc145391d12c75042e7a",
+  "controls_config_sha256": "29e51430378ffa69a173d112fb7822112a3fd5e2db246798e731f4acaf0ca3f2",
   "evidence_roots": [
     "sample-run/trajectories"
   ],
@@ -24,22 +24,22 @@
     "opus-5": "bedrock/us.anthropic.claude-opus-5"
   },
   "public_task_sha256": {
-    "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
-    "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
-    "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
-    "14-iam-role-validation": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9"
+    "01-entitlement-overage-lines": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
+    "02-measurement-failure-dlq": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
+    "03-customer-communication-dispatch": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
+    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee"
   },
   "publication_controls_validation": "sample-run/manifests/public-controls-validation.json",
-  "publication_controls_validation_sha256": "aaa69cb3e42082bbfb71070e161f2869c54fb870f03ea0ff4da0b120fe1c3cc6",
+  "publication_controls_validation_sha256": "6676c5bcebacfc7f6f6f72e3dacbacc658d3e0c7ca8411a9c8bd7f02dedcd875",
   "publication_transformation": "sample-run/manifests/public-transformation.json",
-  "publication_transformation_sha256": "abbb5bc778e3047454a44c4e32a35098a946472abc8500401a9a282d31307f80",
+  "publication_transformation_sha256": "72ac6f5aa8e2befe36aa4407a83c870130a4c83e1933019d702d64e9157ff77a",
   "reasoning_effort": "high",
   "recorded_environment": "managed AWS sandbox",
   "recorded_runtime_task_sha256": {
-    "02-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
-    "04-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
-    "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
-    "14-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
+    "01-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "02-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "03-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
+    "04-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
   },
   "redaction_manifest_sha256": "b95a582308237c7e7755ff35d1f02d10236017d32f753de061e42cef42238dcb",
   "reproduction_environment": "daytona",
@@ -51,6 +51,6 @@
     "harness/mini-swe-openrouter.yaml": "e1d63d9ae485d58037c82e3290d3e149048757301927f7d07754bd31ffb677f7"
   },
   "schema_version": 2,
-  "task14_cohort_config_sha256": "b61c5fb4833d39511a398d8a9eabbc07ca8121a54b55f122cb8d419dd4c4b6d3",
+  "task4_cohort_config_sha256": "f4ded8ed7e6bd81c4e9a58e606cc007e1a6a3e7f4a815b8cc94fe71a8a707a49",
   "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, and reward; submitted deliverable included where available"
 }

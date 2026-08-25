@@ -7,10 +7,10 @@
     "Opus 5"
   ],
   "tasks": [
-    "02-entitlement-overage-lines",
-    "04-measurement-failure-dlq",
-    "05-customer-communication-dispatch",
-    "14-iam-role-validation"
+    "01-entitlement-overage-lines",
+    "02-measurement-failure-dlq",
+    "03-customer-communication-dispatch",
+    "04-iam-role-validation"
   ],
   "tool_names": [
     "bash"
@@ -91,8 +91,8 @@
   },
   "cells": [
     {
-      "task": "02-entitlement-overage-lines",
-      "task_label": "Task 2",
+      "task": "01-entitlement-overage-lines",
+      "task_label": "Task 1",
       "model": "openrouter/meta/muse-spark-1.2",
       "model_label": "Muse Spark 1.2",
       "attempts": 8,
@@ -105,8 +105,8 @@
       "median_cost_usd": 4.006741900000001
     },
     {
-      "task": "02-entitlement-overage-lines",
-      "task_label": "Task 2",
+      "task": "01-entitlement-overage-lines",
+      "task_label": "Task 1",
       "model": "bedrock/us.anthropic.claude-opus-5",
       "model_label": "Opus 5",
       "attempts": 8,
@@ -119,8 +119,8 @@
       "median_cost_usd": 3.4495579250000006
     },
     {
-      "task": "04-measurement-failure-dlq",
-      "task_label": "Task 4",
+      "task": "02-measurement-failure-dlq",
+      "task_label": "Task 2",
       "model": "openrouter/meta/muse-spark-1.2",
       "model_label": "Muse Spark 1.2",
       "attempts": 8,
@@ -133,8 +133,8 @@
       "median_cost_usd": 5.889743375
     },
     {
-      "task": "04-measurement-failure-dlq",
-      "task_label": "Task 4",
+      "task": "02-measurement-failure-dlq",
+      "task_label": "Task 2",
       "model": "bedrock/us.anthropic.claude-opus-5",
       "model_label": "Opus 5",
       "attempts": 8,
@@ -147,8 +147,8 @@
       "median_cost_usd": 2.2802388125000004
     },
     {
-      "task": "05-customer-communication-dispatch",
-      "task_label": "Task 5",
+      "task": "03-customer-communication-dispatch",
+      "task_label": "Task 3",
       "model": "openrouter/meta/muse-spark-1.2",
       "model_label": "Muse Spark 1.2",
       "attempts": 8,
@@ -161,8 +161,8 @@
       "median_cost_usd": 5.753566450000001
     },
     {
-      "task": "05-customer-communication-dispatch",
-      "task_label": "Task 5",
+      "task": "03-customer-communication-dispatch",
+      "task_label": "Task 3",
       "model": "bedrock/us.anthropic.claude-opus-5",
       "model_label": "Opus 5",
       "attempts": 8,
@@ -175,8 +175,8 @@
       "median_cost_usd": 2.358746225
     },
     {
-      "task": "14-iam-role-validation",
-      "task_label": "Task 14",
+      "task": "04-iam-role-validation",
+      "task_label": "Task 4",
       "model": "meta/responses/muse-spark-1.2",
       "model_label": "Muse Spark 1.2",
       "attempts": 8,
@@ -189,8 +189,8 @@
       "median_cost_usd": 0.0
     },
     {
-      "task": "14-iam-role-validation",
-      "task_label": "Task 14",
+      "task": "04-iam-role-validation",
+      "task_label": "Task 4",
       "model": "bedrock/us.anthropic.claude-opus-5",
       "model_label": "Opus 5",
       "attempts": 8,

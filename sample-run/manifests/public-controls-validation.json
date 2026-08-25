@@ -13,7 +13,7 @@
     "meta-public-controls-20260824"
   ],
   "reproduction_job_name": "meta-public-controls-20260825",
-  "reuse_policy": "A recorded control is reusable only when executable task files are byte-identical; documentation-only changes are allowed and the current full-tree digest is recorded separately.",
+  "reuse_policy": "A recorded control is reusable only when executable task files are byte-identical; public folder renumbering and documentation-only changes are allowed and the current full-tree digest is recorded separately.",
   "summary": {
     "trials": 8,
     "exceptions": 0,
@@ -21,8 +21,10 @@
     "nop_all_reward_zero": true
   },
   "tasks": {
-    "02-entitlement-overage-lines": {
-      "public_task_sha256": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
+    "01-entitlement-overage-lines": {
+      "public_task_sha256": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
+      "control_source_public_task_sha256": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
+      "reuse_basis": "The current task has the same executable files as the controlled public tree; only the public folder number and README task label changed.",
       "harbor_task_checksum": "5eb0435279e4aa29e4d689d5adda0851cadf938ca1923d368f59f37a885f2d1d",
       "oracle": {
         "trial_id": "uz6ZfoR",
@@ -35,8 +37,10 @@
         "exception": null
       }
     },
-    "04-measurement-failure-dlq": {
-      "public_task_sha256": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
+    "02-measurement-failure-dlq": {
+      "public_task_sha256": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
+      "control_source_public_task_sha256": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
+      "reuse_basis": "The current task has the same executable files as the controlled public tree; only the public folder number and README task label changed.",
       "harbor_task_checksum": "2445bf1e92cdabfa3d1a05a7966c3cf9c1a82e02b606dcb9850dce5acfe35c50",
       "oracle": {
         "trial_id": "aKUJ2G4",
@@ -49,8 +53,10 @@
         "exception": null
       }
     },
-    "05-customer-communication-dispatch": {
-      "public_task_sha256": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
+    "03-customer-communication-dispatch": {
+      "public_task_sha256": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
+      "control_source_public_task_sha256": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
+      "reuse_basis": "The current task has the same executable files as the controlled public tree; only the public folder number and README task label changed.",
       "harbor_task_checksum": "c45361552735c058eb35e8346bf116124bfcb06e91ad47067cb0fb8e5408462c",
       "oracle": {
         "trial_id": "75cLxce",
@@ -63,10 +69,10 @@
         "exception": null
       }
     },
-    "14-iam-role-validation": {
-      "public_task_sha256": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9",
+    "04-iam-role-validation": {
+      "public_task_sha256": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee",
       "control_source_public_task_sha256": "38747a620a3dcdc45516f20d074bd98c7e127b8086b4b2630023354345214288",
-      "reuse_basis": "The current task differs from the controlled public tree only by README documentation; environment, solution, and verifier files are byte-identical.",
+      "reuse_basis": "The current task differs from the controlled public tree only by its public folder number and README documentation; environment, solution, and verifier files are byte-identical.",
       "oracle": {
         "trial_id": "CVLTK6u",
         "reward": 1.0,

@@ -12,10 +12,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 TASKS = (
-    "02-entitlement-overage-lines",
-    "04-measurement-failure-dlq",
-    "05-customer-communication-dispatch",
-    "14-iam-role-validation",
+    "01-entitlement-overage-lines",
+    "02-measurement-failure-dlq",
+    "03-customer-communication-dispatch",
+    "04-iam-role-validation",
 )
 TASK_ALIASES = {
     "meteringco-entitlement-overage-lines": TASKS[0],
@@ -23,6 +23,10 @@ TASK_ALIASES = {
     "meteringco-customer-communication-dis": TASKS[2],
     "meteringco-customer-communication-dispatch": TASKS[2],
     "meteringco-iam-role-validation": TASKS[3],
+    "02-entitlement-overage-lines": TASKS[0],
+    "04-measurement-failure-dlq": TASKS[1],
+    "05-customer-communication-dispatch": TASKS[2],
+    "14-iam-role-validation": TASKS[3],
     **{task: task for task in TASKS},
 }
 MUSE_OPENROUTER = "openrouter/meta/muse-spark-1.2"

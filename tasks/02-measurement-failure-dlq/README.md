@@ -1,4 +1,4 @@
-# Task 4 — measurement failure DLQ
+# Task 2 — measurement failure DLQ
 
 A feature-removal task cut from a real NestJS TypeScript backend
 (`meteringco-src/extracted/top-up-billing-lifecycle`, 534 `.ts` files, 87 runtime

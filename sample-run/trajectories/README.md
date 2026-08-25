@@ -11,7 +11,7 @@ logs, and run metadata. The native `result.json` preserves the recorded trial
 identifier and provider route; the public index maps those identifiers to this
 canonical layout.
 
-Tasks 2, 4, and 5 also include the submitted deliverable. Task 14 omits its
+Tasks 1, 2, and 3 also include the submitted deliverable. Task 4 omits its
 duplicated full submitted-code snapshots; each reward is independently present
 in the Harbor result and verifier reward document, while the verifier report
 records the observable held-out outcome.

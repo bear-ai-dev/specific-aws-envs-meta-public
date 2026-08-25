@@ -28,22 +28,22 @@
     "trial_index": "sample-run/indexes/trials.json"
   },
   "recorded_runtime_task_sha256": {
-    "02-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
-    "04-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
-    "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
-    "14-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
+    "01-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "02-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "03-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
+    "04-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
   },
   "recorded_harbor_task_checksum": {
-    "02-entitlement-overage-lines": "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
-    "04-measurement-failure-dlq": "19361ed95829b44118d905302f14abe8c8194bb17238b22c55ee524ef97a4dd5",
-    "05-customer-communication-dispatch": "ced28d55fa0d97f12302b61cb5a9106a1c304372b78cc594fcfc43d3b47a92ae",
-    "14-iam-role-validation": "a74ca5430103a3a75e8c297f4629c77b51b8a3efcca108136df46566e1cc4a95"
+    "01-entitlement-overage-lines": "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
+    "02-measurement-failure-dlq": "19361ed95829b44118d905302f14abe8c8194bb17238b22c55ee524ef97a4dd5",
+    "03-customer-communication-dispatch": "ced28d55fa0d97f12302b61cb5a9106a1c304372b78cc594fcfc43d3b47a92ae",
+    "04-iam-role-validation": "a74ca5430103a3a75e8c297f4629c77b51b8a3efcca108136df46566e1cc4a95"
   },
   "public_task_sha256": {
-    "02-entitlement-overage-lines": "c6a60ab17d77dbd7221a97a519e3062cdf4c2ba9a105acb41144d7a61138ae36",
-    "04-measurement-failure-dlq": "2485c5fd6dbbe056b22224125a93f312322497d7c5dc02fbb31931912e927e94",
-    "05-customer-communication-dispatch": "c3ea3481083eac30c8c101724463c5371271d8670a2fde492c6a9f8fe64c29b8",
-    "14-iam-role-validation": "c61acce33aeaa987930798d755f94386d34554c14be6d535abcb9cb1bf24e2a9"
+    "01-entitlement-overage-lines": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
+    "02-measurement-failure-dlq": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
+    "03-customer-communication-dispatch": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
+    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee"
   },
   "recorded_runtime_controls": {
     "oracle_required": 1.0,

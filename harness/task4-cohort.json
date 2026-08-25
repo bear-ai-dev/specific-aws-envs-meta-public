@@ -1,5 +1,5 @@
 {
-  "job_name": "meta-task14-muse12-opus5-eight-rollout-reproduction",
+  "job_name": "meta-task4-muse12-opus5-eight-rollout-reproduction",
   "jobs_dir": "jobs",
   "n_attempts": 8,
   "n_concurrent_trials": 16,
@@ -13,7 +13,7 @@
     "kwargs": {
       "connection_pool_maxsize": 48,
       "labels": {
-        "cohort": "meta-task14-muse12-opus5-eight-rollout-reproduction"
+        "cohort": "meta-task4-muse12-opus5-eight-rollout-reproduction"
       }
     }
   },
@@ -53,7 +53,7 @@
   ],
   "tasks": [
     {
-      "path": "tasks/14-iam-role-validation"
+      "path": "tasks/04-iam-role-validation"
     }
   ]
 }
