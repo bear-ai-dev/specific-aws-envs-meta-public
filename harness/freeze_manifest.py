@@ -77,7 +77,7 @@ def main() -> None:
         "attempts_per_task_model": CONFIG["n_attempts"],
         "validity_rule": (
             "numeric verifier reward, agent process started, no Harbor exception, "
-            "native and normalized trajectories, verifier report, and reward; "
+            "native, normalized, and text trajectories, verifier report, and reward; "
             "submitted deliverable included where available"
         ),
         "harbor_version": harbor_version(),

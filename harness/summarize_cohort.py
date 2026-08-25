@@ -101,6 +101,7 @@ def load_trials(evidence_roots: tuple[Path, ...]) -> list[dict]:
             )
             native = trial_dir / "agent" / "mini-swe-agent.trajectory.json"
             normalized = trial_dir / "agent" / "trajectory.json"
+            text_trajectory = trial_dir / "agent" / "mini-swe-agent.txt"
             verifier = first_existing(
                 trial_dir / "verifier" / "reward.json",
                 trial_dir / "verifier" / "output.json",
@@ -116,6 +117,7 @@ def load_trials(evidence_roots: tuple[Path, ...]) -> list[dict]:
                 and isinstance(reward, (int, float))
                 and native.is_file()
                 and normalized.is_file()
+                and text_trajectory.is_file()
                 and verifier is not None
                 and report.is_file()
                 and (has_deliverable or is_canonical_trajectory)
@@ -135,6 +137,9 @@ def load_trials(evidence_roots: tuple[Path, ...]) -> list[dict]:
                 "trajectory": display_path(native) if native.is_file() else None,
                 "normalized_trajectory": (
                     display_path(normalized) if normalized.is_file() else None
+                ),
+                "text_trajectory": (
+                    display_path(text_trajectory) if text_trajectory.is_file() else None
                 ),
                 "verifier": display_path(verifier) if verifier else None,
                 "verifier_report": display_path(report) if report.is_file() else None,
@@ -243,7 +248,7 @@ def main() -> None:
         "trials_excluded_no_attempt": sum(not trial["valid"] for trial in trials),
         "denominator_policy": (
             "numeric verifier reward, agent process started, no Harbor exception, "
-            "native and normalized trajectories, verifier report, and reward; submitted "
+            "native, normalized, and text trajectories, verifier report, and reward; submitted "
             "deliverables are included where the source evidence package provided them"
         ),
         "by_model": by_model,

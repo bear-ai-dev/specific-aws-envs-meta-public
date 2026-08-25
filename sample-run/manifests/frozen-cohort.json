@@ -52,5 +52,5 @@
   },
   "schema_version": 2,
   "task4_cohort_config_sha256": "f4ded8ed7e6bd81c4e9a58e606cc007e1a6a3e7f4a815b8cc94fe71a8a707a49",
-  "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, and reward; submitted deliverable included where available"
+  "validity_rule": "numeric verifier reward, agent process started, no Harbor exception, native, normalized, and text trajectories, verifier report, and reward; submitted deliverable included where available"
 }
