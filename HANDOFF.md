@@ -91,14 +91,16 @@ separate.
 
 ```sh
 python3 harness/redact_artifacts.py --check
+python3 harness/render_text_trajectories.py --check
 python3 harness/export_trial_metrics.py --check
 python3 harness/validate_publication.py
 git status --short
 ```
 
 The publication validator checks task headings and digests, the eight 8-attempt
-cells, all 64 evidence paths, result/reward agreement, reproducible metrics,
-controls, local Markdown links, selected JSON documents, and privacy patterns.
+cells, all 64 native, ATIF, and text trajectory paths, result/reward agreement,
+reproducible metrics, controls, local Markdown links, selected JSON documents,
+and privacy patterns.
 
 ## Recorded-evidence boundary
 

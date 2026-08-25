@@ -144,6 +144,7 @@ def validate_trials() -> list[dict]:
             "result",
             "trajectory",
             "normalized_trajectory",
+            "text_trajectory",
             "verifier",
             "verifier_report",
         )
@@ -170,6 +171,19 @@ def validate_trials() -> list[dict]:
         if result.get("task_checksum") != RECORDED_TASK_CHECKSUMS[trial["task"]]:
             raise SystemExit(f"recorded task checksum mismatch: {trial['trial']}")
     return trials
+
+
+def validate_rendered_text_trajectories() -> None:
+    from render_text_trajectories import generate_outputs
+
+    outputs = generate_outputs()
+    if len(outputs) != 16:
+        raise SystemExit("expected 16 deterministic Task 4 text trajectories")
+    for path, expected in outputs.items():
+        if not path.is_file() or path.read_text() != expected:
+            raise SystemExit(
+                f"stale Task 4 text trajectory: {path.relative_to(ROOT)}"
+            )
 
 
 def validate_controls() -> None:
@@ -359,6 +373,7 @@ def main() -> None:
         if first_line != EXPECTED_HEADINGS[task]:
             raise SystemExit(f"task heading mismatch: {task}")
     trials = validate_trials()
+    validate_rendered_text_trajectories()
     validate_metrics(trials)
     validate_controls()
     validate_manifests()

@@ -4,7 +4,7 @@
   ],
   "scored_valid_trials": 64,
   "trials_excluded_no_attempt": 0,
-  "denominator_policy": "numeric verifier reward, agent process started, no Harbor exception, native and normalized trajectories, verifier report, and reward; submitted deliverables are included where the source evidence package provided them",
+  "denominator_policy": "numeric verifier reward, agent process started, no Harbor exception, native, normalized, and text trajectories, verifier report, and reward; submitted deliverables are included where the source evidence package provided them",
   "by_model": {
     "openrouter/meta/muse-spark-1.2": {
       "label": "Muse Spark 1.2",

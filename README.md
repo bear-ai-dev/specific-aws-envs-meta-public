@@ -33,8 +33,8 @@ model-call, tool-call, token, and cost data are under
   verifiers.
 - Sixty-four admitted model trials across eight Muse and Opus cells. No scored
   cohort includes an incomplete attempt.
-- Native mini-SWE-agent and normalized ATIF trajectories, submitted
-  code where included, verifier reports, reward files, and run metadata.
+- Native mini-SWE-agent, normalized ATIF, and text trajectories, submitted code
+  where included, verifier reports, reward files, and run metadata.
 - Reproducible per-trial execution, call, token, and cost metrics in CSV and
   JSON, plus machine-readable cohort summaries.
 - Oracle and no-op control configuration, post-normalization control results,
@@ -55,10 +55,11 @@ sample-run/analysis.md verifier-backed model comparison
 ```
 
 All 64 advertised trials use the same
-`sample-run/trajectories/<task>/<model>/trial-XX` layout. Tasks 1, 2, and 3
-include the submitted deliverable under `verifier/deliverable/`. Task 4 keeps
-the native and ATIF trajectories, results, verifier reports, rewards, logs, and
-run metadata without duplicated submitted-code snapshots.
+`sample-run/trajectories/<task>/<model>/trial-XX` layout and include native,
+ATIF, and text trajectories. Tasks 1, 2, and 3 include the submitted deliverable
+under `verifier/deliverable/`. Task 4 keeps the remaining evidence without
+duplicated submitted-code snapshots; its text views are deterministic renders
+of the native public JSON trajectories.
 
 ## Evidence validity
 
