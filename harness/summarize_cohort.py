@@ -99,9 +99,9 @@ def load_trials(evidence_roots: tuple[Path, ...]) -> list[dict]:
             reward = ((result.get("verifier_result") or {}).get("rewards") or {}).get(
                 "reward"
             )
-            native = trial_dir / "agent" / "mini-swe-agent.trajectory.json"
-            normalized = trial_dir / "agent" / "trajectory.json"
-            text_trajectory = trial_dir / "agent" / "mini-swe-agent.txt"
+            native = trial_dir / "mini-swe-agent.trajectory.json"
+            normalized = trial_dir / "trajectory.json"
+            text_trajectory = trial_dir / "mini-swe-agent.txt"
             verifier = first_existing(
                 trial_dir / "verifier" / "reward.json",
                 trial_dir / "verifier" / "output.json",
