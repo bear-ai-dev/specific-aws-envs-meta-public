@@ -1,4 +1,4 @@
-# Task 2 — entitlement overage lines
+# Task 1 — entitlement overage lines
 
 A feature-removal task cut from a real NestJS TypeScript backend
 (`meteringco-src/extracted/top-up-billing-lifecycle`, 534 `.ts` files, 87 runtime

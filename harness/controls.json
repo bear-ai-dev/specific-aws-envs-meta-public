@@ -19,9 +19,9 @@
     { "name": "nop" }
   ],
   "tasks": [
-    { "path": "tasks/02-entitlement-overage-lines" },
-    { "path": "tasks/04-measurement-failure-dlq" },
-    { "path": "tasks/05-customer-communication-dispatch" },
-    { "path": "tasks/14-iam-role-validation" }
+    { "path": "tasks/01-entitlement-overage-lines" },
+    { "path": "tasks/02-measurement-failure-dlq" },
+    { "path": "tasks/03-customer-communication-dispatch" },
+    { "path": "tasks/04-iam-role-validation" }
   ]
 }

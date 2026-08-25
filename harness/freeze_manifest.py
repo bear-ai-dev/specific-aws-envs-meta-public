@@ -11,13 +11,13 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 CONFIG = json.loads((ROOT / "harness" / "cohort.json").read_text())
-TASK14_CONFIG = json.loads((ROOT / "harness" / "task14-cohort.json").read_text())
+TASK4_CONFIG = json.loads((ROOT / "harness" / "task4-cohort.json").read_text())
 CONTROLS_CONFIG = json.loads((ROOT / "harness" / "controls.json").read_text())
 RECORDED_RUNTIME_TASK_SHA256 = {
-    "02-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
-    "04-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
-    "05-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
-    "14-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a",
+    "01-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "02-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "03-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
+    "04-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a",
 }
 
 
@@ -67,8 +67,8 @@ def main() -> None:
                 "config": "harness/cohort.json",
             },
             {
-                "job_name": TASK14_CONFIG["job_name"],
-                "config": "harness/task14-cohort.json",
+                "job_name": TASK4_CONFIG["job_name"],
+                "config": "harness/task4-cohort.json",
             },
         ],
         "evidence_roots": [
@@ -94,8 +94,8 @@ def main() -> None:
         "recorded_runtime_task_sha256": RECORDED_RUNTIME_TASK_SHA256,
         "public_task_sha256": tasks,
         "cohort_config_sha256": sha256(ROOT / "harness" / "cohort.json"),
-        "task14_cohort_config_sha256": sha256(
-            ROOT / "harness" / "task14-cohort.json"
+        "task4_cohort_config_sha256": sha256(
+            ROOT / "harness" / "task4-cohort.json"
         ),
         "controls_config_sha256": sha256(ROOT / "harness" / "controls.json"),
         "runtime_file_sha256": {

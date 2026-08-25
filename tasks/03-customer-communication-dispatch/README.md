@@ -1,4 +1,4 @@
-# Task 5 — customer communication dispatch
+# Task 3 — customer communication dispatch
 
 A feature-removal task over the real MeteringCo NestJS backend
 (`meteringco-backend/top-up-billing-lifecycle`). The capability taken out is the
@@ -138,7 +138,7 @@ deliverable second draft.
 ## Layout
 
 ```
-tasks/05-customer-communication-dispatch/
+tasks/03-customer-communication-dispatch/
 ├── instruction.md                       one paragraph, 625 characters
 ├── README.md
 ├── DISCOVERABILITY.md

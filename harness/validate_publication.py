@@ -15,16 +15,16 @@ sys.dont_write_bytecode = True
 
 ROOT = Path(__file__).resolve().parent.parent
 TASKS = (
-    "02-entitlement-overage-lines",
-    "04-measurement-failure-dlq",
-    "05-customer-communication-dispatch",
-    "14-iam-role-validation",
+    "01-entitlement-overage-lines",
+    "02-measurement-failure-dlq",
+    "03-customer-communication-dispatch",
+    "04-iam-role-validation",
 )
 EXPECTED_HEADINGS = {
-    TASKS[0]: "# Task 2 — entitlement overage lines",
-    TASKS[1]: "# Task 4 — measurement failure DLQ",
-    TASKS[2]: "# Task 5 — customer communication dispatch",
-    TASKS[3]: "# Task 14 — IAM role validation",
+    TASKS[0]: "# Task 1 — entitlement overage lines",
+    TASKS[1]: "# Task 2 — measurement failure DLQ",
+    TASKS[2]: "# Task 3 — customer communication dispatch",
+    TASKS[3]: "# Task 4 — IAM role validation",
 }
 MUSE = "openrouter/meta/muse-spark-1.2"
 MUSE_DIRECT = "meta/responses/muse-spark-1.2"
@@ -268,10 +268,10 @@ def validate_manifests() -> None:
         raise SystemExit("frozen cohort attempt count mismatch")
     if frozen.get("cohort_config_sha256") != sha256(ROOT / "harness" / "cohort.json"):
         raise SystemExit("frozen cohort config hash mismatch")
-    if frozen.get("task14_cohort_config_sha256") != sha256(
-        ROOT / "harness" / "task14-cohort.json"
+    if frozen.get("task4_cohort_config_sha256") != sha256(
+        ROOT / "harness" / "task4-cohort.json"
     ):
-        raise SystemExit("frozen Task 14 cohort config hash mismatch")
+        raise SystemExit("frozen Task 4 cohort config hash mismatch")
     if frozen.get("controls_config_sha256") != sha256(ROOT / "harness" / "controls.json"):
         raise SystemExit("frozen controls config hash mismatch")
     for task in TASKS:
@@ -282,7 +282,7 @@ def validate_manifests() -> None:
 def validate_json_documents(trials: list[dict]) -> int:
     paths = {
         ROOT / "harness" / "cohort.json",
-        ROOT / "harness" / "task14-cohort.json",
+        ROOT / "harness" / "task4-cohort.json",
         ROOT / "harness" / "controls.json",
         ROOT / "sample-run" / "indexes" / "trials.json",
         ROOT / "sample-run" / "indexes" / "execution-summary.json",

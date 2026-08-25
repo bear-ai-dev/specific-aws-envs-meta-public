@@ -6,7 +6,7 @@ clone.
 
 ## Recorded runtime
 
-| Component | Tasks 2, 4, 5 | Task 14 |
+| Component | Tasks 1, 2, 3 | Task 4 |
 | --- | --- | --- |
 | Orchestrator | Harbor 0.18.0 | Harbor 0.18.0 |
 | Agent | mini-SWE-agent 2.4.5 | mini-SWE-agent 2.4.5 |
@@ -32,7 +32,7 @@ Fill only the credentials required for the run. Never commit `.env`.
 
 - `DAYTONA_API_KEY` provisions isolated task sandboxes.
 - `OPENROUTER_API_KEY` is needed for the original Muse cohort.
-- `META_API_KEY` is needed for the direct Meta Responses route on Task 14.
+- `META_API_KEY` is needed for the direct Meta Responses route on Task 4.
 - The AWS variables authenticate the Opus Bedrock route.
 
 The task images provide separate fake credentials and a loopback
@@ -52,8 +52,9 @@ The expected result is four oracle rewards of `1.0` and four no-op rewards of
 `0.0`, with no exceptions. The recorded publication controls and normalized
 task digests are in
 [`sample-run/manifests/public-controls-validation.json`](sample-run/manifests/public-controls-validation.json).
-Task 14's recorded control comes from a byte-identical executable task tree;
-the current package differs only in README documentation.
+The sequential folder names do not change the byte-identical executable files
+covered by the recorded controls. Task 4's controlled source additionally
+differs only in README documentation.
 
 ## 3. Launch the repeated cohort
 
@@ -62,12 +63,12 @@ set -a
 . ./.env
 set +a
 PYTHONPATH="$PWD" harbor run --config harness/cohort.json --yes
-PYTHONPATH="$PWD" harbor run --config harness/task14-cohort.json --yes
+PYTHONPATH="$PWD" harbor run --config harness/task4-cohort.json --yes
 ```
 
 The two configs fix their tasks, routes, versions, reasoning setting, attempt
 count, and concurrency. The original Muse cohort is capped at three concurrent
-trials; the Task 14 reproduction runs up to eight trials per model. Provider or
+trials; the Task 4 reproduction runs up to eight trials per model. Provider or
 infrastructure failures should be preserved as unscored evidence and refilled;
 they must not be converted to model failures.
 
@@ -103,7 +104,7 @@ controls, local Markdown links, selected JSON documents, and privacy patterns.
 
 The public artifacts preserve the recorded model behavior and scores, but a
 new run may differ because providers, inference systems, and model aliases can
-change. The eight displayed Task 5 Opus trials are a documented subset of 24
+change. The eight displayed Task 3 Opus trials are a documented subset of 24
 measured attempts (23/24 overall), not a fresh estimate. See the
 [analysis](sample-run/analysis.md#evidence-boundary) before drawing broader
 conclusions.
