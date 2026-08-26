@@ -1,0 +1,459 @@
+Starting a Generic Express Application for STAGE: local
+process.env.INFLUX_URL: http://127.0.0.1:4566
+process.env.INFLUX_ORG: meteringco
+process.env.REDIS_URL: undefined
+process.env.REDIS_PORT: undefined
+process.env.AUTH0_ISSUER_URL: https://auth.meteringco.example/
+(node:3836) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[NestFactory] [39m[32mStarting Nest application...[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mInfluxModule dependencies initialized[39m[38;5;3m +9ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPassportModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEbsVolumeDataGathererModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEc2InstanceDataGathererModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEbsSnapshotDataGathererModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEc2EgressDataGathererModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mKubernetesDeployerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOpenTelemetryModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mJwtModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOpenTelemetryCoreModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigHostModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mDiscoveryModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuditModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTaxModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAppModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCustomerGroupModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAlertsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mInstanceUptimeModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mReservedInstanceModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPIServicesModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPIServicesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mInvoiceStatusCheckerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mConfigModule dependencies initialized[39m[38;5;3m +7ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mScheduleModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mLedgerModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mEntitlementCheckerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBullModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMargincalcModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAzureModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPaymentModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMeasurementModule dependencies initialized[39m[38;5;3m +2ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAgentMeasurementModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateInboxModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTransformerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mMeasurementConfigModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCreditModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mContractModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mBillingModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mCostModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPIAnalyticsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsersModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPIOfferingModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPIOfferingModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mOnboardingModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mUsageModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateApiUsageModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPortalModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mSchedulerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mTokenConsumerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPISettingsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPISettingModule dependencies initialized[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPIDimensionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPIDimensionsModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPIInvoicesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPIInvoicesModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mWebhookModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPrivateAPICustomerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:10 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mPublicAPICustomerModule dependencies initialized[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[InstanceLoader] [39m[32mAuthzModule dependencies initialized[39m[38;5;3m +161ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+Tue, 25 Aug 2026 23:08:11 GMT express-session deprecated undefined resave option; provide resave option at dist/genericExpressEnv.js:48:28
+Tue, 25 Aug 2026 23:08:11 GMT express-session deprecated undefined saveUninitialized option; provide saveUninitialized option at dist/genericExpressEnv.js:48:28
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAppController {/health}:[39m[38;5;3m +13ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/health, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicAPIOfferingController {/offerings}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, PUT} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicAPIDimensionsController {/dimensions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMeasurementConfigController {/measurements}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/:measurementId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/:measurementId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/:measurementId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPrivateAPIDimensionsController {/dimensions}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/dimensions/:dimensionId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPrivateAPIOfferingController {/offerings}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/offerings/:offeringId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPrivateAPICustomerController {/customers}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/refunds, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/enrollment, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/enrollment, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/refunds, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/payments, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/stripePortal, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/freeTrial, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/usage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/token, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSchedulerController {/scheduler}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/scheduler, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/scheduler/emit, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/scheduler, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/scheduler/:schedulerID, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/scheduler/:schedulerID, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsageController {/usage}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usage, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mUsersController {/users}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/all, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/login, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/redirect, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mOrganizationController {/users/organizations}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/organizations, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/organizations, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/organizations, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mEnvironmentController {/users/environment}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/environment, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/environment/admin, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/users/environment, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mKeysController {/keys}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/keys, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/keys/:keyId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/keys/:keyId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTokenConsumerController {/meteringco/token}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/meteringco/token, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/meteringco/token/schedule, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/meteringco/token/schedule, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicAPICustomerController {/customers}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/children/:childId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/refunds, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/enrollment, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/enrollment, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/refunds, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/payments, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/stripePortal, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/freeTrial, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId, DELETE} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/usage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/token, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPrivateInvoicesController {/invoices}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invoices/:invoiceId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invoices/:invoiceId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invoices, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mSettingsController {/settings}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/free-trial, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/free-trial, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/profile, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/profile, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/invoiceImage, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCreditController {/customers}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/transactions, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/customers/:customerId/transactions, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPaymentController {/payment}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mLedgerController {/ledger}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicAPIInvoicesController {/invoices}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invoices/:invoiceId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/invoices, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMeasurementController {/measurements/api}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/api, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/api/podStart, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/measurements/api/podEnd, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mMargincalcController {/margincalc}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/margincalc, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/margincalc/cost, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAgentMeasurementController {/agent-measurement}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/agent-measurement, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mOnboardingController {/onboarding/stripe}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/onboarding/stripe, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/onboarding/stripe/redirect, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/onboarding/stripe, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mTrasformerController {/}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mCostController {/analytics}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/analytics/cost/storage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/analytics/cost/compute, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAnalyticsController {/analytics}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/analytics, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/analytics/business, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mInboxController {/inbox}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/inbox, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/inbox, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/inbox/:inboxId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/inbox/:inboxId, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPrivateAPIUsageController {/usage}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usage/db, POST} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usage/datastore, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/usage, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mAzureController {/azure}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/azure/azure/:dimensionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/azure/disk/:dimensionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/azure/vm/:dimensionId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPortalController {/portal}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/token, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer/usage, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer/payment, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/customer/stripePortal, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/invoices/:invoiceId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/invoices, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/configuration, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/portal/configuration, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mWebhookController {/webhooks}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/test, GET} route[39m[38;5;3m +1ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/invoice, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/customer, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/entitlement, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/:webhookId, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/subscribe, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/webhooks/:webhookId, DELETE} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RoutesResolver] [39m[32mPublicSettingsController {/settings}:[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/profile, PUT} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/profile, GET} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[RouterExplorer] [39m[32mMapped {/settings/invoiceImage, POST} route[39m[38;5;3m +0ms[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[NestApplication] [39m[32mNest application successfully started[39m[38;5;3m +16ms[39m
+(node:3836) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 ready listeners added to [Commander]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+(node:3836) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 error listeners added to [Commander]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+(node:3836) MaxListenersExceededWarning: Possible EventEmitter memory leak detected. 11 end listeners added to [Commander]. MaxListeners is 10. Use emitter.setMaxListeners() to increase limit
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request infoundefined, path: /health, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[BusinessIDInterceptor] [39m[33mNo user found during request: undefined, path: /health, method:GET[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 1ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[UsersService] [39m[33mUserEntity for subject: auth0|opwindermere93 not in cache[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mResults: [{"result":"_result","table":0,"_start":"1970-01-01T00:00:00.000000000Z","_stop":"2026-08-25T23:08:11.277000000Z","_time":"2024-02-05T09:00:00.000000000Z","_value":"production","_field":"environment","_measurement":"UserActiveEnvironment","subject":"auth0|opwindermere93"}][39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 281ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyAshcombeProdEvents, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[KeysService] [39m[33mKey: keyAshcombeProdEvents is not held by account: windermere, refusing the request[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 46ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/appMeteringCoDocsSite, method:DELETE [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[KeysService] [39m[33mKey: appMeteringCoDocsSite is not held by account: windermere, refusing the request[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 45ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyWindermereProdLegacy, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[KeysService] [39m[33mKey: keyWindermereProdLegacy is not held by account: windermere, refusing the request[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 44ms[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /users/environment, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mUpdated environment for subject: auth0|opwindermere93 to sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 9ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [33m   WARN[39m [38;5;3m[UsersService] [39m[33mUserEntity for subject: auth0|opwindermere93 not in cache[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mResults: [{"result":"_result","table":0,"_start":"1970-01-01T00:00:00.000000000Z","_stop":"2026-08-25T23:08:11.740000000Z","_time":"2026-08-25T23:08:11.729573056Z","_value":"sandbox","_field":"environment","_measurement":"UserActiveEnvironment","subject":"auth0|opwindermere93"}][39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 217ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyWindermereProdEvents, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:11 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [33m   WARN[39m [38;5;3m[KeysService] [39m[33mKey: keyWindermereProdEvents is not held by account: windermere-sandbox, refusing the request[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 45ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyWindermereProdEvents, method:DELETE [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [33m   WARN[39m [38;5;3m[KeysService] [39m[33mKey: keyWindermereProdEvents is not held by account: windermere-sandbox, refusing the request[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 46ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereViewer02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read"],"sub":"auth0|opwindermere93"}, path: /keys, method:GET [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 95ms[39m
+permissions check start
+InsufficientScopeError: Insufficient Scope
+    at /app/dist/authz/PermissionsGaurd.js:27:27
+    at /app/node_modules/express-oauth2-jwt-bearer/dist/index.js:392:14
+    at /app/node_modules/express-oauth2-jwt-bearer/dist/index.js:419:9
+    at node:internal/util:491:21
+    at new Promise (<anonymous>)
+    at node:internal/util:477:12
+    at PermissionsGuardImpl.canActivate (/app/dist/authz/PermissionsGaurd.js:38:23)
+    at GuardsConsumer.tryActivate (/app/node_modules/@nestjs/core/guards/guards-consumer.js:15:34)
+    at async canActivateFn (/app/node_modules/@nestjs/core/router/router-execution-context.js:134:33)
+    at async /app/node_modules/@nestjs/core/router/router-execution-context.js:42:31 {
+  status: 403,
+  statusCode: 403,
+  headers: {
+    'WWW-Authenticate': 'Bearer realm="api", error="insufficient_scope", error_description="Insufficient Scope"'
+  },
+  code: 'insufficient_scope'
+} permissions error
+permissions check start
+InsufficientScopeError: Insufficient Scope
+    at /app/dist/authz/PermissionsGaurd.js:27:27
+    at /app/node_modules/express-oauth2-jwt-bearer/dist/index.js:392:14
+    at /app/node_modules/express-oauth2-jwt-bearer/dist/index.js:419:9
+    at node:internal/util:491:21
+    at new Promise (<anonymous>)
+    at node:internal/util:477:12
+    at PermissionsGuardImpl.canActivate (/app/dist/authz/PermissionsGaurd.js:38:23)
+    at GuardsConsumer.tryActivate (/app/node_modules/@nestjs/core/guards/guards-consumer.js:15:34)
+    at async canActivateFn (/app/node_modules/@nestjs/core/router/router-execution-context.js:134:33)
+    at async /app/node_modules/@nestjs/core/router/router-execution-context.js:42:31 {
+  status: 403,
+  statusCode: 403,
+  headers: {
+    'WWW-Authenticate': 'Bearer realm="api", error="insufficient_scope", error_description="Insufficient Scope"'
+  },
+  code: 'insufficient_scope'
+} permissions error
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"keyWindermereSbxEvents","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read"],"sub":"keyWindermereSbxEvents@clients"}, path: /keys, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [33m   WARN[39m [38;5;3m[UsersService] [39m[33mUserEntity for subject: keyWindermereSbxEvents@clients not in cache[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mResults: [{"result":"_result","table":0,"_start":"1970-01-01T00:00:00.000000000Z","_stop":"2026-08-25T23:08:12.170000000Z","_time":"2024-02-05T09:00:00.000000000Z","_value":"sandbox","_field":"environment","_measurement":"UserActiveEnvironment","subject":"keyWindermereSbxEvents@clients"}][39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 197ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyWindermereSbxDrill, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 96ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys/keyWindermereSbxEvents, method:DELETE [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 49ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"keyWindermereSbxEvents","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read"],"sub":"keyWindermereSbxEvents@clients"}, path: /keys, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [33m   WARN[39m [38;5;3m[UsersService] [39m[33mUserEntity for subject: keyWindermereSbxEvents@clients not in cache[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mResults: [{"result":"_result","table":0,"_start":"1970-01-01T00:00:00.000000000Z","_stop":"2026-08-25T23:08:12.524000000Z","_time":"2024-02-05T09:00:00.000000000Z","_value":"sandbox","_field":"environment","_measurement":"UserActiveEnvironment","subject":"keyWindermereSbxEvents@clients"}][39m
+UnauthorizedException: Unauthorized
+    at UsersService.findOne (/app/dist/users/users.service.js:112:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async BusinessIDInterceptor.intercept (/app/dist/interceptors/businessID.interceptor.js:69:73) {
+  response: { message: 'Unauthorized', statusCode: 401 },
+  status: 401,
+  options: {}
+}
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 45ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys, method:GET [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 95ms[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /users/environment, method:PUT [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere-sandbox[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mUpdated environment for subject: auth0|opwindermere93 to production[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 2ms[39m
+permissions check start
+permissions check end
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /keys, method:GET [39m
+[33m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [33m   WARN[39m [38;5;3m[UsersService] [39m[33mUserEntity for subject: auth0|opwindermere93 not in cache[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[EnvironmentService] [39m[32mResults: [{"result":"_result","table":0,"_start":"1970-01-01T00:00:00.000000000Z","_stop":"2026-08-25T23:08:12.677000000Z","_time":"2026-08-25T23:08:12.672432953Z","_value":"production","_field":"environment","_measurement":"UserActiveEnvironment","subject":"auth0|opwindermere93"}][39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 201ms[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time Start[39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[BusinessIDInterceptor] [39m[32m API request info{"aud":"https://example1234.execute-api.us-east-1.amazonaws.com","azp":"sessWindermereConsole02","exp":1787702891,"gty":"client-credentials","iat":1787699291,"iss":"https://auth.meteringco.example/","permissions":["keys:read","keys:update","keys:delete"],"sub":"auth0|opwindermere93"}, path: /users/environment, method:GET [39m
+[32m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [32m    LOG[39m [38;5;3m[UsersService] [39m[32mUserEntity for subject: auth0|opwindermere93 in cache[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[BusinessIDInterceptor] [39m[95mLogging BusinessID accessing MeteringCo windermere[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[InfluxService] [39m[95mreadAllEnvironmentsForUser: from(bucket: "local-config")
+        |> range(start: 1970-01-01T00:00:00.000Z, stop:2026-08-25T23:08:12.882Z)
+        |> filter(fn: (r) => r["_measurement"] == "UserDataEnv")
+        |> filter(fn: (r) => r["subject"] == "auth0|opwindermere93")
+        |> group(columns: ["environment"], mode:"by")
+        |> sort(columns: ["_time"], desc: true)
+        |> top(n: 1, columns:["_time"])[39m
+[95m[Nest] 3836  - [39m08/25/2026, 11:08:12 PM [95m  DEBUG[39m [38;5;3m[TimingInterceptor] [39m[95mCode Execution Time End 44ms[39m

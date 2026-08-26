@@ -1,0 +1,3 @@
+the-profile-save-carries-only-a-profile: the recorded document carries invoiceApproval='manual', expected 'automatic'
+the-profile-save-carries-only-a-profile: the served document carries invoiceApproval='manual', expected 'automatic'
+reward=0.0

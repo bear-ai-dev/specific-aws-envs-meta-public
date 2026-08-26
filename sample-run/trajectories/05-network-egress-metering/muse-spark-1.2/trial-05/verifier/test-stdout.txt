@@ -1,0 +1,11 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint (port 4566) ===
+baseline manifest: 455 source files
+endpoint on port 4566 confirmed ours (pid 3946, estate role meteringco-transfer-reader)
+driver diagnostic exit: 0
+endpoint still confirmed ours after the run
+=== Compute reward (root, no submitted code loaded) ===
+[transfer] FAILED
+    billed customers that owe nothing on this dimension: ['cus_kestrelmoor']
+[replica] ok
+reward 0.0

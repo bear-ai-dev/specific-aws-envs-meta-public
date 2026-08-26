@@ -1,0 +1,414 @@
+diff -Naur a/src/interceptors/tokenRegisterInterceptor.ts b/src/interceptors/tokenRegisterInterceptor.ts
+--- a/src/interceptors/tokenRegisterInterceptor.ts	2026-08-25 22:46:55
++++ b/src/interceptors/tokenRegisterInterceptor.ts	2026-08-25 22:13:34
+@@ -1,7 +1,14 @@
++import { InfluxDB, Point, WriteApi } from '@influxdata/influxdb-client';
+ import { Injectable, NestInterceptor, ExecutionContext, CallHandler, Logger } from '@nestjs/common';
+ import { Observable } from 'rxjs';
+ import { tap } from 'rxjs/operators';
+ import { TokenConsumerService } from '../token-consumer/token-consumer.service';
++import { MeasurementFormat } from '../measurement-config/entities/measurement.interface';
++import { TokenConsumer } from '../token-consumer/entities/token-consumer.entity';
++import { MeteringCoToken } from '../token-consumer/dto/meteringcoToken.dto';
++import { TokenType } from '../token-consumer/dto/TokenType';
++import { TokenConsumerAsyncProcessor } from '../token-consumer/token-consumer-async-processor';
++import { randomUUID } from 'crypto';
+ import { AuditService } from '../audit/audit.service';
+ import { AuditScope } from '../audit/entities/audit.interface';
+ import { EnvironmentService } from '../users/users.service';
+@@ -11,8 +18,19 @@
+ @Injectable()
+ export class TokenRegisterInterceptor implements NestInterceptor {
+     static logger = new Logger(TokenRegisterInterceptor.name);
++    private static url: string;
++    token: string;
++    org: string;
++    bucket = TokenConsumerAsyncProcessor.tokenAggregateBucket;
++    dbclient: InfluxDB;
++    writeApi: WriteApi;
+     environmentService: EnvironmentService;
+     constructor() {
++        this.token = process.env.INFLUX_TOKEN || '';
++        this.org = process.env.INFLUX_ORG || 'meteringco';
++        TokenRegisterInterceptor.url = process.env.INFLUX_URL || 'https://us-east-1-1.aws.cloud2.influxdata.com';
++        this.dbclient = new InfluxDB({ url: TokenRegisterInterceptor.url, token: this.token, timeout: 60000 }); // 60 second timeout for requests});
++        this.writeApi = this.dbclient.getWriteApi(this.org, this.bucket);
+         this.environmentService = new EnvironmentService(new InfluxService());
+     }
+     intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+@@ -36,6 +54,29 @@
+                                 TokenRegisterInterceptor.logger.debug(
+                                     `TokenRegisterInterceptor: dogfoodCustomerDataRes: ${dogfoodCustomerDataRes?.meteringcoCustomerId} ${dogfoodCustomerDataRes?.saasCustomerAssociatedBusinessID}`,
+                                 );
++                                const { saasCustomerAssociatedBusinessID, meteringcoCustomerId } = dogfoodCustomerDataRes;
++                                const measurementFormat: MeasurementFormat =
++                                    TokenConsumer.tokenConsumerToStandardMeasurementEntity(
++                                        new TokenConsumer(
++                                            new MeteringCoToken({
++                                                businessID,
++                                                tokenAmount: '0.001',
++                                                metadata: {
++                                                    tokenType: TokenType.apiCall,
++                                                    uuid: randomUUID(),
++                                                },
++                                            }),
++                                            meteringcoCustomerId,
++                                            saasCustomerAssociatedBusinessID,
++                                        ),
++                                    );
++                                const point = MeasurementFormat.getPointForm(
++                                    measurementFormat,
++                                    null,
++                                    new Point(TokenConsumer._measurement),
++                                );
++                                TokenRegisterInterceptor.logger.debug(`TokenRegisterInterceptor loading point`);
++                                this.writeApi.writePoint(point);
+                             }
+                         }
+                     } catch (e) {
+diff -Naur a/src/token-consumer/entities/token-consumer.entity.ts b/src/token-consumer/entities/token-consumer.entity.ts
+--- a/src/token-consumer/entities/token-consumer.entity.ts	2026-08-25 22:45:55
++++ b/src/token-consumer/entities/token-consumer.entity.ts	2026-08-25 22:13:34
+@@ -1,8 +1,15 @@
++import { MeasurementFormat } from '../../measurement-config/entities/measurement.interface';
++import { StandardMeasurementEntity } from '../../measurement-config/entities/standardMeasurement.entity';
++import { UsageEntity } from '../../usage/entities/usage.entity';
+ import { MeteringCoToken } from '../dto/meteringcoToken.dto';
+ import { MeteringCoTokenMetadata } from 'token-consumer/dto/MeteringCoTokenMetadata';
+ 
+ export class TokenConsumer {
+     public static _measurement = 'tokenConsumer';
++    public static meteringcoDogFoodProductionBusinessID = 'meteringco-production';
++    public static meteringcoDogFoodSandboxBusinessID = 'meteringco-sandbox';
++    public static productionDimensionId = '697f07d0-3180-4351-bdff-7ca029e6c18d';
++    public static sandboxDimensionId = '00abdf4f-f975-41c6-8293-76ba09a5cb23';
+     saasCustomerBusinessID: string;
+     customerId: string;
+     saasCustomerAssociatedBusinessID: string;
+@@ -22,5 +29,41 @@
+             this.saasCustomerAssociatedBusinessID = saasCustomerAssociatedBusinessID;
+             this.customerId = customerId;
+         }
++    }
++    static tokenConsumerToStandardMeasurementEntity(tokenConsumer: TokenConsumer): MeasurementFormat {
++        return {
++            businessID:
++                tokenConsumer?.saasCustomerAssociatedBusinessID === TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    ? TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    : TokenConsumer.meteringcoDogFoodSandboxBusinessID,
++            customerId: tokenConsumer.customerId,
++            recordValue: parseFloat(tokenConsumer.tokenAmount),
++            timestamp: tokenConsumer.timestamp,
++            metadata: tokenConsumer.metadata,
++            _measurement: TokenConsumer._measurement,
++            dimensionId:
++                tokenConsumer?.saasCustomerAssociatedBusinessID === TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    ? TokenConsumer.productionDimensionId
++                    : TokenConsumer.sandboxDimensionId,
++        };
++    }
++    static publish(tokenConsumer: TokenConsumer) {
++        const { tokenAmount, metadata, customerId, timestamp } = tokenConsumer;
++        const entity = new StandardMeasurementEntity({
++            timestamp,
++            recordValue: parseFloat(tokenAmount),
++            _measurement: UsageEntity._measurement,
++            businessID:
++                tokenConsumer?.saasCustomerAssociatedBusinessID === TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    ? TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    : TokenConsumer.meteringcoDogFoodSandboxBusinessID,
++            customerId,
++            metadata: metadata,
++            dimensionId:
++                tokenConsumer?.saasCustomerAssociatedBusinessID === TokenConsumer.meteringcoDogFoodProductionBusinessID
++                    ? TokenConsumer.productionDimensionId
++                    : TokenConsumer.sandboxDimensionId,
++        });
++        StandardMeasurementEntity.publish(entity);
+     }
+ }
+diff -Naur a/src/token-consumer/token-consumer-async-processor.ts b/src/token-consumer/token-consumer-async-processor.ts
+--- a/src/token-consumer/token-consumer-async-processor.ts	2026-08-25 22:46:43
++++ b/src/token-consumer/token-consumer-async-processor.ts	2026-08-25 22:13:34
+@@ -9,6 +9,9 @@
+ import { CustomerService } from '../customer/customer.service';
+ import { DimensionsService } from '../dimensions/dimensions.service';
+ import { TokenType } from './dto/TokenType';
++import { InfluxService } from '../influx/influx.service';
++import { DatetimeUtils } from '../utils/datetime';
++import { TokenAsyncAggregatorDto } from './dto/schedulerAsyncProcessor.dto';
+ 
+ @Processor('scheduler_queue')
+ export class TokenConsumerAsyncProcessor {
+@@ -17,12 +20,15 @@
+     public static tokenAggregateBucket = 'dogfood-aggregate-bucket';
+     public static schedulerIdGenerator = (businessID: string) =>
+         `${TokenConsumerAsyncProcessor.processorName}-${businessID}`;
++    public static aggregationSchedulerIdGenerator = (businessID: string) =>
++        `${TokenConsumerAsyncProcessor.aggregationProcessor}-${businessID}`;
+     private static readonly logger = new Logger(TokenConsumerAsyncProcessor.name);
+     constructor(
+         @Inject(forwardRef(() => TokenConsumerService)) readonly tokenConsumerService: TokenConsumerService,
+         @Inject(forwardRef(() => OfferingService)) readonly offeringService: OfferingService,
+         @Inject(forwardRef(() => CustomerService)) readonly customerService: CustomerService,
+         @Inject(forwardRef(() => DimensionsService)) readonly dimensionService: DimensionsService,
++        @Inject(forwardRef(() => InfluxService)) readonly influxService: InfluxService,
+     ) {}
+     @Process(TokenConsumerAsyncProcessor.processorName)
+     async loadTokens({ data: { subject, rate, businessID } }: Job<SchedulerEntity>) {
+@@ -67,6 +73,61 @@
+                     },
+                 });
+             }
++        } catch (e) {
++            TokenConsumerAsyncProcessor.logger.error('Failed to load tokens', e);
++            throw e;
++        }
++    }
++    @Process(TokenConsumerAsyncProcessor.aggregationProcessor)
++    async aggregateTokens({ data: { subject, rate, scheduleParameters } }: Job<SchedulerEntity>) {
++        const params = scheduleParameters as TokenAsyncAggregatorDto;
++        TokenConsumerAsyncProcessor.logger.log('Processing Automated Token loading event, logging inputs', {
++            rate,
++            subject,
++        });
++        try {
++            const sixHoursAgo = DatetimeUtils.sixHoursAgo(new Date());
++            const startDate = params?.startDate ? new Date(params?.startDate) : sixHoursAgo;
++            const endDate = params?.endDate ? new Date(params?.endDate) : new Date();
++            const res = await TokenConsumerService.getMeteringCoCustomerId(params.businessID);
++            if (!res) {
++                TokenConsumerAsyncProcessor.logger.error(
++                    `Failed to load tokens, no meteringco customer id: ${params.businessID}`,
++                );
++                AuditService.publishEvent({
++                    data: [params],
++                    message: 'Failed to load tokens, no meteringco customer id',
++                    topic: AuditScope.ERROR,
++                });
++                return;
++            }
++            TokenConsumerAsyncProcessor.logger.log(
++                `Aggregating tokens for ${
++                    params.businessID
++                }, with start date: ${startDate.toISOString()} and end date: ${endDate.toISOString()}`,
++            );
++            const data = await this.influxService.aggregateMeteringCoToken({
++                customerId: res?.meteringcoCustomerId,
++                startDate,
++                endDate,
++            });
++            if (data && data.length) {
++                const { _value } = data[0];
++                TokenConsumerAsyncProcessor.logger.log(
++                    `Aggregated tokens for ${params.businessID} with value: ${_value}`,
++                );
++                await this.tokenConsumerService.create({
++                    businessID: params.businessID,
++                    tokenAmount: _value.toString(),
++                    metadata: {
++                        tokenType: TokenType.apiCall,
++                        managed: 'true',
++                    },
++                });
++            }
++            TokenConsumerAsyncProcessor.logger.log(
++                `Completed processing for token aggreagation for ${params.businessID}`,
++            );
+         } catch (e) {
+             TokenConsumerAsyncProcessor.logger.error('Failed to load tokens', e);
+             throw e;
+diff -Naur a/src/token-consumer/token-consumer.controller.ts b/src/token-consumer/token-consumer.controller.ts
+--- a/src/token-consumer/token-consumer.controller.ts	2026-08-25 22:47:10
++++ b/src/token-consumer/token-consumer.controller.ts	2026-08-25 22:13:34
+@@ -21,6 +21,7 @@
+     @UseGuards(AuthGuard('jwt'))
+     async create(@Body() adminScheduleTokenDto: AdminScheduleTokenDto) {
+         await this.tokenConsumerService.scheduleTokenProcessor(adminScheduleTokenDto);
++        await this.tokenConsumerService.scheduleTokenAggregator(adminScheduleTokenDto);
+         return { message: 'successfully set schedulers' };
+     }
+ 
+@@ -29,6 +30,7 @@
+     @UseGuards(AuthGuard('jwt'))
+     async delete(@Body() adminScheduleTokenDto: AdminScheduleTokenDto) {
+         await this.tokenConsumerService.removeTokenProcessor(adminScheduleTokenDto);
++        await this.tokenConsumerService.removeTokenAggregator(adminScheduleTokenDto);
+         return { message: 'successfully removed schedulers' };
+     }
+ }
+diff -Naur a/src/token-consumer/token-consumer.service.ts b/src/token-consumer/token-consumer.service.ts
+--- a/src/token-consumer/token-consumer.service.ts	2026-08-25 23:35:23
++++ b/src/token-consumer/token-consumer.service.ts	2026-08-25 22:13:34
+@@ -1,7 +1,9 @@
+ import { BadRequestException, Inject, Injectable, Logger, forwardRef } from '@nestjs/common';
+ import { MeteringCoToken } from './dto/meteringcoToken.dto';
++import { InfluxService } from '../influx/influx.service';
+ import { UserEntitlements } from '../users/entities/entitlement.entity';
+ import { cache as cacheManager } from '../cacheStore.js';
++import { TokenConsumer } from './entities/token-consumer.entity';
+ import { BasicResponseDTO } from '../basicResponseDTO';
+ import { AuditService } from '../audit/audit.service';
+ import { AuditScope } from '../audit/entities/audit.interface';
+@@ -11,6 +13,9 @@
+ import { TokenConsumerAsyncProcessor } from './token-consumer-async-processor';
+ import { ReadCustomerResponseData } from '../customer/entities/customer.entity';
+ import { LocalJWTAuthService } from '../authz/jwt-local.strategy';
++import { TokenAsyncAggregatorDto } from './dto/schedulerAsyncProcessor.dto';
++import { MeasurementFormat } from '../measurement-config/entities/measurement.interface';
++import { Point } from '@influxdata/influxdb-client';
+ import { EnvironmentService } from '../users/users.service';
+ 
+ @Injectable()
+@@ -20,6 +25,7 @@
+     constructor(
+         @Inject(forwardRef(() => SchedulerService)) readonly schedulerService: SchedulerService,
+         @Inject(forwardRef(() => LocalJWTAuthService)) readonly localJWTAuthService: LocalJWTAuthService,
++        @Inject(forwardRef(() => InfluxService)) readonly influxService: InfluxService,
+         @Inject(forwardRef(() => EnvironmentService)) readonly environmentSerivce: EnvironmentService,
+     ) {}
+     async create(meteringcoToken: MeteringCoToken): Promise<BasicResponseDTO> {
+@@ -34,7 +40,9 @@
+             );
+             if (res) {
+                 const { meteringcoCustomerId, saasCustomerAssociatedBusinessID } = res;
++                const tokenConsumer = new TokenConsumer(meteringcoToken, meteringcoCustomerId, saasCustomerAssociatedBusinessID);
+                 TokenConsumerService.logger.debug(`Metering Token for meteringco customerId: ${meteringcoCustomerId}`);
++                TokenConsumer.publish(tokenConsumer);
+                 return { message: `Token Consumer created for businessID: ${meteringcoToken?.businessID}` };
+             } else {
+                 TokenConsumerService.logger.error(`No customer found for businessID: ${meteringcoToken?.businessID}`);
+@@ -49,6 +57,40 @@
+             });
+         }
+     }
++    async queueToken(meteringcoToken: MeteringCoToken) {
++        try {
++            const res = await TokenConsumerService.getMeteringCoCustomerId(
++                meteringcoToken.businessID,
++                meteringcoToken?.subject,
++                this.environmentSerivce,
++            );
++            if (res) {
++                const { meteringcoCustomerId, saasCustomerAssociatedBusinessID } = res;
++                const measurementFormat: MeasurementFormat = TokenConsumer.tokenConsumerToStandardMeasurementEntity(
++                    new TokenConsumer(meteringcoToken, meteringcoCustomerId, saasCustomerAssociatedBusinessID),
++                );
++                const point = MeasurementFormat.getPointForm(
++                    measurementFormat,
++                    null,
++                    new Point(TokenConsumer._measurement),
++                );
++                TokenConsumerService.logger.debug(`TokenRegisterInterceptor loading point`);
++                await this.influxService.loadPoints(
++                    TokenConsumerAsyncProcessor.tokenAggregateBucket,
++                    process.env.INFLUX_ORG,
++                    [point],
++                    false,
++                );
++            }
++        } catch (e) {
++            TokenConsumerService.logger.error('Failed to queue token', serializeError(e));
++            AuditService.publishEvent({
++                topic: AuditScope.ERROR,
++                message: 'Failed to queue token',
++                data: [serializeError(e)],
++            });
++        }
++    }
+     public static async getMeteringCoCustomerId(
+         businessID: string,
+         subject?: string,
+@@ -135,6 +177,34 @@
+             });
+         }
+     }
++    async scheduleTokenAggregator({ businessID, subject }: { businessID: string; subject: string }) {
++        try {
++            TokenConsumerService.logger.debug(`Scheduling token aggregator for businessID: ${businessID}`);
++            const scheduleParameters: TokenAsyncAggregatorDto = {
++                businessID,
++                subject,
++                dimensionType: TokenConsumerAsyncProcessor.aggregationProcessor,
++            };
++
++            await this.schedulerService.create({
++                businessID,
++                schedulerStatus: SchedulerStatus.live,
++                subject,
++                schedulerID: TokenConsumerAsyncProcessor.aggregationSchedulerIdGenerator(businessID),
++                schedulerType: schedulerType.dimensionDataGathering,
++                scheduleParameters,
++                rate: SupportedMeasurementFrequencies.everySixHours,
++            });
++            return { message: `Token Aggregator scheduled for businessID: ${businessID}` };
++        } catch (e) {
++            TokenConsumerService.logger.error('Failed to schedule token aggregator', serializeError(e));
++            AuditService.publishEvent({
++                topic: AuditScope.ERROR,
++                message: 'Failed to schedule token aggregator',
++                data: [serializeError(e)],
++            });
++        }
++    }
+     async removeTokenProcessor({ businessID }: { businessID: string }): Promise<BasicResponseDTO | void> {
+         try {
+             TokenConsumerService.logger.debug(`Removing token processor for businessID: ${businessID}`);
+@@ -148,6 +218,23 @@
+             AuditService.publishEvent({
+                 topic: AuditScope.ERROR,
+                 message: 'Failed to remove token processor',
++                data: [serializeError(e)],
++            });
++        }
++    }
++    async removeTokenAggregator({ businessID }: { businessID: string }): Promise<BasicResponseDTO | void> {
++        try {
++            TokenConsumerService.logger.debug(`Removing token aggregator for businessID: ${businessID}`);
++            await this.schedulerService.remove({
++                businessID,
++                schedulerID: TokenConsumerAsyncProcessor.aggregationSchedulerIdGenerator(businessID),
++            });
++            return { message: `Token Aggregator removed for businessID: ${businessID}` };
++        } catch (e) {
++            TokenConsumerService.logger.error('Failed to remove token aggregator', serializeError(e));
++            AuditService.publishEvent({
++                topic: AuditScope.ERROR,
++                message: 'Failed to remove token aggregator',
+                 data: [serializeError(e)],
+             });
+         }
+diff -Naur a/src/usage/usage.service.ts b/src/usage/usage.service.ts
+--- a/src/usage/usage.service.ts	2026-08-25 22:47:20
++++ b/src/usage/usage.service.ts	2026-08-25 22:13:34
+@@ -19,6 +19,8 @@
+ import { UsageEntity } from './entities/usage.entity.js';
+ import { aggregationInterval } from '../dimensions/dto/create-dimension.dto.js';
+ import { DatetimeUtils } from '../utils/datetime.js';
++import { TokenConsumerService } from '../token-consumer/token-consumer.service.js';
++import { TokenType } from '../token-consumer/dto/TokenType.js';
+ 
+ const ONE_DAY_IN_MS = 864e5;
+ @Injectable()
+@@ -30,6 +32,7 @@
+         @Inject(forwardRef(() => DimensionsService)) readonly dimensionService: DimensionsService,
+         @Inject(forwardRef(() => CustomerService)) readonly customerService: CustomerService,
+         @Inject(forwardRef(() => OfferingService)) readonly offeringService: OfferingService,
++        @Inject(forwardRef(() => TokenConsumerService)) readonly tokenConsumerService: TokenConsumerService,
+     ) {}
+     findAll() {
+         return `This action returns all usage`;
+@@ -125,6 +128,13 @@
+             _measurement: UsageEntity._measurement,
+         });
+         StandardMeasurementEntity.publish(entity);
++        await this.tokenConsumerService.queueToken({
++            subject,
++            businessID: createUsageDto?.businessID,
++            tokenAmount: '0.1',
++            metadata: { tokenType: TokenType.apiCall },
++            timestamp: new Date().toISOString(),
++        });
+ 
+         return { message: 'Measurement created' };
+     }

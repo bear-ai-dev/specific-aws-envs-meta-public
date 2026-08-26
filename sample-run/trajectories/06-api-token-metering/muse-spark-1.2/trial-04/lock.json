@@ -1,0 +1,63 @@
+{
+    "schema_version": 1,
+    "task": {
+        "name": "meteringco-api-token-metering",
+        "type": "local",
+        "digest": "sha256:676f35f207faf46c947968c449a32a235b6c4083120c29e13b4176594d055360",
+        "path": "/tmp/specific-driver-l91jzonj/tasks/meteringco-api-token-metering"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "import_path": "specific_agents.harbor_agents:MetaMiniSweAgent",
+        "model_name": "openai/muse-spark-1.2",
+        "n_concurrent": 4,
+        "skills": [],
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "/usr/local/lib/python3.12/site-packages/specific_agents/mini-swe-meta.yaml",
+            "reasoning_effort": "high",
+            "model_registry_file": "/usr/local/lib/python3.12/site-packages/specific_agents/litellm-meta-muse-spark-1.2.json"
+        },
+        "mcp_servers": []
+    },
+    "skills": [],
+    "environment": {
+        "import_path": "specific_sandbox.fargate:FargateEnvironment",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "override_cpus": 2,
+        "override_memory_mb": 4096,
+        "override_storage_mb": 102400,
+        "extra_docker_compose": [],
+        "kwargs": {
+            "cluster": "specific-runner",
+            "aws_region": "us-east-1",
+            "execution_role_arn": "arn:aws:iam::237343249281:role/specific-ecs-execution",
+            "task_role_arn": "arn:aws:iam::237343249281:role/specific-sandbox-task",
+            "subnets": [
+                "subnet-0c9e52e5b7cf928a6",
+                "subnet-0f4c08def45a6e152",
+                "subnet-0bd02ad16a3df6d61",
+                "subnet-03112c76fe14ada43",
+                "subnet-0cdc3bb7b1eacb43c",
+                "subnet-0687dee9d431ee2fa"
+            ],
+            "security_groups": [
+                "sg-00be588d0ca635066"
+            ],
+            "init_container_image_uri": "237343249281.dkr.ecr.us-east-1.amazonaws.com/specific/runtime-init@sha256:bc7f136358f251382e09a391612209cac9e003a19b588662bcd0929e38b9982e",
+            "use_spot": false,
+            "cpu_units": 2048,
+            "storage_gib": 100
+        },
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "task": {
+        "path": "/tmp/specific-driver-yu_5s7fs/tasks/meteringco-network-egress-metering"
+    },
+    "trial_name": "meteringco-network-egress-metering__8s72b8r",
+    "trials_dir": "/tmp/specific-driver-yu_5s7fs/trials/run-49cd7c3d8132",
+    "agent": {
+        "import_path": "specific_agents.harbor_agents:MetaMiniSweAgent",
+        "model_name": "openai/muse-spark-1.2",
+        "n_concurrent": 4,
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "/usr/local/lib/python3.12/site-packages/specific_agents/mini-swe-meta.yaml",
+            "reasoning_effort": "high",
+            "model_registry_file": "/usr/local/lib/python3.12/site-packages/specific_agents/litellm-meta-muse-spark-1.2.json"
+        }
+    },
+    "environment": {
+        "import_path": "specific_sandbox.fargate:FargateEnvironment",
+        "override_cpus": 4,
+        "override_memory_mb": 8192,
+        "override_storage_mb": 102400,
+        "kwargs": {
+            "cluster": "specific-runner",
+            "aws_region": "us-east-1",
+            "execution_role_arn": "arn:aws:iam::237343249281:role/specific-ecs-execution",
+            "task_role_arn": "arn:aws:iam::237343249281:role/specific-sandbox-task",
+            "subnets": [
+                "subnet-0c9e52e5b7cf928a6",
+                "subnet-0f4c08def45a6e152",
+                "subnet-0bd02ad16a3df6d61",
+                "subnet-03112c76fe14ada43",
+                "subnet-0cdc3bb7b1eacb43c",
+                "subnet-0687dee9d431ee2fa"
+            ],
+            "security_groups": [
+                "sg-00be588d0ca635066"
+            ],
+            "init_container_image_uri": "237343249281.dkr.ecr.us-east-1.amazonaws.com/specific/runtime-init@sha256:bc7f136358f251382e09a391612209cac9e003a19b588662bcd0929e38b9982e",
+            "use_spot": false,
+            "cpu_units": 4096,
+            "storage_gib": 100
+        }
+    },
+    "job_id": "aac1108b-30b2-4222-90cb-da36828358a1"
+}

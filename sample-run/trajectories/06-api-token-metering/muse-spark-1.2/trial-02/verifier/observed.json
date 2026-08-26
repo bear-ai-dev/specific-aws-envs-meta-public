@@ -1,0 +1,77 @@
+{
+  "steps": {
+    "p1.call-a": {
+      "ok": true
+    },
+    "p1.call-b": {
+      "ok": true
+    },
+    "p1.call-d": {
+      "ok": true
+    },
+    "p1.burst-1": {
+      "ok": true
+    },
+    "p1.burst-2": {
+      "ok": true
+    },
+    "p1.burst-3": {
+      "ok": true
+    },
+    "p1.burst-4": {
+      "ok": true
+    },
+    "p1.burst-5": {
+      "ok": true
+    },
+    "p1.flush": {
+      "ok": true
+    },
+    "p1.rollup": {
+      "ok": true
+    },
+    "p2.call-c": {
+      "ok": true
+    },
+    "p2.twin-1": {
+      "ok": true
+    },
+    "p2.twin-2": {
+      "ok": true
+    },
+    "p2.flush": {
+      "ok": true
+    },
+    "p2.redeliver-d": {
+      "ok": true
+    },
+    "p2.late-p": {
+      "ok": true
+    },
+    "p2.redeliver-c": {
+      "ok": true
+    },
+    "p2.flush-2": {
+      "ok": true
+    },
+    "p2.other-customer": {
+      "ok": true
+    },
+    "p2.flush-3": {
+      "ok": true
+    },
+    "p2.rollup": {
+      "ok": true
+    },
+    "p2.rollup-other": {
+      "ok": true
+    },
+    "callsite": {
+      "ok": true
+    }
+  },
+  "diagnostics": {
+    "registerEntryPoint": "scheduleAggregationProcessor",
+    "aggregateEntryPoint": "aggregateTokens"
+  }
+}

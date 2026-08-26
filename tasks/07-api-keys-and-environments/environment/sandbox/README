@@ -1,0 +1,9 @@
+This directory is the world the local endpoint serves while you are working.
+
+It is one document. Everything the endpoint knows on startup comes from here:
+the tenants, the people who sign in to the console, the machine credentials the
+identity provider holds and the configuration rows the platform keeps for each
+of them. You can read it, and you can watch it change by driving the API.
+
+The world the deliverable is judged against is a different document with
+different tenants, different people and different credentials.

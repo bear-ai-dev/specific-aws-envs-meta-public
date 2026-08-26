@@ -1,0 +1,62 @@
+{
+    "schema_version": 1,
+    "task": {
+        "name": "meteringco-business-settings-persistence",
+        "type": "local",
+        "digest": "sha256:c2c2206dd7415617706ddc11e8ba2cd64841cb30eaa1e3dd35fb99230776ddb5",
+        "path": "/tmp/specific-driver-5ouxc3yb/tasks/meteringco-business-settings-persistence"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "import_path": "specific_agents.harbor_agents:BedrockMiniSweAgent",
+        "model_name": "bedrock/us.anthropic.claude-opus-5",
+        "n_concurrent": 8,
+        "skills": [],
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "version": "2.4.5",
+            "cost_limit": "0",
+            "config_file": "/usr/local/lib/python3.12/site-packages/specific_agents/mini-swe-bedrock.yaml",
+            "reasoning_effort": "high"
+        },
+        "mcp_servers": []
+    },
+    "skills": [],
+    "environment": {
+        "import_path": "specific_sandbox.fargate:FargateEnvironment",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "override_cpus": 4,
+        "override_memory_mb": 8192,
+        "override_storage_mb": 102400,
+        "extra_docker_compose": [],
+        "kwargs": {
+            "cluster": "specific-runner",
+            "aws_region": "us-east-1",
+            "execution_role_arn": "arn:aws:iam::237343249281:role/specific-ecs-execution",
+            "task_role_arn": "arn:aws:iam::237343249281:role/specific-sandbox-task",
+            "subnets": [
+                "subnet-0c9e52e5b7cf928a6",
+                "subnet-0f4c08def45a6e152",
+                "subnet-0bd02ad16a3df6d61",
+                "subnet-03112c76fe14ada43",
+                "subnet-0cdc3bb7b1eacb43c",
+                "subnet-0687dee9d431ee2fa"
+            ],
+            "security_groups": [
+                "sg-00be588d0ca635066"
+            ],
+            "init_container_image_uri": "237343249281.dkr.ecr.us-east-1.amazonaws.com/specific/runtime-init@sha256:b0ad42413d5559ddc2e1e9867268b750cdf3fef04e9eec3bc9866ded2430fa12",
+            "use_spot": false,
+            "cpu_units": 4096,
+            "storage_gib": 100
+        },
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false
+    }
+}

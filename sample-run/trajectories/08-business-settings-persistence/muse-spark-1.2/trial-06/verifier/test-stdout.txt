@@ -1,0 +1,7 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward=0.0
+  - the-profile-save-carries-only-a-profile: the recorded document carries invoiceApproval='manual', expected 'automatic'
+  - the-profile-save-carries-only-a-profile: the served document carries invoiceApproval='manual', expected 'automatic'

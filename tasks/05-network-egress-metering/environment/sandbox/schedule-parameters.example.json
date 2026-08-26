@@ -1,0 +1,6 @@
+{
+  "iamRoleArn": "arn:aws:iam::100000000031:role/meteringco-egress-reader",
+  "externalId": "nw-sbx-4417",
+  "dimensionId": "dim_sbx_egress",
+  "region": "us-east-1"
+}

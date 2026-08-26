@@ -2,7 +2,7 @@
   "cohort_directories": [
     "sample-run/trajectories"
   ],
-  "scored_valid_trials": 64,
+  "scored_valid_trials": 128,
   "trials_excluded_no_attempt": 0,
   "denominator_policy": "numeric verifier reward, agent process started, no Harbor exception, native, normalized, and text trajectories, verifier report, and reward; submitted deliverables are included where the source evidence package provided them",
   "by_model": {
@@ -11,21 +11,39 @@
       "scored": 24,
       "solved": 7
     },
+    "bedrock/us.anthropic.claude-opus-5": {
+      "label": "Opus 5",
+      "scored": 64,
+      "solved": 63
+    },
     "meta/responses/muse-spark-1.2": {
       "label": "Muse Spark 1.2",
       "scored": 8,
       "solved": 4
     },
-    "bedrock/us.anthropic.claude-opus-5": {
-      "label": "Opus 5",
+    "openai/muse-spark-1.2": {
+      "label": "Muse Spark 1.2",
       "scored": 32,
-      "solved": 32
+      "solved": 13
     }
   },
   "public_controls": {
     "trials": 8,
     "exceptions": 0,
     "oracle_all_reward_one": true,
-    "nop_all_reward_zero": true
+    "nop_all_reward_zero": true,
+    "tasks_covered": [
+      "01-entitlement-overage-lines",
+      "02-measurement-failure-dlq",
+      "03-customer-communication-dispatch",
+      "04-iam-role-validation"
+    ],
+    "tasks_pending": [
+      "05-network-egress-metering",
+      "06-api-token-metering",
+      "07-api-keys-and-environments",
+      "08-business-settings-persistence"
+    ],
+    "pending_note": "Oracle and no-op control runs for Tasks 5-8 have not been executed against the published packages yet. Their reference solutions are included; the control runs are the outstanding publication step for those four tasks."
   }
 }

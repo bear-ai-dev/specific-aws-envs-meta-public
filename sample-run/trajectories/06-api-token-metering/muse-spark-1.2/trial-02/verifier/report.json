@@ -1,0 +1,103 @@
+{
+  "reward": 0.0,
+  "reached": {
+    "registrations_written": false,
+    "billable_rollup_produced": false
+  },
+  "rules": [
+    {
+      "name": "registration_shape",
+      "description": "each API call becomes one registration in the aggregate bucket",
+      "passed": false,
+      "problems": [
+        "A: no registration carries its identity",
+        "B: no registration carries its identity",
+        "D: no registration carries its identity",
+        "R1: no registration carries its identity",
+        "R2: no registration carries its identity",
+        "R3: no registration carries its identity",
+        "R4: no registration carries its identity",
+        "R5: no registration carries its identity",
+        "C: no registration carries its identity",
+        "T1: no registration carries its identity",
+        "T2: no registration carries its identity",
+        "P: no registration carries its identity"
+      ]
+    },
+    {
+      "name": "identity_in_series_key",
+      "description": "calls sharing an instant stay apart by identity",
+      "passed": false,
+      "problems": [
+        "two calls handed over inside one millisecond did not survive as two registrations; found 0 and 0 carrying their identities"
+      ]
+    },
+    {
+      "name": "call_time_placement",
+      "description": "a registration sits at the time of the call, not the time it was recorded",
+      "passed": false,
+      "problems": [
+        "A: nothing to place",
+        "B: nothing to place",
+        "D: nothing to place",
+        "R1: nothing to place",
+        "R2: nothing to place",
+        "R3: nothing to place",
+        "R4: nothing to place",
+        "R5: nothing to place",
+        "C: nothing to place",
+        "T1: nothing to place",
+        "T2: nothing to place",
+        "P: nothing to place"
+      ]
+    },
+    {
+      "name": "redelivery_idempotent",
+      "description": "a redelivered call leaves one registration, whichever batch it arrives in",
+      "passed": false,
+      "problems": [
+        "D: redelivery left 0 registrations, not 1",
+        "C: redelivery left 0 registrations, not 1"
+      ]
+    },
+    {
+      "name": "windowed_rollup",
+      "description": "each window produces one billable roll-up worth the window's traffic",
+      "passed": false,
+      "expected_window_totals": {
+        "cus-2d83-harborline-prod": [
+          0.003,
+          0.008
+        ],
+        "cus-6a17-harborline-alt": [
+          0.001
+        ]
+      },
+      "observed_rollups": {
+        "cus-2d83-harborline-prod": [],
+        "cus-6a17-harborline-alt": []
+      },
+      "problems": [
+        "billed [] for cus-2d83-harborline-prod, the windows are worth [0.003, 0.008]",
+        "billed [] for cus-6a17-harborline-alt, the windows are worth [0.001]"
+      ]
+    },
+    {
+      "name": "platform_account",
+      "description": "the roll-up is billed to the platform's own account for that customer",
+      "passed": false,
+      "problems": [
+        "no billable row is attributed to cus-2d83-harborline-prod",
+        "no billable row is attributed to cus-6a17-harborline-alt"
+      ]
+    },
+    {
+      "name": "request_path_meters",
+      "description": "serving a measurement meters the call that asked for it",
+      "passed": false,
+      "problems": [
+        "serving a measurement registered no API call of its own"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,693 @@
+diff -ruN a/src/users/dto/readTokens.dto.ts b/src/users/dto/readTokens.dto.ts
+--- a/src/users/dto/readTokens.dto.ts	1970-01-01 05:30:00
++++ b/src/users/dto/readTokens.dto.ts	2026-08-25 22:13:34
+@@ -0,0 +1,28 @@
++import { BasicResponseDTO } from '../../basicResponseDTO.js';
++import { KeyEntity } from '../entities/key.entity.js';
++
++export class ReadTokenResponseData {
++    keyId: string;
++    keyName: string;
++
++    constructor({ clientId, clientName, permissions }: { clientId: string; clientName: string; permissions?: any }) {
++        this.keyId = clientId;
++        this.keyName = clientName;
++        if (permissions) {
++            this.keyName = permissions;
++        }
++    }
++}
++
++export class ReadTokenResponse extends BasicResponseDTO {
++    data: Array<ReadTokenResponseData>;
++
++    constructor(KeyEntities: KeyEntity[]) {
++        super();
++        this.message = 'Found Keys';
++        this.data = KeyEntities.map((TokenEntity) => {
++            const { clientId, clientName, permissions } = TokenEntity;
++            return new ReadTokenResponseData({ clientId, clientName, permissions });
++        });
++    }
++}
+diff -ruN a/src/users/dto/update-environment.dto.ts b/src/users/dto/update-environment.dto.ts
+--- a/src/users/dto/update-environment.dto.ts	1970-01-01 05:30:00
++++ b/src/users/dto/update-environment.dto.ts	2026-08-25 22:13:34
+@@ -0,0 +1,33 @@
++import { ApiProperty } from '@nestjs/swagger';
++import { IsEnum, IsOptional, ValidationArguments } from 'class-validator';
++import { Environment } from './Environment.js';
++
++export class UpdateEnvironmentDto {
++    /**
++     * The environment to use for the user
++     * <br><br>
++     * Example `"sandbox"`
++     * @example "sandbox"
++     */
++    @IsEnum(Environment, {
++        message: (args: ValidationArguments) => {
++            const { value, constraints } = args;
++            const correctValues = Object.values(constraints[0]);
++            return `environment: The value ${value} is not a valid value for the environment field. The correct values are: ${correctValues}`;
++        },
++        each: true,
++    })
++    @IsOptional()
++    @ApiProperty({ enum: Environment })
++    public environment?: Environment;
++
++    /**
++     * The subject to use for the user
++     * <br><br>
++     * Example `"auth0|5f9a7a7a7a7a7a7a7a7a7a7a"`
++     * @example "auth0|5f9a7a7a7a7a7a7a7a7a7a7a"
++     */
++    @ApiProperty()
++    @IsOptional()
++    public userSubject: string;
++}
+diff -ruN a/src/users/entities/environment.entity.ts b/src/users/entities/environment.entity.ts
+--- a/src/users/entities/environment.entity.ts	2026-08-25 22:40:27
++++ b/src/users/entities/environment.entity.ts	2026-08-25 22:13:34
+@@ -1,4 +1,6 @@
++import { Point } from '@influxdata/influxdb-client';
+ import { UserActiveEnvironment } from '../../influx/entities/userTable.entity.js';
++import { InfluxService } from '../../influx/influx.service.js';
+ import { Environment } from '../dto/Environment.js';
+ 
+ export class EnvironmentEntity {
+@@ -9,6 +11,13 @@
+     constructor({ subject, environment }: { subject: string; environment?: Environment }) {
+         this.subject = subject;
+         this.environment = environment ? environment : Environment.PRODUCTION;
++    }
++
++    public static transformer(entity: EnvironmentEntity, influxService: InfluxService): Array<Point> {
++        const userPoint = influxService.getPoint(EnvironmentEntity._measurement);
++        userPoint.tag('subject', entity.subject);
++        userPoint.stringField('environment', entity.environment);
++        return [userPoint];
+     }
+ 
+     static dbModelToEntity(dbModel: UserActiveEnvironment) {
+diff -ruN a/src/users/entities/key.entity.ts b/src/users/entities/key.entity.ts
+--- a/src/users/entities/key.entity.ts	1970-01-01 05:30:00
++++ b/src/users/entities/key.entity.ts	2026-08-25 22:13:34
+@@ -0,0 +1,226 @@
++import { InternalServerErrorException, Logger } from '@nestjs/common';
++import { UsersService } from '../users.service.js';
++
++import { fetch } from 'cross-fetch';
++import { AuditService } from '../../audit/audit.service.js';
++import { cache } from '../../cacheStore.js';
++import { AuditScope } from '../../audit/entities/audit.interface.js';
++import { UserEntity } from './user.entity.js';
++import { serializeError } from 'serialize-error';
++import { UserPermissions } from '../user.permissions.js';
++const TWENTY_SECONDS = 20000;
++const MS_CONVERSION_FACTOR = 1000;
++
++export class KeyEntity {
++    private static readonly logger = new Logger(KeyEntity.name);
++    clientId: string;
++    clientName: string;
++    permissions?: any;
++    constructor({ clientId, clientName }: { clientId: string; clientName: string }) {
++        this.clientId = clientId;
++        this.clientName = clientName;
++    }
++    static async getAuth0ManagementToken() {
++        const token = (await cache.get('auth0ManagementTokenTokenService')) as any;
++        let parsedToken;
++        if (token) {
++            try {
++                parsedToken = JSON.parse(token);
++            } catch (e) {
++                AuditService.publishEvent({
++                    topic: AuditScope.ERROR,
++                    message: 'Error parsing auth0ManagementToken for Token Service',
++                    data: [e],
++                });
++            }
++        }
++        if (
++            parsedToken &&
++            parsedToken?.expireTime &&
++            new Date(parsedToken.expireTime).getTime() > Date.now() + TWENTY_SECONDS &&
++            parsedToken?.access_token
++        ) {
++            return { access_token: parsedToken?.access_token };
++        } else {
++            const res = await fetch('https://auth.meteringco.example/oauth/token/', {
++                method: 'POST',
++                headers: { 'content-type': 'application/x-www-form-urlencoded' },
++                body: new URLSearchParams({
++                    client_id: process.env.METERINGCO_DASHBOARD_CLIENT_ID,
++                    client_secret: process.env.METERINGCO_DASHBOARD_CLIENT_SECRET,
++                    audience: 'https://example-tenant.us.auth0.com/api/v2/',
++                    grant_type: 'client_credentials',
++                    scope: 'read:clients read:client_keys read:client_credentials delete:client_keys delete:client_credentials update:clients create:clients update:client_keys update:client_credentials create:client_keys create:client_credentials',
++                }),
++            });
++            KeyEntity.logger.log('Fetching new auth0ManagementToken for Token Service');
++            if (!res.ok) {
++                throw new InternalServerErrorException('Error fetching auth0ManagementToken for Token Service');
++            }
++            KeyEntity.logger.debug(res.status, res.statusText);
++            const jsonRes = await res.json();
++
++            const { expires_in, access_token } = jsonRes;
++            const expireTime = new Date(Date.now() + expires_in * MS_CONVERSION_FACTOR);
++            cache.set('auth0ManagementTokenTokenService', JSON.stringify({ access_token, expireTime }));
++            return { access_token };
++        }
++    }
++    static async findClientsForBusiness({
++        businessID,
++        usersService,
++    }: {
++        businessID: string;
++        usersService?: UsersService;
++    }): Promise<KeyEntity[]> {
++        const { access_token: accessToken } = await KeyEntity.getAuth0ManagementToken();
++        KeyEntity.logger.log(`Fetching clients for business: ${businessID}`);
++        const clients = [];
++        let start;
++        let limit;
++        let total;
++        let page = 0;
++        do {
++            const res = await fetch(
++                `https://auth.meteringco.example/api/v2/clients?fields=client_secret%2Cclient_authentication_methods%2Csigning_keys&include_fields=false&per_page=50&page=${page}&include_totals=true`,
++                {
++                    method: 'GET',
++                    headers: {
++                        'content-type': 'application/json',
++                        Authorization: `Bearer ${accessToken}`,
++                        'cache-control': 'no-cache',
++                    },
++                },
++            );
++            const jsonRes = await res.json();
++            KeyEntity.logger.debug(
++                `Fetched clients for business: ${businessID} page: ${page}. Status: ${res.status} ${res.statusText}`,
++            );
++            start = jsonRes?.start;
++            limit = jsonRes?.limit;
++            total = jsonRes?.total;
++            if (start === undefined || limit === undefined || total === undefined) {
++                KeyEntity.logger.error(
++                    `Error occured while pagination of Token response: Start: ${start} Limit: ${limit}  Total: ${total}`,
++                );
++                throw new InternalServerErrorException('Failed to get clients, please try again later');
++            }
++            clients.push(...jsonRes?.clients);
++            page++;
++        } while (start + limit < total);
++        KeyEntity.logger.debug(`Fetched clients for business: ${businessID}. Total clients: ${clients.length}.`);
++        if (clients && clients.length) {
++            const { data: users } = await usersService.findAllUsersForBusinessID({ businessID });
++            const usersMap = users.reduce((acc, user): Record<string, UserEntity> => {
++                if (user.subject.split('@')[1] === 'clients') {
++                    acc[user.subject] = user;
++                }
++                return acc;
++            }, {});
++            return clients.reduce((acc, { client_id, ...rest }): KeyEntity[] => {
++                const user = usersMap[`${client_id}@clients`];
++                if (user) {
++                    acc.push(new KeyEntity({ clientId: client_id, clientName: rest.name }));
++                }
++                return acc;
++            }, []);
++        } else {
++            throw new InternalServerErrorException('Failed to get clients, please try again later');
++        }
++    }
++
++    static async rotateClientSecret({ clientId }): Promise<any> {
++        KeyEntity.logger.log(`Rotating client secret for client: ${clientId}`);
++        const { access_token: accessToken } = await KeyEntity.getAuth0ManagementToken();
++        try {
++            const res = await fetch(`https://auth.meteringco.example/api/v2/clients/${clientId}/rotate-secret`, {
++                method: 'POST',
++                headers: {
++                    'content-type': 'application/json',
++                    Authorization: `Bearer ${accessToken}`,
++                    'cache-control': 'no-cache',
++                },
++            });
++            return res;
++        } catch (e) {
++            KeyEntity.logger.error(`Error rotating client secret for client: ${clientId}`);
++            KeyEntity.logger.error(serializeError(e));
++            AuditService.publishEvent({
++                message: 'Error rotating client secret for client',
++                topic: AuditScope.ERROR,
++                data: [serializeError(e)],
++            });
++            throw new InternalServerErrorException('Failed to rotate client secret, please try again later');
++        }
++    }
++
++    static async deleteClient({ clientId }): Promise<any> {
++        KeyEntity.logger.log(`Deleting client: ${clientId}`);
++        const { access_token: accessToken } = await KeyEntity.getAuth0ManagementToken();
++        try {
++            const res = await fetch(`https://auth.meteringco.example/api/v2/clients/${clientId}`, {
++                method: 'DELETE',
++                headers: {
++                    'content-type': 'application/json',
++                    Authorization: `Bearer ${accessToken}`,
++                    'cache-control': 'no-cache',
++                },
++            });
++            return res;
++        } catch (e) {
++            KeyEntity.logger.error(`Error Deleting key: ${clientId}`);
++            KeyEntity.logger.error(serializeError(e));
++            AuditService.publishEvent({
++                message: 'Error Deleting key',
++                topic: AuditScope.ERROR,
++                data: [serializeError(e)],
++            });
++            throw new InternalServerErrorException('Failed to delete key, please try again later');
++        }
++    }
++
++    static async getPermissionsForClient({ clientId }): Promise<any> {
++        KeyEntity.logger.log(`Fetching permissions for client: ${clientId}`);
++        const { access_token: accessToken } = await KeyEntity.getAuth0ManagementToken();
++        try {
++            const res = await fetch(`https://auth.meteringco.example/api/v2/users/${clientId}/permissions`, {
++                method: 'GET',
++                headers: {
++                    'content-type': 'application/json',
++                    Authorization: `Bearer ${accessToken}`,
++                    'cache-control': 'no-cache',
++                },
++            });
++            const jsonRes = await res.json();
++            KeyEntity.logger.debug(
++                `Fetched permissions for client: ${clientId}. Status: ${res.status} ${res.statusText}`,
++            );
++            return jsonRes;
++        } catch (e) {
++            KeyEntity.logger.error(`Error fetching permissions for client: ${clientId}`);
++            KeyEntity.logger.error(serializeError(e));
++            AuditService.publishEvent({
++                message: 'Error fetching permissions for client',
++                topic: AuditScope.ERROR,
++                data: [serializeError(e)],
++            });
++            throw new InternalServerErrorException('Failed to fetch permissions, please try again later');
++        }
++    }
++
++    static async updatePermissionsForUser({
++        subject,
++        businessID,
++        accessToken,
++    }: {
++        subject: string;
++        businessID: string;
++        accessToken: string;
++    }): Promise<any> {
++        await UserEntity.updateUserPermissions(new UserEntity({ subject, businessID }), accessToken, [
++            UserPermissions.KEYSREAD,
++            UserPermissions.KEYSDELETE,
++            UserPermissions.KEYSUPDATE,
++        ]);
++    }
++}
+diff -ruN a/src/users/entities/onboarding.entity.ts b/src/users/entities/onboarding.entity.ts
+--- a/src/users/entities/onboarding.entity.ts	2026-08-25 22:45:55
++++ b/src/users/entities/onboarding.entity.ts	2026-08-25 22:13:34
+@@ -7,7 +7,7 @@
+ import { AuditService } from '../../audit/audit.service';
+ import { AuditScope } from '../../audit/entities/audit.interface';
+ import { serializeError } from 'serialize-error';
+-import { OrganizationService } from '../users.service';
++import { KeyService, OrganizationService } from '../users.service';
+ 
+ @Injectable()
+ export class OnboardingEntity {
+@@ -21,6 +21,7 @@
+     constructor(
+         @Inject(forwardRef(() => CustomerService)) readonly customerService: CustomerService,
+         @Inject(forwardRef(() => OrganizationService)) readonly organizationService: OrganizationService,
++        @Inject(forwardRef(() => KeyService)) readonly keyService: KeyService,
+     ) {}
+     async onboardNewUserToDogfood({ businessID, sub }: { businessID: string; sub: string }) {
+         try {
+@@ -49,18 +50,21 @@
+                 customerName = email.split('@')[1];
+             }
+             try {
+-                OnboardingEntity.logger.log(`Creating organization for user: ${sub}`);
+-                await this.organizationService.create({
+-                    subjects: [sub],
+-                    businessID,
+-                    organizationDisplayName: customerName,
+-                });
++                OnboardingEntity.logger.log(`Creating organization and key permissions for user: ${sub}`);
++                await Promise.all([
++                    this.organizationService.create({
++                        subjects: [sub],
++                        businessID,
++                        organizationDisplayName: customerName,
++                    }),
++                    this.keyService.updatePermissions({ subject: sub, businessID, accessToken }),
++                ]);
+             } catch (e) {
+                 OnboardingEntity.logger.error(`Failed to create organization for user: ${sub}`);
+                 OnboardingEntity.logger.error(serializeError(e));
+                 AuditService.publishEvent({
+                     data: [serializeError(e)],
+-                    message: 'Failed to create organization for user',
++                    message: 'Failed to create organization and key permissions for user',
+                     topic: AuditScope.ERROR,
+                 });
+             }
+diff -ruN a/src/users/users.controller.ts b/src/users/users.controller.ts
+--- a/src/users/users.controller.ts	2026-08-25 22:42:04
++++ b/src/users/users.controller.ts	2026-08-25 22:13:34
+@@ -15,13 +15,14 @@
+     Logger,
+     InternalServerErrorException,
+ } from '@nestjs/common';
+-import { OrganizationService, UsersService } from './users.service.js';
++import { EnvironmentService, OrganizationService, KeyService, UsersService } from './users.service.js';
+ import { CreateUserDto } from './dto/create-user.dto.js';
+ import {
+     ApiBadRequestResponse,
+     ApiBearerAuth,
+     ApiCreatedResponse,
+     ApiNotFoundResponse,
++    ApiOkResponse,
+     ApiOperation,
+     ApiTags,
+ } from '@nestjs/swagger';
+@@ -35,6 +36,8 @@
+ import { OrganizationPermissions } from './organization.permissions.js';
+ import { UpdateOrganizationDto } from './dto/update-organization.dto.js';
+ import { OrganizationResponseDto } from './dto/organization-response.dto.js';
++import { ReadEnvionmentResponse } from './dto/read-environment.dto.js';
++import { UpdateEnvironmentDto } from './dto/update-environment.dto.js';
+ import { AuthorizedRequest } from '../authz/jwt-local.gaurd.js';
+ import { Environment } from './dto/Environment.js';
+ import { AuditService } from '../audit/audit.service.js';
+@@ -251,5 +254,100 @@
+             businessID: request?.user?.businessID,
+             subject: request?.user?.sub,
+         });
++    }
++}
++/**
++ *
++ * This is the user environment section
++ */
++@ApiTags('Environment')
++@ApiBearerAuth('bearer')
++@Controller('users/environment')
++export class EnvironmentController {
++    constructor(private readonly environmentService: EnvironmentService) {}
++    /**
++     * Change any users environment
++     */
++    @ApiOkResponse({
++        status: 200,
++        description: 'Environment updated',
++        type: ReadEnvionmentResponse,
++    })
++    @ApiOperation({ operationId: 'Update any users environment' })
++    @UseGuards(PermissionsGuard([UserPermissions.ADMIN]))
++    @UseGuards(AuthGuard('jwt'))
++    @Put('admin')
++    adminUpdate(@Body() updateEnvironmentDto: UpdateEnvironmentDto) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        // @ts-ignore
++        return this.environmentService.update(updateEnvironmentDto);
++    }
++    /**
++     * Change the current users environment
++     */
++    @ApiOkResponse({
++        status: 200,
++        description: 'Environment updated',
++        type: ReadEnvionmentResponse,
++    })
++    @ApiOperation({ operationId: 'Update current users enviornment' })
++    @UseGuards(AuthGuard('jwt'))
++    @Put()
++    update(@Body() updateEnvironmentDto: UpdateEnvironmentDto, @Req() request: Request) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        // @ts-ignore
++        const sub = request?.user?.sub;
++        return this.environmentService.update({ ...updateEnvironmentDto, userSubject: sub });
++    }
++
++    /**
++     * Get all user environments
++     */
++    @Get()
++    @ApiOperation({ operationId: 'Get all environments for a user' })
++    @UseGuards(AuthGuard('jwt'))
++    allEnvsForUser(@Req() request: AuthorizedRequest) {
++        return this.environmentService.getEnvironmentsForUser(request?.user?.sub);
++    }
++}
++
++/**
++ *
++ * This is the user key section
++ */
++@ApiTags('Keys')
++@ApiBearerAuth('bearer')
++@Controller('keys')
++export class KeyController {
++    constructor(private readonly tokenService: KeyService) {}
++    @UseGuards(PermissionsGuard([UserPermissions.KEYSREAD]))
++    @UseGuards(AuthGuard('jwt'))
++    @Get()
++    @ApiOperation({ operationId: 'Find all keys in the account' })
++    findAll(@Req() request: Request) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        //@ts-ignore
++        const { businessID } = request.user;
++        return this.tokenService.findAll({ businessID });
++    }
++    @UseGuards(PermissionsGuard([UserPermissions.KEYSDELETE]))
++    @UseGuards(AuthGuard('jwt'))
++    @Delete(':keyId')
++    @ApiOperation({ operationId: 'Delete a user key' })
++    delete(@Param('keyId') keyId: string, @Req() request: Request) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        //@ts-ignore
++        const { businessID } = request.user;
++        return this.tokenService.delete({ clientId: keyId, businessID });
++    }
++    @UseGuards(PermissionsGuard([UserPermissions.KEYSUPDATE]))
++    @UseGuards(AuthGuard('jwt'))
++    @Put(':keyId')
++    @ApiOperation({ operationId: 'Rotate a secret for a key' })
++    rotate(@Param('keyId') keyId: string, @Req() request: Request) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        //@ts-ignore
++        const { businessID } = request.user;
++        return this.tokenService.rotate({ businessID, clientId: keyId });
+     }
+ }
+diff -ruN a/src/users/users.module.ts b/src/users/users.module.ts
+--- a/src/users/users.module.ts	2026-08-25 22:42:13
++++ b/src/users/users.module.ts	2026-08-25 22:13:34
+@@ -1,6 +1,6 @@
+ import { Module, forwardRef } from '@nestjs/common';
+-import { EnvironmentService, OrganizationService, UsersService } from './users.service.js';
+-import { OrganizationController, UsersController } from './users.controller.js';
++import { EnvironmentService, OrganizationService, KeyService, UsersService } from './users.service.js';
++import { EnvironmentController, OrganizationController, KeyController, UsersController } from './users.controller.js';
+ import { InfluxModule } from '../influx/influx.module.js';
+ import { PublicAPIOfferingModule } from '../offering/offering.module.js';
+ import { UserEntitlements } from './entities/entitlement.entity.js';
+@@ -8,8 +8,8 @@
+ import { OnboardingEntity } from './entities/onboarding.entity.js';
+ 
+ @Module({
+-    controllers: [UsersController, OrganizationController],
+-    providers: [UsersService, OrganizationService, EnvironmentService, UserEntitlements, OnboardingEntity],
++    controllers: [UsersController, OrganizationController, EnvironmentController, KeyController],
++    providers: [UsersService, OrganizationService, EnvironmentService, KeyService, UserEntitlements, OnboardingEntity],
+     imports: [
+         forwardRef(() => InfluxModule),
+         forwardRef(() => PublicAPIOfferingModule),
+diff -ruN a/src/users/users.service.spec.ts b/src/users/users.service.spec.ts
+--- a/src/users/users.service.spec.ts	2026-08-25 22:46:09
++++ b/src/users/users.service.spec.ts	2026-08-25 22:13:34
+@@ -43,6 +43,7 @@
+     let mockReadUserData: jest.Mock;
+     let mockReadCurrentUserEnv: jest.Mock;
+     let userService: UsersService;
++    let environmentService: EnvironmentService;
+     beforeEach(async () => {
+         mockReadUserData = jest.fn(() => mockFoundInfluxData);
+         mockReadCurrentUserEnv = jest.fn(() => mockEnvInfluxData);
+@@ -75,6 +76,7 @@
+             .compile();
+ 
+         userService = module.get<UsersService>(UsersService);
++        environmentService = module.get<EnvironmentService>(EnvironmentService);
+         cacheMock.set = jest.fn();
+         cacheMock.get = jest.fn();
+         cacheMock.del = jest.fn();
+@@ -101,6 +103,18 @@
+         expect(mockReadUserData).toBeCalledWith(mockData.subject, Environment.PRODUCTION);
+         expect(userEntity.subject).toBe(mockData.subject);
+         expect(userEntity.businessID).toBe(`${mockData.businessID}`);
++    });
++    it('should set the environment correctly', async () => {
++        const { environment } = await environmentService.update({
++            userSubject: mockData.subject,
++            environment: Environment.SANDBOX,
++        });
++
++        expect(environment).toBe(Environment.SANDBOX);
++
++        expect(mockLoadPoints).toBeCalledTimes(1);
++        // Once for getting the actual user
++        expect(cacheMock.get).toBeCalledTimes(1);
+     });
+     it('should return production as the env if none is set', async () => {
+         const {
+diff -ruN a/src/users/users.service.ts b/src/users/users.service.ts
+--- a/src/users/users.service.ts	2026-08-25 22:46:46
++++ b/src/users/users.service.ts	2026-08-25 22:13:34
+@@ -20,8 +20,11 @@
+ import { OrganizationPermissions } from './organization.permissions.js';
+ import { UpdateOrganizationDto } from './dto/update-organization.dto.js';
+ import { OrganizationResponseDto } from './dto/organization-response.dto.js';
++import { UpdateEnvironmentDto } from './dto/update-environment.dto.js';
+ import { EnvironmentEntity } from './entities/environment.entity.js';
+ import { ReadBusinessEnvionmentResponse, ReadEnvionmentResponse } from './dto/read-environment.dto.js';
++import { KeyEntity as KeyEntity } from './entities/key.entity.js';
++import { ReadTokenResponse as ReadKeyResponse } from './dto/readTokens.dto.js';
+ import { Environment } from './dto/Environment.js';
+ import { EntitlementEntity, EntitlementTypes, UserEntitlements } from './entities/entitlement.entity.js';
+ import { OfferingService } from '../offering/offering.service.js';
+@@ -30,7 +33,27 @@
+ export class EnvironmentService {
+     private static readonly logger = new Logger(EnvironmentService.name);
+     constructor(@Inject(forwardRef(() => InfluxService)) readonly InfluxService: InfluxService) {}
++    async update(updateEnvironmentDto: UpdateEnvironmentDto): Promise<ReadEnvionmentResponse> {
++        const { userSubject } = updateEnvironmentDto;
+ 
++        const { loadPoints } = this.InfluxService;
++
++        // Take in subject and environment
++        const enviornmentEntity = new EnvironmentEntity({
++            subject: userSubject,
++            environment: updateEnvironmentDto?.environment,
++        });
++        // Commit to TSDB
++        const pointsArray = EnvironmentEntity.transformer(enviornmentEntity, this.InfluxService);
++        await loadPoints(`${process.env.STAGE}-config`, process.env.INFLUX_ORG, pointsArray);
++        // Clear Cache
++        if (await cacheManager.get(userSubject)) {
++            await cacheManager.del(userSubject);
++        }
++        // Return message
++        return { message: 'Environment was updated successfully', ...enviornmentEntity };
++    }
++
+     async getCurrentEnvironment(userSubject: string): Promise<ReadEnvionmentResponse> {
+         const { readCurrentUserEnv } = this.InfluxService;
+         const results = await readCurrentUserEnv(userSubject);
+@@ -131,6 +154,19 @@
+         const entities = results.map((result) => UserEntity.dbModelToEntity([result]));
+         return { message: 'Found users', data: entities };
+     }
++    async deleteUser({ subject }) {
++        const {
++            data: [user],
++        } = await this.findOne({ subject });
++        const { loadPoints } = this.InfluxService;
++        // Take in subject and business ID
++        const userEntity = new UserEntity({ ...user, softDelete: 'deleted' });
++        // Commit to TSDB
++        const pointsArray = UserEntity.transformer(userEntity, this.InfluxService);
++        await loadPoints(`${process.env.STAGE}-config`, process.env.INFLUX_ORG, pointsArray);
++        await cacheManager.del(subject);
++        return { message: 'User was deleted successfully' };
++    }
+ }
+ @Injectable()
+ export class OrganizationService {
+@@ -228,5 +264,67 @@
+         } else {
+             throw new NotFoundException(`Organization was not found`);
+         }
++    }
++}
++@Injectable()
++export class KeyService {
++    private static readonly logger = new Logger(KeyService.name);
++    constructor(
++        @Inject(forwardRef(() => InfluxService)) readonly InfluxService: InfluxService,
++        readonly usersService: UsersService,
++    ) {}
++    async updatePermissions({
++        subject,
++        businessID,
++        accessToken,
++    }: {
++        subject: string;
++        businessID: string;
++        accessToken: string;
++    }): Promise<BasicResponseDTO> {
++        await KeyEntity.updatePermissionsForUser({ subject, businessID, accessToken });
++        return { message: 'Permissions were updated successfully' };
++    }
++    async findAll({ businessID }: { businessID: string }): Promise<any> {
++        KeyService.logger.log(`Finding all keys for businessID: ${businessID}`);
++        const res = await KeyEntity.findClientsForBusiness({
++            businessID,
++            usersService: this.usersService,
++        });
++        return new ReadKeyResponse(res);
++    }
++
++    async findOne({ clientId, businessID }: { clientId: string; businessID: string }): Promise<any> {
++        KeyService.logger.log(`Finding all keys for businessID: ${businessID}`);
++        const res = await KeyEntity.findClientsForBusiness({
++            businessID,
++            usersService: this.usersService,
++        });
++        const filtered = res.filter((token) => token.clientId === clientId);
++        if (filtered.length === 0) {
++            throw new NotFoundException(`Key was not found for clientId: ${clientId}`);
++        }
++        return new ReadKeyResponse(filtered);
++    }
++    async delete({ clientId, businessID }): Promise<BasicResponseDTO> {
++        await this.findOne({ clientId, businessID });
++        await KeyEntity.deleteClient({ clientId });
++        try {
++            await this.usersService.deleteUser({ subject: `${clientId}@clients` });
++        } catch (e) {
++            KeyService.logger.error(`Error deleting user: ${clientId}@clients`);
++            throw e;
++        }
++        return {
++            message: `Key: ${clientId} was deleted successfully`,
++        };
++    }
++
++    async rotate({ clientId, businessID }): Promise<BasicResponseDTO> {
++        await this.findOne({ clientId, businessID });
++        await KeyEntity.rotateClientSecret({ clientId });
++        return {
++            message: `Key: ${clientId} was rotated successfully, Reach out to team@meteringco.example for your new secret`,
++        };
+     }
+ }

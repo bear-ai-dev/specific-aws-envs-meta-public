@@ -1,0 +1,256 @@
+{
+  "booted": true,
+  "reachable": true,
+  "operatorTokenMinted": true,
+  "viewerTokenMinted": true,
+  "keyTokenMinted": true,
+  "exchanges": [
+    {
+      "label": "list.production",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 4
+    },
+    {
+      "label": "rotate.otherTenant",
+      "method": "PUT",
+      "route": "/keys/keyAshcombeProdEvents",
+      "status": 404,
+      "body": "{\"message\":\"Cannot PUT /keys/keyAshcombeProdEvents\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot PUT /keys/keyAshcombeProdEvents",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 8
+    },
+    {
+      "label": "revoke.unclaimed",
+      "method": "DELETE",
+      "route": "/keys/appMeteringCoDocsSite",
+      "status": 404,
+      "body": "{\"message\":\"Cannot DELETE /keys/appMeteringCoDocsSite\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot DELETE /keys/appMeteringCoDocsSite",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "rotate.retired",
+      "method": "PUT",
+      "route": "/keys/keyWindermereProdLegacy",
+      "status": 404,
+      "body": "{\"message\":\"Cannot PUT /keys/keyWindermereProdLegacy\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot PUT /keys/keyWindermereProdLegacy",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "switch.sandbox",
+      "method": "PUT",
+      "route": "/users/environment",
+      "status": 200,
+      "body": "{\"message\":\"Environment updated\",\"subject\":\"auth0|opwindermere93\",\"environment\":\"sandbox\"}",
+      "json": {
+        "message": "Environment updated",
+        "subject": "auth0|opwindermere93",
+        "environment": "sandbox"
+      },
+      "ms": 117
+    },
+    {
+      "label": "list.sandbox",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "rotate.otherEnvironment",
+      "method": "PUT",
+      "route": "/keys/keyWindermereProdEvents",
+      "status": 404,
+      "body": "{\"message\":\"Cannot PUT /keys/keyWindermereProdEvents\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot PUT /keys/keyWindermereProdEvents",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "revoke.otherEnvironment",
+      "method": "DELETE",
+      "route": "/keys/keyWindermereProdEvents",
+      "status": 404,
+      "body": "{\"message\":\"Cannot DELETE /keys/keyWindermereProdEvents\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot DELETE /keys/keyWindermereProdEvents",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "viewer.list",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "viewer.rotate",
+      "method": "PUT",
+      "route": "/keys/keyWindermereSbxDrill",
+      "status": 404,
+      "body": "{\"message\":\"Cannot PUT /keys/keyWindermereSbxDrill\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot PUT /keys/keyWindermereSbxDrill",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "viewer.revoke",
+      "method": "DELETE",
+      "route": "/keys/keyWindermereSbxEvents",
+      "status": 404,
+      "body": "{\"message\":\"Cannot DELETE /keys/keyWindermereSbxEvents\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot DELETE /keys/keyWindermereSbxEvents",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 2
+    },
+    {
+      "label": "key.beforeRevocation",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 2
+    },
+    {
+      "label": "rotate.sandbox",
+      "method": "PUT",
+      "route": "/keys/keyWindermereSbxDrill",
+      "status": 404,
+      "body": "{\"message\":\"Cannot PUT /keys/keyWindermereSbxDrill\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot PUT /keys/keyWindermereSbxDrill",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 3
+    },
+    {
+      "label": "revoke.sandbox",
+      "method": "DELETE",
+      "route": "/keys/keyWindermereSbxEvents",
+      "status": 404,
+      "body": "{\"message\":\"Cannot DELETE /keys/keyWindermereSbxEvents\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot DELETE /keys/keyWindermereSbxEvents",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 2
+    },
+    {
+      "label": "key.afterRevocation",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 2
+    },
+    {
+      "label": "list.afterChanges",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 1
+    },
+    {
+      "label": "switch.production",
+      "method": "PUT",
+      "route": "/users/environment",
+      "status": 200,
+      "body": "{\"message\":\"Environment updated\",\"subject\":\"auth0|opwindermere93\",\"environment\":\"production\"}",
+      "json": {
+        "message": "Environment updated",
+        "subject": "auth0|opwindermere93",
+        "environment": "production"
+      },
+      "ms": 100
+    },
+    {
+      "label": "list.productionAgain",
+      "method": "GET",
+      "route": "/keys",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /keys\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /keys",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 2
+    },
+    {
+      "label": "environments",
+      "method": "GET",
+      "route": "/users/environment",
+      "status": 404,
+      "body": "{\"message\":\"Cannot GET /users/environment\",\"error\":\"Not Found\",\"statusCode\":404}",
+      "json": {
+        "message": "Cannot GET /users/environment",
+        "error": "Not Found",
+        "statusCode": 404
+      },
+      "ms": 4
+    }
+  ]
+}

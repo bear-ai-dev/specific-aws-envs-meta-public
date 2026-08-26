@@ -10,6 +10,17 @@
     {
       "config": "harness/task4-cohort.json",
       "job_name": "meta-task4-muse12-opus5-eight-rollout-reproduction"
+    },
+    {
+      "config": "harness/cohort.json",
+      "job_name": "meta-muse12-opus5-eight-task-rollout-20260826",
+      "note": "Tasks 5-8; Muse ran on the openai/muse-spark-1.2 route",
+      "tasks": [
+        "05-network-egress-metering",
+        "06-api-token-metering",
+        "07-api-keys-and-environments",
+        "08-business-settings-persistence"
+      ]
     }
   ],
   "controls_config_sha256": "29e51430378ffa69a173d112fb7822112a3fd5e2db246798e731f4acaf0ca3f2",
@@ -21,13 +32,18 @@
   "models": {
     "muse-spark-1.2": "openrouter/meta/muse-spark-1.2",
     "muse-spark-1.2-direct": "meta/responses/muse-spark-1.2",
+    "muse-spark-1.2-openai-route": "openai/muse-spark-1.2",
     "opus-5": "bedrock/us.anthropic.claude-opus-5"
   },
   "public_task_sha256": {
     "01-entitlement-overage-lines": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
     "02-measurement-failure-dlq": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
     "03-customer-communication-dispatch": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
-    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee"
+    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee",
+    "05-network-egress-metering": "cc084261e1c314c0d3b967d8017e8abff574ef5ea104085529bfa7e45e4b0c27",
+    "06-api-token-metering": "d9c9f4db0c30985d80d209a10ca998ed4e7e8555d9bf61c8158e1d286b176907",
+    "07-api-keys-and-environments": "f9484c3e65ee01066372b10140d7faa03bfed24c1ddc29b19acdf07f1c8a34e7",
+    "08-business-settings-persistence": "0b5088a6a672fa53bb4fea4bdc5d9369215427e10d0f01fec7931d56c4c79bff"
   },
   "publication_controls_validation": "sample-run/manifests/public-controls-validation.json",
   "publication_controls_validation_sha256": "6676c5bcebacfc7f6f6f72e3dacbacc658d3e0c7ca8411a9c8bd7f02dedcd875",

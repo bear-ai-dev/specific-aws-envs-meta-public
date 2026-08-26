@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "region": "us-east-1",
+      "businessID": "biz-tessellate",
+      "iamRoleArn": "arn:aws:iam::200000000077:role/meteringco-transfer-reader",
+      "externalId": "tes-hld-8821",
+      "label": "transfer",
+      "dimensionId": "dim_hld_transfer"
+    },
+    {
+      "region": "us-east-1",
+      "businessID": "biz-tessellate",
+      "iamRoleArn": "arn:aws:iam::200000000077:role/meteringco-transfer-reader",
+      "externalId": "tes-hld-8821",
+      "label": "replica",
+      "dimensionId": "dim_hld_replica"
+    }
+  ]
+}

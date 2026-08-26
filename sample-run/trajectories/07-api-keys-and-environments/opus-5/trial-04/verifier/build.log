@@ -1,0 +1,8 @@
+
+> meteringco-backend@1.0.0 prebuild
+> rimraf dist
+
+
+> meteringco-backend@1.0.0 build
+> nest build
+

@@ -1,0 +1,282 @@
+{
+  "influx": {
+    "buckets": {
+      "dogfood-aggregate-bucket": [
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"b41d7c60-2f5e-4a0e-9d61-1c8e0a2f5b31\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T12:04:11.238Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"6e2a1f84-70b3-4d2c-8f19-5b7c3d9e0a42\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T12:41:52.907Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"f0c98a15-3d47-49bb-b2e6-8a1d5c7f2093\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T14:17:03.461Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"27b6e5d9-1a8c-4f30-95d7-6e0b4a9c1f85\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T15:52:38.014Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"9d4f2c07-8e61-4b5a-a3c8-0f7e2b6d4a19\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T16:33:19.672Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"3a7e0b62-c94d-4816-8b5f-2d1c6e9a0f47\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T17:48:56.325Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\""
+          },
+          "fields": {
+            "recordValue": 0.1
+          },
+          "time": "2025-05-14T13:07:44.512Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\""
+          },
+          "fields": {
+            "recordValue": 0.1
+          },
+          "time": "2025-05-14T15:19:26.883Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-9c07-northwind-sbx",
+            "dimensionId": "00abdf4f-f975-41c6-8293-76ba09a5cb23",
+            "businessID": "meteringco-sandbox",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"5c1b8e34-6f92-4a7d-b0e5-9c3a1d7f2648\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T13:22:47.583Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-9c07-northwind-sbx",
+            "dimensionId": "00abdf4f-f975-41c6-8293-76ba09a5cb23",
+            "businessID": "meteringco-sandbox",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"e8d3a97b-405c-4e21-9f6a-7b2c8d0e5194\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T14:05:12.196Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-9c07-northwind-sbx",
+            "dimensionId": "00abdf4f-f975-41c6-8293-76ba09a5cb23",
+            "businessID": "meteringco-sandbox",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"1f6c4d80-b273-4958-8ae1-3d9f0b6c2a57\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T16:09:31.740Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"a2e7c519-4b06-4d83-95f2-1e8b0c6a3d74\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T07:12:04.881Z"
+        },
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"7b0d6f92-c351-4a08-8e4d-9f2a5c1b7e36\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-05-14T10:38:27.315Z"
+        }
+      ],
+      "dev-usage-data": [
+        {
+          "measurement": "usageMeasurement",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_managed": "\"true\""
+          },
+          "fields": {
+            "recordValue": 0.206
+          },
+          "time": "2025-05-14T18:00:02.118Z"
+        },
+        {
+          "measurement": "usageMeasurement",
+          "tags": {
+            "customerId": "cus-9c07-northwind-sbx",
+            "dimensionId": "00abdf4f-f975-41c6-8293-76ba09a5cb23",
+            "businessID": "meteringco-sandbox",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_managed": "\"true\""
+          },
+          "fields": {
+            "recordValue": 0.003
+          },
+          "time": "2025-05-14T18:00:02.884Z"
+        },
+        {
+          "measurement": "usageMeasurement",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_managed": "\"true\""
+          },
+          "fields": {
+            "recordValue": 0.002
+          },
+          "time": "2025-05-14T12:00:01.507Z"
+        },
+        {
+          "measurement": "usageMeasurement",
+          "tags": {
+            "customerId": "cus-northwind-8831",
+            "dimensionId": "d51c7a90-6b24-4e18-9f03-2a7c5d8e1b46",
+            "businessID": "northwind-logistics"
+          },
+          "fields": {
+            "recordValue": 42.0
+          },
+          "time": "2025-05-14T13:11:09.402Z"
+        },
+        {
+          "measurement": "usageMeasurement",
+          "tags": {
+            "customerId": "cus-northwind-8831",
+            "dimensionId": "d51c7a90-6b24-4e18-9f03-2a7c5d8e1b46",
+            "businessID": "northwind-logistics"
+          },
+          "fields": {
+            "recordValue": 17.5
+          },
+          "time": "2025-05-14T16:44:51.883Z"
+        }
+      ],
+      "prod-config": [
+        {
+          "measurement": "customer",
+          "tags": {
+            "customerId": "cus-4f1a-northwind-prod",
+            "businessID": "meteringco-production",
+            "metadata": "{\"businessID\": \"northwind-logistics\"}"
+          },
+          "fields": {
+            "recordValue": "Northwind Logistics"
+          },
+          "time": "2025-04-02T09:14:22.001Z"
+        },
+        {
+          "measurement": "customer",
+          "tags": {
+            "customerId": "cus-9c07-northwind-sbx",
+            "businessID": "meteringco-sandbox",
+            "metadata": "{\"businessID\": \"northwind-staging\"}"
+          },
+          "fields": {
+            "recordValue": "Northwind Staging"
+          },
+          "time": "2025-04-02T09:15:03.774Z"
+        }
+      ]
+    }
+  }
+}

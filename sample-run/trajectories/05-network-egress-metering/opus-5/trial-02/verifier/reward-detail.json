@@ -1,0 +1,168 @@
+{
+  "reward": 1.0,
+  "score": 1.0,
+  "detail": {
+    "runs": {
+      "transfer": {
+        "ok": true,
+        "expected": [
+          {
+            "customerId": "cus_bastion",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 3145728.0
+          },
+          {
+            "customerId": "cus_calliper",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 131072.0
+          },
+          {
+            "customerId": "cus_ravelin",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 8388608.0
+          },
+          {
+            "customerId": "cus_solenoid",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 0.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 524288.0
+          },
+          {
+            "customerId": "cus_wharfage",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 2097152.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ravelin",
+            "recordValue": 8388608,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 2
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_bastion",
+            "recordValue": 3145728,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_solenoid",
+            "recordValue": 0,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_wharfage",
+            "recordValue": 2097152,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.723Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_calliper",
+            "recordValue": 131072,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": []
+      },
+      "replica": {
+        "ok": true,
+        "expected": [
+          {
+            "customerId": "cus_ferrule",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 393216.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 524288.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-25T23:01:06.782Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:01:06.782Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ferrule",
+            "recordValue": 393216,
+            "metadata": {
+              "region": "us-east-1",
+              "metricName": "NetworkOut",
+              "instanceCount": 1
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": []
+      }
+    }
+  }
+}

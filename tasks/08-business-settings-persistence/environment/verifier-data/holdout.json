@@ -1,0 +1,248 @@
+{
+  "region": "us-east-1",
+  "accounts": [],
+  "influx": {
+    "buckets": {
+      "qa-config": [
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:00:00Z",
+          "tags": {
+            "businessID": "biz_hold_thornbury",
+            "addressLine1": "88 Dock Street",
+            "addressLine2": "Unit 3",
+            "city": "Hull",
+            "state": "East Riding",
+            "country": "GB",
+            "postalCode": "HU1 3DZ",
+            "vatId": "GB 771 4432 21",
+            "customFields": "purchaseOrder",
+            "taxCategory": "SW054000",
+            "logoUrl": "https://assets.example/thornbury.png",
+            "supportEmail": "accounts@thornbury.example",
+            "invoicePaymentTerm": "60",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "eks",
+            "storageCostSource": "ebs",
+            "archiveCostSource": "ebs",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Freight invoices\"}, \"payment\": {\"enabled\": true, \"text\": \"Settle up\"}, \"offering\": {\"enabled\": true, \"text\": \"Shipping plans\", \"appearance\": {\"accent\": \"#8250df\", \"border\": \"#eaeef2\", \"radius\": \"4px\"}}}"
+          },
+          "fields": {
+            "businessName": "Thornbury Freight"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:40:00Z",
+          "tags": {
+            "businessID": "biz_hold_calder",
+            "addressLine1": "23 Bindery Street",
+            "city": "Halifax",
+            "country": "GB",
+            "postalCode": "HX1 2QB",
+            "supportEmail": "studio@calder.example",
+            "invoiceApproval": "automatic",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "none",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Print invoices\"}, \"payment\": {\"enabled\": true, \"text\": \"Pay the studio\"}, \"offering\": {\"enabled\": true, \"text\": \"Print plans\", \"appearance\": {\"accent\": \"#116329\", \"border\": \"#d8dee4\"}}}"
+          },
+          "fields": {
+            "businessName": "Calder Print"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:45:00Z",
+          "tags": {
+            "businessID": "biz_hold_teviot",
+            "addressLine1": "7 Loom Street",
+            "city": "Hawick",
+            "country": "GB",
+            "supportEmail": "mill@teviot.example",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "computeCostSource": "none",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Wool invoices\"}, \"payment\": {\"enabled\": false, \"text\": \"Settle\"}, \"offering\": {\"enabled\": true, \"text\": \"Wool plans\"}}"
+          },
+          "fields": {
+            "businessName": "Teviot Wool"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:50:00Z",
+          "tags": {
+            "businessID": "biz_hold_amberley",
+            "addressLine1": "40 Chalk Lane",
+            "city": "Arundel",
+            "country": "GB",
+            "supportEmail": "hello@amberley.example",
+            "invoicePaymentTerm": "30",
+            "invoiceApproval": "automatic",
+            "computeCostSource": "none",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Studio invoices\"}, \"payment\": {\"enabled\": true, \"text\": \"Pay\"}, \"offering\": {\"enabled\": true, \"text\": \"Studio plans\", \"appearance\": {\"accent\": \"#953800\", \"border\": \"#eaeef2\", \"radius\": \"12px\"}}}"
+          },
+          "fields": {
+            "businessName": "Amberley Studios"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:05:00Z",
+          "tags": {
+            "businessID": "biz_hold_marlowe",
+            "addressLine1": "2 Foundry Way",
+            "addressLine2": "",
+            "city": "Sheffield",
+            "state": "",
+            "country": "GB",
+            "postalCode": "S3 8LR",
+            "vatId": "GB 220 9981 47",
+            "customFields": "costCentre",
+            "supportEmail": "ap@marlowe.example",
+            "invoicePaymentTerm": "30",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "none",
+            "storageCostSource": "ebs",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Instrument invoices\"}, \"payment\": {\"enabled\": false, \"text\": \"Pay now\"}, \"offering\": {\"enabled\": true, \"text\": \"Calibration plans\", \"appearance\": {\"accent\": \"#cf222e\", \"border\": \"#d0d7de\"}}}"
+          },
+          "fields": {
+            "businessName": "Marlowe Instruments"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:10:00Z",
+          "tags": {
+            "businessID": "biz_hold_selby",
+            "addressLine1": "1 Granary Court",
+            "city": "Selby",
+            "country": "GB",
+            "vatId": "GB 615 3320 88",
+            "supportEmail": "finance@selby.example",
+            "invoiceApproval": "automatic",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "eks",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Selby Grain"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:15:00Z",
+          "tags": {
+            "businessID": "biz_hold_ardley",
+            "addressLine1": "9 Kiln Road",
+            "city": "Oxford",
+            "country": "GB",
+            "postalCode": "OX5 2QT",
+            "supportEmail": "ops@ardley.example",
+            "invoiceApproval": "automatic",
+            "computeCostSource": "eks",
+            "storageCostSource": "ebs",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Ardley Robotics"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:20:00Z",
+          "tags": {
+            "businessID": "biz_hold_penrith",
+            "addressLine1": "6 Creamery Lane",
+            "city": "Penrith",
+            "country": "GB",
+            "postalCode": "CA11 7JQ",
+            "supportEmail": "hello@penrith.example",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "computeCostSource": "none",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Penrith Dairy"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:25:00Z",
+          "tags": {
+            "businessID": "biz_hold_wenlock",
+            "addressLine1": "31 Print Row",
+            "city": "Shrewsbury",
+            "country": "GB",
+            "supportEmail": "billing@wenlock.example",
+            "invoiceApproval": "automatic",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "eks",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Wenlock Media"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:30:00Z",
+          "tags": {
+            "businessID": "biz_hold_fenwick",
+            "addressLine1": "17 Sawmill Street",
+            "addressLine2": "Workshop 2",
+            "city": "Durham",
+            "state": "County Durham",
+            "country": "GB",
+            "postalCode": "DH1 4TA",
+            "vatId": "GB 447 2210 65",
+            "supportEmail": "office@fenwick.example",
+            "invoicePaymentTerm": "30",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "eks",
+            "storageCostSource": "ebs",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Fenwick Joinery"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-05T08:35:00Z",
+          "tags": {
+            "businessID": "biz_hold_ravensworth",
+            "addressLine1": "5 Anvil Way",
+            "city": "Darlington",
+            "country": "GB",
+            "postalCode": "DL1 2XN",
+            "supportEmail": "purchasing@ravensworth.example",
+            "invoicePaymentTerm": "30",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "computeCostSource": "none",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Ravensworth Tooling"
+          }
+        }
+      ]
+    }
+  }
+}

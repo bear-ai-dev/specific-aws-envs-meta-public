@@ -1,0 +1,110 @@
+{
+  "bucket": "qa-config",
+  "measurement": "Setting",
+  "steps": [
+    {
+      "label": "one-field-save-leaves-the-rest-alone",
+      "businessID": "biz_hold_thornbury",
+      "surface": "settings",
+      "payload": {
+        "city": "Leeds"
+      }
+    },
+    {
+      "label": "a-submitted-blank-clears-what-was-there",
+      "businessID": "biz_hold_marlowe",
+      "surface": "settings",
+      "payload": {
+        "vatId": ""
+      }
+    },
+    {
+      "label": "a-document-with-gaps-keeps-its-gaps",
+      "businessID": "biz_hold_selby",
+      "surface": "settings",
+      "payload": {
+        "postalCode": "YO8 4AB"
+      }
+    },
+    {
+      "label": "one-page-changes-and-the-others-do-not",
+      "businessID": "biz_hold_calder",
+      "surface": "settings",
+      "payload": {
+        "pages": {
+          "invoice": {
+            "text": "Statements"
+          }
+        }
+      }
+    },
+    {
+      "label": "switching-a-page-off-is-a-value-not-a-silence",
+      "businessID": "biz_hold_teviot",
+      "surface": "settings",
+      "payload": {
+        "pages": {
+          "invoice": {
+            "enabled": false
+          }
+        }
+      }
+    },
+    {
+      "label": "look-and-feel-merges-key-by-key",
+      "businessID": "biz_hold_amberley",
+      "surface": "settings",
+      "payload": {
+        "pages": {
+          "offering": {
+            "appearance": {
+              "accent": "#0969da"
+            }
+          }
+        }
+      }
+    },
+    {
+      "label": "moving-onto-the-cluster-source-starts-the-hourly-job",
+      "businessID": "biz_hold_penrith",
+      "surface": "settings",
+      "payload": {
+        "computeCostSource": "eks"
+      }
+    },
+    {
+      "label": "moving-off-the-cluster-source-stops-the-hourly-job",
+      "businessID": "biz_hold_ardley",
+      "surface": "settings",
+      "payload": {
+        "computeCostSource": "none"
+      }
+    },
+    {
+      "label": "restating-the-cluster-source-changes-nothing",
+      "businessID": "biz_hold_wenlock",
+      "surface": "settings",
+      "payload": {
+        "computeCostSource": "eks",
+        "city": "Telford"
+      }
+    },
+    {
+      "label": "the-profile-save-merges-like-any-other",
+      "businessID": "biz_hold_fenwick",
+      "surface": "profile",
+      "payload": {
+        "city": "Newcastle"
+      }
+    },
+    {
+      "label": "the-profile-save-carries-only-a-profile",
+      "businessID": "biz_hold_ravensworth",
+      "surface": "profile",
+      "payload": {
+        "supportEmail": "ap@ravensworth.example",
+        "invoiceApproval": "manual"
+      }
+    }
+  ]
+}

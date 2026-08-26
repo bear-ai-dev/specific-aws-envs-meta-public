@@ -1,0 +1,85 @@
+{
+  "reward": 0.0,
+  "reached": {
+    "registrations_written": true,
+    "billable_rollup_produced": false
+  },
+  "rules": [
+    {
+      "name": "registration_shape",
+      "description": "each API call becomes one registration in the aggregate bucket",
+      "passed": false,
+      "problems": [
+        "A: recorded 0.0, not 0.001",
+        "B: recorded 0.0, not 0.001",
+        "D: recorded 0.0, not 0.001",
+        "R1: recorded 0.0, not 0.001",
+        "R2: recorded 0.0, not 0.001",
+        "R3: recorded 0.0, not 0.001",
+        "R4: recorded 0.0, not 0.001",
+        "R5: recorded 0.0, not 0.001",
+        "C: recorded 0.0, not 0.001",
+        "T1: recorded 0.0, not 0.001",
+        "T2: recorded 0.0, not 0.001",
+        "P: recorded 0.0, not 0.001"
+      ]
+    },
+    {
+      "name": "identity_in_series_key",
+      "description": "calls sharing an instant stay apart by identity",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "call_time_placement",
+      "description": "a registration sits at the time of the call, not the time it was recorded",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "redelivery_idempotent",
+      "description": "a redelivered call leaves one registration, whichever batch it arrives in",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "windowed_rollup",
+      "description": "each window produces one billable roll-up worth the window's traffic",
+      "passed": false,
+      "expected_window_totals": {
+        "cus-2d83-harborline-prod": [
+          0.003,
+          0.008
+        ],
+        "cus-6a17-harborline-alt": [
+          0.001
+        ]
+      },
+      "observed_rollups": {
+        "cus-2d83-harborline-prod": [],
+        "cus-6a17-harborline-alt": []
+      },
+      "problems": [
+        "billed [] for cus-2d83-harborline-prod, the windows are worth [0.003, 0.008]",
+        "billed [] for cus-6a17-harborline-alt, the windows are worth [0.001]"
+      ]
+    },
+    {
+      "name": "platform_account",
+      "description": "the roll-up is billed to the platform's own account for that customer",
+      "passed": false,
+      "problems": [
+        "no billable row is attributed to cus-2d83-harborline-prod",
+        "no billable row is attributed to cus-6a17-harborline-alt"
+      ]
+    },
+    {
+      "name": "request_path_meters",
+      "description": "serving a measurement meters the call that asked for it",
+      "passed": false,
+      "problems": [
+        "serving a measurement registered no API call of its own"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+=== Compile the deliverable ===
+build diagnostic exit: 0
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+[PASS] the credential listing is the account's own, in the environment the operator is in
+[PASS] changing environment changes the account the request resolves to
+[PASS] rotating a credential replaces its secret and leaves every other credential alone
+[PASS] revoking a credential removes it and retires the configuration behind it
+[PASS] a revoked credential stops being able to reach the API at once
+[PASS] a credential outside the caller's current account can be neither read nor changed
+[PASS] a sign-in that may only read cannot rotate or revoke
+[PASS] work done in one environment leaves the other environment's credentials as they were
+reward: 1.0

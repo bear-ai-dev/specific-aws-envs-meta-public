@@ -49,7 +49,10 @@ harbor run --config harness/controls.json --yes
 ```
 
 The expected result is four oracle rewards of `1.0` and four no-op rewards of
-`0.0`, with no exceptions. The recorded publication controls and normalized
+`0.0`, with no exceptions. That recorded control set covers Tasks 1 to 4 only.
+Tasks 5 to 8 ship without control records; running the controls against their
+packages and folding the result into the controls manifest is the outstanding
+publication step for them. The recorded publication controls and normalized
 task digests are in
 [`sample-run/manifests/public-controls-validation.json`](sample-run/manifests/public-controls-validation.json).
 The sequential folder names do not change the byte-identical executable files
@@ -98,7 +101,7 @@ git status --short
 ```
 
 The publication validator checks task headings and digests, the eight 8-attempt
-cells, all 64 native, ATIF, and text trajectory paths, result/reward agreement,
+cells, all 128 native, ATIF, and text trajectory paths, result/reward agreement,
 reproducible metrics, controls, local Markdown links, selected JSON documents,
 and privacy patterns.
 

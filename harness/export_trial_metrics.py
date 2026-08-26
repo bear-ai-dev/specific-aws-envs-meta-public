@@ -354,8 +354,8 @@ def generate() -> dict[Path, str]:
         build_row(item, attempt, manifest["public_task_sha256"])
         for item, attempt in ordered_attempts(index)
     ]
-    if len(rows) != 64 or not all(row["valid"] for row in rows):
-        raise SystemExit(f"expected 64 valid trials, found {len(rows)}")
+    if len(rows) % 16 or not all(row["valid"] for row in rows):
+        raise SystemExit(f"expected a whole number of eight-trial cells, found {len(rows)}")
     return render_outputs(rows)
 
 
@@ -368,19 +368,20 @@ def main() -> None:
     )
     args = parser.parse_args()
     outputs = generate()
+    exported = len(json.loads(outputs[JSON_PATH]))
 
     if args.check:
         stale = [path.relative_to(ROOT) for path, text in outputs.items() if not path.is_file() or path.read_text() != text]
         if stale:
             raise SystemExit("stale metric export: " + ", ".join(map(str, stale)))
-        print("metric export validation passed: trials=64 files=3")
+        print(f"metric export validation passed: trials={exported} files=3")
         return
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     for path, text in outputs.items():
         path.write_text(text)
     print(
-        f"exported=64 csv={CSV_PATH.relative_to(ROOT)} "
+        f"exported={exported} csv={CSV_PATH.relative_to(ROOT)} "
         f"json={JSON_PATH.relative_to(ROOT)}"
     )
 

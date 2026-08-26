@@ -1,0 +1,13 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+base instant: 2026-08-26T03:48:13.628431Z
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward 1.0
+  [pass] registration_shape - each API call becomes one registration in the aggregate bucket
+  [pass] identity_in_series_key - calls sharing an instant stay apart by identity
+  [pass] call_time_placement - a registration sits at the time of the call, not the time it was recorded
+  [pass] redelivery_idempotent - a redelivered call leaves one registration, whichever batch it arrives in
+  [pass] windowed_rollup - each window produces one billable roll-up worth the window's traffic
+  [pass] platform_account - the roll-up is billed to the platform's own account for that customer
+  [pass] request_path_meters - serving a measurement meters the call that asked for it

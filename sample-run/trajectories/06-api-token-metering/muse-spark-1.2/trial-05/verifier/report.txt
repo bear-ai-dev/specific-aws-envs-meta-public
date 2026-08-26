@@ -1,0 +1,22 @@
+reward 0.0
+failed: windowed_rollup, request_path_meters
+
+[pass] registration_shape
+        each API call becomes one registration in the aggregate bucket
+[pass] identity_in_series_key
+        calls sharing an instant stay apart by identity
+[pass] call_time_placement
+        a registration sits at the time of the call, not the time it was recorded
+[pass] redelivery_idempotent
+        a redelivered call leaves one registration, whichever batch it arrives in
+[FAIL] windowed_rollup
+        each window produces one billable roll-up worth the window's traffic
+        - billed [0.008] for cus-2d83-harborline-prod, the windows are worth [0.003, 0.008]
+[pass] platform_account
+        the roll-up is billed to the platform's own account for that customer
+[FAIL] request_path_meters
+        serving a measurement meters the call that asked for it
+        - serving a measurement registered no API call of its own
+
+registrations written: True
+billable roll-up produced: True

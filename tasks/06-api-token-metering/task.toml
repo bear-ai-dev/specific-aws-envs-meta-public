@@ -1,0 +1,41 @@
+schema_version = "1.4"
+
+[task]
+name = "meteringco/api-token-metering"
+version = "1.0.0"
+description = "Turn the API calls the platform serves into its own billable usage: register each call against the platform's own customer for that tenant in the aggregate bucket, close a six-hour period by totalling the traffic inside it, and bill that total to the platform's production or sandbox account. Delivery is at-least-once and unordered, so a call handed over twice with a flush or a whole period between the arrivals must not move an invoice, and a call that arrives behind a later one must land in the period it belongs to."
+keywords = ["influxdb", "time-series", "metering", "idempotency", "at-least-once", "series-key", "windowed-aggregation", "typescript", "nestjs"]
+
+[[task.authors]]
+name = "meteringco-rl-envs"
+
+[metadata]
+difficulty = "hard"
+category = "billing-platform"
+source = "meteringco-codebases"
+codebase = "meteringco-backend/top-up-billing-lifecycle"
+task_kind = "feature-removal"
+tags = [
+    "real-codebase",
+    "at-least-once-delivery",
+    "idempotent-writes",
+    "last-write-wins",
+    "series-key-design",
+    "out-of-order-arrival",
+    "windowed-rollup",
+    "buffered-writes",
+    "self-metering",
+]
+
+[agent]
+user = "agent"
+timeout_sec = 14400
+
+[verifier]
+user = "root"
+timeout_sec = 1800
+
+[environment]
+workdir = "/app"
+build_timeout_sec = 2400
+cpus = 2

@@ -1,0 +1,71 @@
+schema_version = "1.4"
+
+[task]
+name = "meteringco/api-keys-and-environments"
+version = "1.0.0"
+description = "Build the console's API key screen for a tenant that keeps a sandbox and a production environment side by side: list the machine credentials the account holds in the environment the caller is standing in, rotate one secret without disturbing any other, retire one so that both the identity provider and the tenant's configuration let it go and its existing token stops being accepted at once, refuse anything the current account does not hold, and let a read-only sign-in look without changing."
+keywords = ["auth0", "api-keys", "key-rotation", "multi-environment", "tenant-isolation", "influxdb", "typescript", "nestjs"]
+
+[[task.authors]]
+name = "meteringco-rl-envs"
+
+[metadata]
+difficulty = "hard"
+category = "identity-and-access"
+source = "meteringco-codebases"
+codebase = "meteringco-backend/api-keys-and-environments"
+task_kind = "feature-removal"
+tags = [
+    "real-codebase",
+    "api-key-lifecycle",
+    "secret-rotation",
+    "environment-scoping",
+    "sandbox-production-isolation",
+    "immediate-revocation",
+    "tombstone-semantics",
+    "permission-scoped-writes",
+]
+
+[agent]
+user = "agent"
+timeout_sec = 14400
+
+[verifier]
+user = "root"
+timeout_sec = 1800
+
+[environment]
+workdir = "/app"
+build_timeout_sec = 2400
+cpus = 2
+memory_mb = 6144
+storage_mb = 20480
+network_mode = "public"
+
+[environment.env]
+TZ = "Etc/UTC"
+# One local process answers both the configuration store and the tenant identity
+# provider, so the store's URL and the provider's port point at the same address.
+INFLUX_URL = "http://127.0.0.1:4566"
+IDENTITY_PROVIDER_PORT = "4566"
+INFLUX_ORG = "meteringco"
+INFLUX_TOKEN = "local-config-token"
+# Ordinary service configuration; the repository README lists the same names.
+# The configuration bucket is derived from STAGE.
+STAGE = "local"
+AUTH0_ISSUER_URL = "https://auth.meteringco.example/"
+AUTH0_AUDIENCE = "https://example1234.execute-api.us-east-1.amazonaws.com"
+# The credentials this deployment administers its own tenant with.
+METERINGCO_DASHBOARD_CLIENT_ID = "dashHarbourConsoleMgmt01"
+METERINGCO_DASHBOARD_CLIENT_SECRET = "console-management-secret-sandbox"
+SESSION_SECRET = "local-session-secret"
+# The tenant's identity host has no meaning in a box with no outbound network,
+# so every Node process resolves it to the local endpoint.
+NODE_OPTIONS = "--max-old-space-size=3072 --require /opt/meteringco-runtime/identity-shim.cjs"
+
+[environment.healthcheck]
+command = "test -f /tmp/task-infra/.ready"
+interval_sec = 5
+timeout_sec = 5
+start_period_sec = 30
+retries = 12

@@ -1,0 +1,31 @@
+{
+  "businessID": "biz-northwind",
+  "dimensionId": "dim_sbx_egress",
+  "rows": [
+    {
+      "customerId": "cus_glasswing",
+      "dimensionId": "dim_sbx_egress",
+      "recordValue": 1750000.0
+    },
+    {
+      "customerId": "cus_harborlight",
+      "dimensionId": "dim_sbx_egress",
+      "recordValue": 6500000.0
+    },
+    {
+      "customerId": "cus_marlinspike",
+      "dimensionId": "dim_sbx_egress",
+      "recordValue": 0.0
+    },
+    {
+      "customerId": "cus_stanchion",
+      "dimensionId": "dim_sbx_egress",
+      "recordValue": 250000.0
+    },
+    {
+      "customerId": "cus_windlass",
+      "dimensionId": "dim_sbx_egress",
+      "recordValue": 640000.0
+    }
+  ]
+}

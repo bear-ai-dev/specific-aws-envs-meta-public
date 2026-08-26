@@ -1,0 +1,28 @@
+=== Snapshot the deliverable for audit ===
+=== Stop the agent-facing endpoint ===
+base instant: 2026-08-26T07:15:25.216422Z
+driver diagnostic exit: 0
+=== Compute reward (root, no submitted code loaded) ===
+reward 0.0
+  [FAIL] registration_shape - each API call becomes one registration in the aggregate bucket
+          A: no registration carries its identity
+          B: no registration carries its identity
+          D: no registration carries its identity
+          R1: no registration carries its identity
+  [FAIL] identity_in_series_key - calls sharing an instant stay apart by identity
+          two calls handed over inside one millisecond did not survive as two registrations; found 0 and 0 carrying their identities
+  [FAIL] call_time_placement - a registration sits at the time of the call, not the time it was recorded
+          A: nothing to place
+          B: nothing to place
+          D: nothing to place
+          R1: nothing to place
+  [FAIL] redelivery_idempotent - a redelivered call leaves one registration, whichever batch it arrives in
+          D: redelivery left 0 registrations, not 1
+          C: redelivery left 0 registrations, not 1
+  [FAIL] windowed_rollup - each window produces one billable roll-up worth the window's traffic
+          billed [] for cus-2d83-harborline-prod, the windows are worth [0.003, 0.008]
+          billed [] for cus-6a17-harborline-alt, the windows are worth [0.001]
+  [FAIL] platform_account - the roll-up is billed to the platform's own account for that customer
+          no billable row is attributed to cus-2d83-harborline-prod
+          no billable row is attributed to cus-6a17-harborline-alt
+  [pass] request_path_meters - serving a measurement meters the call that asked for it

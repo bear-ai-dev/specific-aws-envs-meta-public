@@ -1,0 +1,51 @@
+reward 0.0
+failed: registration_shape, identity_in_series_key, call_time_placement, redelivery_idempotent, windowed_rollup, platform_account
+
+[FAIL] registration_shape
+        each API call becomes one registration in the aggregate bucket
+        - A: no registration carries its identity
+        - B: no registration carries its identity
+        - D: no registration carries its identity
+        - R1: no registration carries its identity
+        - R2: no registration carries its identity
+        - R3: no registration carries its identity
+        - R4: no registration carries its identity
+        - R5: no registration carries its identity
+        - C: no registration carries its identity
+        - T1: no registration carries its identity
+        - T2: no registration carries its identity
+        - P: no registration carries its identity
+[FAIL] identity_in_series_key
+        calls sharing an instant stay apart by identity
+        - two calls handed over inside one millisecond did not survive as two registrations; found 0 and 0 carrying their identities
+[FAIL] call_time_placement
+        a registration sits at the time of the call, not the time it was recorded
+        - A: nothing to place
+        - B: nothing to place
+        - D: nothing to place
+        - R1: nothing to place
+        - R2: nothing to place
+        - R3: nothing to place
+        - R4: nothing to place
+        - R5: nothing to place
+        - C: nothing to place
+        - T1: nothing to place
+        - T2: nothing to place
+        - P: nothing to place
+[FAIL] redelivery_idempotent
+        a redelivered call leaves one registration, whichever batch it arrives in
+        - D: redelivery left 0 registrations, not 1
+        - C: redelivery left 0 registrations, not 1
+[FAIL] windowed_rollup
+        each window produces one billable roll-up worth the window's traffic
+        - billed [] for cus-2d83-harborline-prod, the windows are worth [0.003, 0.008]
+        - billed [] for cus-6a17-harborline-alt, the windows are worth [0.001]
+[FAIL] platform_account
+        the roll-up is billed to the platform's own account for that customer
+        - no billable row is attributed to cus-2d83-harborline-prod
+        - no billable row is attributed to cus-6a17-harborline-alt
+[pass] request_path_meters
+        serving a measurement meters the call that asked for it
+
+registrations written: True
+billable roll-up produced: False

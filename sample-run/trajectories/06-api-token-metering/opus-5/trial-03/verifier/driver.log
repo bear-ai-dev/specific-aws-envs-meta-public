@@ -1,0 +1,78 @@
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T18:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T19:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:18:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:48:14.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:48:15.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:48:16.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:16 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:48:17.628Z[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Automated Token aggregation event, logging inputs[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDate": "2026-08-25T15:48:13.628Z",
+  "endDate": "2026-08-25T21:48:13.628Z"
+}
+
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mAggregating meteringco tokens for customerId: cus-2d83-harborline-prod between 2026-08-25T15:48:13.628Z and 2026-08-25T21:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for businessID: harborline-freight, purpose: apiCall[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for meteringco customerId: cus-2d83-harborline-prod[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetered 0.008 apiCall tokens against meteringco-production dimension: 697f07d0-3180-4351-bdff-7ca029e6c18d for customerId: cus-2d83-harborline-prod[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-26T00:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-26T01:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-26T01:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T20:18:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-25T21:18:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-26T00:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-6a17-harborline-alt at 2026-08-26T02:48:13.628Z[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Automated Token aggregation event, logging inputs[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDate": "2026-08-25T21:48:13.628Z",
+  "endDate": "2026-08-26T05:48:13.628Z"
+}
+
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mAggregating meteringco tokens for customerId: cus-2d83-harborline-prod between 2026-08-25T21:48:13.628Z and 2026-08-26T05:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for businessID: harborline-freight, purpose: apiCall[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for meteringco customerId: cus-2d83-harborline-prod[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetered 0.003 apiCall tokens against meteringco-production dimension: 697f07d0-3180-4351-bdff-7ca029e6c18d for customerId: cus-2d83-harborline-prod[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Automated Token aggregation event, logging inputs[39m
+[32m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-staging",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDate": "2026-08-25T21:48:13.628Z",
+  "endDate": "2026-08-26T05:48:13.628Z"
+}
+
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mAggregating meteringco tokens for customerId: cus-6a17-harborline-alt between 2026-08-25T21:48:13.628Z and 2026-08-26T05:48:13.628Z[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for businessID: harborline-staging, purpose: apiCall[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetering Token for meteringco customerId: cus-6a17-harborline-alt[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:17 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mMetered 0.001 apiCall tokens against meteringco-sandbox dimension: 00abdf4f-f975-41c6-8293-76ba09a5cb23 for customerId: cus-6a17-harborline-alt[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:18 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 4971  - [39m08/26/2026, 3:48:18 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRegistering apiCall token for meteringco customerId: cus-2d83-harborline-prod at 2026-08-26T03:38:13.628Z[39m

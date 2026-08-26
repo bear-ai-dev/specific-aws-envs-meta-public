@@ -1,0 +1,48 @@
+{
+  "reward": 0.0,
+  "score": 0.0,
+  "note": "",
+  "harness_failure": false,
+  "rules": [
+    {
+      "rule": "the credential listing is the account's own, in the environment the operator is in",
+      "passed": true,
+      "detail": "status=200 saw=['keyWindermereProdBilling', 'keyWindermereProdEvents'] expected=['keyWindermereProdBilling', 'keyWindermereProdEvents']"
+    },
+    {
+      "rule": "changing environment changes the account the request resolves to",
+      "passed": true,
+      "detail": "switch=200 list=200 saw=['keyWindermereSbxDrill', 'keyWindermereSbxEvents'] expected=['keyWindermereSbxDrill', 'keyWindermereSbxEvents']"
+    },
+    {
+      "rule": "rotating a credential replaces its secret and leaves every other credential alone",
+      "passed": false,
+      "detail": "status=404 rotated_present=True secret_changed=False others_untouched=True"
+    },
+    {
+      "rule": "revoking a credential removes it and retires the configuration behind it",
+      "passed": true,
+      "detail": "status=200 still_at_provider=False row_retired=True"
+    },
+    {
+      "rule": "a revoked credential stops being able to reach the API at once",
+      "passed": true,
+      "detail": "before=200 after=401"
+    },
+    {
+      "rule": "a credential outside the caller's current account can be neither read nor changed",
+      "passed": true,
+      "detail": "statuses={'rotate.otherTenant': 404, 'revoke.unclaimed': 404, 'rotate.retired': 404, 'rotate.otherEnvironment': 404, 'revoke.otherEnvironment': 404} untouched={'keyWindermereProdLegacy': True, 'appMeteringCoDocsSite': True, 'keyWindermereProdEvents': True, 'keyAshcombeProdEvents': True}"
+    },
+    {
+      "rule": "a sign-in that may only read cannot rotate or revoke",
+      "passed": true,
+      "detail": "list=200 rotate=404 revoke=403"
+    },
+    {
+      "rule": "work done in one environment leaves the other environment's credentials as they were",
+      "passed": true,
+      "detail": "switch=200 saw=['keyWindermereProdBilling', 'keyWindermereProdEvents'] expected=['keyWindermereProdBilling', 'keyWindermereProdEvents']"
+    }
+  ]
+}

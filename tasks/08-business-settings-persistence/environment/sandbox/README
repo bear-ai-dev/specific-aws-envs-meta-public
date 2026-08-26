@@ -1,0 +1,6 @@
+Configuration ledger for the two businesses this box serves.
+
+Orchard Systems has a fully filled-in document, including a postal code
+and a tax category recorded as empty strings. Kite Analytics was only
+ever recorded with an address line, a city and a country, so the rest of
+its document has never been written at all.

@@ -1,0 +1,306 @@
+{
+  "runs": {
+    "transfer": {
+      "ok": true,
+      "rows": [
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_ravelin",
+          "recordValue": 8388608,
+          "metadata": {
+            "instanceId": "i-0hld000000000101",
+            "Name": "gateway-a",
+            "meteringcoCustomerId": "cus_ravelin",
+            "meteringcoDimensionId": "dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_bastion",
+          "recordValue": 3145728,
+          "metadata": {
+            "instanceId": "i-0hld000000000103",
+            "Name": "extract-a",
+            "meteringcoCustomerId": "cus_bastion",
+            "meteringcoDimensionId": "dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_solenoid",
+          "recordValue": 0,
+          "metadata": {
+            "instanceId": "i-0hld000000000105",
+            "Name": "parked-a",
+            "meteringcoCustomerId": "cus_solenoid",
+            "meteringcoDimensionId": "dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_tallow",
+          "recordValue": 524288,
+          "metadata": {
+            "instanceId": "i-0hld000000000106",
+            "Name": "shared-a",
+            "meteringcoCustomerId": "cus_tallow",
+            "meteringcoDimensionId": "dim_hld_replica,dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_wharfage",
+          "recordValue": 2097152,
+          "metadata": {
+            "instanceId": "i-0hld000000000111",
+            "Name": "seasonal-a",
+            "meteringcoCustomerId": "cus_wharfage",
+            "meteringcoDimensionId": "dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.093Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_calliper",
+          "recordValue": 131072,
+          "metadata": {
+            "instanceId": "i-0hld000000000113",
+            "Name": "drain-a",
+            "meteringcoCustomerId": "cus_calliper",
+            "meteringcoDimensionId": "dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        }
+      ],
+      "error": null
+    },
+    "replica": {
+      "ok": true,
+      "rows": [
+        {
+          "timestamp": "2026-08-26T07:08:45.202Z",
+          "dimensionId": "dim_hld_replica",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_tallow",
+          "recordValue": 524288,
+          "metadata": {
+            "instanceId": "i-0hld000000000106",
+            "Name": "shared-a",
+            "meteringcoCustomerId": "cus_tallow",
+            "meteringcoDimensionId": "dim_hld_replica,dim_hld_transfer"
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-26T07:08:45.202Z",
+          "dimensionId": "dim_hld_replica",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_ferrule",
+          "recordValue": 393216,
+          "metadata": {
+            "instanceId": "i-0hld000000000107",
+            "Name": "mirror-a",
+            "meteringcoCustomerId": "cus_ferrule",
+            "meteringcoDimensionId": "dim_hld_replica"
+          },
+          "_measurement": "usageMeasurement"
+        }
+      ],
+      "error": null
+    }
+  },
+  "discovery": {
+    "authored": [
+      "src/app.module.ts",
+      "src/dimensions/dimensions.service.ts",
+      "src/dimensions/dto/create-dimension.dto.ts",
+      "src/measurement-config/entities/measurement-config.entity.ts",
+      "src/measurement-config/measurement-config.service.ts",
+      "src/microservices/networkEgressDataGatherer/dto/networkEgress.dto.ts",
+      "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.module.ts",
+      "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+      "src/scheduler/dto/scheduler.dto.ts",
+      "src/scheduler/entities/scheduler.entity.ts"
+    ],
+    "candidates": [
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "handleEc2NetworkEgress",
+        "jobKind": "ec2NetworkEgress",
+        "rank": 4
+      },
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "handleEc2NetworkOut",
+        "jobKind": "ec2NetworkOut",
+        "rank": 4
+      },
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "handleInstanceNetworkEgress",
+        "jobKind": "instanceNetworkEgress",
+        "rank": 4
+      },
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "handleNetworkEgress",
+        "jobKind": "networkEgress",
+        "rank": 4
+      },
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "handleNetworkOut",
+        "jobKind": "networkOut",
+        "rank": 4
+      },
+      {
+        "file": "src/microservices/networkEgressDataGatherer/networkEgressDataGatherer.service.ts",
+        "className": "NetworkEgressDataGathererService",
+        "method": "readOperationJob",
+        "jobKind": null,
+        "rank": 3
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "create",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "createKeyForManagedInfraDimensionSchedule",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findAll",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findByMeasurementId",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findOne",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "remove",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "removeAll",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "ressourceTypeToDimensionType",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "transformDtoToEntityInput",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "update",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "create",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "createMeasurementConfig",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "findAll",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "findOne",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "remove",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "update",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/measurement-config/measurement-config.service.ts",
+        "className": "MeasurementConfigService",
+        "method": "validateIntelligentMeasurement",
+        "jobKind": null,
+        "rank": 1
+      }
+    ],
+    "chosen": "NetworkEgressDataGathererService.handleEc2NetworkEgress"
+  }
+}

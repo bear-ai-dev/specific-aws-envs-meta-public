@@ -1,0 +1,138 @@
+{
+    "id": "446f07f1-407c-474f-888d-847f70951596",
+    "task_name": "meteringco/api-token-metering",
+    "trial_name": "meteringco-api-token-metering__DbjTXRE",
+    "trial_uri": "file:///tmp/specific-driver-l91jzonj/trials/run-bac6524ddc9c/meteringco-api-token-metering__DbjTXRE",
+    "task_id": {
+        "path": "/tmp/specific-driver-l91jzonj/tasks/meteringco-api-token-metering"
+    },
+    "source": null,
+    "task_checksum": "85c81815bb8bc1055dab72fb7c3f6ac5b50eff5c09f20f42df1308c98a6ef977",
+    "config": {
+        "task": {
+            "path": "/tmp/specific-driver-l91jzonj/tasks/meteringco-api-token-metering",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "meteringco-api-token-metering__DbjTXRE",
+        "trials_dir": "/tmp/specific-driver-l91jzonj/trials/run-bac6524ddc9c",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "specific_agents.harbor_agents:MetaMiniSweAgent",
+            "model_name": "openai/muse-spark-1.2",
+            "n_concurrent": 4,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "version": "2.4.5",
+                "cost_limit": "0",
+                "config_file": "/usr/local/lib/python3.12/site-packages/specific_agents/mini-swe-meta.yaml",
+                "reasoning_effort": "high",
+                "model_registry_file": "/usr/local/lib/python3.12/site-packages/specific_agents/litellm-meta-muse-spark-1.2.json"
+            },
+            "mcp_servers": []
+        },
+        "environment": {
+            "type": null,
+            "import_path": "specific_sandbox.fargate:FargateEnvironment",
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": 2,
+            "override_memory_mb": 4096,
+            "override_storage_mb": 102400,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {
+                "cluster": "specific-runner",
+                "aws_region": "us-east-1",
+                "execution_role_arn": "arn:aws:iam::237343249281:role/specific-ecs-execution",
+                "task_role_arn": "arn:aws:iam::237343249281:role/specific-sandbox-task",
+                "subnets": [
+                    "subnet-0c9e52e5b7cf928a6",
+                    "subnet-0f4c08def45a6e152",
+                    "subnet-0bd02ad16a3df6d61",
+                    "subnet-03112c76fe14ada43",
+                    "subnet-0cdc3bb7b1eacb43c",
+                    "subnet-0687dee9d431ee2fa"
+                ],
+                "security_groups": [
+                    "sg-00be588d0ca635066"
+                ],
+                "init_container_image_uri": "237343249281.dkr.ecr.us-east-1.amazonaws.com/specific/runtime-init@sha256:bc7f136358f251382e09a391612209cac9e003a19b588662bcd0929e38b9982e",
+                "use_spot": false,
+                "cpu_units": 2048,
+                "storage_gib": 100
+            },
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "job_id": "eb331f89-b153-4f49-913a-5ba0336ff457"
+    },
+    "agent_info": {
+        "name": "mini-swe-agent",
+        "version": "2.4.5",
+        "model_info": {
+            "name": "muse-spark-1.2",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 17341169,
+        "n_cache_tokens": 16806904,
+        "n_output_tokens": 75999,
+        "cost_usd": 3.5118626,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0,
+            "score": 0.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-08-26T07:02:34.702628Z",
+    "finished_at": "2026-08-26T07:17:53.373284Z",
+    "environment_setup": {
+        "started_at": "2026-08-26T07:02:35.415383Z",
+        "finished_at": "2026-08-26T07:03:49.631047Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-08-26T07:03:49.631097Z",
+        "finished_at": "2026-08-26T07:03:58.117598Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-08-26T07:03:58.117774Z",
+        "finished_at": "2026-08-26T07:17:40.951289Z"
+    },
+    "verifier": {
+        "started_at": "2026-08-26T07:17:46.873541Z",
+        "finished_at": "2026-08-26T07:17:53.261720Z"
+    },
+    "step_results": null
+}

@@ -1,0 +1,1125 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/settings/profile"
+    },
+    {
+      "method": "PUT",
+      "path": "/settings/profile"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/invoiceImage"
+    },
+    {
+      "method": "GET",
+      "path": "/settings"
+    },
+    {
+      "method": "PUT",
+      "path": "/settings"
+    },
+    {
+      "method": "POST",
+      "path": "/settings/free-trial"
+    },
+    {
+      "method": "GET",
+      "path": "/settings/free-trial"
+    }
+  ],
+  "observed": {
+    "one-field-save-leaves-the-rest-alone": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Thornbury Freight",
+            "taxRate": "",
+            "addressLine1": "88 Dock Street",
+            "addressLine2": "Unit 3",
+            "city": "Leeds",
+            "state": "East Riding",
+            "country": "GB",
+            "postalCode": "HU1 3DZ",
+            "vatId": "GB 771 4432 21",
+            "invoicePaymentTerm": "60",
+            "customFields": "purchaseOrder",
+            "logoUrl": "https://assets.example/thornbury.png",
+            "taxCategory": "SW054000",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "eks",
+            "storageCostSource": "ebs",
+            "archiveCostSource": "ebs",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Freight invoices"
+              },
+              "payment": {
+                "enabled": true,
+                "text": "Settle up"
+              },
+              "offering": {
+                "enabled": true,
+                "text": "Shipping plans",
+                "appearance": {
+                  "accent": "#8250df",
+                  "border": "#eaeef2",
+                  "radius": "4px"
+                }
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "supportEmail": "accounts@thornbury.example",
+            "sendInvoiceEmail": "false"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Thornbury Freight",
+          "taxRate": "",
+          "addressLine1": "88 Dock Street",
+          "addressLine2": "Unit 3",
+          "city": "Leeds",
+          "state": "East Riding",
+          "country": "GB",
+          "postalCode": "HU1 3DZ",
+          "vatId": "GB 771 4432 21",
+          "invoicePaymentTerm": "60",
+          "customFields": "purchaseOrder",
+          "logoUrl": "https://assets.example/thornbury.png",
+          "taxCategory": "SW054000",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "eks",
+          "storageCostSource": "ebs",
+          "archiveCostSource": "ebs",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Freight invoices"
+            },
+            "payment": {
+              "enabled": true,
+              "text": "Settle up"
+            },
+            "offering": {
+              "enabled": true,
+              "text": "Shipping plans",
+              "appearance": {
+                "accent": "#8250df",
+                "border": "#eaeef2",
+                "radius": "4px"
+              }
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "consolidatedPerBillingCycle",
+          "supportEmail": "accounts@thornbury.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "a-submitted-blank-clears-what-was-there": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Marlowe Instruments",
+            "taxRate": "",
+            "addressLine1": "2 Foundry Way",
+            "addressLine2": "",
+            "city": "Sheffield",
+            "state": "",
+            "country": "GB",
+            "postalCode": "S3 8LR",
+            "vatId": "",
+            "invoicePaymentTerm": "30",
+            "customFields": "costCentre",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "none",
+            "storageCostSource": "ebs",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Instrument invoices"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Pay now"
+              },
+              "offering": {
+                "enabled": true,
+                "text": "Calibration plans",
+                "appearance": {
+                  "accent": "#cf222e",
+                  "border": "#d0d7de"
+                }
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "ap@marlowe.example",
+            "sendInvoiceEmail": "false"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Marlowe Instruments",
+          "taxRate": "",
+          "addressLine1": "2 Foundry Way",
+          "addressLine2": "",
+          "city": "Sheffield",
+          "state": "",
+          "country": "GB",
+          "postalCode": "S3 8LR",
+          "vatId": "",
+          "invoicePaymentTerm": "30",
+          "customFields": "costCentre",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "ebs",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Instrument invoices"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Pay now"
+            },
+            "offering": {
+              "enabled": true,
+              "text": "Calibration plans",
+              "appearance": {
+                "accent": "#cf222e",
+                "border": "#d0d7de"
+              }
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "ap@marlowe.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "a-document-with-gaps-keeps-its-gaps": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Selby Grain",
+            "taxRate": "",
+            "addressLine1": "1 Granary Court",
+            "addressLine2": "",
+            "city": "Selby",
+            "state": "",
+            "country": "GB",
+            "postalCode": "YO8 4AB",
+            "vatId": "GB 615 3320 88",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "eks",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Invoice"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Payment"
+              },
+              "offering": {
+                "enabled": false,
+                "text": "Plan"
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "show",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "supportEmail": "finance@selby.example",
+            "sendInvoiceEmail": "false"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Selby Grain",
+          "taxRate": "",
+          "addressLine1": "1 Granary Court",
+          "addressLine2": "",
+          "city": "Selby",
+          "state": "",
+          "country": "GB",
+          "postalCode": "YO8 4AB",
+          "vatId": "GB 615 3320 88",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "eks",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "show",
+          "invoiceGeneration": "consolidatedPerBillingCycle",
+          "supportEmail": "finance@selby.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "one-page-changes-and-the-others-do-not": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Calder Print",
+            "taxRate": "",
+            "addressLine1": "23 Bindery Street",
+            "addressLine2": "",
+            "city": "Halifax",
+            "state": "",
+            "country": "GB",
+            "postalCode": "HX1 2QB",
+            "vatId": "",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "none",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Statements"
+              },
+              "payment": {
+                "enabled": true,
+                "text": "Pay the studio"
+              },
+              "offering": {
+                "enabled": true,
+                "text": "Print plans",
+                "appearance": {
+                  "accent": "#116329",
+                  "border": "#d8dee4"
+                }
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "show",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "studio@calder.example",
+            "sendInvoiceEmail": "false"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Calder Print",
+          "taxRate": "",
+          "addressLine1": "23 Bindery Street",
+          "addressLine2": "",
+          "city": "Halifax",
+          "state": "",
+          "country": "GB",
+          "postalCode": "HX1 2QB",
+          "vatId": "",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Statements"
+            },
+            "payment": {
+              "enabled": true,
+              "text": "Pay the studio"
+            },
+            "offering": {
+              "enabled": true,
+              "text": "Print plans",
+              "appearance": {
+                "accent": "#116329",
+                "border": "#d8dee4"
+              }
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "show",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "studio@calder.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "switching-a-page-off-is-a-value-not-a-silence": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Teviot Wool",
+            "taxRate": "",
+            "addressLine1": "7 Loom Street",
+            "addressLine2": "",
+            "city": "Hawick",
+            "state": "",
+            "country": "GB",
+            "postalCode": "",
+            "vatId": "",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "none",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": false,
+                "text": "Wool invoices"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Settle"
+              },
+              "offering": {
+                "enabled": true,
+                "text": "Wool plans"
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "mill@teviot.example",
+            "sendInvoiceEmail": "true"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Teviot Wool",
+          "taxRate": "",
+          "addressLine1": "7 Loom Street",
+          "addressLine2": "",
+          "city": "Hawick",
+          "state": "",
+          "country": "GB",
+          "postalCode": "",
+          "vatId": "",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": false,
+              "text": "Wool invoices"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Settle"
+            },
+            "offering": {
+              "enabled": true,
+              "text": "Wool plans"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "mill@teviot.example",
+          "sendInvoiceEmail": "true"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "look-and-feel-merges-key-by-key": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Amberley Studios",
+            "taxRate": "",
+            "addressLine1": "40 Chalk Lane",
+            "addressLine2": "",
+            "city": "Arundel",
+            "state": "",
+            "country": "GB",
+            "postalCode": "",
+            "vatId": "",
+            "invoicePaymentTerm": "30",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "none",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Studio invoices"
+              },
+              "payment": {
+                "enabled": true,
+                "text": "Pay"
+              },
+              "offering": {
+                "enabled": true,
+                "text": "Studio plans",
+                "appearance": {
+                  "accent": "#0969da",
+                  "border": "#eaeef2",
+                  "radius": "12px"
+                }
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "show",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "hello@amberley.example",
+            "sendInvoiceEmail": "true"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Amberley Studios",
+          "taxRate": "",
+          "addressLine1": "40 Chalk Lane",
+          "addressLine2": "",
+          "city": "Arundel",
+          "state": "",
+          "country": "GB",
+          "postalCode": "",
+          "vatId": "",
+          "invoicePaymentTerm": "30",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Studio invoices"
+            },
+            "payment": {
+              "enabled": true,
+              "text": "Pay"
+            },
+            "offering": {
+              "enabled": true,
+              "text": "Studio plans",
+              "appearance": {
+                "accent": "#0969da",
+                "border": "#eaeef2",
+                "radius": "12px"
+              }
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "show",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "hello@amberley.example",
+          "sendInvoiceEmail": "true"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "moving-onto-the-cluster-source-starts-the-hourly-job": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Penrith Dairy",
+            "taxRate": "",
+            "addressLine1": "6 Creamery Lane",
+            "addressLine2": "",
+            "city": "Penrith",
+            "state": "",
+            "country": "GB",
+            "postalCode": "CA11 7JQ",
+            "vatId": "",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "eks",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Invoice"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Payment"
+              },
+              "offering": {
+                "enabled": false,
+                "text": "Plan"
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "hello@penrith.example",
+            "sendInvoiceEmail": "true"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Penrith Dairy",
+          "taxRate": "",
+          "addressLine1": "6 Creamery Lane",
+          "addressLine2": "",
+          "city": "Penrith",
+          "state": "",
+          "country": "GB",
+          "postalCode": "CA11 7JQ",
+          "vatId": "",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "eks",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "hello@penrith.example",
+          "sendInvoiceEmail": "true"
+        }
+      ],
+      "scheduled": [
+        {
+          "businessID": "biz_hold_penrith",
+          "schedulerID": "biz_hold_penrith-getAndCommitPODCost",
+          "schedulerStatus": "live",
+          "subject": "verifier|console",
+          "rate": "0 0-23/1 * * *",
+          "schedulerType": "cost",
+          "scheduleParameters": {
+            "costType": "eks"
+          }
+        }
+      ],
+      "unscheduled": []
+    },
+    "moving-off-the-cluster-source-stops-the-hourly-job": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Ardley Robotics",
+            "taxRate": "",
+            "addressLine1": "9 Kiln Road",
+            "addressLine2": "",
+            "city": "Oxford",
+            "state": "",
+            "country": "GB",
+            "postalCode": "OX5 2QT",
+            "vatId": "",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "none",
+            "storageCostSource": "ebs",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Invoice"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Payment"
+              },
+              "offering": {
+                "enabled": false,
+                "text": "Plan"
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "show",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "ops@ardley.example",
+            "sendInvoiceEmail": "true"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Ardley Robotics",
+          "taxRate": "",
+          "addressLine1": "9 Kiln Road",
+          "addressLine2": "",
+          "city": "Oxford",
+          "state": "",
+          "country": "GB",
+          "postalCode": "OX5 2QT",
+          "vatId": "",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "ebs",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "show",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "ops@ardley.example",
+          "sendInvoiceEmail": "true"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": [
+        {
+          "businessID": "biz_hold_ardley",
+          "schedulerID": "biz_hold_ardley-getAndCommitPODCost"
+        }
+      ]
+    },
+    "restating-the-cluster-source-changes-nothing": {
+      "route": "PUT /settings",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Wenlock Media",
+            "taxRate": "",
+            "addressLine1": "31 Print Row",
+            "addressLine2": "",
+            "city": "Telford",
+            "state": "",
+            "country": "GB",
+            "postalCode": "",
+            "vatId": "",
+            "invoicePaymentTerm": "",
+            "customFields": "",
+            "logoUrl": "",
+            "taxCategory": "",
+            "taxCalculationType": "",
+            "stripeAccountId": "",
+            "cloudIAM": {},
+            "computeCostSource": "eks",
+            "storageCostSource": "none",
+            "archiveCostSource": "none",
+            "stripeConnected": "notConnected",
+            "taxJarApiKey": "",
+            "accountState": "sandbox",
+            "pages": {
+              "invoice": {
+                "enabled": true,
+                "text": "Invoice"
+              },
+              "payment": {
+                "enabled": false,
+                "text": "Payment"
+              },
+              "offering": {
+                "enabled": false,
+                "text": "Plan"
+              }
+            },
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "show",
+            "invoiceGeneration": "perTransaction",
+            "supportEmail": "billing@wenlock.example",
+            "sendInvoiceEmail": "false"
+          }
+        ],
+        "message": "Setting updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Wenlock Media",
+          "taxRate": "",
+          "addressLine1": "31 Print Row",
+          "addressLine2": "",
+          "city": "Telford",
+          "state": "",
+          "country": "GB",
+          "postalCode": "",
+          "vatId": "",
+          "invoicePaymentTerm": "",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "eks",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "show",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "billing@wenlock.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "the-profile-save-merges-like-any-other": {
+      "route": "PUT /settings/profile",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Fenwick Joinery",
+            "addressLine1": "17 Sawmill Street",
+            "addressLine2": "Workshop 2",
+            "city": "Newcastle",
+            "state": "County Durham",
+            "country": "GB",
+            "postalCode": "DH1 4TA",
+            "supportEmail": "office@fenwick.example",
+            "sendInvoiceEmail": "false",
+            "stripeAccountId": ""
+          }
+        ],
+        "message": "Business profile updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Fenwick Joinery",
+          "taxRate": "",
+          "addressLine1": "17 Sawmill Street",
+          "addressLine2": "Workshop 2",
+          "city": "Newcastle",
+          "state": "County Durham",
+          "country": "GB",
+          "postalCode": "DH1 4TA",
+          "vatId": "GB 447 2210 65",
+          "invoicePaymentTerm": "30",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "eks",
+          "storageCostSource": "ebs",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "consolidatedPerBillingCycle",
+          "supportEmail": "office@fenwick.example",
+          "sendInvoiceEmail": "false"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    },
+    "the-profile-save-carries-only-a-profile": {
+      "route": "PUT /settings/profile",
+      "saveStatus": 200,
+      "saveBody": {
+        "data": [
+          {
+            "businessName": "Ravensworth Tooling",
+            "addressLine1": "5 Anvil Way",
+            "addressLine2": "",
+            "city": "Darlington",
+            "state": "",
+            "country": "GB",
+            "postalCode": "DL1 2XN",
+            "supportEmail": "ap@ravensworth.example",
+            "sendInvoiceEmail": "true",
+            "stripeAccountId": ""
+          }
+        ],
+        "message": "Business profile updated successfully"
+      },
+      "readStatus": 200,
+      "readBody": [
+        {
+          "businessName": "Ravensworth Tooling",
+          "taxRate": "",
+          "addressLine1": "5 Anvil Way",
+          "addressLine2": "",
+          "city": "Darlington",
+          "state": "",
+          "country": "GB",
+          "postalCode": "DL1 2XN",
+          "vatId": "",
+          "invoicePaymentTerm": "30",
+          "customFields": "",
+          "logoUrl": "",
+          "taxCategory": "",
+          "taxCalculationType": "",
+          "stripeAccountId": "",
+          "cloudIAM": {},
+          "computeCostSource": "none",
+          "storageCostSource": "none",
+          "archiveCostSource": "none",
+          "stripeConnected": "notConnected",
+          "taxJarApiKey": "",
+          "accountState": "sandbox",
+          "pages": {
+            "invoice": {
+              "enabled": true,
+              "text": "Invoice"
+            },
+            "payment": {
+              "enabled": false,
+              "text": "Payment"
+            },
+            "offering": {
+              "enabled": false,
+              "text": "Plan"
+            }
+          },
+          "invoiceApproval": "automatic",
+          "freeDimensionOnInvoice": "hide",
+          "invoiceGeneration": "perTransaction",
+          "supportEmail": "ap@ravensworth.example",
+          "sendInvoiceEmail": "true"
+        }
+      ],
+      "scheduled": [],
+      "unscheduled": []
+    }
+  }
+}

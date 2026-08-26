@@ -1,0 +1,477 @@
+openapi: '3.0.0'
+info:
+    version: '0.4'
+    title: 'MeteringCo Public API'
+    description: Specification for MeteringCo Public API
+
+paths:
+    /offerings:
+        get:
+            tags:
+                - Offering
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/getOfferingsResponse'
+        post:
+            tags:
+                - Offering
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/createOfferingPayload'
+                        examples:
+                            samplePayload:
+                                summary: a sample payload
+                                value:
+                                    offeringName: Enterprise Plan
+                                    offeringVisibility: private
+                                    offeringType: usage-based
+                                    billingCyle: monthly
+                                    prepaidCredit: '2000.00'
+                                    dimensionIds:
+                                        - 092f9444-851a-43fb-9503-2228dc01b1be
+                                        - 092f9444-851a-43fb-9503-2228dc01b1be
+                                        - 092f9444-851a-43fb-9503-2228dc01b1be
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/createOfferingResponse'
+    /offerings/{offeringId}:
+        parameters:
+            - name: offeringId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        delete:
+            tags:
+                - Offering
+            responses:
+                '200':
+                    description: ok
+        put:
+            tags:
+                - Offering
+            responses:
+                '200':
+                    description: ok
+
+    /customers:
+        get:
+            tags:
+                - Customer
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/createCustomerResponse'
+        post:
+            tags:
+                - Customer
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/createCustomerPayload'
+                        examples:
+                            samplePayload:
+                                summary: a sample payload
+                                value:
+                                    customerName: Smart AI
+                                    paymentChannel: stripe
+            responses:
+                '200':
+                    description: ok
+    /customers/{customerId}:
+        parameters:
+            - name: customerId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        delete:
+            tags:
+                - Customer
+            responses:
+                '200':
+                    description: ok
+        put:
+            tags:
+                - Customer
+            responses:
+                '200':
+                    description: ok
+
+    /services:
+        get:
+            tags:
+                - Service
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/getServicesResponse'
+        post:
+            tags:
+                - Service
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/createServicePayload'
+                        examples:
+                            samplePayload:
+                                summary: a sample payload
+                                value:
+                                    serviceName: SmartaiDevService
+                                    offeringId: 092f9444-851a-43fb-9503-2228dc01b1be
+                                    customerId: 092f9444-851a-43fb-9503-2228dc01b1be
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/createServiceResponse'
+    /services/{serviceId}:
+        parameters:
+            - name: serviceId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        delete:
+            tags:
+                - Service
+            responses:
+                '200':
+                    description: ok
+        put:
+            tags:
+                - Service
+            responses:
+                '200':
+                    description: ok
+
+    /services/{serviceId}/invoices:
+        parameters:
+            - name: serviceId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        get:
+            tags:
+                - Invoice
+            responses:
+                '200':
+                    description: ok
+
+    /services/{serviceId}/usage:
+        get:
+            description: get aggregated or raw usage
+            tags:
+                - Usage
+            parameters:
+                - name: serviceId
+                  in: path
+                  required: true
+                  schema:
+                      $ref: '#/components/schemas/schemaPlaceHolder'
+                - name: startTime
+                  description: start time to get usage data, default value the last 24 hours
+                  in: query
+                  required: false
+                  schema:
+                      $ref: '#/components/schemas/schemaPlaceHolder'
+                - name: endTime
+                  description: end time to get usage data, default now
+                  in: query
+                  required: false
+                  schema:
+                      $ref: '#/components/schemas/schemaPlaceHolder'
+                - name: type
+                  description: type of usage data
+                  in: query
+                  required: false
+                  schema:
+                      type: string
+                      enum:
+                          - raw
+                          - aggregated
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            examples:
+                                sampleRawDataResponse:
+                                    summary: a sample response of raw usage data
+                                    value:
+                                        dataType: aggregated
+                                        dimensions:
+                                            - dimensionId: 092f9444-851a-43fb-9503-2228dc01b1be
+                                              infrastructureType: QuestDB Compute time
+                                              values:
+                                                  - timestamp: T13:00:00Z2022-12-31
+                                                    value: 60
+                                                  - timestamp: T14:00:00Z2022-12-31
+                                                    value: 60
+                                                  - timestamp: T15:23:00Z2022-12-31
+                                                    value: 39
+                                                  - timestamp: T16:21:00Z2022-12-31
+                                                    value: 0
+
+                            schema:
+                                $ref: '#/components/schemas/getServiceUsageResponse'
+
+    /dimensions:
+        parameters:
+            - name: businessId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        get:
+            tags:
+                - Dimension (Private)
+            responses:
+                '200':
+                    description: ok
+        post:
+            tags:
+                - Dimension (Private)
+            responses:
+                '200':
+                    description: ok
+
+    /analytics/cost/ebs:
+        get:
+            tags:
+                - Analytics
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ebsCostResponse'
+    /analytics/cost/eks:
+        get:
+            tags:
+                - Analytics
+            responses:
+                '200':
+                    description: ok
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/eksCostResponse'
+
+    /dimensions/{dimensionId}:
+        parameters:
+            - name: dimensionId
+              in: path
+              required: true
+              schema:
+                  $ref: '#/components/schemas/schemaPlaceHolder'
+        get:
+            tags:
+                - Dimension (Private)
+            responses:
+                '200':
+                    description: ok
+        delete:
+            tags:
+                - Dimension (Private)
+            responses:
+                '200':
+                    description: ok
+        put:
+            tags:
+                - Dimension (Private)
+            responses:
+                '200':
+                    description: ok
+
+components:
+    schemas:
+        schemaPlaceHolder:
+            type: string
+        getOfferingsResponse:
+            type: object
+            properties:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/createOfferingPayload'
+        createOfferingPayload:
+            type: object
+            required:
+                - 'offeringName'
+            properties:
+                offeringName:
+                    type: string
+                offeringVisibility:
+                    type: string
+                    enum:
+                        - private
+                        - public
+                currency:
+                    type: string
+                    enum:
+                        - USD
+                discount:
+                    type: string
+                prepaidCredit:
+                    type: string
+                offeringType:
+                    type: string
+                    enum:
+                        - usage-based
+                        - tier
+                billingCyle:
+                    type: string
+                    enum:
+                        - monthly
+                dimensionIds:
+                    type: array
+        createOfferingResponse:
+            type: object
+            properties:
+                offeringId:
+                    type: string
+        createServicePayload:
+            type: object
+            required:
+                - serviceName
+                - customerId
+                - offeringId
+            properties:
+                serviceName:
+                    type: string
+                customerId:
+                    type: string
+                offeringId:
+                    type: string
+        createServiceResponse:
+            type: object
+            properties:
+                serviceId:
+                    type: string
+        getServicesResponse:
+            type: object
+            properties:
+                data:
+                    type: array
+                    items:
+                        $ref: '#/components/schemas/createServicePayload'
+        createCustomerPayload:
+            type: object
+            required:
+                - customerName
+                - paymentChannel
+            properties:
+                customerName:
+                    type: string
+                paymentChannel:
+                    type: string
+                    enum:
+                        - stripe
+        createCustomerResponse:
+            type: object
+            properties:
+                customerId:
+                    type: string
+        getUsage:
+            type: object
+            properties:
+                startTime:
+                    type: string
+                endTime:
+                    type: string
+        ebsCostResponse:
+            type: array
+            items:
+                $ref: '#/components/schemas/ebsCost'
+        ebsCost:
+            type: object
+            properties:
+                storage:
+                    type: string
+                iops:
+                    type: string
+                throughput:
+                    type: string
+                averagUnitCost:
+                    type: string
+        eksCostResponse:
+            type: array
+            items:
+                $ref: '#/components/schemas/eksCost'
+        eksCost:
+            type: object
+            properties:
+                cpuCore:
+                    type: string
+                ram:
+                    type: string
+                averagUnitCost:
+                    type: string
+        getServiceUsageResponse:
+            type: object
+            required:
+                - dataType
+                - dimensions
+            properties:
+                dataType:
+                    type: string
+                    enum:
+                        - aggregated
+                        - raw
+                dimensions:
+                    type: array
+                    items:
+                        type: object
+                        properties:
+                            dimensionId:
+                                type: string
+                            infrastructureType:
+                                type: string
+                            values:
+                                type: array
+                                items:
+                                    type: object
+                                    properties:
+                                        timestamp:
+                                            type: string
+                                        value:
+                                            type: string
+
+        Error:
+            type: object
+            required:
+                - message
+            properties:
+                message:
+                    description: A human readable error message
+                    type: string
+    securitySchemes:
+        ApiKey:
+            type: apiKey
+            in: header
+            name: X-Api-Key
+security:
+    - ApiKey: []

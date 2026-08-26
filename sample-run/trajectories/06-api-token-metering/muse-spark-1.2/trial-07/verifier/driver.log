@@ -1,0 +1,36 @@
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:35 AM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:35 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing aggregation for meteringco tokens[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:35 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDateRaw": "2026-08-25T19:40:31.223Z",
+  "endDateRaw": "2026-08-26T01:40:31.223Z"
+}
+
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:35 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:35 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo traffic to bill for cus-2d83-harborline-prod in window 2026-08-25T19:40:31.223Z - 2026-08-26T01:40:31.223Z[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing aggregation for meteringco tokens[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDateRaw": "2026-08-26T01:40:31.223Z",
+  "endDateRaw": "2026-08-26T09:40:31.223Z"
+}
+
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo traffic to bill for cus-2d83-harborline-prod in window 2026-08-26T01:40:31.223Z - 2026-08-26T09:40:31.223Z[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing aggregation for meteringco tokens[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-staging",
+  "subject": "auth0|harborline-ops-6d21",
+  "startDateRaw": "2026-08-26T01:40:31.223Z",
+  "endDateRaw": "2026-08-26T09:40:31.223Z"
+}
+
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo traffic to bill for cus-6a17-harborline-alt in window 2026-08-26T01:40:31.223Z - 2026-08-26T09:40:31.223Z[39m
+[32m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[95m[Nest] 47198  - [39m08/26/2026, 7:40:36 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m

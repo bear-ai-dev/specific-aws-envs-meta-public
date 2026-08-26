@@ -1,0 +1,42 @@
+files the submission wrote or changed: 10
+(node:3975) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+candidate: NetworkOutDataGathererService.readOperationJob in src/microservices/networkOutDataGatherer/networkOutDataGatherer.service.ts (rank 4)
+candidate: DimensionsService.create in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.createKeyForManagedInfraDimensionSchedule in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findByMeasurementId in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findOne in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.remove in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.removeAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.ressourceTypeToDimensionType in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.transformDtoToEntityInput in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.update in src/dimensions/dimensions.service.ts (rank 1)
+candidate: MeasurementConfigService.create in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.createMeasurementConfig in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.findAll in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.findOne in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.remove in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.update in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.validateIntelligentMeasurement in src/measurement-config/measurement-config.service.ts (rank 1)
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mProcessing NetworkOut gathering event, logging inputs[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","subject":"biz-tessellate","region":"us-east-1","dimensionId":"dim_hld_transfer"}[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mFound 10 instances matching dimension dim_hld_transfer[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_ravelin: 8388608 bytes from 2 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_bastion: 3145728 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_kestrelmoor: 0 bytes from 2 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_solenoid: 0 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_tallow: 524288 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_wharfage: 2097152 bytes from 2 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_calliper: 131072 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mFinished collecting NetworkOut data[39m
+NetworkOutDataGathererService.readOperationJob: 7 row(s)
+driving NetworkOutDataGathererService.readOperationJob from src/microservices/networkOutDataGatherer/networkOutDataGatherer.service.ts
+[transfer] 7 row(s)
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mProcessing NetworkOut gathering event, logging inputs[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","subject":"biz-tessellate","region":"us-east-1","dimensionId":"dim_hld_replica"}[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mFound 2 instances matching dimension dim_hld_replica[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_tallow: 524288 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mPublished NetworkOut for customer cus_ferrule: 393216 bytes from 1 instances[39m
+[32m[Nest] 3975  - [39m08/26/2026, 7:37:48 AM [32m    LOG[39m [38;5;3m[NetworkOutDataGathererService] [39m[32mFinished collecting NetworkOut data[39m
+[replica] 2 row(s)

@@ -1,0 +1,51 @@
+Local AWS sandbox
+=================
+
+This box has no route to AWS. Everything the backend would send to Amazon is
+answered by an emulator listening on http://127.0.0.1:4566, which speaks the
+same wire protocols the AWS SDK uses. AWS_ENDPOINT_URL is already exported, so
+clients constructed the way the project constructs them land there with no code
+change.
+
+The credentials in the environment belong to a bootstrap identity in the
+metering account. Customer estates are separate accounts that the metering
+account reads by assuming a role they grant it:
+
+    metering account      900000000001     (the shell's own credentials)
+    metered account       100000000031
+    role to assume        arn:aws:iam::100000000031:role/meteringco-egress-reader
+    external id           nw-sbx-4417
+    region                us-east-1
+
+    business              biz-northwind
+    dimension             dim_sbx_egress
+    a second dimension    dim_sbx_archive
+
+schedule-parameters.example.json holds those values in the shape a scheduled
+run carries them.
+
+The metered account holds twelve machines, tagged the way this platform tags
+metered resources. DescribeInstances lists them with their tags; ListMetrics
+lists the series each one publishes to AWS/EC2, and GetMetricStatistics or
+GetMetricData will read any of those series. Observations are always a few
+minutes old relative to whenever you ask, because the emulator lays them down
+against the current five-minute boundary rather than at fixed wall-clock times.
+
+The estate the emulator is currently serving is described in full by
+/opt/billing-sandbox/public.json. It is a small estate and a quiet one; real
+ones run far more machines per customer and far more customers per dimension,
+so treat what you see here as the easy case rather than the shape of the world.
+
+recorded-usage.json is usage the platform stored for biz-northwind on
+dim_sbx_egress during one earlier five-minute run against this same estate, one
+entry per customer billed.
+
+To point the emulator at a different estate document, restart it yourself:
+
+    kill "$(cat /tmp/task-infra/mockaws.pid)"
+    PYTHONPATH=/opt/mockaws python3 -m mockaws \
+        --scenario /path/to/your.json --host 127.0.0.1 --port 4566 --seed 7 &
+
+TypeScript in this project can be run directly with tsx, for example
+
+    tsx -e "import('./src/utils/aws/awsEc2.js').then(console.log)"

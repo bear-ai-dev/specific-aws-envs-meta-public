@@ -2,8 +2,8 @@
 
 ## Cohort result
 
-This sample evaluates four frozen tasks. Muse Spark 1.2 and Opus 5 each have
-eight trials per task. All 64 reported trials have a numeric reward, native and
+This sample evaluates eight frozen tasks. Muse Spark 1.2 and Opus 5 each have
+eight trials per task. All 128 reported trials have a numeric reward, native and
 normalized trajectories, a verifier report, and no Harbor exception.
 
 | Task | Model | Solves | Interpretation |
@@ -16,14 +16,26 @@ normalized trajectories, a verifier report, and no Harbor exception.
 | [Task 3: customer communication dispatch](../tasks/03-customer-communication-dispatch/instruction.md) | Opus 5 | 8/8 | Eight solving trials |
 | [Task 4: IAM role validation](../tasks/04-iam-role-validation/instruction.md) | Muse Spark 1.2 | 4/8 | Four repeated omitted-field boundary failures |
 | [Task 4: IAM role validation](../tasks/04-iam-role-validation/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
+| [Task 5: network egress metering](../tasks/05-network-egress-metering/instruction.md) | Muse Spark 1.2 | 6/8 | Solves, with two absent-series failures |
+| [Task 5: network egress metering](../tasks/05-network-egress-metering/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
+| [Task 6: API token metering](../tasks/06-api-token-metering/instruction.md) | Muse Spark 1.2 | 1/8 | Solves once, seven varied rule failures |
+| [Task 6: API token metering](../tasks/06-api-token-metering/instruction.md) | Opus 5 | 7/8 | One near miss on a single graded rule |
+| [Task 7: API keys and environments](../tasks/07-api-keys-and-environments/instruction.md) | Muse Spark 1.2 | 2/8 | Solves twice, six route-wiring failures |
+| [Task 7: API keys and environments](../tasks/07-api-keys-and-environments/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
+| [Task 8: business settings persistence](../tasks/08-business-settings-persistence/instruction.md) | Muse Spark 1.2 | 4/8 | Four identical partial-save failures |
+| [Task 8: business settings persistence](../tasks/08-business-settings-persistence/instruction.md) | Opus 5 | 8/8 | Consistent solving comparator |
 
 The [full matrix](indexes/pass-rate-matrix.md) keeps raw solves separate from
 pass@1, pass@3, and pass@8. Across the reported cells, the aggregate stored
-result is 11/32 for Muse and 32/32 for Opus.
+result is 24/64 for Muse and 63/64 for Opus.
 
-Task 4 extends the original three-task sample and meets this release's
-inclusion threshold of Muse at or below 50% (`4/8`). The original three tasks
-remain in the sample unchanged.
+Tasks 1 to 4 are tightly scoped changes; Tasks 5 to 8, added on August 26, 2026,
+are larger feature builds with roughly three times the prompt length and five
+times the reference diff. Task 6 carries the only Opus 5 failure in the sample:
+that trial passed six of the task's seven graded rules and missed the clause
+requiring the act of serving a measurement to be metered as an API call itself.
+Because the reward is binary, that one-rule miss scores the same 0.0 as a trial
+that missed six rules; the per-rule verifier output is what separates them.
 
 ## Observed model difference
 
@@ -44,7 +56,7 @@ The [machine-readable trial index](indexes/trials.json) resolves every admitted
 trial to its native trajectory, normalized trajectory, verifier report,
 reward, and submitted deliverable where included. The generated
 [per-trial metrics](metrics/) add recorded duration, model-call, tool-call,
-token, and cost fields for every one of those 64 trials. They are descriptive
+token, and cost fields for every one of those 128 trials. They are descriptive
 effort measures, not causal evidence for the failure modes below.
 
 | Task | Muse Spark 1.2 | Opus 5 |
@@ -53,6 +65,10 @@ effort measures, not causal evidence for the failure modes below.
 | Task 2 | [eight trials](trajectories/02-measurement-failure-dlq/muse-spark-1.2/) | [eight trials](trajectories/02-measurement-failure-dlq/opus-5/) |
 | Task 3 | [eight trials](trajectories/03-customer-communication-dispatch/muse-spark-1.2/) | [eight trials](trajectories/03-customer-communication-dispatch/opus-5/) |
 | Task 4 | [eight trials](trajectories/04-iam-role-validation/muse-spark-1.2/) | [eight trials](trajectories/04-iam-role-validation/opus-5/) |
+| Task 5 | [eight trials](trajectories/05-network-egress-metering/muse-spark-1.2/) | [eight trials](trajectories/05-network-egress-metering/opus-5/) |
+| Task 6 | [eight trials](trajectories/06-api-token-metering/muse-spark-1.2/) | [eight trials](trajectories/06-api-token-metering/opus-5/) |
+| Task 7 | [eight trials](trajectories/07-api-keys-and-environments/muse-spark-1.2/) | [eight trials](trajectories/07-api-keys-and-environments/opus-5/) |
+| Task 8 | [eight trials](trajectories/08-business-settings-persistence/muse-spark-1.2/) | [eight trials](trajectories/08-business-settings-persistence/opus-5/) |
 
 ## Failure-mode analysis
 
@@ -163,8 +179,8 @@ internals.
 ## Evidence boundary
 
 These conclusions are limited to the stored prompts, frozen task variants,
-trajectories, verifier outcomes, and controls. Four tasks and eight eight-run
-cells do not establish a universal model ranking, and pass@8 reaching `1.0` for
+trajectories, verifier outcomes, and controls. Eight tasks and sixteen
+eight-run cells do not establish a universal model ranking, and pass@8 reaching `1.0` for
 a cell with any solve should not be read as eight raw solves.
 
 Tasks 2 and 4 include all eight Opus attempts measured for the reported cells.

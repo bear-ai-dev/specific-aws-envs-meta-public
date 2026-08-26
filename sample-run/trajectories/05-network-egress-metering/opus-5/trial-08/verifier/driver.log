@@ -1,0 +1,29 @@
+files the submission wrote or changed: 10
+(node:3271) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+could not load src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.spec.ts: jest is not defined
+candidate: Ec2NetworkOutDataGathererService.readOperationJob in src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.ts (rank 4)
+candidate: DimensionsService.create in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.createKeyForManagedInfraDimensionSchedule in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findByMeasurementId in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findOne in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.remove in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.removeAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.ressourceTypeToDimensionType in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.transformDtoToEntityInput in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.update in src/dimensions/dimensions.service.ts (rank 1)
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:41 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mProcessing Automated EC2 network out gathering event, logging inputs[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:41 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","dimensionId":"dim_hld_transfer","region":"us-east-1","subject":"biz-tessellate"}[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:41 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mFound 10 instances metered on dimension dim_hld_transfer[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mFinished collecting EC2 network out data[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32m{"businessID":"biz-tessellate","dimensionId":"dim_hld_transfer","customers":6}[39m
+Ec2NetworkOutDataGathererService.readOperationJob: 6 row(s)
+driving Ec2NetworkOutDataGathererService.readOperationJob from src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.ts
+[transfer] 6 row(s)
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mProcessing Automated EC2 network out gathering event, logging inputs[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","dimensionId":"dim_hld_replica","region":"us-east-1","subject":"biz-tessellate"}[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mFound 2 instances metered on dimension dim_hld_replica[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32mFinished collecting EC2 network out data[39m
+[32m[Nest] 3271  - [39m08/26/2026, 2:35:42 PM [32m    LOG[39m [38;5;3m[Ec2NetworkOutDataGathererService] [39m[32m{"businessID":"biz-tessellate","dimensionId":"dim_hld_replica","customers":2}[39m
+[replica] 2 row(s)

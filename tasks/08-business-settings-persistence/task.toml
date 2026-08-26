@@ -1,0 +1,66 @@
+schema_version = "1.4"
+
+[task]
+name = "meteringco/business-settings-persistence"
+version = "1.0.0"
+description = "Save a business's configuration document the way the people using it expect: carry the fields a caller names and leave the rest at whatever that business had stored, treat a blank a caller sent as a value rather than a silence, merge the nested customer-facing page settings entry by entry, and start or stop the hourly cluster-cost collection when a save moves a business across that boundary."
+keywords = ["aws", "s3", "influxdb", "billing", "settings", "configuration", "typescript", "nestjs"]
+
+[[task.authors]]
+name = "meteringco-rl-envs"
+
+[metadata]
+difficulty = "hard"
+category = "aws-infrastructure"
+source = "meteringco-codebases"
+codebase = "meteringco-backend/business-settings-persistence"
+task_kind = "feature-removal"
+tags = [
+    "real-codebase",
+    "configuration-documents",
+    "partial-update-semantics",
+    "explicit-empty-versus-absent",
+    "nested-document-merge",
+    "time-series-configuration-store",
+    "schedule-enrolment-transitions",
+    "business-profile-surface",
+]
+
+[agent]
+user = "agent"
+timeout_sec = 14400
+
+[verifier]
+user = "root"
+timeout_sec = 1800
+
+[environment]
+workdir = "/app"
+build_timeout_sec = 2400
+cpus = 2
+memory_mb = 6144
+storage_mb = 20480
+network_mode = "public"
+
+[environment.env]
+TZ = "Etc/UTC"
+AWS_ENDPOINT_URL = "http://127.0.0.1:4566"
+AWS_ACCESS_KEY_ID = "LOCALMETERINGKEY01"
+AWS_SECRET_ACCESS_KEY = "billing-secret"
+# The SDK in this tree reads AWS_REGION only. A client built without an
+# explicit region has no other source for it inside the container.
+AWS_REGION = "us-east-1"
+AWS_DEFAULT_REGION = "us-east-1"
+# The configuration store answers on the same emulated endpoint, and the
+# bucket a business's document lives in is named from the stage.
+STAGE = "qa"
+INFLUX_URL = "http://127.0.0.1:4566"
+INFLUX_ORG = "meteringco"
+INFLUX_TOKEN = "sandbox-ledger-token"
+
+[environment.healthcheck]
+command = "test -f /tmp/task-infra/.ready"
+interval_sec = 5
+timeout_sec = 5
+start_period_sec = 30
+retries = 12

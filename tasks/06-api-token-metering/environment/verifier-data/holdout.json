@@ -1,0 +1,48 @@
+{
+  "influx": {
+    "buckets": {
+      "dogfood-aggregate-bucket": [
+        {
+          "measurement": "tokenConsumer",
+          "tags": {
+            "customerId": "cus-2d83-harborline-prod",
+            "dimensionId": "697f07d0-3180-4351-bdff-7ca029e6c18d",
+            "businessID": "meteringco-production",
+            "metadata_tokenType": "\"apiCall\"",
+            "metadata_uuid": "\"ea9160b7-5c34-4d28-8f01-6b3e7a2c9d45\""
+          },
+          "fields": {
+            "recordValue": 0.001
+          },
+          "time": "2025-01-02T04:17:33.628Z"
+        }
+      ],
+      "prod-config": [
+        {
+          "measurement": "customer",
+          "tags": {
+            "customerId": "cus-2d83-harborline-prod",
+            "businessID": "meteringco-production",
+            "metadata": "{\"businessID\": \"harborline-freight\"}"
+          },
+          "fields": {
+            "recordValue": "Harborline Freight"
+          },
+          "time": "2024-11-19T11:02:41.339Z"
+        },
+        {
+          "measurement": "customer",
+          "tags": {
+            "customerId": "cus-6a17-harborline-alt",
+            "businessID": "meteringco-sandbox",
+            "metadata": "{\"businessID\": \"harborline-staging\"}"
+          },
+          "fields": {
+            "recordValue": "Harborline Staging"
+          },
+          "time": "2024-11-19T11:03:16.882Z"
+        }
+      ]
+    }
+  }
+}

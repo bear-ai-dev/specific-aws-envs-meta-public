@@ -1,0 +1,331 @@
+{
+  "region": "us-east-1",
+  "accounts": [],
+  "identity": {
+    "api_audience": "https://example1234.execute-api.us-east-1.amazonaws.com",
+    "clients": [
+      {
+        "client_id": "dashWindermereConsoleMgmt02",
+        "name": "MeteringCo Console Management",
+        "client_secret": "console-management-secret-holdout",
+        "management": true
+      },
+      {
+        "client_id": "sessWindermereConsole02",
+        "name": "Windermere console sign-in",
+        "client_secret": "windermere-console-secret",
+        "app_type": "spa",
+        "subject": "auth0|opwindermere93",
+        "permissions": [
+          "keys:read",
+          "keys:update",
+          "keys:delete"
+        ]
+      },
+      {
+        "client_id": "sessWindermereViewer02",
+        "name": "Windermere console sign-in, view only",
+        "client_secret": "windermere-viewer-secret",
+        "app_type": "spa",
+        "subject": "auth0|opwindermere93",
+        "permissions": [
+          "keys:read"
+        ]
+      },
+      {
+        "client_id": "sessAshcombeConsole02",
+        "name": "Ashcombe console sign-in",
+        "client_secret": "ashcombe-console-secret",
+        "app_type": "spa",
+        "subject": "auth0|opashcombe58",
+        "permissions": [
+          "keys:read",
+          "keys:update",
+          "keys:delete"
+        ]
+      },
+      {
+        "client_id": "keyWindermereProdEvents",
+        "name": "Windermere production events",
+        "client_secret": "windermere-prod-events-secret"
+      },
+      {
+        "client_id": "keyWindermereProdBilling",
+        "name": "Windermere production billing",
+        "client_secret": "windermere-prod-billing-secret"
+      },
+      {
+        "client_id": "keyWindermereSbxEvents",
+        "name": "Windermere sandbox events",
+        "client_secret": "windermere-sbx-events-secret"
+      },
+      {
+        "client_id": "keyWindermereSbxDrill",
+        "name": "Windermere sandbox drill",
+        "client_secret": "windermere-sbx-drill-secret"
+      },
+      {
+        "client_id": "keyWindermereProdLegacy",
+        "name": "Windermere production, retired",
+        "client_secret": "windermere-prod-legacy-secret"
+      },
+      {
+        "client_id": "keyAshcombeProdEvents",
+        "name": "Ashcombe production events",
+        "client_secret": "ashcombe-prod-events-secret"
+      },
+      {
+        "client_id": "keyAshcombeSbxEvents",
+        "name": "Ashcombe sandbox events",
+        "client_secret": "ashcombe-sbx-events-secret"
+      },
+      {
+        "client_id": "appWindermerePortalSite",
+        "name": "Windermere customer portal",
+        "client_secret": "windermere-portal-site-secret"
+      },
+      {
+        "client_id": "appMeteringCoDocsSite",
+        "name": "MeteringCo documentation site",
+        "client_secret": "meteringco-docs-site-secret"
+      }
+    ],
+    "permissions": {
+      "keyWindermereProdEvents@clients": [
+        "keys:read"
+      ],
+      "keyWindermereSbxEvents@clients": [
+        "keys:read"
+      ]
+    }
+  },
+  "influx": {
+    "buckets": {
+      "local-config": [
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyWindermereProdEvents@clients",
+            "businessID": "windermere",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyWindermereProdEvents@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyWindermereProdBilling@clients",
+            "businessID": "windermere",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyWindermereProdBilling@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyWindermereSbxEvents@clients",
+            "businessID": "windermere-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyWindermereSbxEvents@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyWindermereSbxDrill@clients",
+            "businessID": "windermere-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyWindermereSbxDrill@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyWindermereProdLegacy@clients",
+            "businessID": "windermere",
+            "environment": "production",
+            "softDelete": "deleted"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-06T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyWindermereProdLegacy@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-06T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyAshcombeProdEvents@clients",
+            "businessID": "ashcombe",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyAshcombeProdEvents@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyAshcombeSbxEvents@clients",
+            "businessID": "ashcombe-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyAshcombeSbxEvents@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opwindermere93",
+            "businessID": "windermere",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opwindermere93",
+            "businessID": "windermere-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "auth0|opwindermere93"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opashcombe58",
+            "businessID": "ashcombe",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opashcombe58",
+            "businessID": "ashcombe-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "auth0|opashcombe58"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        }
+      ]
+    }
+  }
+}

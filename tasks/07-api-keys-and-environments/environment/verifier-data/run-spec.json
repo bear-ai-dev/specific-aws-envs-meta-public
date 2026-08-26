@@ -1,0 +1,26 @@
+{
+  "managementClientId": "dashWindermereConsoleMgmt02",
+  "managementClientSecret": "console-management-secret-holdout",
+  "operator": {
+    "subject": "auth0|opwindermere93",
+    "clientId": "sessWindermereConsole02",
+    "clientSecret": "windermere-console-secret"
+  },
+  "viewer": {
+    "subject": "auth0|opwindermere93",
+    "clientId": "sessWindermereViewer02",
+    "clientSecret": "windermere-viewer-secret"
+  },
+  "targets": {
+    "rotate": "keyWindermereSbxDrill",
+    "revoke": "keyWindermereSbxEvents",
+    "otherEnvironment": "keyWindermereProdEvents",
+    "otherTenant": "keyAshcombeProdEvents",
+    "unclaimed": "appMeteringCoDocsSite",
+    "retired": "keyWindermereProdLegacy"
+  },
+  "revokedKeyCredentials": {
+    "clientId": "keyWindermereSbxEvents",
+    "clientSecret": "windermere-sbx-events-secret"
+  }
+}

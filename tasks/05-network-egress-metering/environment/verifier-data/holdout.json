@@ -1,0 +1,1176 @@
+{
+  "region": "us-east-1",
+  "metric_anchor_seconds": 300,
+  "bootstrap_identity": {
+    "account_id": "900000000009",
+    "access_key_id": "LOCALMETERINGKEY01",
+    "secret_access_key": "billing-secret"
+  },
+  "accounts": [
+    {
+      "account_id": "900000000009",
+      "alias": "meteringco-metering",
+      "roles": []
+    },
+    {
+      "account_id": "200000000077",
+      "alias": "tessellate-production",
+      "roles": [
+        {
+          "name": "meteringco-transfer-reader",
+          "trust_policy": {
+            "Version": "2012-10-17",
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "sts:AssumeRole",
+                "Principal": {
+                  "AWS": "arn:aws:iam::900000000009:root"
+                },
+                "Condition": {
+                  "StringEquals": {
+                    "sts:ExternalId": "tes-hld-8821"
+                  }
+                }
+              }
+            ]
+          },
+          "inline_policies": {
+            "read-metrics": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ec2:DescribeInstances",
+                    "cloudwatch:GetMetricData",
+                    "cloudwatch:GetMetricStatistics",
+                    "cloudwatch:ListMetrics"
+                  ],
+                  "Resource": [
+                    "*"
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "instances": [
+        {
+          "instance_id": "i-0hld000000000101",
+          "instance_type": "m6i.2xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_ravelin",
+            "Name": "gateway-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000102",
+          "instance_type": "m6i.large",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_ravelin",
+            "Name": "gateway-b"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000103",
+          "instance_type": "r6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "stopped",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_bastion",
+            "Name": "extract-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000104",
+          "instance_type": "t3.small",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_kestrelmoor",
+            "Name": "probe-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000105",
+          "instance_type": "t3.small",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_solenoid",
+            "Name": "parked-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000106",
+          "instance_type": "c6i.2xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_replica,dim_hld_transfer",
+            "meteringcoCustomerId": "cus_tallow",
+            "Name": "shared-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000107",
+          "instance_type": "c6i.large",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_replica",
+            "meteringcoCustomerId": "cus_ferrule",
+            "Name": "mirror-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000108",
+          "instance_type": "m6i.large",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "Name": "staging-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000109",
+          "instance_type": "m6i.xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "Name": "tessellate-bastion-host"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000110",
+          "instance_type": "t3.small",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_kestrelmoor",
+            "Name": "probe-b"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000111",
+          "instance_type": "m5.2xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "terminated",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_wharfage",
+            "Name": "seasonal-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000112",
+          "instance_type": "m5.large",
+          "availability_zone": "us-east-1a",
+          "state": "running",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_wharfage",
+            "Name": "seasonal-b"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        },
+        {
+          "instance_id": "i-0hld000000000113",
+          "instance_type": "t3.xlarge",
+          "availability_zone": "us-east-1a",
+          "state": "stopping",
+          "tags": {
+            "meteringcoDimensionId": "dim_hld_transfer",
+            "meteringcoCustomerId": "cus_calliper",
+            "Name": "drain-a"
+          },
+          "launch_time": "2026-07-14T09:12:00Z"
+        }
+      ],
+      "metrics": [
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000101"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1693853.5384615385
+            ],
+            [
+              -342.0,
+              1693853.5384615385
+            ],
+            [
+              -330.0,
+              1693853.5384615385
+            ],
+            [
+              -318.0,
+              1129235.6923076923
+            ],
+            [
+              -305.0,
+              1129235.692307692
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000101"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              5433530.181818182
+            ],
+            [
+              -338.0,
+              5433530.181818182
+            ],
+            [
+              -322.0,
+              5433530.181818182
+            ],
+            [
+              -305.0,
+              3622353.454545455
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000101"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1429.8763636363637
+            ],
+            [
+              -338.0,
+              1429.8763636363637
+            ],
+            [
+              -322.0,
+              1429.8763636363637
+            ],
+            [
+              -305.0,
+              953.2509090909089
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000102"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              285975.2727272727
+            ],
+            [
+              -338.0,
+              285975.2727272727
+            ],
+            [
+              -322.0,
+              285975.2727272727
+            ],
+            [
+              -305.0,
+              190650.18181818188
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000102"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1143901.0909090908
+            ],
+            [
+              -338.0,
+              1143901.0909090908
+            ],
+            [
+              -322.0,
+              1143901.0909090908
+            ],
+            [
+              -305.0,
+              762600.7272727275
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000102"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              204.26805194805195
+            ],
+            [
+              -338.0,
+              204.26805194805195
+            ],
+            [
+              -322.0,
+              204.26805194805195
+            ],
+            [
+              -305.0,
+              136.1787012987013
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000103"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1048576.0
+            ],
+            [
+              -330.0,
+              1048576.0
+            ],
+            [
+              -305.0,
+              1048576.0
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000103"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              428962.90909090906
+            ],
+            [
+              -338.0,
+              428962.90909090906
+            ],
+            [
+              -322.0,
+              428962.90909090906
+            ],
+            [
+              -305.0,
+              285975.27272727294
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000103"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              612.8041558441558
+            ],
+            [
+              -338.0,
+              612.8041558441558
+            ],
+            [
+              -322.0,
+              612.8041558441558
+            ],
+            [
+              -305.0,
+              408.5361038961041
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000104"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              35746.90909090909
+            ],
+            [
+              -338.0,
+              35746.90909090909
+            ],
+            [
+              -322.0,
+              35746.90909090909
+            ],
+            [
+              -305.0,
+              23831.272727272735
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000104"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              0.2727272727272727
+            ],
+            [
+              -338.0,
+              0.2727272727272727
+            ],
+            [
+              -322.0,
+              0.2727272727272727
+            ],
+            [
+              -305.0,
+              0.18181818181818188
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000105"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              0.0
+            ],
+            [
+              -338.0,
+              0.0
+            ],
+            [
+              -322.0,
+              0.0
+            ],
+            [
+              -305.0,
+              0.0
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000105"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              7261.09090909091
+            ],
+            [
+              -338.0,
+              7261.09090909091
+            ],
+            [
+              -322.0,
+              7261.09090909091
+            ],
+            [
+              -305.0,
+              4840.727272727272
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000105"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              0.2727272727272727
+            ],
+            [
+              -338.0,
+              0.2727272727272727
+            ],
+            [
+              -322.0,
+              0.2727272727272727
+            ],
+            [
+              -305.0,
+              0.18181818181818188
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000106"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              142987.63636363635
+            ],
+            [
+              -338.0,
+              142987.63636363635
+            ],
+            [
+              -322.0,
+              142987.63636363635
+            ],
+            [
+              -305.0,
+              95325.09090909094
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000106"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              571950.5454545454
+            ],
+            [
+              -338.0,
+              571950.5454545454
+            ],
+            [
+              -322.0,
+              571950.5454545454
+            ],
+            [
+              -305.0,
+              381300.36363636376
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000106"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              102.13402597402597
+            ],
+            [
+              -338.0,
+              102.13402597402597
+            ],
+            [
+              -322.0,
+              102.13402597402597
+            ],
+            [
+              -305.0,
+              68.08935064935065
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000107"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              107240.72727272726
+            ],
+            [
+              -338.0,
+              107240.72727272726
+            ],
+            [
+              -322.0,
+              107240.72727272726
+            ],
+            [
+              -305.0,
+              71493.81818181823
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000107"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              214481.45454545453
+            ],
+            [
+              -338.0,
+              214481.45454545453
+            ],
+            [
+              -322.0,
+              214481.45454545453
+            ],
+            [
+              -305.0,
+              142987.63636363647
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000107"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              76.60051948051948
+            ],
+            [
+              -338.0,
+              76.60051948051948
+            ],
+            [
+              -322.0,
+              76.60051948051948
+            ],
+            [
+              -305.0,
+              51.067012987013015
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000108"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1429876.3636363635
+            ],
+            [
+              -338.0,
+              1429876.3636363635
+            ],
+            [
+              -322.0,
+              1429876.3636363635
+            ],
+            [
+              -305.0,
+              953250.9090909092
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000108"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              357469.0909090909
+            ],
+            [
+              -338.0,
+              357469.0909090909
+            ],
+            [
+              -322.0,
+              357469.0909090909
+            ],
+            [
+              -305.0,
+              238312.7272727273
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000108"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1021.3402597402597
+            ],
+            [
+              -338.0,
+              1021.3402597402597
+            ],
+            [
+              -322.0,
+              1021.3402597402597
+            ],
+            [
+              -305.0,
+              680.8935064935063
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000109"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              2573777.4545454546
+            ],
+            [
+              -338.0,
+              2573777.4545454546
+            ],
+            [
+              -322.0,
+              2573777.4545454546
+            ],
+            [
+              -305.0,
+              1715851.6363636367
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000109"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              3431703.2727272725
+            ],
+            [
+              -338.0,
+              3431703.2727272725
+            ],
+            [
+              -322.0,
+              3431703.2727272725
+            ],
+            [
+              -305.0,
+              2287802.1818181835
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000109"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1838.4124675324674
+            ],
+            [
+              -338.0,
+              1838.4124675324674
+            ],
+            [
+              -322.0,
+              1838.4124675324674
+            ],
+            [
+              -305.0,
+              1225.608311688312
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000110"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -93600.0,
+              1715851.6363636362
+            ],
+            [
+              -93583.0,
+              1715851.6363636362
+            ],
+            [
+              -93567.0,
+              1715851.6363636362
+            ],
+            [
+              -93550.0,
+              1143901.0909090918
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000110"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              26810.181818181816
+            ],
+            [
+              -338.0,
+              26810.181818181816
+            ],
+            [
+              -322.0,
+              26810.181818181816
+            ],
+            [
+              -305.0,
+              17873.45454545456
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000110"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              1225.6083116883117
+            ],
+            [
+              -338.0,
+              1225.6083116883117
+            ],
+            [
+              -322.0,
+              1225.6083116883117
+            ],
+            [
+              -305.0,
+              817.0722077922082
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000111"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              571950.5454545454
+            ],
+            [
+              -338.0,
+              571950.5454545454
+            ],
+            [
+              -322.0,
+              571950.5454545454
+            ],
+            [
+              -305.0,
+              381300.36363636376
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000111"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              178734.54545454544
+            ],
+            [
+              -338.0,
+              178734.54545454544
+            ],
+            [
+              -322.0,
+              178734.54545454544
+            ],
+            [
+              -305.0,
+              119156.36363636365
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000111"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              408.5361038961039
+            ],
+            [
+              -338.0,
+              408.5361038961039
+            ],
+            [
+              -322.0,
+              408.5361038961039
+            ],
+            [
+              -305.0,
+              272.3574025974026
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000112"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              58088.72727272728
+            ],
+            [
+              -338.0,
+              58088.72727272728
+            ],
+            [
+              -322.0,
+              58088.72727272728
+            ],
+            [
+              -305.0,
+              38725.81818181818
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000112"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              0.2727272727272727
+            ],
+            [
+              -338.0,
+              0.2727272727272727
+            ],
+            [
+              -322.0,
+              0.2727272727272727
+            ],
+            [
+              -305.0,
+              0.18181818181818188
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000113"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              43690.666666666664
+            ],
+            [
+              -330.0,
+              43690.666666666664
+            ],
+            [
+              -305.0,
+              43690.66666666667
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkIn",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000113"
+          },
+          "unit": "Bytes",
+          "points_from_anchor": [
+            [
+              -355.0,
+              15639.272727272728
+            ],
+            [
+              -338.0,
+              15639.272727272728
+            ],
+            [
+              -322.0,
+              15639.272727272728
+            ],
+            [
+              -305.0,
+              10426.181818181816
+            ]
+          ]
+        },
+        {
+          "namespace": "AWS/EC2",
+          "metric_name": "NetworkPacketsOut",
+          "dimensions": {
+            "InstanceId": "i-0hld000000000113"
+          },
+          "unit": "Count",
+          "points_from_anchor": [
+            [
+              -355.0,
+              25.533506493506493
+            ],
+            [
+              -338.0,
+              25.533506493506493
+            ],
+            [
+              -322.0,
+              25.533506493506493
+            ],
+            [
+              -305.0,
+              17.022337662337662
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}

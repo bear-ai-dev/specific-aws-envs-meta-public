@@ -1,0 +1,167 @@
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:29 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating MeteringCo API calls[39m
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "startDate": "2026-08-25T19:15:25.216Z",
+  "endDate": "2026-08-26T01:15:25.216Z",
+  "businessIDParam": "harborline-freight"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-6a17-harborline-alt in window, skipping[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-2d83-harborline-prod in window, skipping[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mFailed to record apiCall[39m
+[31m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [31m  ERROR[39m [38;5;3m[TokenConsumerService] [39m[31mObject:[39m
+{
+  "name": "Error",
+  "message": "invalid float value for field 'recordValue': undefined",
+  "stack": "Error: invalid float value for field 'recordValue': undefined\n    at me.floatField (/app/node_modules/@influxdata/influxdb-client/src/Point.ts:148:13)\n    at TokenConsumerService.recordApiCall (/app/src/token-consumer/token-consumer.service.ts:141:19)\n    at async main (/app/.verifier-drive.ts:256:17)"
+}
+
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating MeteringCo API calls[39m
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "startDate": "2026-08-26T01:15:25.216Z",
+  "endDate": "2026-08-26T09:15:25.216Z",
+  "businessIDParam": "harborline-freight"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-6a17-harborline-alt in window, skipping[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-2d83-harborline-prod in window, skipping[39m
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating MeteringCo API calls[39m
+[32m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "startDate": "2026-08-26T01:15:25.216Z",
+  "endDate": "2026-08-26T09:15:25.216Z",
+  "businessIDParam": "harborline-staging"
+}
+
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-6a17-harborline-alt in window, skipping[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:30 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[95mNo usage for customer cus-2d83-harborline-prod in window, skipping[39m
+[95m[Nest] 2561  - [39m08/26/2026, 7:15:31 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m

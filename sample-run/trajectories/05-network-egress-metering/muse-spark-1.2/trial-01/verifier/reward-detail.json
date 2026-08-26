@@ -1,0 +1,192 @@
+{
+  "reward": 0.0,
+  "score": 0.0,
+  "detail": {
+    "runs": {
+      "transfer": {
+        "ok": false,
+        "expected": [
+          {
+            "customerId": "cus_bastion",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 3145728.0
+          },
+          {
+            "customerId": "cus_calliper",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 131072.0
+          },
+          {
+            "customerId": "cus_ravelin",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 8388608.0
+          },
+          {
+            "customerId": "cus_solenoid",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 0.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 524288.0
+          },
+          {
+            "customerId": "cus_wharfage",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 2097152.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ravelin",
+            "recordValue": 8388608,
+            "metadata": {
+              "Name": "gateway-a",
+              "meteringcoCustomerId": "cus_ravelin",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000101"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_bastion",
+            "recordValue": 3145728,
+            "metadata": {
+              "Name": "extract-a",
+              "meteringcoCustomerId": "cus_bastion",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000103"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_kestrelmoor",
+            "recordValue": 0,
+            "metadata": {
+              "Name": "probe-a",
+              "meteringcoCustomerId": "cus_kestrelmoor",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000104"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_solenoid",
+            "recordValue": 0,
+            "metadata": {
+              "Name": "parked-a",
+              "meteringcoCustomerId": "cus_solenoid",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000105"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "Name": "shared-a",
+              "meteringcoCustomerId": "cus_tallow",
+              "meteringcoDimensionId": "dim_hld_replica,dim_hld_transfer",
+              "InstanceId": "i-0hld000000000106"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_wharfage",
+            "recordValue": 2097152,
+            "metadata": {
+              "Name": "seasonal-a",
+              "meteringcoCustomerId": "cus_wharfage",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000111"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.421Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_calliper",
+            "recordValue": 131072,
+            "metadata": {
+              "Name": "drain-a",
+              "meteringcoCustomerId": "cus_calliper",
+              "meteringcoDimensionId": "dim_hld_transfer",
+              "InstanceId": "i-0hld000000000113"
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": [
+          "billed customers that owe nothing on this dimension: ['cus_kestrelmoor']"
+        ]
+      },
+      "replica": {
+        "ok": true,
+        "expected": [
+          {
+            "customerId": "cus_ferrule",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 393216.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 524288.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-26T06:57:44.520Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "Name": "shared-a",
+              "meteringcoCustomerId": "cus_tallow",
+              "meteringcoDimensionId": "dim_hld_replica,dim_hld_transfer",
+              "InstanceId": "i-0hld000000000106"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-26T06:57:44.520Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ferrule",
+            "recordValue": 393216,
+            "metadata": {
+              "Name": "mirror-a",
+              "meteringcoCustomerId": "cus_ferrule",
+              "meteringcoDimensionId": "dim_hld_replica",
+              "InstanceId": "i-0hld000000000107"
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": []
+      }
+    }
+  }
+}

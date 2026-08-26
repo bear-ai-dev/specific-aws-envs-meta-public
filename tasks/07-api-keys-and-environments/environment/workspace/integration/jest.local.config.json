@@ -1,0 +1,16 @@
+{
+    "moduleFileExtensions": ["js", "json", "ts"],
+    "rootDir": ".",
+    "testEnvironment": "node",
+    "testRegex": ".integration.spec.ts$",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "setupFiles": ["./localEnvVars.js"],
+    "testTimeout": 600000,
+    "globalTeardown": "./setupAndTeardown/globalTeardown.ts",
+    "maxWorkers": "20%",
+    "moduleNameMapper": {
+        "^(\\.\\.?\\/.+)\\.js$": "$1"
+    }
+}

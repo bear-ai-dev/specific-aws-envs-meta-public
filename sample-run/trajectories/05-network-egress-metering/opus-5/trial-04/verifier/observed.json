@@ -1,0 +1,263 @@
+{
+  "runs": {
+    "transfer": {
+      "ok": true,
+      "rows": [
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_ravelin",
+          "recordValue": 8388608,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000101,i-0hld000000000102",
+            "instanceCount": 2,
+            "observationCount": 2,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_bastion",
+          "recordValue": 3145728,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000103",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_solenoid",
+          "recordValue": 0,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000105",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_tallow",
+          "recordValue": 524288,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000106",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_wharfage",
+          "recordValue": 2097152,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000111",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.711Z",
+          "dimensionId": "dim_hld_transfer",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_calliper",
+          "recordValue": 131072,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000113",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:13.650Z",
+            "intervalEnd": "2026-08-25T23:06:13.650Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        }
+      ],
+      "error": null
+    },
+    "replica": {
+      "ok": true,
+      "rows": [
+        {
+          "timestamp": "2026-08-25T23:06:14.762Z",
+          "dimensionId": "dim_hld_replica",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_tallow",
+          "recordValue": 524288,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000106",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:14.716Z",
+            "intervalEnd": "2026-08-25T23:06:14.716Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        },
+        {
+          "timestamp": "2026-08-25T23:06:14.762Z",
+          "dimensionId": "dim_hld_replica",
+          "businessID": "biz-tessellate",
+          "customerId": "cus_ferrule",
+          "recordValue": 393216,
+          "metadata": {
+            "region": "us-east-1",
+            "metricName": "NetworkOut",
+            "unit": "Bytes",
+            "instanceIds": "i-0hld000000000107",
+            "instanceCount": 1,
+            "observationCount": 1,
+            "intervalStart": "2026-08-25T22:56:14.716Z",
+            "intervalEnd": "2026-08-25T23:06:14.716Z",
+            "periodInSeconds": 300
+          },
+          "_measurement": "usageMeasurement"
+        }
+      ],
+      "error": null
+    }
+  },
+  "discovery": {
+    "authored": [
+      "src/app.module.ts",
+      "src/dimensions/dimensions.service.ts",
+      "src/dimensions/dto/create-dimension.dto.ts",
+      "src/measurement-config/entities/measurement-config.entity.ts",
+      "src/microservices/ec2NetworkOutDataGatherer/dto/ec2NetworkOutDataGatherer.dto.ts",
+      "src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.module.ts",
+      "src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.spec.ts",
+      "src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.ts",
+      "src/scheduler/dto/scheduler.dto.ts",
+      "src/utils/aws/awsCloudWatch.ts",
+      "src/utils/aws/awsEc2.ts"
+    ],
+    "candidates": [
+      {
+        "file": "src/microservices/ec2NetworkOutDataGatherer/ec2NetworkOutDataGatherer.service.ts",
+        "className": "Ec2NetworkOutDataGathererService",
+        "method": "readOperationJob",
+        "jobKind": "instanceNetworkOut",
+        "rank": 4
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "create",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "createKeyForManagedInfraDimensionSchedule",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findAll",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findByMeasurementId",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "findOne",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "remove",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "removeAll",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "ressourceTypeToDimensionType",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "transformDtoToEntityInput",
+        "jobKind": null,
+        "rank": 1
+      },
+      {
+        "file": "src/dimensions/dimensions.service.ts",
+        "className": "DimensionsService",
+        "method": "update",
+        "jobKind": null,
+        "rank": 1
+      }
+    ],
+    "chosen": "Ec2NetworkOutDataGathererService.readOperationJob"
+  }
+}

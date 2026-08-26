@@ -1,0 +1,42 @@
+files the submission wrote or changed: 8
+(node:3741) [DEP0060] DeprecationWarning: The `util._extend` API is deprecated. Please use Object.assign() instead.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+candidate: Ec2EgressDataGathererService.readOperationJob in src/microservices/ec2EgressDataGatherer/ec2EgressDataGatherer.service.ts (rank 4)
+candidate: DimensionsService.create in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.createKeyForManagedInfraDimensionSchedule in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findByMeasurementId in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.findOne in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.remove in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.removeAll in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.ressourceTypeToDimensionType in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.transformDtoToEntityInput in src/dimensions/dimensions.service.ts (rank 1)
+candidate: DimensionsService.update in src/dimensions/dimensions.service.ts (rank 1)
+candidate: MeasurementConfigService.create in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.createMeasurementConfig in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.findAll in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.findOne in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.remove in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.update in src/measurement-config/measurement-config.service.ts (rank 1)
+candidate: MeasurementConfigService.validateIntelligentMeasurement in src/measurement-config/measurement-config.service.ts (rank 1)
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mProcessing Automated Instance Network Egress gathering event, logging inputs[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","subject":"biz-tessellate","region":"us-east-1","dimensionId":"dim_hld_transfer"}[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mQuerying NetworkOut for window 2026-08-26T06:50:00.000Z to 2026-08-26T06:55:00.000Z period 300[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_ravelin: 8388608 bytes from 2 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_bastion: 3145728 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mSkipping customer cus_kestrelmoor: no NetworkOut datapoints in window[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_solenoid: 0 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_tallow: 524288 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_wharfage: 2097152 bytes from 2 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_calliper: 131072 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mFinished collecting EC2 network egress data[39m
+Ec2EgressDataGathererService.readOperationJob: 6 row(s)
+driving Ec2EgressDataGathererService.readOperationJob from src/microservices/ec2EgressDataGatherer/ec2EgressDataGatherer.service.ts
+[transfer] 6 row(s)
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mProcessing Automated Instance Network Egress gathering event, logging inputs[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32m{"rate":"*/5 * * * *","businessID":"biz-tessellate","externalId":"tes-hld-8821","subject":"biz-tessellate","region":"us-east-1","dimensionId":"dim_hld_replica"}[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mQuerying NetworkOut for window 2026-08-26T06:50:00.000Z to 2026-08-26T06:55:00.000Z period 300[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:26 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_tallow: 524288 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:27 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mPublished egress usage for customer cus_ferrule: 393216 bytes from 1 instances[39m
+[32m[Nest] 3741  - [39m08/26/2026, 7:02:27 AM [32m    LOG[39m [38;5;3m[Ec2EgressDataGathererService] [39m[32mFinished collecting EC2 network egress data[39m
+[replica] 2 row(s)

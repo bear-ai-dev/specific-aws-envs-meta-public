@@ -1,10 +1,9 @@
 {
-  "schema_version": 1,
-  "transformation": "deterministic_identifier_only_publication_normalization",
-  "scope": [
-    "four task definitions and workspaces",
-    "captured trajectories, submitted deliverables, and verifier artifacts",
-    "manifests, indexes, and documentation"
+  "controls_pending_tasks": [
+    "05-network-egress-metering",
+    "06-api-token-metering",
+    "07-api-keys-and-environments",
+    "08-business-settings-persistence"
   ],
   "normalized_identifier_classes": [
     "organization names and code symbols",
@@ -23,15 +22,23 @@
     "verifier outputs and binary rewards",
     "recorded trial identifiers and trial membership"
   ],
+  "public_controls_reproduction_jobs": [
+    "xai-public-controls-20260819",
+    "meta-public-controls-20260824"
+  ],
   "public_evidence_layout": {
     "trajectories": "sample-run/trajectories/<task>/<model>/trial-XX",
     "trial_index": "sample-run/indexes/trials.json"
   },
-  "recorded_runtime_task_sha256": {
-    "01-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
-    "02-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
-    "03-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
-    "04-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
+  "public_task_sha256": {
+    "01-entitlement-overage-lines": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
+    "02-measurement-failure-dlq": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
+    "03-customer-communication-dispatch": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
+    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee",
+    "05-network-egress-metering": "cc084261e1c314c0d3b967d8017e8abff574ef5ea104085529bfa7e45e4b0c27",
+    "06-api-token-metering": "d9c9f4db0c30985d80d209a10ca998ed4e7e8555d9bf61c8158e1d286b176907",
+    "07-api-keys-and-environments": "f9484c3e65ee01066372b10140d7faa03bfed24c1ddc29b19acdf07f1c8a34e7",
+    "08-business-settings-persistence": "0b5088a6a672fa53bb4fea4bdc5d9369215427e10d0f01fec7931d56c4c79bff"
   },
   "recorded_harbor_task_checksum": {
     "01-entitlement-overage-lines": "34de6aa9cbef7bfa1c919c70303e304395147d45f83b511b910e3e73e9478332",
@@ -39,19 +46,58 @@
     "03-customer-communication-dispatch": "ced28d55fa0d97f12302b61cb5a9106a1c304372b78cc594fcfc43d3b47a92ae",
     "04-iam-role-validation": "a74ca5430103a3a75e8c297f4629c77b51b8a3efcca108136df46566e1cc4a95"
   },
-  "public_task_sha256": {
-    "01-entitlement-overage-lines": "6da306e6bdb07925b3ecd54f7bcb1212cbddab0e410f387aeabbbb37f1f69e10",
-    "02-measurement-failure-dlq": "354393b299f29439d5819161cb8476297a0888f78ef619963f5490ac054ee315",
-    "03-customer-communication-dispatch": "f2dd60df31464d0cb5baaf68c2f67637788f6157b76a9f45e6770d63ccc3f191",
-    "04-iam-role-validation": "fcd2f159ca34b5ec38be8597af4fad7357dff3c6d7432c2effcf3f056da6aeee"
+  "recorded_harbor_task_checksum_by_cohort": {
+    "05-network-egress-metering": {
+      "muse-spark-1.2": [
+        "4374f9e85f50908804e00c228d4ee94d4c22ba896df0b844883b86e3c36497d8"
+      ],
+      "opus-5": [
+        "6427d0d789ad611f6ebe201045f26ed7c62da6e71722d8792558a0fdf37c2b56",
+        "3f7e8cc2f7d5910314cab6ee5598e5333a6599880f896994887590c69373231a"
+      ]
+    },
+    "06-api-token-metering": {
+      "muse-spark-1.2": [
+        "85c81815bb8bc1055dab72fb7c3f6ac5b50eff5c09f20f42df1308c98a6ef977"
+      ],
+      "opus-5": [
+        "28a06245e0c745b4801d176437331dafcfbe631d51473b67d1050e58b355d134"
+      ]
+    },
+    "07-api-keys-and-environments": {
+      "muse-spark-1.2": [
+        "383909d5ae907286dd206c3dcd0dcab80b2b2ca6d42b84bb1f48a609dfbc4af2"
+      ],
+      "opus-5": [
+        "3f38fb2bc343a749016fa1425494c139f4baa0c44e84bb84c618d32ec94bb78e"
+      ]
+    },
+    "08-business-settings-persistence": {
+      "muse-spark-1.2": [
+        "280ebb9dd9a4cfd0e2ac90e2d8f7e3ee62de245aa9771991fdf873e1fbccba39"
+      ],
+      "opus-5": [
+        "88ce741d2f494741a7134c98d75497b812295523d65605ba8a99abab0522e0d7"
+      ]
+    }
   },
   "recorded_runtime_controls": {
-    "oracle_required": 1.0,
     "nop_required": 0.0,
+    "oracle_required": 1.0,
     "tasks_passing": 4
   },
-  "public_controls_reproduction_jobs": [
-    "xai-public-controls-20260819",
-    "meta-public-controls-20260824"
-  ]
+  "recorded_runtime_task_sha256": {
+    "01-entitlement-overage-lines": "92e4b98286ca4dd72881f59542ae4c17ad010f9910e29839c725cedbffe00ab3",
+    "02-measurement-failure-dlq": "399555755149536b509b00884f9821e6478e28670fdbc49447dfe5798396c8f8",
+    "03-customer-communication-dispatch": "714b5d0c7986d9f77975acf5a6543040141ebcb06f5ea01580fa53c84f623801",
+    "04-iam-role-validation": "901ad305d007256b8411eae1365d7d18dfc3d23115a938459d83ede510ac486a"
+  },
+  "schema_version": 1,
+  "scope": [
+    "eight task definitions and workspaces",
+    "captured trajectories, submitted deliverables, and verifier artifacts",
+    "manifests, indexes, and documentation"
+  ],
+  "task_checksum_note": "Tasks 1-4 record one Harbor task checksum shared by both cohorts. Tasks 5-8 record a different checksum per cohort because the task packages were repackaged between the Opus 5 rollout (2026-08-25) and the Muse rollout (2026-08-26), and once more before one re-run Opus 5 trial on Task 5. Equivalence was checked on the axes that decide grading: per task, the instruction text each cohort saw is byte-identical, the verifier rule lists are identical, and the expected verifier rows are value-identical. Freezing one package per task is an outstanding publication step.",
+  "transformation": "deterministic_identifier_only_publication_normalization"
 }

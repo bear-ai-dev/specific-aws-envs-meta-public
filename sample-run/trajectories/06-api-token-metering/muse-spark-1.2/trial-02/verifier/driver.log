@@ -1,0 +1,79 @@
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [32m    LOG[39m [38;5;3m[InfluxService] [39m[32mInflux URL: http://127.0.0.1:4566, Influx Org: meteringco[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Aggregation event[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "dimensionType": "aggregation-processor",
+  "startDate": "2026-08-25T19:17:47.031Z",
+  "endDate": "2026-08-26T01:17:47.031Z",
+  "rate": "0 */6 * * *",
+  "scheduleParameters": {
+    "businessID": "harborline-freight",
+    "subject": "auth0|harborline-ops-6d21",
+    "dimensionType": "aggregation-processor",
+    "startDate": "2026-08-25T19:17:47.031Z",
+    "endDate": "2026-08-26T01:17:47.031Z"
+  }
+}
+
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating window 2026-08-25T19:17:47.031Z - 2026-08-26T01:17:47.031Z[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mNo traffic for cus-2d83-harborline-prod in window, total 0, skipping billing[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:51 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-freight[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mScheduling aggregation processor for businessID: harborline-staging[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Aggregation event[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-freight",
+  "subject": "auth0|harborline-ops-6d21",
+  "dimensionType": "aggregation-processor",
+  "startDate": "2026-08-26T01:17:47.031Z",
+  "endDate": "2026-08-26T09:17:47.031Z",
+  "rate": "0 */6 * * *",
+  "scheduleParameters": {
+    "businessID": "harborline-freight",
+    "subject": "auth0|harborline-ops-6d21",
+    "dimensionType": "aggregation-processor",
+    "startDate": "2026-08-26T01:17:47.031Z",
+    "endDate": "2026-08-26T09:17:47.031Z"
+  }
+}
+
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating window 2026-08-26T01:17:47.031Z - 2026-08-26T09:17:47.031Z[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-2d83-harborline-prod from token cache with MeteringCoBusinessID: meteringco-production[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mNo traffic for cus-2d83-harborline-prod in window, total 0, skipping billing[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mProcessing Aggregation event[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mObject:[39m
+{
+  "businessID": "harborline-staging",
+  "subject": "auth0|harborline-ops-6d21",
+  "dimensionType": "aggregation-processor",
+  "startDate": "2026-08-26T01:17:47.031Z",
+  "endDate": "2026-08-26T09:17:47.031Z",
+  "rate": "0 */6 * * *",
+  "scheduleParameters": {
+    "businessID": "harborline-staging",
+    "subject": "auth0|harborline-ops-6d21",
+    "dimensionType": "aggregation-processor",
+    "startDate": "2026-08-26T01:17:47.031Z",
+    "endDate": "2026-08-26T09:17:47.031Z"
+  }
+}
+
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mAggregating window 2026-08-26T01:17:47.031Z - 2026-08-26T09:17:47.031Z[39m
+[95m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [95m  DEBUG[39m [38;5;3m[TokenConsumerService] [39m[95mRetrieved customer: cus-6a17-harborline-alt from token cache with MeteringCoBusinessID: meteringco-sandbox[39m
+[32m[Nest] 3175  - [39m08/26/2026, 7:17:52 AM [32m    LOG[39m [38;5;3m[TokenConsumerAsyncProcessor] [39m[32mNo traffic for cus-6a17-harborline-alt in window, total 0, skipping billing[39m

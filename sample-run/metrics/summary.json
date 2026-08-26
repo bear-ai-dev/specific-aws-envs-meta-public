@@ -1,7 +1,7 @@
 {
   "source_index": "sample-run/indexes/trials.json",
-  "trials": 64,
-  "valid_trials": 64,
+  "trials": 128,
+  "valid_trials": 128,
   "models": [
     "Muse Spark 1.2",
     "Opus 5"
@@ -10,7 +10,11 @@
     "01-entitlement-overage-lines",
     "02-measurement-failure-dlq",
     "03-customer-communication-dispatch",
-    "04-iam-role-validation"
+    "04-iam-role-validation",
+    "05-network-egress-metering",
+    "06-api-token-metering",
+    "07-api-keys-and-environments",
+    "08-business-settings-persistence"
   ],
   "tool_names": [
     "bash"
@@ -18,74 +22,74 @@
   "metrics": {
     "agent_seconds": {
       "min": 324.260418,
-      "median": 864.8239550000001,
-      "p90": 3448.106912,
+      "median": 1169.311782,
+      "p90": 2968.987413,
       "max": 7234.974114
     },
     "full_trial_seconds": {
       "min": 381.403212,
-      "median": 960.690398,
-      "p90": 3557.549904,
+      "median": 1271.8653265,
+      "p90": 3061.188183,
       "max": 7330.966532
     },
     "setup_seconds": {
-      "min": 5.671054,
-      "median": 8.6688635,
-      "p90": 15.727791,
+      "min": 4.906074,
+      "median": 8.132390000000001,
+      "p90": 10.076814,
       "max": 15.992488
     },
     "verifier_seconds": {
-      "min": 4.612498,
-      "median": 10.83634,
-      "p90": 30.755452,
+      "min": 4.166143,
+      "median": 7.4250745,
+      "p90": 30.579479,
       "max": 31.24539
     },
     "model_api_calls": {
       "min": 33,
-      "median": 68.0,
-      "p90": 91,
+      "median": 82.0,
+      "p90": 116,
       "max": 189
     },
     "tool_calls_requested": {
       "min": 0,
       "median": 68.5,
-      "p90": 88,
+      "p90": 113,
       "max": 186
     },
     "tool_calls_executed": {
       "min": 0,
       "median": 67.0,
-      "p90": 87,
+      "p90": 109,
       "max": 184
     },
     "input_tokens": {
       "min": 1088122,
-      "median": 5201492.5,
-      "p90": 10415929,
+      "median": 7988836.0,
+      "p90": 14848198,
       "max": 35832063
     },
     "cached_input_tokens": {
       "min": 1036396,
-      "median": 4039359.5,
-      "p90": 7010123,
+      "median": 7027789.5,
+      "p90": 13640210,
       "max": 26616476
     },
     "output_tokens": {
       "min": 19319,
-      "median": 39871.0,
-      "p90": 329857,
+      "median": 56198.0,
+      "p90": 258516,
       "max": 627099
     },
     "total_tokens": {
       "min": 1108102,
-      "median": 5241191.0,
-      "p90": 10719375,
+      "median": 8067850.5,
+      "p90": 14895967,
       "max": 36405782
     },
     "cost_usd": {
       "min": 0.0,
-      "median": 3.4092401,
-      "p90": 6.39203705,
+      "median": 3.787712974999999,
+      "p90": 10.0462186,
       "max": 22.619395749999992
     }
   },
@@ -201,6 +205,118 @@
       "median_tool_calls_requested": 77.0,
       "median_total_tokens": 5372233.5,
       "median_cost_usd": 4.9335451
+    },
+    {
+      "task": "05-network-egress-metering",
+      "task_label": "Task 5",
+      "model": "openai/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 6,
+      "observed_pass_rate": 0.75,
+      "median_agent_seconds": 1252.84404,
+      "median_model_api_calls": 97.5,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 10650581.0,
+      "median_cost_usd": 2.2347590250000002
+    },
+    {
+      "task": "05-network-egress-metering",
+      "task_label": "Task 5",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 1169.0148964999998,
+      "median_model_api_calls": 96.0,
+      "median_tool_calls_requested": 112.5,
+      "median_total_tokens": 10566568.5,
+      "median_cost_usd": 8.505263387499998
+    },
+    {
+      "task": "06-api-token-metering",
+      "task_label": "Task 6",
+      "model": "openai/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 1,
+      "observed_pass_rate": 0.125,
+      "median_agent_seconds": 1002.4810225,
+      "median_model_api_calls": 121.5,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 17206401.0,
+      "median_cost_usd": 3.644116574999999
+    },
+    {
+      "task": "06-api-token-metering",
+      "task_label": "Task 6",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 7,
+      "observed_pass_rate": 0.875,
+      "median_agent_seconds": 1872.4895445000002,
+      "median_model_api_calls": 92.5,
+      "median_tool_calls_requested": 105.0,
+      "median_total_tokens": 12449544.0,
+      "median_cost_usd": 10.899895324999997
+    },
+    {
+      "task": "07-api-keys-and-environments",
+      "task_label": "Task 7",
+      "model": "openai/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 2,
+      "observed_pass_rate": 0.25,
+      "median_agent_seconds": 909.597227,
+      "median_model_api_calls": 106.0,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 13563360.5,
+      "median_cost_usd": 2.668740775
+    },
+    {
+      "task": "07-api-keys-and-environments",
+      "task_label": "Task 7",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 1340.004645,
+      "median_model_api_calls": 97.5,
+      "median_tool_calls_requested": 109.0,
+      "median_total_tokens": 12163441.5,
+      "median_cost_usd": 9.855563437500003
+    },
+    {
+      "task": "08-business-settings-persistence",
+      "task_label": "Task 8",
+      "model": "openai/muse-spark-1.2",
+      "model_label": "Muse Spark 1.2",
+      "attempts": 8,
+      "solves": 4,
+      "observed_pass_rate": 0.5,
+      "median_agent_seconds": 585.827232,
+      "median_model_api_calls": 83.0,
+      "median_tool_calls_requested": 0.0,
+      "median_total_tokens": 8176597.0,
+      "median_cost_usd": 1.8254707749999997
+    },
+    {
+      "task": "08-business-settings-persistence",
+      "task_label": "Task 8",
+      "model": "bedrock/us.anthropic.claude-opus-5",
+      "model_label": "Opus 5",
+      "attempts": 8,
+      "solves": 8,
+      "observed_pass_rate": 1.0,
+      "median_agent_seconds": 1495.6650534999999,
+      "median_model_api_calls": 92.5,
+      "median_tool_calls_requested": 104.0,
+      "median_total_tokens": 9900879.5,
+      "median_cost_usd": 7.990961687499999
     }
   ]
 }

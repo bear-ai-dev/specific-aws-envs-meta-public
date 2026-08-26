@@ -1,0 +1,150 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+    name: agent-transformer-ingress
+    labels:
+        app: agent-transformer-ingress
+    annotations:
+        alb.ingress.kubernetes.io/scheme: internet-facing
+        alb.ingress.kubernetes.io/target-type: ip
+spec:
+    rules:
+        - http:
+              paths:
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: meteringco-agent-transformer-service
+                            port:
+                                number: 80
+                  - path: /
+                    pathType: Prefix
+                    backend:
+                        service:
+                            name: meteringco-agent-transformer-service
+                            port:
+                                number: 443
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: meteringco-agent-transformer-service
+spec:
+    selector:
+        app: meteringco-agent-transformer
+    ports:
+        - port: 80
+          name: http
+          targetPort: 3000
+        - port: 443
+          name: https
+          targetPort: 3000
+    type: NodePort
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: meteringco-agent-transformer
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            name: meteringco-agent-transformer
+            app: meteringco-agent-transformer
+    template:
+        metadata:
+            labels:
+                prometheus.io/scrape: 'true'
+                name: meteringco-agent-transformer
+                app: meteringco-agent-transformer
+                meteringco: poll-for-me
+        spec:
+            containers:
+                - name: retrieval
+                  image: meteringco-agent-transformer:local
+                  env: 
+                    - name: STAGE 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: STAGE 
+                            optional: false
+                    - name: INFLUX_URL 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: INFLUX_URL 
+                            optional: false
+                    - name: INFLUX_TOKEN 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: INFLUX_TOKEN 
+                            optional: false
+                    - name: INFLUX_ORG 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: INFLUX_ORG 
+                            optional: false
+                    - name: GENERIC_EXPRESS 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: GENERIC_EXPRESS 
+                            optional: false
+                    - name: STRIPE_TOKEN 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: STRIPE_TOKEN 
+                            optional: false
+                    - name: REDIS_URL 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: REDIS_URL 
+                            optional: false
+                    - name: REDIS_PORT 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: REDIS_PORT 
+                            optional: false
+                    - name: AUTH0_ISSUER_URL 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: AUTH0_ISSUER_URL 
+                            optional: false
+                    - name: AUTH0_AUDIENCE 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: AUTH0_AUDIENCE 
+                            optional: false
+                    - name: REDIS_PASSWORD 
+                      valueFrom: 
+                        secretKeyRef: 
+                            name: meteringco-backend-secret 
+                            key: REDIS_PASSWORD 
+                            optional: false
+                  ports:
+                    - containerPort: 3000
+                  readinessProbe:
+                    tcpSocket:
+                        port: 3000
+                    initialDelaySeconds: 5
+                    periodSeconds: 5
+                  livenessProbe:
+                    httpGet:
+                        path: /health
+                        port: 3000
+                  startupProbe:
+                    httpGet:
+                        path: /health
+                        port: 3000
+                    failureThreshold: 10
+                    periodSeconds: 5
+

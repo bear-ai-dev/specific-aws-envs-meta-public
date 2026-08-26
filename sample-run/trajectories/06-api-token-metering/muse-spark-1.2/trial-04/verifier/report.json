@@ -1,0 +1,71 @@
+{
+  "reward": 0.0,
+  "reached": {
+    "registrations_written": true,
+    "billable_rollup_produced": true
+  },
+  "rules": [
+    {
+      "name": "registration_shape",
+      "description": "each API call becomes one registration in the aggregate bucket",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "identity_in_series_key",
+      "description": "calls sharing an instant stay apart by identity",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "call_time_placement",
+      "description": "a registration sits at the time of the call, not the time it was recorded",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "redelivery_idempotent",
+      "description": "a redelivered call leaves one registration, whichever batch it arrives in",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "windowed_rollup",
+      "description": "each window produces one billable roll-up worth the window's traffic",
+      "passed": true,
+      "expected_window_totals": {
+        "cus-2d83-harborline-prod": [
+          0.003,
+          0.008
+        ],
+        "cus-6a17-harborline-alt": [
+          0.001
+        ]
+      },
+      "observed_rollups": {
+        "cus-2d83-harborline-prod": [
+          0.003,
+          0.008
+        ],
+        "cus-6a17-harborline-alt": [
+          0.001
+        ]
+      },
+      "problems": []
+    },
+    {
+      "name": "platform_account",
+      "description": "the roll-up is billed to the platform's own account for that customer",
+      "passed": true,
+      "problems": []
+    },
+    {
+      "name": "request_path_meters",
+      "description": "serving a measurement meters the call that asked for it",
+      "passed": false,
+      "problems": [
+        "serving a measurement registered no API call of its own"
+      ]
+    }
+  ]
+}

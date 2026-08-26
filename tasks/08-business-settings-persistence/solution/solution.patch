@@ -1,0 +1,811 @@
+diff -ruN a/integration/settings/settingsCrud.integration.spec.ts b/integration/settings/settingsCrud.integration.spec.ts
+--- a/integration/settings/settingsCrud.integration.spec.ts	2026-08-25 22:38:15
++++ b/integration/settings/settingsCrud.integration.spec.ts	2026-08-25 22:13:34
+@@ -1,4 +1,7 @@
+-import { Setting, TaxCalculationType } from '../client/privateClient/settings.js';
++import { Scheduler } from '../client/privateClient/scheduler.js';
++import { ACCESS_TOKEN } from '../client/publicClient/init.js';
++import { ComputeCostSource, Setting, TaxCalculationType } from '../client/privateClient/settings.js';
++import { User } from '../client/privateClient/user.js';
+ import { sampleBasicSettings } from '../setupAndTeardown/setup.js';
+ import { sleep } from '../utils/utils.js';
+ 
+@@ -79,6 +82,49 @@
+             stripeConnected: expect.anything(),
+             taxJarApiKey: '<INSERT_SANDBOX_KEY>',
+             taxCalculationType: TaxCalculationType.meteringcoCalculated,
++        });
++    });
++    describe('Settings Scheduler', () => {
++        test('Setting EKS setting should schedule cost events for the user', async () => {
++            const data = await Setting.update({ ...sampleBasicSettings, computeCostSource: ComputeCostSource.eks });
++            expect(data).toEqual({
++                ...new Setting(sampleBasicSettings),
++                stripeConnected: expect.anything(),
++                taxJarApiKey: expect.anything(),
++                accountState: expect.anything(),
++            });
++            const {
++                data: [{ businessID }],
++            } = await User.get(ACCESS_TOKEN);
++            await sleep(1000 * 1.5);
++            const [{ id: schedulerId }] = await Scheduler.get(`${businessID}-getAndCommitPODCost`);
++            expect(schedulerId).toEqual(expect.anything());
++        });
++
++        test('Setting EKS setting should unset schedule when removed', async () => {
++            const data = await Setting.update({ ...sampleBasicSettings, computeCostSource: ComputeCostSource.eks });
++            expect(data).toEqual({
++                ...new Setting(sampleBasicSettings),
++                stripeConnected: expect.anything(),
++                taxJarApiKey: expect.anything(),
++                accountState: expect.anything(),
++            });
++            const {
++                data: [{ businessID }],
++            } = await User.get(ACCESS_TOKEN);
++            await sleep(1000 * 1.5);
++            const [{ id: schedulerId }] = await Scheduler.get(`${businessID}-getAndCommitPODCost`);
++            expect(schedulerId).toEqual(expect.anything());
++            const data2 = await Setting.update({ ...sampleBasicSettings, computeCostSource: ComputeCostSource.none });
++            expect(data2).toEqual({
++                ...new Setting({ ...sampleBasicSettings, computeCostSource: ComputeCostSource.none }),
++                stripeConnected: expect.anything(),
++                taxJarApiKey: expect.anything(),
++            });
++            await sleep(1000 * 1.5);
++            await expect(Scheduler.get(`${businessID}-getAndCommitPODCost`)).rejects.toEqual(
++                expect.objectContaining({ statusCode: 404 })
++            );
+         });
+     });
+ });
+diff -ruN a/src/setting/dto/update-profile.dto.ts b/src/setting/dto/update-profile.dto.ts
+--- a/src/setting/dto/update-profile.dto.ts	1970-01-01 05:30:00
++++ b/src/setting/dto/update-profile.dto.ts	2026-08-25 22:13:34
+@@ -0,0 +1,136 @@
++import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
++import { IsEmail, IsEnum, IsOptional, IsString, ValidationArguments } from 'class-validator';
++import { SendInvoiceEmail } from './update-settings.dto';
++
++export class UpdateProfileDto {
++    /**
++     * The Name for the Business Entity using MeteringCo
++     * <br><br>
++     * Example: `"My Smart Business Name"`
++     * @example "My Smart Business Name"
++     */
++    @IsString()
++    @IsOptional()
++    public businessName?: string;
++
++    /**
++     * Street number and name (address line 1)
++     * <br><br>
++     * Example: `"123 Success Street"`
++     * @example "123 Success Street"
++     */
++    @IsString()
++    @IsOptional()
++    public addressLine1?: string;
++
++    /**
++     * Apartment or unit and its number (address line 2)
++     * <br><br>
++     * Example: `"Suite 100"`
++     * @example "Suite 100"
++     */
++    @IsString()
++    @IsOptional()
++    public addressLine2?: string;
++
++    /**
++     * City of Business Entity's Location
++     * <br><br>
++     * Example: `"San Francisco"`
++     * @example "San Francisco"
++     */
++
++    @IsString()
++    @IsOptional()
++    public city?: string;
++
++    /**
++     * State of Business Entity's Location
++     * <br><br>
++     * Example: `"CA"`
++     * @example "CA"
++     */
++    @IsString()
++    @IsOptional()
++    public state?: string;
++
++    /**
++     * Country of Business Entity's Location
++     * <br><br>
++     * Example: `"USA"`
++     * @example "USA"
++     */
++    @IsString()
++    @IsOptional()
++    public country?: string;
++
++    /**
++     * Postal code of Business Entity's Location
++     * <br><br>
++     * Example: `"94188"`
++     * @example "94188"
++     */
++    @IsString()
++    @IsOptional()
++    public postalCode?: string;
++
++    /**
++     * Email address utilized by the Business Entity for customer support
++     * <br><br>
++     * Example: `"support@mybusiness.com"`
++     * @example "support@mybusiness.com"
++     */
++    @IsOptional()
++    @IsEmail()
++    public supportEmail?: string;
++    /**
++     * Whether MeteringCo should send invoices to customers.
++     * <br><br>
++     * Example: `"true"`
++     * @example "true"
++     */
++    @IsEnum(SendInvoiceEmail, {
++        message: (args: ValidationArguments) => {
++            const { value, constraints } = args;
++            const correctValues = Object.values(constraints[0]);
++            return `sendInvoiceEmail: The value ${value} is not a valid value for the sendInvoiceEmail field. The correct values are: ${correctValues}`;
++        },
++        each: true,
++    })
++    @IsOptional()
++    @ApiProperty()
++    public sendInvoiceEmail?: SendInvoiceEmail;
++
++    @IsOptional()
++    @ApiHideProperty()
++    public subject?: string;
++
++    @IsString()
++    @IsOptional()
++    @ApiHideProperty()
++    public vatId?: string;
++
++    @IsString()
++    @IsOptional()
++    @ApiHideProperty()
++    public customFields?: string;
++
++    /**
++     * The businessID associated with your account, not needed for full accounts, this is gathered during authentication
++     * @example 'My Cool Corp'
++     **/
++    @ApiHideProperty()
++    @IsString()
++    @IsOptional()
++    public businessID?: string;
++
++    /**
++     * The URL to redirect to after relevant requests, such as completion of a connection.
++     * <br><br>
++     * Example: `"https://mybusiness.com/redirect"`
++     * @example "https://mybusiness.com/redirect"
++     */
++    @IsString()
++    @IsOptional()
++    public redirectionUrl?: string;
++}
+diff -ruN a/src/setting/dto/update-settings.dto.ts b/src/setting/dto/update-settings.dto.ts
+--- a/src/setting/dto/update-settings.dto.ts	2026-08-25 22:37:22
++++ b/src/setting/dto/update-settings.dto.ts	2026-08-25 22:13:34
+@@ -23,8 +23,33 @@
+ import { AuditScope } from '../../audit/entities/audit.interface.js';
+ import { InvoiceApproval } from './InvoiceApproval.js';
+ import { FreeDimensionOnInvoice } from './FreeDimensionOnInvoice.js';
++import _ from 'lodash';
+ import { AppearanceOfferingPortalDto, PortalOfferingPageDto } from '../../portal/dto/PortalOfferingPageDto.js';
+ 
++export function isObject(item) {
++    return item && typeof item === 'object' && !Array.isArray(item);
++}
++function deepMerge(target, ...sources) {
++    if (!sources.length) return target;
++    const source = sources.shift();
++
++    if (isObject(target) && isObject(source)) {
++        for (const key in source) {
++            if (isObject(source[key])) {
++                if (!target[key]) Object.assign(target, { [key]: {} });
++                deepMerge(target[key], source[key]);
++            } else {
++                if (source[key] !== null) {
++                    Object.assign(target, { [key]: source[key] });
++                } else {
++                    delete target[key];
++                }
++            }
++        }
++    }
++
++    return deepMerge(target, ...sources);
++}
+ export enum InvoiceGeneration {
+     perTransaction = 'perTransaction',
+     consolidatedPerBillingCycle = 'consolidatedPerBillingCycle',
+@@ -183,6 +208,73 @@
+         PortalPages.logger.log(
+             `Page configuration: ${this.offering?.text} ${this.payment?.text} ${this.invoice?.text}`,
+         );
++    }
++    public static handleUpdatePages(argumentPages: PortalPages, updatedFields: UpdateSettingsDto): PortalPages {
++        const pages = JSON.parse(JSON.stringify(argumentPages));
++        if (updatedFields?.pages?.invoice && Object.keys(updatedFields.pages.invoice).length > 0) {
++            if (updatedFields.pages.invoice?.text) {
++                pages.invoice.text = updatedFields.pages.invoice.text;
++            }
++            if (updatedFields?.pages?.invoice.enabled !== undefined) {
++                pages.invoice.enabled = updatedFields.pages.invoice.enabled;
++            }
++        }
++        if (updatedFields?.pages?.payment && Object.keys(updatedFields.pages.payment).length > 0) {
++            if (updatedFields.pages.payment?.text) {
++                pages.payment.text = updatedFields.pages.payment.text;
++            }
++            if (updatedFields?.pages?.payment.enabled !== undefined) {
++                pages.payment.enabled = updatedFields.pages.payment.enabled;
++            }
++        }
++
++        if (updatedFields?.pages?.offering && Object.keys(updatedFields.pages.offering).length > 0) {
++            if (updatedFields.pages.offering?.text) {
++                pages.offering.text = updatedFields.pages.offering.text;
++            }
++            if (updatedFields?.pages?.offering.enabled !== undefined) {
++                pages.offering.enabled = updatedFields.pages.offering.enabled;
++            }
++            if (updatedFields?.pages?.offering?.appearance) {
++                // Remove Nulls from the object
++                pages.offering.appearance = deepMerge(
++                    pages.offering.appearance ? pages.offering.appearance : {},
++                    updatedFields.pages.offering.appearance,
++                );
++            }
++            if (updatedFields?.pages?.offering?.offerings) {
++                // pages.offering.offerings = updatedFields.pages.offering.offerings;
++                // if an offering exists in the database, and the user updates the offering, they only need to supply the updated fields.
++                // Since the offerings are an array, we are stating that order matters. Meaning the position for each is important.
++                // If a user wanted to update the second column in a three offering page, they would need to update the first index of the array.
++                // Similarlly to remove an offering configuration from the array the user would need to supply null for the object we want to remove.
++                const offerings = updatedFields.pages.offering.offerings;
++                const oldOfferings = pages.offering.offerings ? pages.offering.offerings : [];
++
++                if (offerings?.length > oldOfferings?.length) {
++                    pages.offering.offerings = offerings.reduce((acc, offeringPageUpdatedFields, index) => {
++                        if (offeringPageUpdatedFields === null) {
++                            return acc;
++                        } else {
++                            acc.push(
++                                deepMerge(oldOfferings[index] ? oldOfferings[index] : {}, offeringPageUpdatedFields),
++                            );
++                            return acc;
++                        }
++                    }, []);
++                } else {
++                    pages.offering.offerings = oldOfferings.reduce((acc, offeringPageUpdatedFields, index) => {
++                        if (offerings[index] === null) {
++                            return acc;
++                        } else {
++                            acc.push(deepMerge(offeringPageUpdatedFields, offerings[index] ? offerings[index] : {}));
++                            return acc;
++                        }
++                    }, []);
++                }
++            }
++        }
++        return pages;
+     }
+ }
+ 
+diff -ruN a/src/setting/entities/settings.entity.ts b/src/setting/entities/settings.entity.ts
+--- a/src/setting/entities/settings.entity.ts	2026-08-25 22:37:01
++++ b/src/setting/entities/settings.entity.ts	2026-08-25 22:13:34
+@@ -16,6 +16,8 @@
+ import { TaxCalculationType } from '../dto/TaxCalculationType.js';
+ import { SettingInfluxRow } from '../../influx/entities/settingsInfluxTable.entity.js';
+ import { InvoicePaymentTerm } from '../../invoice/entities/InvoicePaymentTerm.js';
++import { PodCostEntity } from '../../cost/entities/podCost.entity.js';
++import { SchedulerService } from '../../scheduler/scheduler.service.js';
+ import { AccountState } from './AccountState.js';
+ import { FreeDimensionOnInvoice } from '../dto/FreeDimensionOnInvoice.js';
+ 
+@@ -162,6 +164,27 @@
+         this.supportEmail = supportEmail;
+         this.sendInvoiceEmail = sendInvoiceEmail;
+         this.redirectionUrl = redirectionUrl;
++    }
++
++    static async handleSchedulerChanges(
++        oldSettings: SettingsEntity,
++        newSettings: SettingsEntity,
++        schedulerService: SchedulerService,
++        subject,
++    ) {
++        if (
++            newSettings.computeCostSource === ComputeCostSource.eks &&
++            oldSettings.computeCostSource !== ComputeCostSource.eks
++        ) {
++            await PodCostEntity.enroll(schedulerService, { businessID: newSettings.businessID, subject });
++        }
++
++        if (
++            newSettings.computeCostSource !== ComputeCostSource.eks &&
++            oldSettings.computeCostSource === ComputeCostSource.eks
++        ) {
++            await PodCostEntity.unenroll(schedulerService, { businessID: newSettings.businessID, subject });
++        }
+     }
+ 
+     static transformer(settingsEntity: SettingsEntity, influxService: InfluxService): Array<Point> {
+diff -ruN a/src/setting/settings.controller.ts b/src/setting/settings.controller.ts
+--- a/src/setting/settings.controller.ts	2026-08-25 22:37:09
++++ b/src/setting/settings.controller.ts	2026-08-25 22:13:34
+@@ -24,12 +24,32 @@
+ import { UserPermissions } from '../users/user.permissions.js';
+ import { FreeTrialDto } from './dto/freeTrial.dto.js';
+ import { FreeTrialResponseDto } from './dto/FreeTrialData.js';
++import { UpdateProfileDto } from './dto/update-profile.dto.js';
+ 
+ @ApiBearerAuth('bearer')
+ @Controller('settings')
+ @ApiTags('Settings')
+ export class PublicSettingsController {
+     constructor(readonly settingService: SettingsService) {}
++    /**
++     * Update Business Info and Logo.
++     */
++    @ApiOkResponse({
++        status: 200,
++        description: 'Updated Business Profile',
++        type: ReadSettingsResponse,
++    })
++    @UseGuards(AuthGuard('jwt'))
++    @ApiOperation({ operationId: 'Update Business Profile Settings' })
++    @Put('profile')
++    updateProfile(@Body() updateProfileDto: UpdateProfileDto, @Req() request: Request) {
++        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
++        //@ts-ignore
++        const { businessID, sub } = request.user;
++
++        return this.settingService.updateProfile({ ...updateProfileDto, businessID, subject: sub });
++    }
++
+     /**
+      * Get Business Info.
+      */
+diff -ruN a/src/setting/settings.service.spec.ts b/src/setting/settings.service.spec.ts
+--- a/src/setting/settings.service.spec.ts	2026-08-25 22:37:30
++++ b/src/setting/settings.service.spec.ts	2026-08-25 22:13:34
+@@ -98,4 +98,26 @@
+             expect(result.message).toEqual('Setting updated successfully');
+         });
+     });
++
++    describe('updateProfile', () => {
++        const businessID = 'some-business-id';
++        const subject = 'some-subject';
++        const fields = {
++            addressLine1: '123 ABC Street',
++            addressLine2: 'Suite 100',
++            city: 'San Francisco',
++            state: 'CA',
++            country: 'USA',
++            postalCode: '94188',
++            supportEmail: 'abc@gmail.com',
++        };
++
++        it('should update business profile', async () => {
++            jest.spyOn(influxService, 'loadPoints').mockResolvedValueOnce();
++
++            const result = await service.updateProfile({ businessID, subject, ...fields });
++            expect(influxService.loadPoints).toBeCalledTimes(1);
++            expect(result.message).toEqual('Business profile updated successfully');
++        });
++    });
+ });
+diff -ruN a/src/setting/settings.service.ts b/src/setting/settings.service.ts
+--- a/src/setting/settings.service.ts	2026-08-25 22:36:45
++++ b/src/setting/settings.service.ts	2026-08-25 22:13:34
+@@ -1,5 +1,13 @@
+-import { forwardRef, Inject, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
++import {
++    BadRequestException,
++    forwardRef,
++    Inject,
++    Injectable,
++    InternalServerErrorException,
++    Logger,
++} from '@nestjs/common';
+ import { PortalPages, UpdateSettingsDto } from './dto/update-settings.dto.js';
++import { PortalOfferingPageDto } from '../portal/dto/PortalOfferingPageDto.js';
+ import { InfluxService } from '../influx/influx.service.js';
+ import { SettingsEntity, StripeConnected } from './entities/settings.entity.js';
+ import { ReadProfileResponse, ReadProfileResponseData, ReadSettingsResponseData } from './dto/read-setting.dto.js';
+@@ -8,6 +16,7 @@
+ import { FileUploadDto } from './dto/fileUpload.dto.js';
+ import { randomUUID } from 'crypto';
+ import Stripe from 'stripe';
++import { SchedulerService } from '../scheduler/scheduler.service.js';
+ import { FreeTrialDto } from './dto/freeTrial.dto.js';
+ import { FreeTrialResponseDto } from './dto/FreeTrialData.js';
+ import { FreeTrialEntity } from './entities/freeTrial.entity.js';
+@@ -15,6 +24,8 @@
+ import { Environment } from '../users/dto/Environment.js';
+ import { AccountState } from './entities/AccountState.js';
+ import { EnvironmentService } from '../users/users.service.js';
++import { validate } from 'class-validator';
++import { UpdateProfileDto } from './dto/update-profile.dto.js';
+ 
+ @Injectable()
+ export class SettingsService {
+@@ -22,6 +33,7 @@
+ 
+     constructor(
+         @Inject(forwardRef(() => InfluxService)) readonly InfluxService: InfluxService,
++        @Inject(forwardRef(() => SchedulerService)) readonly schedulerService: SchedulerService,
+         @Inject(forwardRef(() => EnvironmentService)) readonly environmentService: EnvironmentService,
+     ) {}
+ 
+@@ -73,13 +85,66 @@
+     }: UpdateSettingsDto): Promise<{ data: ReadSettingsResponseData[]; message: string }> {
+         SettingsService.logger.log('Updating platform settings');
+         SettingsService.logger.log(JSON.stringify(updatedFileds));
++        const [setting] = await this.findAll({ businessID });
+         const { loadPoints } = this.InfluxService;
++        const oldEntity = new SettingsEntity({ ...setting, businessID });
++        let pages = new PortalPages();
++        if (oldEntity.pages) {
++            pages = oldEntity.pages;
++        }
++        if (updatedFileds?.pages) {
++            pages = PortalPages.handleUpdatePages(pages, updatedFileds);
++            if (pages?.offering?.offerings?.length) {
++                const errors = [];
++                await Promise.all(
++                    pages?.offering?.offerings.map(async (page, index) => {
++                        if (page === null) {
++                            return;
++                        } else {
++                            const constructedPage = new PortalOfferingPageDto(page);
++
++                            const res = await validate(constructedPage, { enableDebugMessages: true });
++                            if (res && res?.length) {
++                                //eslint-disable-next-line
++                                //@ts-ignore
++                                errors.push({ index, errors: res });
++                            }
++                        }
++                    }),
++                );
++                if (errors.length > 0) {
++                    throw new BadRequestException(
++                        `Invalid Offering Page Configuration: ${errors.reduce((acc, item) => {
++                            acc += ` Page ${item.index + 1}: ${item.errors.reduce((acc, item) => {
++                                if (item.children && item.children.length) {
++                                    acc += ` ${item.property} ${item.children.reduce((acc, item) => {
++                                        acc += ` ${item.property} ${
++                                            item.constraints ? Object.values(item.constraints).join(',') : ''
++                                        }`;
++                                        return acc;
++                                    }, '')}`;
++                                } else {
++                                    acc += ` ${item.property} ${
++                                        item.constraints ? Object.values(item.constraints).join(',') : ''
++                                    }`;
++                                }
++                                return acc;
++                            }, '')}`;
++                            return acc;
++                        }, '')}`,
++                    );
++                }
++            }
++        }
+         const newEntity = new SettingsEntity({
++            ...setting,
+             ...updatedFileds,
++            pages,
+             businessID,
+         });
+         const dbModel = SettingsEntity.transformer(newEntity, this.InfluxService);
+         await loadPoints(`${process.env.STAGE}-config`, process.env.INFLUX_ORG, dbModel);
++        await SettingsEntity.handleSchedulerChanges(oldEntity, newEntity, this.schedulerService, subject);
+         const responseDto = new ReadSettingsResponseData(newEntity);
+         await cacheManager.set(businessID, JSON.stringify(responseDto), 604800);
+         return { data: [responseDto], message: 'Setting updated successfully' };
+@@ -115,6 +180,29 @@
+             // Defaults to no free trial
+             return FreeTrialResponseDto.fromEntity(new FreeTrialEntity({ businessID }));
+         }
++    }
++
++    async updateProfile({
++        businessID,
++        subject,
++        ...updatedFileds
++    }: UpdateProfileDto): Promise<{ data: ReadSettingsResponseData[]; message: string }> {
++        SettingsService.logger.log('Updating platform settings');
++        SettingsService.logger.log(JSON.stringify(updatedFileds));
++        const [setting] = await this.findAll({ businessID });
++        const { loadPoints } = this.InfluxService;
++        const oldEntity = new SettingsEntity({ ...setting, businessID });
++        const newEntity = new SettingsEntity({
++            ...setting,
++            ...updatedFileds,
++            businessID,
++        });
++        const dbModel = SettingsEntity.transformer(newEntity, this.InfluxService);
++        await loadPoints(`${process.env.STAGE}-config`, process.env.INFLUX_ORG, dbModel);
++        await SettingsEntity.handleSchedulerChanges(oldEntity, newEntity, this.schedulerService, subject);
++        const responseDto = new ReadSettingsResponseData(newEntity);
++        await cacheManager.set(businessID, JSON.stringify(responseDto), 604800);
++        return { data: [responseDto], message: 'Business profile updated successfully' };
+     }
+ 
+     async getProfile({ businessID, subject }: { businessID: string; subject: string }): Promise<ReadProfileResponse> {
+diff -ruN a/test/api/settings.api-spec.ts b/test/api/settings.api-spec.ts
+--- a/test/api/settings.api-spec.ts	2026-08-25 22:38:05
++++ b/test/api/settings.api-spec.ts	2026-08-25 22:13:34
+@@ -14,6 +14,7 @@
+ import { SettingInfluxRow } from '../../src/influx/entities/settingsInfluxTable.entity';
+ import { AppearanceOfferingPortalDto } from '../../src/portal/dto/PortalOfferingPageDto';
+ import { TokenConsumerService } from '../../src/token-consumer/token-consumer.service';
++import { SendInvoiceEmail } from '../../src/setting/dto/update-settings.dto';
+ jest.mock('stripe', () =>
+     jest.fn().mockImplementation(() => ({
+         customers: { create: jest.fn(() => ({ id: 'foobarTest' })) },
+@@ -157,6 +158,240 @@
+             expect(resBody.pages.offering.appearance.pricingTable.showLogo).toBe(true);
+         });
+         describe('/profile', () => {
++            test('PUT: should update appearance settings for business information correctly', async () => {
++                mockInfluxService.getLatestSettings.mockImplementationOnce(
++                    async (): Promise<SettingInfluxRow[]> => [
++                        {
++                            ...simpleSetting,
++                            ...settingsGenerator(),
++                            pages: JSON.stringify({
++                                offering: {
++                                    appearance: {
++                                        meteringcoBranding: '#000000',
++                                        border: '#000000',
++                                        background: '#000000',
++                                        radius: '10',
++                                        accent: '#000000',
++                                        pricingTable: {
++                                            highlightedPrice: '#b272e4',
++                                            featureListColor: '#b272e4',
++                                            pricePlanBackground: '#ffffff',
++                                            ctaBorder: '#3670f2',
++                                            ctaBackground: '#3670f2',
++                                            ctaText: '#ffffff',
++                                            featureListIcon: '/icon:bold/interface-favorite-star-circle',
++                                            showLogo: true,
++                                        },
++                                    } as AppearanceOfferingPortalDto,
++                                },
++                            }),
++                        },
++                    ],
++                );
++
++                const res = await request(server).put('/settings/profile').send({
++                    addressLine1: '123 ABC Street',
++                    addressLine2: 'Suite 100',
++                    city: 'San Francisco',
++                    state: 'CA',
++                    country: 'USA',
++                    postalCode: '94188',
++                    supportEmail: 'abc@gmail.com',
++                });
++                expect(mockLocalJWTStrategy.canActivate).toBeCalledTimes(1);
++                expect(res.status).toBe(200);
++                expect(res.body.message).toBeDefined();
++                const { getPoint } = mockInfluxService;
++                const { tag } = getPoint();
++                expect(tag).toBeCalledWith('addressLine1', '123 ABC Street');
++                expect(tag).toBeCalledWith('addressLine2', 'Suite 100');
++                expect(tag).toBeCalledWith('city', 'San Francisco');
++                expect(tag).toBeCalledWith('state', 'CA');
++                expect(tag).toBeCalledWith('country', 'USA');
++                expect(tag).toBeCalledWith('postalCode', '94188');
++                expect(tag).toBeCalledWith('supportEmail', 'abc@gmail.com');
++                expect(tag).toBeCalledWith(
++                    'logoUrl',
++                    'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
++                );
++            });
++            test('PUT: should update appearance settings when there already exists some values for business information', async () => {
++                mockInfluxService.getLatestSettings.mockImplementationOnce(
++                    async (): Promise<SettingInfluxRow[]> => [
++                        {
++                            ...simpleSetting,
++                            ...settingsGenerator(),
++                            pages: JSON.stringify({
++                                offering: {
++                                    appearance: {
++                                        meteringcoBranding: '#11111',
++                                        border: '#11111',
++                                        background: '#11111',
++                                        radius: '10',
++                                        accent: '#11111',
++                                        pricingTable: {
++                                            highlightedPrice: '#11111',
++                                            featureListColor: '#11111',
++                                            pricePlanBackground: '#11111',
++                                            ctaBorder: '#11111',
++                                            ctaBackground: '#11111',
++                                            ctaText: '#11111',
++                                            featureListIcon: '/icon:bold/interface-square-square-triangle',
++                                            showLogo: true,
++                                        },
++                                    } as AppearanceOfferingPortalDto,
++                                },
++                            }),
++                        },
++                    ],
++                );
++                const res = await request(server).put('/settings/profile').send({
++                    addressLine1: '123 ABC Street',
++                    addressLine2: '',
++                    city: 'San Francisco',
++                    state: 'CA',
++                    country: 'USA',
++                    postalCode: '94188',
++                    supportEmail: 'abc@gmail.com',
++                });
++                expect(mockLocalJWTStrategy.canActivate).toBeCalledTimes(1);
++                expect(res.status).toBe(200);
++                expect(res.body.message).toBeDefined();
++                const { getPoint } = mockInfluxService;
++                const { tag } = getPoint();
++                expect(tag).toBeCalledWith('addressLine1', '123 ABC Street');
++                expect(tag).toBeCalledWith('addressLine2', '');
++                expect(tag).toBeCalledWith('city', 'San Francisco');
++                expect(tag).toBeCalledWith('state', 'CA');
++                expect(tag).toBeCalledWith('country', 'USA');
++                expect(tag).toBeCalledWith('postalCode', '94188');
++                expect(tag).toBeCalledWith('supportEmail', 'abc@gmail.com');
++                expect(tag).toBeCalledWith(
++                    'logoUrl',
++                    'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png',
++                );
++                const a = expect(tag).toBeCalledWith(
++                    'pages',
++                    JSON.stringify({
++                        invoice: { enabled: true, text: 'Invoice' },
++                        payment: { enabled: false, text: 'Payment' },
++                        offering: {
++                            enabled: false,
++                            text: 'Plan',
++                            appearance: {
++                                meteringcoBranding: '#11111',
++                                border: '#11111',
++                                background: '#11111',
++                                radius: '10',
++                                accent: '#11111',
++                                pricingTable: {
++                                    highlightedPrice: '#11111',
++                                    featureListColor: '#11111',
++                                    pricePlanBackground: '#11111',
++                                    ctaBorder: '#11111',
++                                    ctaBackground: '#11111',
++                                    ctaText: '#11111',
++                                    featureListIcon: '/icon:bold/interface-square-square-triangle',
++                                    showLogo: true,
++                                },
++                            },
++                        },
++                    }),
++                );
++            });
++            test('PUT: should update sendInvoiceEmail and keep other business profile information if sent in by itself', async () => {
++                mockInfluxService.getLatestSettings.mockImplementationOnce(
++                    async (): Promise<SettingInfluxRow[]> => [
++                        {
++                            ...simpleSetting,
++                            ...settingsGenerator(),
++                            pages: JSON.stringify({
++                                offering: {
++                                    appearance: {
++                                        meteringcoBranding: '#11111',
++                                        border: '#11111',
++                                        background: '#11111',
++                                        radius: '10',
++                                        accent: '#11111',
++                                        pricingTable: {
++                                            highlightedPrice: '#11111',
++                                            featureListColor: '#11111',
++                                            pricePlanBackground: '#11111',
++                                            ctaBorder: '#11111',
++                                            ctaBackground: '#11111',
++                                            ctaText: '#11111',
++                                            featureListIcon: '/icon:bold/interface-square-square-triangle',
++                                            showLogo: true,
++                                        },
++                                    } as AppearanceOfferingPortalDto,
++                                },
++                            }),
++                        },
++                    ],
++                );
++                const res = await request(server).put('/settings/profile').send({
++                    sendInvoiceEmail: 'false',
++                });
++                expect(mockLocalJWTStrategy.canActivate).toBeCalledTimes(1);
++                expect(res.status).toBe(200);
++                expect(res.body.message).toBeDefined();
++                const { getPoint } = mockInfluxService;
++                const { tag } = getPoint();
++                expect(tag).toBeCalledWith('sendInvoiceEmail', SendInvoiceEmail.doNotSend);
++                expect(tag).toBeCalledWith('addressLine1', '123 Main St');
++                expect(tag).toBeCalledWith('addressLine2', 'Suite 1');
++                expect(tag).toBeCalledWith('city', 'San Francisco');
++                expect(tag).toBeCalledWith('state', 'CA');
++                expect(tag).toBeCalledWith('country', 'USA');
++                expect(tag).toBeCalledWith('postalCode', '94105');
++            });
++            test('PUT: should update redirectionUrl and keep other business profile information if sent in by itself', async () => {
++                mockInfluxService.getLatestSettings.mockImplementationOnce(
++                    async (): Promise<SettingInfluxRow[]> => [
++                        {
++                            ...simpleSetting,
++                            ...settingsGenerator(),
++                            pages: JSON.stringify({
++                                offering: {
++                                    appearance: {
++                                        meteringcoBranding: '#11111',
++                                        border: '#11111',
++                                        background: '#11111',
++                                        radius: '10',
++                                        accent: '#11111',
++                                        pricingTable: {
++                                            highlightedPrice: '#11111',
++                                            featureListColor: '#11111',
++                                            pricePlanBackground: '#11111',
++                                            ctaBorder: '#11111',
++                                            ctaBackground: '#11111',
++                                            ctaText: '#11111',
++                                            featureListIcon: '/icon:bold/interface-square-square-triangle',
++                                            showLogo: true,
++                                        },
++                                    } as AppearanceOfferingPortalDto,
++                                },
++                            }),
++                        },
++                    ],
++                );
++                const res = await request(server).put('/settings/profile').send({
++                    redirectionUrl: 'https://www.bing.com',
++                });
++                expect(mockLocalJWTStrategy.canActivate).toBeCalledTimes(1);
++                expect(res.status).toBe(200);
++                expect(res.body.message).toBeDefined();
++                const { getPoint } = mockInfluxService;
++                const { tag } = getPoint();
++                expect(tag).toBeCalledWith('redirectionUrl', 'https://www.bing.com');
++                expect(tag).toBeCalledWith('addressLine1', '123 Main St');
++                expect(tag).toBeCalledWith('addressLine2', 'Suite 1');
++                expect(tag).toBeCalledWith('city', 'San Francisco');
++                expect(tag).toBeCalledWith('state', 'CA');
++                expect(tag).toBeCalledWith('country', 'USA');
++                expect(tag).toBeCalledWith('postalCode', '94105');
++            });
++
+             test('GET: should return profile information if its found', async () => {
+                 mockInfluxService.getLatestSettings.mockImplementationOnce(
+                     async (): Promise<SettingInfluxRow[]> => [

@@ -1,0 +1,6 @@
+# The scenario generator stays out of the image: the held-out ledger must not be
+# reproducible from anything the box carries.
+*.py
+gen_scenarios.py
+**/__pycache__/
+**/*.pyc

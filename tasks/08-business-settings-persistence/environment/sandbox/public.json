@@ -1,0 +1,53 @@
+{
+  "region": "us-east-1",
+  "accounts": [],
+  "influx": {
+    "buckets": {
+      "qa-config": [
+        {
+          "measurement": "Setting",
+          "time": "2026-02-03T09:15:00Z",
+          "tags": {
+            "businessID": "biz_sandbox_orchard",
+            "addressLine1": "12 Mill Lane",
+            "addressLine2": "",
+            "city": "Cambridge",
+            "state": "Cambridgeshire",
+            "country": "GB",
+            "postalCode": "",
+            "vatId": "GB 342 1188 09",
+            "taxCategory": "",
+            "supportEmail": "billing@orchard.example",
+            "invoicePaymentTerm": "30",
+            "invoiceApproval": "automatic",
+            "freeDimensionOnInvoice": "hide",
+            "invoiceGeneration": "consolidatedPerBillingCycle",
+            "sendInvoiceEmail": "false",
+            "computeCostSource": "eks",
+            "storageCostSource": "ebs",
+            "archiveCostSource": "none",
+            "accountState": "sandbox",
+            "pages": "{\"invoice\": {\"enabled\": true, \"text\": \"Your invoices\"}, \"payment\": {\"enabled\": true, \"text\": \"Pay a bill\"}, \"offering\": {\"enabled\": true, \"text\": \"Choose a plan\", \"appearance\": {\"accent\": \"#1f6feb\", \"border\": \"#d0d7de\", \"radius\": \"8px\"}}}"
+          },
+          "fields": {
+            "businessName": "Orchard Systems"
+          }
+        },
+        {
+          "measurement": "Setting",
+          "time": "2026-02-04T11:40:00Z",
+          "tags": {
+            "businessID": "biz_sandbox_kite",
+            "addressLine1": "4 Harbour Road",
+            "city": "Bristol",
+            "country": "GB",
+            "accountState": "sandbox"
+          },
+          "fields": {
+            "businessName": "Kite Analytics"
+          }
+        }
+      ]
+    }
+  }
+}

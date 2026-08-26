@@ -1,6 +1,6 @@
 # Meta Muse Spark 1.2 RL evaluation sample
 
-This public sample contains four deterministic, AWS-backed coding tasks and
+This public sample contains eight deterministic, AWS-backed coding tasks and
 repeated verifier-backed rollouts for Meta Muse Spark 1.2 and Claude Opus 5.
 Every reported task-model cell contains eight scored attempts with native and
 normalized trajectories, verifier reports, and binary rewards.
@@ -14,11 +14,27 @@ contracts through boundary cases. It is not a universal model ranking.
 | [Task 2: measurement failure DLQ](tasks/02-measurement-failure-dlq/instruction.md) | 2/8 | 8/8 |
 | [Task 3: customer communication dispatch](tasks/03-customer-communication-dispatch/instruction.md) | 5/8 | 8/8 |
 | [Task 4: IAM role validation](tasks/04-iam-role-validation/instruction.md) | 4/8 | 8/8 |
-| **Overall across reported cells** | **11/32** | **32/32** |
+| [Task 5: network egress metering](tasks/05-network-egress-metering/instruction.md) | 6/8 | 8/8 |
+| [Task 6: API token metering](tasks/06-api-token-metering/instruction.md) | 1/8 | 7/8 |
+| [Task 7: API keys and environments](tasks/07-api-keys-and-environments/instruction.md) | 2/8 | 8/8 |
+| [Task 8: business settings persistence](tasks/08-business-settings-persistence/instruction.md) | 4/8 | 8/8 |
+| **Overall across reported cells** | **24/64** | **63/64** |
 
-Task 4 extends the original three-task sample. Its Muse solve rate is exactly
-the release's inclusion threshold of 50% (`4/8`). The original three tasks
-remain unchanged for continuity.
+Tasks 1 to 4 are tightly scoped changes. Tasks 5 to 8, added on August 26, 2026,
+are larger feature builds: their mean prompt is 2,179 characters against 750,
+and their reference change adds 451 lines against 85. Task 6 holds the only
+Opus 5 failure in the sample; that trial satisfied six of the task's seven
+graded rules.
+
+Two run-configuration details differ across the sample and are recorded rather
+than smoothed over. Muse reached the model through three routes:
+`openrouter/meta/muse-spark-1.2` on Tasks 1 to 3, `meta/responses/muse-spark-1.2`
+on Task 4, and `openai/muse-spark-1.2` on Tasks 5 to 8. Opus 5 ran on
+`bedrock/us.anthropic.claude-opus-5` throughout. On Tasks 5 to 8 the two cohorts
+also record different Harbor task checksums, because the packages were
+repackaged between the two rollouts; see `task_checksum_note` in
+[the transformation manifest](sample-run/manifests/public-transformation.json)
+for the equivalence check that accompanies them.
 
 Read the [verifier-backed analysis](sample-run/analysis.md) for the failure
 modes, representative traces, fairness controls, and evidence limitations. The
@@ -29,10 +45,10 @@ model-call, tool-call, token, and cost data are under
 
 ## What is included
 
-- Four runnable Harbor task packages with frozen environments and independent
+- Eight runnable Harbor task packages with frozen environments and independent
   verifiers.
-- Sixty-four admitted model trials across eight Muse and Opus cells. No scored
-  cohort includes an incomplete attempt.
+- One hundred twenty-eight admitted model trials across sixteen Muse and Opus
+  cells. No scored cohort includes an incomplete attempt.
 - Native mini-SWE-agent, normalized ATIF, and text trajectories, submitted code
   where included, verifier reports, reward files, and run metadata.
 - Reproducible per-trial execution, call, token, and cost metrics in CSV and
@@ -47,19 +63,21 @@ model-call, tool-call, token, and cost data are under
 tasks/                 public task packages and frozen verifiers
 harness/               cohort, controls, indexing, and publication validation
 shared/                deterministic local AWS-compatible task runtime
-sample-run/trajectories/ all 64 trials by task, model, and attempt
+sample-run/trajectories/ all 128 trials by task, model, and attempt
 sample-run/indexes/    machine-readable trial index and pass-rate tables
 sample-run/manifests/  frozen hashes, controls, and redaction records
 sample-run/metrics/    generated per-trial effort and execution metrics
 sample-run/analysis.md verifier-backed model comparison
 ```
 
-All 64 advertised trials use the same
+All 128 advertised trials use the same
 `sample-run/trajectories/<task>/<model>/trial-XX` layout and include native,
-ATIF, and text trajectories. Tasks 1, 2, and 3 include the submitted deliverable
-under `verifier/deliverable/`. Task 4 keeps the remaining evidence without
-duplicated submitted-code snapshots; its text views are deterministic renders
-of the native public JSON trajectories.
+ATIF, and text trajectories. Every task except Task 4 includes the submitted
+deliverable under `verifier/deliverable/`. Task 4 keeps the remaining evidence
+without duplicated submitted-code snapshots; its text views are deterministic
+renders of the native public JSON trajectories. Tasks 5 and 7 record their
+per-rule verifier outcome in `verifier/reward-detail.json` rather than
+`verifier/report.txt`.
 
 ## Evidence validity
 
@@ -69,8 +87,17 @@ accounts, task-local fake credentials, and execution-infrastructure identifiers
 were replaced. Requirements, model-generated control flow, trial membership,
 verifier outputs, and rewards were preserved.
 
-Every normalized task has both controls: each oracle scored `1.0`, each no-op
-scored `0.0`, and no recorded control raised an exception. The sequential
+Tasks 1 to 4 have both controls recorded against their published packages: each
+oracle scored `1.0`, each no-op scored `0.0`, and no recorded control raised an
+exception.
+
+Tasks 5 to 8 are published without control records. Their reference solutions are
+included under `tasks/<task>/solution/`, and every one of those tasks was solved
+by at least one scored trial, but the oracle and no-op runs have not yet been
+executed against the published packages. That is the outstanding publication step
+for those four tasks, and it is marked pending in
+[the execution summary](sample-run/indexes/execution-summary.json) and the
+transformation manifest so the gap is not mistaken for a completed control. The sequential
 folder names do not change the byte-identical executable files covered by those
 controls. Task 4's controlled source additionally differs only in README
 documentation. Run

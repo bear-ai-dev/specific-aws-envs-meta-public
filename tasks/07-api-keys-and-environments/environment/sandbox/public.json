@@ -1,0 +1,331 @@
+{
+  "region": "us-east-1",
+  "accounts": [],
+  "identity": {
+    "api_audience": "https://example1234.execute-api.us-east-1.amazonaws.com",
+    "clients": [
+      {
+        "client_id": "dashHarbourConsoleMgmt01",
+        "name": "MeteringCo Console Management",
+        "client_secret": "console-management-secret-sandbox",
+        "management": true
+      },
+      {
+        "client_id": "sessHarborlineConsole01",
+        "name": "Harborline console sign-in",
+        "client_secret": "harborline-console-secret",
+        "app_type": "spa",
+        "subject": "auth0|opharborline77",
+        "permissions": [
+          "keys:read",
+          "keys:update",
+          "keys:delete"
+        ]
+      },
+      {
+        "client_id": "sessHarborlineViewer01",
+        "name": "Harborline console sign-in, view only",
+        "client_secret": "harborline-viewer-secret",
+        "app_type": "spa",
+        "subject": "auth0|opharborline77",
+        "permissions": [
+          "keys:read"
+        ]
+      },
+      {
+        "client_id": "sessCrestfallConsole01",
+        "name": "Crestfall console sign-in",
+        "client_secret": "crestfall-console-secret",
+        "app_type": "spa",
+        "subject": "auth0|opcrestfall41",
+        "permissions": [
+          "keys:read",
+          "keys:update",
+          "keys:delete"
+        ]
+      },
+      {
+        "client_id": "keyHarborlineProdIngest",
+        "name": "Harborline production ingest",
+        "client_secret": "harborline-prod-ingest-secret"
+      },
+      {
+        "client_id": "keyHarborlineProdReports",
+        "name": "Harborline production reporting",
+        "client_secret": "harborline-prod-reports-secret"
+      },
+      {
+        "client_id": "keyHarborlineSbxIngest",
+        "name": "Harborline sandbox ingest",
+        "client_secret": "harborline-sbx-ingest-secret"
+      },
+      {
+        "client_id": "keyHarborlineSbxReplay",
+        "name": "Harborline sandbox replay",
+        "client_secret": "harborline-sbx-replay-secret"
+      },
+      {
+        "client_id": "keyHarborlineProdRetired",
+        "name": "Harborline production, retired",
+        "client_secret": "harborline-prod-retired-secret"
+      },
+      {
+        "client_id": "keyCrestfallProdIngest",
+        "name": "Crestfall production ingest",
+        "client_secret": "crestfall-prod-ingest-secret"
+      },
+      {
+        "client_id": "keyCrestfallSbxIngest",
+        "name": "Crestfall sandbox ingest",
+        "client_secret": "crestfall-sbx-ingest-secret"
+      },
+      {
+        "client_id": "appHarborlineStatusBoard",
+        "name": "Harborline public status board",
+        "client_secret": "harborline-status-board-secret"
+      },
+      {
+        "client_id": "appMeteringCoMarketingSite",
+        "name": "MeteringCo marketing site",
+        "client_secret": "meteringco-marketing-site-secret"
+      }
+    ],
+    "permissions": {
+      "keyHarborlineProdIngest@clients": [
+        "keys:read"
+      ],
+      "keyHarborlineSbxIngest@clients": [
+        "keys:read"
+      ]
+    }
+  },
+  "influx": {
+    "buckets": {
+      "local-config": [
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyHarborlineProdIngest@clients",
+            "businessID": "harborline",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyHarborlineProdIngest@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyHarborlineProdReports@clients",
+            "businessID": "harborline",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyHarborlineProdReports@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyHarborlineSbxIngest@clients",
+            "businessID": "harborline-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyHarborlineSbxIngest@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyHarborlineSbxReplay@clients",
+            "businessID": "harborline-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyHarborlineSbxReplay@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyHarborlineProdRetired@clients",
+            "businessID": "harborline",
+            "environment": "production",
+            "softDelete": "deleted"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-06T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyHarborlineProdRetired@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-06T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyCrestfallProdIngest@clients",
+            "businessID": "crestfall",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyCrestfallProdIngest@clients"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "keyCrestfallSbxIngest@clients",
+            "businessID": "crestfall-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "keyCrestfallSbxIngest@clients"
+          },
+          "fields": {
+            "environment": "sandbox"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opharborline77",
+            "businessID": "harborline",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opharborline77",
+            "businessID": "harborline-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "auth0|opharborline77"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opcrestfall41",
+            "businessID": "crestfall",
+            "environment": "production"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserDataEnv",
+          "tags": {
+            "subject": "auth0|opcrestfall41",
+            "businessID": "crestfall-sandbox",
+            "environment": "sandbox"
+          },
+          "fields": {
+            "userStatus": "live"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        },
+        {
+          "measurement": "UserActiveEnvironment",
+          "tags": {
+            "subject": "auth0|opcrestfall41"
+          },
+          "fields": {
+            "environment": "production"
+          },
+          "time": "2024-02-05T09:00:00Z"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,9 @@
+# The generator that produced the two worlds must not enter the image: it names
+# every identifier the held-out world is built from.
+*.py
+gen_scenarios.py
+
+# Build products and caches from local runs.
+**/__pycache__
+**/node_modules
+**/dist

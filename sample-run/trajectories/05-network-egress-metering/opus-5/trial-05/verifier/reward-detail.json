@@ -1,0 +1,200 @@
+{
+  "reward": 1.0,
+  "score": 1.0,
+  "detail": {
+    "runs": {
+      "transfer": {
+        "ok": true,
+        "expected": [
+          {
+            "customerId": "cus_bastion",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 3145728.0
+          },
+          {
+            "customerId": "cus_calliper",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 131072.0
+          },
+          {
+            "customerId": "cus_ravelin",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 8388608.0
+          },
+          {
+            "customerId": "cus_solenoid",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 0.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 524288.0
+          },
+          {
+            "customerId": "cus_wharfage",
+            "dimensionId": "dim_hld_transfer",
+            "recordValue": 2097152.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-25T23:06:56.943Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ravelin",
+            "recordValue": 8388608,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000101,i-0hld000000000102",
+              "instanceCount": 2,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:56.944Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_bastion",
+            "recordValue": 3145728,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000103",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:56.944Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_solenoid",
+            "recordValue": 0,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000105",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:56.944Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000106",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:56.944Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_wharfage",
+            "recordValue": 2097152,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000111",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:56.944Z",
+            "dimensionId": "dim_hld_transfer",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_calliper",
+            "recordValue": 131072,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000113",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.892Z",
+              "intervalEnd": "2026-08-25T23:06:56.892Z"
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": []
+      },
+      "replica": {
+        "ok": true,
+        "expected": [
+          {
+            "customerId": "cus_ferrule",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 393216.0
+          },
+          {
+            "customerId": "cus_tallow",
+            "dimensionId": "dim_hld_replica",
+            "recordValue": 524288.0
+          }
+        ],
+        "observed": [
+          {
+            "timestamp": "2026-08-25T23:06:57.000Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_tallow",
+            "recordValue": 524288,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000106",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.953Z",
+              "intervalEnd": "2026-08-25T23:06:56.953Z"
+            },
+            "_measurement": "usageMeasurement"
+          },
+          {
+            "timestamp": "2026-08-25T23:06:57.000Z",
+            "dimensionId": "dim_hld_replica",
+            "businessID": "biz-tessellate",
+            "customerId": "cus_ferrule",
+            "recordValue": 393216,
+            "metadata": {
+              "metricName": "NetworkOut",
+              "unit": "byte",
+              "region": "us-east-1",
+              "instanceIds": "i-0hld000000000107",
+              "instanceCount": 1,
+              "intervalStart": "2026-08-25T22:56:56.953Z",
+              "intervalEnd": "2026-08-25T23:06:56.953Z"
+            },
+            "_measurement": "usageMeasurement"
+          }
+        ],
+        "notes": []
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "steps": {
+    "p1.call-a": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.call-b": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.call-d": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.burst-1": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.burst-2": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.burst-3": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.burst-4": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.burst-5": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p1.flush": {
+      "ok": true
+    },
+    "p1.rollup": {
+      "ok": true
+    },
+    "p2.call-c": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.twin-1": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.twin-2": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.flush": {
+      "ok": true
+    },
+    "p2.redeliver-d": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.late-p": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.redeliver-c": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.flush-2": {
+      "ok": true
+    },
+    "p2.other-customer": {
+      "ok": false,
+      "error": {
+        "name": "Error",
+        "message": "no registration entry point on the token consumer service",
+        "stack": "Error: no registration entry point on the token consumer service\n    at main (/app/.verifier-drive.ts:254:38)"
+      }
+    },
+    "p2.flush-3": {
+      "ok": true
+    },
+    "p2.rollup": {
+      "ok": true
+    },
+    "p2.rollup-other": {
+      "ok": true
+    },
+    "callsite": {
+      "ok": true
+    }
+  },
+  "diagnostics": {
+    "registerEntryPoint": null,
+    "aggregateEntryPoint": "aggregateTokens"
+  }
+}
